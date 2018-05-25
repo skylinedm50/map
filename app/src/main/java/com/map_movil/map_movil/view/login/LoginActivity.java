@@ -1,4 +1,4 @@
-package com.map_movil.map_movil.view;
+package com.map_movil.map_movil.view.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import android.widget.Toast;
 
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.model.User;
-import com.map_movil.map_movil.presenter.LoginPresenter;
-import com.map_movil.map_movil.presenter.LoginPresenterImpl;
+import com.map_movil.map_movil.presenter.login.LoginPresenter;
+import com.map_movil.map_movil.presenter.login.LoginPresenterImpl;
 
 
-public class LoginActivity extends AppCompatActivity  implements LoginView{
+public class LoginActivity extends AppCompatActivity  implements LoginView {
     private LoginPresenter objLoginPresenter;
     private EditText objEditUser;
     private EditText objEditPassword;

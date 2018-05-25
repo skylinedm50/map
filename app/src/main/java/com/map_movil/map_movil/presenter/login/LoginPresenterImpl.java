@@ -1,9 +1,9 @@
-package com.map_movil.map_movil.presenter;
+package com.map_movil.map_movil.presenter.login;
 
-import com.map_movil.map_movil.interactor.LoginInteractor;
-import com.map_movil.map_movil.interactor.LoginInteractorImpl;
+import com.map_movil.map_movil.interactor.login.LoginInteractor;
+import com.map_movil.map_movil.interactor.login.LoginInteractorImpl;
 import com.map_movil.map_movil.model.User;
-import com.map_movil.map_movil.view.LoginView;
+import com.map_movil.map_movil.view.login.LoginView;
 
 public class LoginPresenterImpl implements LoginPresenter {
     private LoginView objLoginView;

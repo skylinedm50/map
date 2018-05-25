@@ -1,4 +1,4 @@
-package com.map_movil.map_movil.view;
+package com.map_movil.map_movil.view.solicitudes;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

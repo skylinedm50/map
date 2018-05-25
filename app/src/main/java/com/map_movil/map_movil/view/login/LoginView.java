@@ -1,4 +1,4 @@
-package com.map_movil.map_movil.view;
+package com.map_movil.map_movil.view.login;
 
 import com.map_movil.map_movil.model.User;
 

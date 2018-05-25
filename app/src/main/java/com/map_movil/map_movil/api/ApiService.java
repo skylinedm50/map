@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface ApiService { //Aquí solo estaran las URL o mejor dicho su definición
-    @GET("Login/{User}/{password}")
+    @GET("login/{User}/{password}")
     Call<List<User>> getLogin(@Path("User") String strUser, @Path("password") String strPassword);
 }

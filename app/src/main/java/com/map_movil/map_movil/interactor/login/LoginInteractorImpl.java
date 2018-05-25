@@ -1,10 +1,10 @@
-package com.map_movil.map_movil.interactor;
+package com.map_movil.map_movil.interactor.login;
 
-import com.map_movil.map_movil.presenter.LoginPresenter;
-import com.map_movil.map_movil.repository.LoginRepository;
-import com.map_movil.map_movil.repository.LoginRepositoryImpl;
+import com.map_movil.map_movil.presenter.login.LoginPresenter;
+import com.map_movil.map_movil.repository.login.LoginRepository;
+import com.map_movil.map_movil.repository.login.LoginRepositoryImpl;
 
-public class LoginInteractorImpl implements LoginInteractor{
+public class LoginInteractorImpl implements LoginInteractor {
     private LoginPresenter objLoginPresenter;
     private LoginRepository objLoginRepository;
 
