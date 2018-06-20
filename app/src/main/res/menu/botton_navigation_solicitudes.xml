@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_resueltas"
+        android:icon="@drawable/ic_playlist_add_check_black_24dp"
+        android:title="Resueltas"></item>
+    <item android:id="@+id/nav_sin_resolver"
+        android:icon="@drawable/ic_list_black_24dp"
+        android:title="No Resueltas"></item>
+</menu>

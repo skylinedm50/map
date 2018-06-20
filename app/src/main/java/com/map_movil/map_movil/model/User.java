@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
     @SerializedName("codigo")
-    private Number intCodigo;
+    private Integer intCodigo;
 
     @SerializedName("nombre")
     private String strNombre;
@@ -13,13 +13,13 @@ public class User {
     private String strsApellido;
 
     @SerializedName("estado")
-    private Number intEstado;
+    private Integer intEstado;
 
     @SerializedName("cantidad_login")
-    private Number intCantidadLogin;
+    private Integer intCantidadLogin;
 
 
-    public User(Number intCodigo, String strNombre, String strsApellido, Number intEstado, Number intCantidadLogin) {
+    public User(Integer intCodigo, String strNombre, String strsApellido, Integer intEstado, Integer intCantidadLogin) {
         this.intCodigo = intCodigo;
         this.strNombre = strNombre;
         this.strsApellido = strsApellido;
@@ -27,11 +27,11 @@ public class User {
         this.intCantidadLogin = intCantidadLogin;
     }
 
-    public Number getIntCodigo() {
+    public Integer getIntCodigo() {
         return intCodigo;
     }
 
-    public void setIntCodigo(Number intCodigo) {
+    public void setIntCodigo(Integer intCodigo) {
         this.intCodigo = intCodigo;
     }
 
@@ -51,19 +51,19 @@ public class User {
         this.strsApellido = strsApellido;
     }
 
-    public Number getIntEstado() {
+    public Integer getIntEstado() {
         return intEstado;
     }
 
-    public void setIntEstado(Number intEstado) {
+    public void setIntEstado(Integer intEstado) {
         this.intEstado = intEstado;
     }
 
-    public Number getIntCantidadLogin() {
+    public Integer getIntCantidadLogin() {
         return intCantidadLogin;
     }
 
-    public void setIntCantidadLogin(Number intCantidadLogin) {
+    public void setIntCantidadLogin(Integer intCantidadLogin) {
         this.intCantidadLogin = intCantidadLogin;
     }
 }

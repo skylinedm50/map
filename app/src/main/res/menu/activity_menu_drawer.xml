@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="Solicitudes">
+        <menu>
+            <item
+                android:id="@+id/nav_soli"
+                android:icon="@drawable/ic_view_list_dp"
+                android:title="Manejo"/>
+            <item
+                android:id="@+id/nav_segui_soli"
+                android:icon="@drawable/ic_view_list_dp"
+                android:title="Seguimiento"/>
+        </menu>
+    </item>
+    <group
+        android:checkableBehavior="single">
+        <item android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_input_dp"
+            android:title="Cerrar Sesión"/>
+    </group>
+</menu>
