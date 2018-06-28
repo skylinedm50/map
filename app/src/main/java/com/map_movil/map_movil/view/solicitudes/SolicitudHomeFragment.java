@@ -37,12 +37,16 @@ public class SolicitudHomeFragment extends Fragment{
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
+
+
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) view.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
+
+
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -53,19 +57,10 @@ public class SolicitudHomeFragment extends Fragment{
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
+
                 Intent intent = new Intent(view.getContext(), VerSolicitudActivity.class);
                 intent.putExtra("intTipoOperacion", 1);
-
-
-                //tabLayout.getTabAt(0).getCustomView().findViewById(R.id.)
-                //int intPosicion = tabLayout.getSelectedTabPosition();
-                // TabLayout tabLayoutTest = tab;
-
-
-
-
                 startActivity(intent);
-                mSectionsPagerAdapter.notifyDataSetChanged();
             }
         });
 
@@ -78,7 +73,6 @@ public class SolicitudHomeFragment extends Fragment{
 
         public PlaceholderFragment() {
         }
-
 
         public static Fragment newInstance(int sectionNumber) {
             SolicitudesFragment fragment = new SolicitudesFragment();

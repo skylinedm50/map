@@ -9,16 +9,17 @@
     tools:context=".HomeActivity"
     tools:showIn="@layout/app_bar_menu">
 
-    <!--<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeActivity"
-        tools:showIn="@layout/app_bar_menu"
+        android:id="@+id/linearLayoutTextoHome"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="22dp"
             android:text="Módulo de Antención al Participante"/>
-    </LinearLayout>-->
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -7,7 +7,7 @@ public class HogarLigth {
     private String strNombreBeneficiario;
 
     @SerializedName("edad")
-    private int intEdad;
+    private String strEdad;
 
     @SerializedName("sexo")
     private String strSexo;
@@ -18,9 +18,9 @@ public class HogarLigth {
     @SerializedName("titular")
     private boolean bolTitular;
 
-    public HogarLigth(String strNombreBeneficiario, int intEdad, String strSexo, String strIdentidad, boolean bolTitular) {
+    public HogarLigth(String strNombreBeneficiario, String strEdad, String strSexo, String strIdentidad, boolean bolTitular) {
         this.strNombreBeneficiario = strNombreBeneficiario;
-        this.intEdad = intEdad;
+        this.strEdad = strEdad;
         this.strSexo = strSexo;
         this.strIdentidad = strIdentidad;
         this.bolTitular = bolTitular;
@@ -34,12 +34,12 @@ public class HogarLigth {
         this.strNombreBeneficiario = strNombreBeneficiario;
     }
 
-    public int getIntEdad() {
-        return intEdad;
+    public String getStrEdad() {
+        return strEdad;
     }
 
-    public void setIntEdad(int intEdad) {
-        this.intEdad = intEdad;
+    public void setStrEdad(String strEdad) {
+        this.strEdad = strEdad;
     }
 
     public String getStrSexo() {
