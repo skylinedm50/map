@@ -82,6 +82,7 @@ public class SolicitudesNoRealizadasFragment extends Fragment implements Solicit
 
     @Override
     public void getSolicitudesGestionadasUser(Integer intCodUser, String strSimbolo) {
+
     }
 
     @Override

@@ -10,7 +10,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
     public LoginInteractorImpl(LoginPresenter objLoginPresenter) {
         this.objLoginPresenter = objLoginPresenter;
-        objLoginRepository = new LoginRepositoryImpl(objLoginPresenter);
+        objLoginRepository = new LoginRepositoryImpl(this.objLoginPresenter);
     }
 
     @Override
