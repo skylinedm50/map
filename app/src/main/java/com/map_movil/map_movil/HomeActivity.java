@@ -17,8 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
+import com.map_movil.map_movil.view.validar_hogares.ValidarHogaresFragment;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -105,6 +107,14 @@ public class HomeActivity extends AppCompatActivity
             sharedPreferences.edit().clear().commit();
             intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+        }else if (id == R.id.nav_download) {
+            showToolbar("Descargar Validaciones");
+            DescargarValidacionFragment fragment_descargar = new DescargarValidacionFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragment_descargar).commit();
+        }else if (id == R.id.nav_val) {
+            showToolbar("Validar Hogares");
+            ValidarHogaresFragment fragment_validar = new ValidarHogaresFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragment_validar).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
