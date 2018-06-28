@@ -1,6 +1,5 @@
 package com.map_movil.map_movil;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,9 @@ public class HomeActivity extends AppCompatActivity
     private Intent intent;
     private TextView textViewNombreUsuario;
     private SharedPreferences sharedPreferences;
+    private LinearLayout linearLayoutTextoHome;
+
+    private int intCodItemSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        linearLayoutTextoHome = findViewById(R.id.linearLayoutTextoHome);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,7 +53,6 @@ public class HomeActivity extends AppCompatActivity
         textViewNombreUsuario.setText(sharedPreferences.getString("nombre", "").toString());
 
         showToolbar("Inicio");
-
     }
 
     @Override
@@ -83,18 +87,16 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Fragment fragment = null;
-        boolean boolSelectFragment = false;
 
         if (id == R.id.nav_soli) {
             showToolbar("Solicitudes");
+            showTextHome(false);
+            if(intCodItemSelect != id) {
+                SolicitudHomeFragment fragmentHomeSolitud = new SolicitudHomeFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragmentHomeSolitud).commit();
+            }
 
-            SolicitudHomeFragment fragmentHomeSolitud = new SolicitudHomeFragment();
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragmentHomeSolitud).commit();
-            boolSelectFragment = true;
-            /*intent = new Intent(this, SolicituActivity.class);
-            startActivity(intent);*/
+            intCodItemSelect = id;
 
         } else if (id == R.id.nav_segui_soli) {
             Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
@@ -110,6 +112,13 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
+    private void showTextHome(boolean show){
+        if(show == true){
+            linearLayoutTextoHome.setVisibility(View.VISIBLE);
+        }else{
+            linearLayoutTextoHome.setVisibility(View.GONE);
+        }
+    }
 
     private void showToolbar(String strTitle){
         getSupportActionBar().setTitle(strTitle);
