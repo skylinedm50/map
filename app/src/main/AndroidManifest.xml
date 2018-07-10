@@ -29,6 +29,10 @@
             android:name=".view.reportes.GraficoActivity"
             android:label="@string/title_activity_grafico"
             android:theme="@style/AppTheme"></activity>
+
+        <activity android:name=".view.validar_hogares.ValidarNucleoActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
