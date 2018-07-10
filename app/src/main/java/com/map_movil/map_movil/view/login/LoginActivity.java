@@ -18,41 +18,32 @@ import com.map_movil.map_movil.presenter.login.LoginPresenterImpl;
 
 
 public class LoginActivity extends AppCompatActivity  implements LoginView {
-    private LoginPresenter objLoginPresenter;
+    private LoginPresenter loginPresenter;
     private EditText objEditUser;
     private EditText objEditPassword;
-    private Button objButLogin;
-    private SharedPreferences objSharedPreferences;
-    private SharedPreferences.Editor objEditor;
+    private Button buttonLogin;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPreferencesEditor;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        objSharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
-        objEditor = objSharedPreferences.edit();
-
+        sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
 
         setContentView(R.layout.activity_login);
-        objButLogin = findViewById(R.id.btnLogin);
+        buttonLogin = findViewById(R.id.btnLogin);
         objEditUser = findViewById(R.id.strUser);
         objEditPassword = findViewById(R.id.strPassword);
-        objLoginPresenter = new LoginPresenterImpl(this);
+        loginPresenter = new LoginPresenterImpl(this);
 
-        if(objSharedPreferences.getInt("codigo", 0) > 0){
-            Intent objIntent = new Intent(this, HomeActivity.class);
-            startActivity(objIntent);
-        }
+        existLogin(sharedPreferences);
 
-
-        objButLogin.setOnClickListener(new View.OnClickListener() {
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!getDetectError(objEditUser.getText().toString(), objEditPassword.getText().toString())){
-                    getDataUser(objEditUser.getText().toString(), objEditPassword.getText().toString());
-                }else{
-                    Toast.makeText(getApplicationContext(), "Favor ingrese los datos solicitados", Toast.LENGTH_SHORT).show();
-                }
+                getDataUser(objEditUser.getText().toString(), objEditPassword.getText().toString());
             }
         });
     }
@@ -60,51 +51,53 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
-        objSharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
-        objEditor = objSharedPreferences.edit();
-
-        if(objSharedPreferences.getInt("codigo", 0) > 0){
-            Intent objIntent = new Intent(this, HomeActivity.class);
-            startActivity(objIntent);
-        }
-    }
-
-
-    private boolean getDetectError(String strUser, String strPassword){
-        if((strUser != null) && (strPassword != null)){
-            return false;
-        }else{
-            return true;
-        }
+        existLogin(sharedPreferences);
     }
 
     @Override
     public void getDataUser(String strUser, String strPassword){
-        objLoginPresenter.getDataUser(strUser, strPassword);
+        loginPresenter.getDataUser(strUser, strPassword);
     }
 
     @Override
-    public void showDataUser(User objUser){
-        if(objUser.getIntEstado() == 2){//Cuando su login es por primera vez.
-            Intent objIntent = new Intent(this, ChangePasswordActivity.class);
-            startActivity(objIntent);
+    public void existLogin(SharedPreferences sharedPreferences) {
+        loginPresenter.existLogin(sharedPreferences);
+    }
 
-        }else if(objUser.getIntEstado() == 1){//Cuando su ingreso es la segunda vez o más pero la contraseña ya fue modificada.
-            objEditor.putInt("codigo", objUser.getIntCodigo());
-            objEditor.putString("nombre", objUser.getStrNombre());
-            objEditor.putInt("cantidadLogin", objUser.getIntCantidadLogin() + 1);
-            objEditor.commit();
+    @Override
+    public void goToHome() {
+        intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
 
-            Intent objIntent = new Intent(this, HomeActivity.class);
-            startActivity(objIntent);
-        }else{
-            Toast.makeText(getApplicationContext(), objUser.getStrNombre() +  " " + objUser.getStrsApellido(), Toast.LENGTH_SHORT).show();
+    @Override
+    public void goToChangePassword() {
+        intent = new Intent(this, ChangePasswordActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showDataUser(User user){
+        saveLocalLogin(user.getIntCodigo(), user.getStrNombre() + " " + user.getStrsApellido(), user.getIntCantidadLogin(), user.getIntEstado());
+        if(user.getIntEstado() == 2){//Cuando un login es por primera vez, por lo que se requiere modificar la contraseña.
+            goToChangePassword();
+        }else if(user.getIntEstado() == 1){//Cuando un ingreso es por segunda vez o más pero la contraseña ya fue modificada.
+            goToHome();
         }
     }
 
     @Override
     public void showError(String strError) {
         Toast.makeText(getApplicationContext(), strError, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void saveLocalLogin(int intCodUser, String strNombre, int intCantLogin, int inCodEstado) {
+        sharedPreferencesEditor.putInt("codigo", intCodUser);
+        sharedPreferencesEditor.putString("nombre", strNombre);
+        sharedPreferencesEditor.putInt("cantidadLogin", intCantLogin + 1);
+        sharedPreferencesEditor.putInt("estadoLogin", inCodEstado);
+        sharedPreferencesEditor.commit();
     }
 
 

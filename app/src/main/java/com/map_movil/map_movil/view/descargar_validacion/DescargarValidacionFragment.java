@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
@@ -125,6 +126,8 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
                 SolicitarDatos( SpinnerMapAldea.get( AldeaSpiner.getSelectedItemPosition() ) , UsuarioCod );
             }
         });
+
+
 
         return view;
     }
@@ -262,6 +265,4 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
             }
         }).start();
     }
-
-
 }

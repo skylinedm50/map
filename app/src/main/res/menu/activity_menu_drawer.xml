@@ -7,30 +7,54 @@
             <item
                 android:id="@+id/nav_soli"
                 android:icon="@drawable/ic_view_list_dp"
-                android:title="Manejo"/>
+                android:title="Solicitudes (80%)"/>
             <item
-                android:id="@+id/nav_segui_soli"
+                android:id="@+id/nav_complaint_denunciation"
                 android:icon="@drawable/ic_view_list_dp"
-                android:title="Seguimiento"/>
+                android:title="Quejas y Denuncias (50%)"/>
         </menu>
     </item>
-    <item android:title="Validaciones">
+    <item android:title="Validación y Corresponsabilidad">
         <menu>
             <item
-                android:id="@+id/nav_download"
+                android:id="@+id/nav_coresponsibility"
                 android:icon="@drawable/ic_view_list_dp"
-                android:title="Descargar información"/>
-
+                android:titleCondensed=""
+                android:title="Corresponsabilidades (10%)"/>
+            <item
+                android:id="@+id/nav_download"
+                android:icon="@drawable/ic_cloud_download"
+                android:title="Descarga de validaciones (100%)"/>
             <item
                 android:id="@+id/nav_val"
-                android:icon="@drawable/ic_view_list_dp"
-                android:title="Validar Hogares"/>
+                android:icon="@drawable/ic_playlist_add_check"
+                android:title="Validar Hogares (58%)"/>
+        </menu>
+    </item>
+    <item android:title="Más Información">
+        <menu>
+            <item
+                android:id="@+id/nav_inf_homes"
+                android:icon="@drawable/ic_people"
+                android:title="Información de hogares (30%)"/>
+            <item
+                android:id="@+id/nav_reports"
+                android:icon="@drawable/ic_insert_chart"
+                android:title="Reporte de Gestiones (40%)"/>
+            <item
+                android:id="@+id/nav_config_download_data"
+                android:icon="@drawable/ic_cloud_download"
+                android:title="Descargar Datos (100%)"/>
+            <item
+                android:id="@+id/nav_notification"
+                android:icon="@drawable/ic_notifications_active"
+                android:title="Notificaciones (0%)"/>
         </menu>
     </item>
     <group
         android:checkableBehavior="single">
         <item android:id="@+id/nav_logout"
             android:icon="@drawable/ic_input_dp"
-            android:title="Cerrar Sesión"/>
+            android:title="Cerrar Sesión (100%)"/>
     </group>
 </menu>

@@ -36,7 +36,7 @@ public class TabView {
         for (String item: arrayListItem){
             intCount ++;
             tab = tabLayout.newTab();
-            tab.setIcon(R.drawable.ic_playlist_add_check_black_24dp);
+            tab.setIcon(R.drawable.ic_playlist_add_check);
             tab.setText(item.toString());
 
             tabLayout.addTab(tab);
@@ -47,7 +47,7 @@ public class TabView {
 
            /* textView = new TextView(context.getApplicationContext());
             textView.setText(item.toString());
-            textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_playlist_add_check_black_24dp, 0, 0);
+            textView.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_playlist_add_check, 0, 0);
             tabLayout.add
 
             tabItem = new TabItem(this.context.getApplicationContext());
