@@ -1,6 +1,5 @@
 package com.map_movil.map_movil;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +21,7 @@ import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFrag
 import com.map_movil.map_movil.view.login.LoginActivity;
 import com.map_movil.map_movil.view.reportes.ReportsFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
-import com.map_movil.map_movil.view.validar_hogares.ValidarHogaresFragment;
+import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
 
 import java.util.List;
 
@@ -126,7 +125,7 @@ public class HomeActivity extends AppCompatActivity
         }else if (id == R.id.nav_val) {
             showToolbar("Validar Hogares");
             if(intCodItemSelect != id) {
-                ValidarHogaresFragment fragment_validar = new ValidarHogaresFragment();
+                ListarValidacionesFragment fragment_validar = new ListarValidacionesFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragment_validar).commit();
             }
         }else if (id == R.id.nav_coresponsibility) {
