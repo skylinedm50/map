@@ -1,5 +1,6 @@
 package com.map_movil.map_movil;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,24 +20,27 @@ import android.widget.Toast;
 
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
+import com.map_movil.map_movil.view.reportes.ReportsFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
-import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
+import com.map_movil.map_movil.view.validar_hogares.ValidarHogaresFragment;
+
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     private Intent intent;
     private TextView textViewNombreUsuario;
     private SharedPreferences sharedPreferences;
     private LinearLayout linearLayoutTextoHome;
-    private int intCodItemSelect;
+    private Toolbar toolbar;
 
+    private int intCodItemSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         linearLayoutTextoHome = findViewById(R.id.linearLayoutTextoHome);
@@ -90,6 +94,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+        cleanFragmmentViewGroup();
 
         if (id == R.id.nav_soli) {
             showToolbar("Solicitudes");
@@ -98,33 +103,48 @@ public class HomeActivity extends AppCompatActivity
                 SolicitudHomeFragment fragmentHomeSolitud = new SolicitudHomeFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragmentHomeSolitud).commit();
             }
+        }else if (id == R.id.nav_reports) {
+            /*
+            showToolbar("Seguimiento de solicitudes");*/
 
-            intCodItemSelect = id;
-
-        } else if (id == R.id.nav_segui_soli) {
-            Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
-            showToolbar("Seguimiento de solicitudes");
+            showTextHome(false);
+            showToolbar("Reportes");
+            if(intCodItemSelect != id) {
+                ReportsFragment reportsFragment = new ReportsFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, reportsFragment).commit();
+            }
         }else if (id == R.id.nav_logout) {
             sharedPreferences.edit().clear().commit();
             intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_download) {
             showToolbar("Descargar Validaciones");
-            showTextHome(false);
             if(intCodItemSelect != id) {
                 DescargarValidacionFragment fragment_descargar = new DescargarValidacionFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragment_descargar).commit();
             }
-
-            intCodItemSelect = id;
         }else if (id == R.id.nav_val) {
             showToolbar("Validar Hogares");
-            showTextHome(false);
             if(intCodItemSelect != id) {
-                ListarValidacionesFragment fragment_validar = new ListarValidacionesFragment();
+                ValidarHogaresFragment fragment_validar = new ValidarHogaresFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragment_validar).commit();
             }
+        }else if (id == R.id.nav_coresponsibility) {
+            Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_complaint_denunciation) {
+            Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_inf_homes) {
+            Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_config_download_data) {
+            Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_notification) {
+            Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
         }
+
+
+
+        intCodItemSelect = id;
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -141,5 +161,15 @@ public class HomeActivity extends AppCompatActivity
 
     private void showToolbar(String strTitle){
         getSupportActionBar().setTitle(strTitle);
+        toolbar.getMenu().clear();
     }
+
+    private void cleanFragmmentViewGroup(){
+        List<android.support.v4.app.Fragment> fragmentsList = getSupportFragmentManager().getFragments();
+
+        for(android.support.v4.app.Fragment fragment: fragmentsList){
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
 }

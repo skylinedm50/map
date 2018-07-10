@@ -44,7 +44,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     }
 
 
-
     @Override
     public void onResume(){
         super.onResume();
