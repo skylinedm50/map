@@ -12,12 +12,16 @@ public class DescargarValidacionInteractorImpl implements DescargarValidacionInt
     public DescargarValidacionInteractorImpl(DescargarValidacionPresenter descargarValidacionPresenter){
         this.descargarValidacionPresenter = descargarValidacionPresenter;
         this.descargarValidacionRepository = new DescargarValidacionRepositoryImpl(this.descargarValidacionPresenter);
-
     }
 
     @Override
     public void SolicitarDatos(String aldea, int Usuario) {
         this.descargarValidacionRepository.SolicitarDatos(aldea , Usuario);
+    }
+
+    @Override
+    public void SolicitarHistorialPago(String aldea) {
+        this.descargarValidacionRepository.SolicitarHistorialPago(aldea);
     }
 
 }

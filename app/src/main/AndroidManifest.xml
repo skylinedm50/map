@@ -30,6 +30,7 @@
 
         <activity android:name=".view.login.ChangePasswordActivity"  />
         <activity android:name=".view.solicitudes.VerSolicitudActivity" />
+        <activity android:name=".view.validar_hogares.ValidarNucleoActivity" android:launchMode="singleTask" />
     </application>
 
 </manifest>

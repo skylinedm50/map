@@ -5,6 +5,7 @@ import io.realm.RealmObject;
 public class Hogar_Validar extends RealmObject{
 
     private int per_persona;
+    private String per_identidad;
     private String nombre;
     private String per_estado_descripcion;
     private String sexo;
@@ -33,7 +34,7 @@ public class Hogar_Validar extends RealmObject{
                          String cod_departamento, String desc_departamento , String cod_municipio          ,
                          String desc_municipio  , String cod_aldea         , String desc_aldea             ,
                          String cod_caserio     , String desc_caserio      , String hogar_direccion        ,
-                         String hog_telefono)
+                         String hog_telefono    , String per_identidad)
     {
         this.per_persona = per_persona;
         this.nombre = nombre;
@@ -54,6 +55,7 @@ public class Hogar_Validar extends RealmObject{
         this.desc_caserio = desc_caserio;
         this.hogar_direccion = hogar_direccion;
         this.hog_telefono = hog_telefono;
+        this.per_identidad = per_identidad;
     }
 
     public int getPer_persona() {
@@ -145,5 +147,11 @@ public class Hogar_Validar extends RealmObject{
     }
     public void setHog_telefono(String hog_telefono) {
         this.hog_telefono = hog_telefono;
+    }
+    public String getPer_identidad() {
+        return per_identidad;
+    }
+    public void setPer_identidad(String per_identidad) {
+        this.per_identidad = per_identidad;
     }
 }

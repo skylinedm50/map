@@ -1,5 +1,6 @@
 package com.map_movil.map_movil.api.hogar;
 
+import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.HogarByTitular;
 import com.map_movil.map_movil.model.HogarLigth;
 import com.map_movil.map_movil.model.HogaresValidar;
@@ -20,7 +21,7 @@ public interface ApiServiceHogar {
     @GET("hogares/validaciones/descarga/hogares/{aldea}/{usuario}")
     Call<ArrayList<HogaresValidar>> getHogaresValidar(@Path("aldea") String aldea , @Path("usuario") int usuario);
 
-    @GET("hogares/validaciones/descarga/hogares/{aldea}/{usuario}")
-    Call<ArrayList<HogaresValidar>> getHistorialPago(@Path("aldea") String aldea , @Path("usuario") int usuario);
+    @GET("hogares/hogar/pagos/aldea/{aldea}")
+    Call<ArrayList<HistorialPago>> getHistorialPago(@Path("aldea") String aldea );
 
 }

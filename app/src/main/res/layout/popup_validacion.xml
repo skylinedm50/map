@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:paddingTop="15dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif"
+                android:padding="5dp"
+                android:text="Recepción de Documentos de : "
+                android:textColor="#000"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif"
+                android:padding="5dp"
+                android:textColor="#000"
+                android:textSize="13sp"
+                android:id="@+id/doc_persona"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            android:minHeight="50dp"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/checked"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/doc_identidad"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="Copia tarjeta de identidad" />
+
+                <CheckBox
+                    android:id="@+id/doc_compromiso"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Acta de compormiso" />
+
+                <CheckBox
+                    android:id="@+id/doc_actualizacion"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Requiere actualización de datos" />
+
+                <CheckBox
+                    android:id="@+id/doc_partida"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="Copia partida de nacimiento" />
+
+
+                <CheckBox
+                    android:id="@+id/doc_educacion"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Constancia de educación" />
+
+                <CheckBox
+                    android:id="@+id/doc_desagregar"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Desagregar" />
+
+                <CheckBox
+                    android:id="@+id/doc_no_presento"
+                    android:buttonTint="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Debe documentos" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/validacion_msj"
+            android:text="Tiene que seleccionar una opción para validar"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:textSize="13sp"
+            android:textColor="@color/colorAccent"
+            android:layout_above="@+id/selector_layout"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:id="@+id/selector_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#fff"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/ng_cancelpop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:padding="15dp"
+                    android:text="CANCELAR"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ng_schedule_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:background="#fff"
+                    android:padding="15dp"
+                    android:text="ACEPTAR"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

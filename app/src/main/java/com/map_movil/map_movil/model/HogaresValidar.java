@@ -6,6 +6,8 @@ public class HogaresValidar {
 
     @SerializedName("per_persona")
     private int per_persona;
+    @SerializedName("per_identidad")
+    private String per_identidad;
     @SerializedName("nombre")
     private String nombre;
     @SerializedName("per_estado_descripcion")
@@ -18,27 +20,27 @@ public class HogaresValidar {
     private int per_ciclo;
     @SerializedName("per_titular")
     private int per_titular;
-    @SerializedName("hog_hogar")
+    @SerializedName("per_hogar")
     private int hog_hogar;
     @SerializedName("hog_umbral")
     private String hog_umbral;
     @SerializedName("cod_departamento")
     private String cod_departamento;
-    @SerializedName("desc_departamento")
+    @SerializedName("departamento")
     private String desc_departamento;
     @SerializedName("cod_municipio")
     private String cod_municipio;
-    @SerializedName("desc_municipio")
+    @SerializedName("municipio")
     private String desc_municipio;
     @SerializedName("cod_aldea")
     private String cod_aldea;
-    @SerializedName("desc_aldea")
+    @SerializedName("aldea")
     private String desc_aldea;
     @SerializedName("cod_caserio")
     private String cod_caserio;
-    @SerializedName("desc_caserio")
+    @SerializedName("caserio")
     private String desc_caserio;
-    @SerializedName("hogar_direccion")
+    @SerializedName("hog_direccion")
     private String hogar_direccion;
     @SerializedName("hog_telefono")
     private String hog_telefono;
@@ -195,5 +197,13 @@ public class HogaresValidar {
 
     public void setHog_telefono(String hog_telefono) {
         this.hog_telefono = hog_telefono;
+    }
+
+    public String getPer_identidad() {
+        return per_identidad;
+    }
+
+    public void setPer_identidad(String per_identidad) {
+        this.per_identidad = per_identidad;
     }
 }

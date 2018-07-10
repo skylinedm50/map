@@ -2,6 +2,7 @@ package com.map_movil.map_movil.presenter.descargarvalidacion;
 
 import com.map_movil.map_movil.interactor.DescargarValidacion.DescargarValidacionInteractor;
 import com.map_movil.map_movil.interactor.DescargarValidacion.DescargarValidacionInteractorImpl;
+import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.HogaresValidar;
 import com.map_movil.map_movil.view.descargar_validacion.DescargaView;
 
@@ -25,5 +26,15 @@ public class DescargarValidacionPresenterImpl implements DescargarValidacionPres
     @Override
     public void DescargarDatos(ArrayList<HogaresValidar> hogaresValidars) {
         descargaView.DescargarDatos(hogaresValidars);
+    }
+
+    @Override
+    public void SolicitarHistorialPago(String aldea) {
+        this.descargarValidacionInteractor.SolicitarHistorialPago(aldea);
+    }
+
+    @Override
+    public void DescargarHistorial(ArrayList<HistorialPago> historialPagos) {
+        descargaView.DescargarHistorial(historialPagos);
     }
 }

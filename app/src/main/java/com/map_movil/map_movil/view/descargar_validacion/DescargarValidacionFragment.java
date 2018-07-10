@@ -8,18 +8,20 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
 import com.map_movil.map_movil.model.Departamentos;
+import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.HogaresValidar;
 import com.map_movil.map_movil.model.Municipios;
+import com.map_movil.map_movil.model.Realm.Historial_Pago;
 import com.map_movil.map_movil.model.Realm.Hogar_Validar;
 import com.map_movil.map_movil.presenter.descargarvalidacion.DescargarValidacionPresenter;
 import com.map_movil.map_movil.presenter.descargarvalidacion.DescargarValidacionPresenterImpl;
@@ -51,19 +53,30 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     private HashMap<Integer , String > SpinnerMapAldea;
     private FreshDownloadView DescargarBtn;
     private int Sleep = 1;
+    private int Score = 25;
     private Realm realm;
+    private int UsuarioCod;
+    private Thread thread_descarga;
+    private Thread thread_contador;
 
     private Handler handler_descarga = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             int progress = (int) msg.obj;
             DescargarBtn.upDateProgress(progress);
-            switch (msg.what) {
-                case 10:
-                    break;
-                case 11:
-                    DescargarBtn.showDownloadError();
-                    break;
+        }
+    };
+
+
+    private Handler Descargar_Datos = new Handler(){
+        @Override
+        public void handleMessage(Message msg){
+            int descargar = (int) msg.obj;
+            switch (descargar){
+                case 1: SolicitarDatos(SpinnerMapAldea.get( AldeaSpiner.getSelectedItemPosition() ) , UsuarioCod);
+                        break;
+                case 2: SolicitarHistorialPago(SpinnerMapAldea.get( AldeaSpiner.getSelectedItemPosition() ));
+                        break;
             }
         }
     };
@@ -74,7 +87,6 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
 
         View view = inflater.inflate(R.layout.fragment_descargar_validacion , container , false);
         Realm.init(getContext());
-
 
         this.realm = Realm.getDefaultInstance();
         this.descargarValidacionPresenter = new DescargarValidacionPresenterImpl(this);
@@ -119,13 +131,16 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
         DescargarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
-                int UsuarioCod = sharedPreferences.getInt("codigo",0);
-                SolicitarDatos( SpinnerMapAldea.get( AldeaSpiner.getSelectedItemPosition() ) , UsuarioCod );
+                UsuarioCod = sharedPreferences.getInt("codigo",0);
+                Score = 25;
+                MostarProgress(0);
+                Descargar(1);
+                Descargar(2);
             }
         });
-
+        setHasOptionsMenu(true);
+        getTargetFragment();
         return view;
     }
 
@@ -209,8 +224,9 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
 
     @Override
     public void DescargarDatos(ArrayList<HogaresValidar> hogaresValidars) {
-        this.Sleep = (int) Math.ceil( (hogaresValidars.size()/ 90) );
-        this.MostarProgress(100,0);
+        this.Sleep = (int) Math.ceil( (hogaresValidars.size()/ 50) );
+        this.Score = 75;
+        this.MostarProgress(25);
 
         for(int x = 0; x < hogaresValidars.size() ; x++){
             this.realm.beginTransaction();
@@ -233,24 +249,49 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
                     hogaresValidars.get(x).getCod_caserio()             ,
                     hogaresValidars.get(x).getDesc_caserio()            ,
                     hogaresValidars.get(x).getHogar_direccion()         ,
-                    hogaresValidars.get(x).getHog_telefono()            );
+                    hogaresValidars.get(x).getHog_telefono()            ,
+                    hogaresValidars.get(x).getPer_identidad());
+
             this.realm.copyToRealm(hogar_validar);
             this.realm.commitTransaction();
         }
-      //  Toast.makeText(this.getContext(),"Descargado",Toast.LENGTH_LONG).show();
+        Toast.makeText(this.getContext(),"Descargado...1",Toast.LENGTH_LONG).show();
     }
 
-    private void MostarProgress(final int score , final int start){
+    @Override
+    public void SolicitarHistorialPago(String aldea) {
+        this.descargarValidacionPresenter.SolicitarHistorialPago(aldea);
+    }
 
-      //  if (DescargarBtn.using()) return;
-        new Thread(new Runnable() {
+    @Override
+    public void DescargarHistorial(ArrayList<HistorialPago> historialPagos) {
+        this.Sleep = (int) Math.ceil( (historialPagos.size()/ 25) );
+        this.Score = 100;
+        this.MostarProgress(75);
+        for(int x = 0; x < historialPagos.size(); x++){
+            this.realm.beginTransaction();
+            Historial_Pago historialPago = new Historial_Pago(historialPagos.get(x).getPag_anyo()     ,
+                                                            historialPagos.get(x).getPag_nombre()     ,
+                                                            historialPagos.get(x).getTit_hogar()      ,
+                                                            historialPagos.get(x).getNombre_Titular() ,
+                                                            historialPagos.get(x).getEstado_Pago()    ,
+                                                            historialPagos.get(x).getTit_fecha_cobro(),
+                                                            historialPagos.get(x).getTit_proy_corta() );
+            this.realm.copyToRealm(historialPago);
+            this.realm.commitTransaction();
+        }
+        Toast.makeText(this.getContext(),"Descargado...2",Toast.LENGTH_LONG).show();
+    }
+
+    private void MostarProgress( final int start){
+
+        this.thread_contador = new Thread(new Runnable() {
             @Override
             public void run() {
 
-                for (int i = start; i <= score; i++) {
-                    Log.d("tag","mensaje_"+String.valueOf(i));
+                for (int i = start; i <= Score; i++) {
                     try {
-                        Thread.sleep(Sleep*100);
+                        Thread.sleep(Sleep*25);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -258,9 +299,22 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
                     message.obj = i;
                     handler_descarga.sendMessage(message);
                 }
-             //  DescargarBtn.reset();
             }
-        }).start();
+        });
+
+        this.thread_contador.start();
+    }
+
+    private void Descargar(final int proceso){
+            this.thread_descarga = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Message message = Message.obtain();
+                    message.obj = proceso;
+                    Descargar_Datos.sendMessage(message);
+                }
+            });
+            this.thread_descarga.start();
     }
 
 
