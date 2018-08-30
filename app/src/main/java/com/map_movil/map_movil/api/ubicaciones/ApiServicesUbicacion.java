@@ -12,13 +12,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface ApiServicesUbicacion {
-
-    @GET("geografia/departamentos")
-    Call<List<Departamentos>> getAllDepartamentos();
-
-    @GET("geografia/municipios/{departamento}")
-    Call<List<Municipios>> getAllMunicipios(@Path("departamento") String departamento);
-
     @GET("geografia/aldeas/{municipio}")
     Call<List<Aldeas>> getAllAldeas(@Path("municipio") String municipio);
 

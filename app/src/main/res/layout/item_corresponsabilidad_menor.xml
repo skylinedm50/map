@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/ly_persona"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Nombre_Persona"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="ALBERTO ENRIQUE GUARDADO MACHADO"
+                    android:textColor="#000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/identidad"
+                    android:layout_width="0dp"
+                    android:text="IDENTIDAD:0801199021891"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.7"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/per_edad"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.3"
+                    android:gravity="right"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:text="EDAD: 7 AÑOS"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/sexo"
+                    android:layout_width="0dp"
+                    android:text="SEXO : M"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/estadoMatricula"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.5"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="right"
+                    android:text="MATRICULA : ACTIVA"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llenotas1"
+                android:background="#fff3e0"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/yearRegistro"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="REGISTRO CORRESPONDIENTE AL AÑO 2018"
+                    android:textSize="14sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/llnotas1"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/stPARCIAL"
+                    android:layout_width="wrap_content"
+                    android:text="PARCIAL 1: "
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/parcial1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.85"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="22 DIAS"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/STparcia12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.5"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:paddingRight="1dp"
+                    android:text="PARCIAL 2: "
+                    android:textAlignment="textEnd"
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/parcial2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1.1"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:text="0 DIAS"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llenotas2"
+                android:background="#fff3e0"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/yearRegistroB"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="REGISTRO CORRESPONDIENTE AL AÑO 2018"
+                    android:textSize="14sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/llnotas2"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/stPARCIAL2b"
+                    android:layout_width="wrap_content"
+                    android:text="PARCIAL 1: "
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/parcial1b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.85"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="2 DIAS"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/STparcia12b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.5"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:paddingRight="1dp"
+                    android:text="PARCIAL 2: "
+                    android:textAlignment="textEnd"
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/parcial2b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1.1"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="right"
+                    android:maxLines="1"
+                    android:text="0 DIAS"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llvisita0"
+                android:visibility="gone"
+                android:background="#e0eeee"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="ULTIMAS VISITAS MÉDICAS"
+                    android:textSize="14sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llvisita1"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="FECHA VISITA: "
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/CodVisita1"
+                    android:layout_width="wrap_content"
+                    android:text="720901"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="3.0"
+                    android:ellipsize="end"
+                    android:textAlignment="textEnd"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:paddingRight="1dp"
+                    android:text="CODIGO: "
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:id="@+id/Visita1"
+                    android:layout_width="wrap_content"
+                    android:text="0 DIAS"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textAlignment="textStart"
+                    android:layout_weight="4.0"
+                    android:gravity="right"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llvisita2"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="FECHA VISITA: "
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/CodVisita2"
+                    android:layout_width="wrap_content"
+                    android:text="720901"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1.0"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="3.0"
+                    android:ellipsize="end"
+                    android:textAlignment="textEnd"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:paddingRight="1dp"
+                    android:text="CODIGO: "
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:id="@+id/Visita2"
+                    android:layout_width="wrap_content"
+                    android:text="0 DIAS"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textAlignment="textStart"
+                    android:layout_weight="4.0"
+                    android:gravity="right"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llvisita3"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="FECHA VISITA: "
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/CodVisita3"
+                    android:layout_width="wrap_content"
+                    android:text="720901"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="3.0"
+                    android:ellipsize="end"
+                    android:textAlignment="textEnd"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:paddingRight="1dp"
+                    android:text="CODIGO: "
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:id="@+id/Visita3"
+                    android:layout_width="wrap_content"
+                    android:text="0 DIAS"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textAlignment="textStart"
+                    android:layout_weight="4.0"
+                    android:gravity="right"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llvisita4"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="FECHA VISITA: "
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/CodVisita4"
+                    android:layout_width="wrap_content"
+                    android:text="720901"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="3.0"
+                    android:ellipsize="end"
+                    android:textAlignment="textEnd"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:paddingRight="1dp"
+                    android:text="CODIGO: "
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:id="@+id/Visita4"
+                    android:layout_width="wrap_content"
+                    android:text="0 DIAS"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textAlignment="textStart"
+                    android:layout_weight="4.0"
+                    android:gravity="right"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llvisita5"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="FECHA VISITA: "
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/CodVisita5"
+                    android:layout_width="wrap_content"
+                    android:text="720901"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="3.0"
+                    android:ellipsize="end"
+                    android:textAlignment="textEnd"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:paddingRight="1dp"
+                    android:text="CODIGO: "
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:id="@+id/Visita5"
+                    android:layout_width="wrap_content"
+                    android:text="0 DIAS"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textAlignment="textStart"
+                    android:layout_weight="4.0"
+                    android:gravity="right"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llvisita6"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="FECHA VISITA: "
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/CodVisita6"
+                    android:layout_width="wrap_content"
+                    android:text="720901"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1.0"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="3.0"
+                    android:ellipsize="end"
+                    android:textAlignment="textEnd"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:paddingRight="1dp"
+                    android:text="CODIGO: "
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:gravity="end" />
+                <TextView
+                    android:id="@+id/Visita6"
+                    android:layout_width="wrap_content"
+                    android:text="0 DIAS"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textAlignment="textStart"
+                    android:layout_weight="4.0"
+                    android:gravity="right"
+                    android:layout_height="wrap_content"
+                    tools:ignore="RtlCompat" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/visitaingreso"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/stVisita_medica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.0"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="INGRESO VISITA: "
+                    android:textColor="#000"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/visitamedica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="0.5"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="21/04/2018"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#000"
+        android:layout_height="1px"></LinearLayout>
+</LinearLayout>

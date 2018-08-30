@@ -29,7 +29,6 @@ public class SolicitudHomeFragment extends Fragment{
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_solicitud, container, false);
 
-
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
 

@@ -10,10 +10,12 @@ public class UbicacionesInteractorImpl implements UbicacionesInteractor  {
 
     private UbicacionesRepository UbicacionRepository;
     private UbicacionesPresenter ubicacionesPresenter;
+    private Context context;
 
-    public  UbicacionesInteractorImpl( UbicacionesPresenter ubicacionesPresenter){
+    public  UbicacionesInteractorImpl( UbicacionesPresenter ubicacionesPresenter, Context context){
+        this.context = context;
         this.ubicacionesPresenter = ubicacionesPresenter;
-        this.UbicacionRepository = new UbicacionesRepositoryImpl(this.ubicacionesPresenter);
+        this.UbicacionRepository = new UbicacionesRepositoryImpl(this.ubicacionesPresenter, this.context);
     }
 
     @Override

@@ -10,16 +10,19 @@ import com.map_movil.map_movil.model.Departamentos;
 import com.map_movil.map_movil.model.Municipios;
 import com.map_movil.map_movil.view.ubicacion.UbicacionView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UbicacionPresenterImpl implements UbicacionesPresenter {
 
     private UbicacionesInteractor ubicacionesInteractor;
     private UbicacionView ubicacionView;
+    private Context context;
 
-    public UbicacionPresenterImpl( UbicacionView ubicacionView){
+    public UbicacionPresenterImpl( UbicacionView ubicacionView, Context context){
+        this.context = context;
         this.ubicacionView = ubicacionView;
-        this.ubicacionesInteractor = new UbicacionesInteractorImpl(this);
+        this.ubicacionesInteractor = new UbicacionesInteractorImpl(this, this.context);
     }
 
     @Override
@@ -28,23 +31,25 @@ public class UbicacionPresenterImpl implements UbicacionesPresenter {
     }
 
     @Override
-    public void cargarDepartamentos(List<Departamentos> departamentos) {
+    public void cargarDepartamentos(ArrayList<String> departamentos) {
         this.ubicacionView.cargarDepartamentos(departamentos);
     }
 
     @Override
     public void getMunicipios(String depto) {
-        this.ubicacionesInteractor.getMunicipios(depto);
+        String[] arrayItem = depto.toString().split("-");
+        this.ubicacionesInteractor.getMunicipios(arrayItem[0]);
     }
 
     @Override
-    public void cargarMunicipios(List<Municipios> municipios) {
+    public void cargarMunicipios(ArrayList<String> municipios) {
         this.ubicacionView.cargarMunicipios(municipios);
     }
 
     @Override
     public void getAldeas(String muni) {
-        this.ubicacionesInteractor.getAldeas(muni);
+        String[] arrayItem = muni.toString().split("-");
+        this.ubicacionesInteractor.getAldeas(arrayItem[0]);
     }
 
     @Override
@@ -62,5 +67,6 @@ public class UbicacionPresenterImpl implements UbicacionesPresenter {
     public void cargarCaserios(List<Caserios> caserios) {
         this.ubicacionView.cargarCaserios(caserios);
     }
+
 
 }

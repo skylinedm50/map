@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="municipios_array">
+        <item>0101-LA CEIBA</item>
+        <item>0102-EL PORVENIR</item>
+        <item>0103-ESPARTA</item>
+        <item>0104-JUTIAPA</item>
+        <item>0105-LA MASICA</item>
+        <item>0106-SAN FRANCISCO</item>
+        <item>0107-TELA</item>
+        <item>0108-ARIZONA</item>
+        <item>0201-TRUJILLO</item>
+        <item>0202-BALFATE</item>
+        <item>0203-IRIONA</item>
+        <item>0204-LIMON</item>
+        <item>0205-SABA</item>
+        <item>0206-SANTA FE</item>
+        <item>0207-SANTA ROSA DE AGUAN</item>
+        <item>0208-SONAGUERA</item>
+        <item>0209-TOCOA</item>
+        <item>0210-BONITO ORIENTAL</item>
+        <item>0301-COMAYAGUA</item>
+        <item>0302-AJUTERIQUE</item>
+        <item>0303-EL ROSARIO</item>
+        <item>0304-ESQUIAS</item>
+        <item>0305-HUMUYA</item>
+        <item>0306-LA LIBERTAD</item>
+        <item>0307-LAMANI</item>
+        <item>0308-LA TRINIDAD</item>
+        <item>0309-LEJAMANI</item>
+        <item>0310-MEAMBAR</item>
+        <item>0311-MINAS DE ORO</item>
+        <item>0312-OJOS DE AGUA</item>
+        <item>0313-SAN JERONIMO</item>
+        <item>0314-SAN JOSE DE COMAYAGUA</item>
+        <item>0315-SAN JOSE DEL POTRERO</item>
+        <item>0316-SAN LUIS</item>
+        <item>0317-SAN SEBASTIAN</item>
+        <item>0318-SIGUATEPEQUE</item>
+        <item>0319-VILLA DE SAN ANTONIO</item>
+        <item>0320-LAS LAJAS</item>
+        <item>0321-TAULABE</item>
+        <item>0401-SANTA ROSA DE COPAN</item>
+        <item>0402-CABAÑAS</item>
+        <item>0403-CONCEPCION</item>
+        <item>0404-COPAN RUINAS</item>
+        <item>0405-CORQUIN</item>
+        <item>0406-CUCUYAGUA</item>
+        <item>0407-DOLORES</item>
+        <item>0408-DULCE NOMBRE</item>
+        <item>0409-EL PARAISO</item>
+        <item>0410-FLORIDA</item>
+        <item>0411-LA JIGUA</item>
+        <item>0412-LA UNION</item>
+        <item>0413-NUEVA ARCADIA</item>
+        <item>0414-SAN AGUSTIN</item>
+        <item>0415-SAN ANTONIO</item>
+        <item>0416-SAN JERONIMO</item>
+        <item>0417-SAN JOSE</item>
+        <item>0418-SAN JUAN DE OPOA</item>
+        <item>0419-SAN NICOLAS</item>
+        <item>0420-SAN PEDRO DE COPAN</item>
+        <item>0421-SANTA RITA</item>
+        <item>0422-TRINIDAD DE COPAN</item>
+        <item>0423-VERACRUZ</item>
+        <item>0501-SAN PEDRO SULA</item>
+        <item>0502-CHOLOMA</item>
+        <item>0503-OMOA</item>
+        <item>0504-PIMIENTA</item>
+        <item>0505-POTRERILLOS</item>
+        <item>0506-PUERTO CORTES</item>
+        <item>0507-SAN ANTONIO DE CORTES</item>
+        <item>0508-SAN FRANCISCO DE YOJOA</item>
+        <item>0509-SAN MANUEL</item>
+        <item>0510-SANTA CRUZ DE YOJOA</item>
+        <item>0511-VILLANUEVA</item>
+        <item>0512-LA LIMA</item>
+        <item>0601-CHOLUTECA</item>
+        <item>0602-APACILAGUA</item>
+        <item>0603-CONCEPCION DE MARIA</item>
+        <item>0604-DUYURE</item>
+        <item>0605-EL CORPUS</item>
+        <item>0606-EL TRIUNFO</item>
+        <item>0607-MARCOVIA</item>
+        <item>0608-MOROLICA</item>
+        <item>0609-NAMASIGUE</item>
+        <item>0610-OROCUINA</item>
+        <item>0611-PESPIRE</item>
+        <item>0612-SAN ANTONIO DE FLORES</item>
+        <item>0613-SAN ISIDRO</item>
+        <item>0614-SAN JOSE</item>
+        <item>0615-SAN MARCOS DE COLON</item>
+        <item>0616-SANTA ANA DE YUSGUARE</item>
+        <item>0701-YUSCARAN</item>
+        <item>0702-ALAUCA</item>
+        <item>0703-DANLI</item>
+        <item>0704-EL PARAISO</item>
+        <item>0705-GUINOPE</item>
+        <item>0706-JACALEAPA</item>
+        <item>0707-LIURE</item>
+        <item>0708-MOROCELI</item>
+        <item>0709-OROPOLI</item>
+        <item>0710-POTRERILLOS</item>
+        <item>0711-SAN ANTONIO DE FLORES</item>
+        <item>0712-SAN LUCAS</item>
+        <item>0713-SAN MATIAS</item>
+        <item>0714-SOLEDAD</item>
+        <item>0715-TEUPASENTI</item>
+        <item>0716-TEXIGUAT</item>
+        <item>0717-VADO ANCHO</item>
+        <item>0718-YAUYUPE</item>
+        <item>0719-TROJES</item>
+        <item>0801-DISTRITO CENTRAL</item>
+        <item>0802-ALUBAREN</item>
+        <item>0803-CEDROS</item>
+        <item>0804-CURAREN</item>
+        <item>0805-EL PORVENIR</item>
+        <item>0806-GUAIMACA</item>
+        <item>0807-LA LIBERTAD</item>
+        <item>0808-LA VENTA</item>
+        <item>0809-LEPATERIQUE</item>
+        <item>0810-MARAITA</item>
+        <item>0811-MARALE</item>
+        <item>0812-NUEVA ARMENIA</item>
+        <item>0813-OJOJONA</item>
+        <item>0814-ORICA</item>
+        <item>0815-REITOCA</item>
+        <item>0816-SABANAGRANDE</item>
+        <item>0817-SAN ANTONIO DE ORIENTE</item>
+        <item>0818-SAN BUENAVENTURA</item>
+        <item>0819-SAN IGNACIO</item>
+        <item>0820-SAN JUAN DE FLORES</item>
+        <item>0821-SAN MIGUELITO</item>
+        <item>0822-SANTA ANA</item>
+        <item>0823-SANTA LUCIA</item>
+        <item>0824-TALANGA</item>
+        <item>0825-TATUMBLA</item>
+        <item>0826-VALLE DE ANGELES</item>
+        <item>0827-VILLA DE SAN FRANCISCO</item>
+        <item>0828-VALLECILLO</item>
+        <item>0901-PUERTO LEMPIRA</item>
+        <item>0902-BRUS LAGUNA</item>
+        <item>0903-AHUAS</item>
+        <item>0904-JUAN FRANCISCO BULNES</item>
+        <item>0905-VILLEDA MORALES</item>
+        <item>0906-WAMPUSIRPI</item>
+        <item>1001-LA ESPERANZA</item>
+        <item>1002-CAMASCA</item>
+        <item>1003-COLOMONCAGUA</item>
+        <item>1004-CONCEPCION</item>
+        <item>1005-DOLORES</item>
+        <item>1006-INTIBUCA</item>
+        <item>1007-JESUS DE OTORO</item>
+        <item>1008-MAGDALENA</item>
+        <item>1009-MASAGUARA</item>
+        <item>1010-SAN ANTONIO</item>
+        <item>1011-SAN ISIDRO</item>
+        <item>1012-SAN JUAN</item>
+        <item>1013-SAN MARCOS DE LA SIERRA</item>
+        <item>1014-SAN MIGUELITO</item>
+        <item>1015-SANTA LUCIA</item>
+        <item>1016-YAMARANGUILA</item>
+        <item>1017-SAN FRANCISCO DE OPALACA</item>
+        <item>1101-ROATAN</item>
+        <item>1102-GUANAJA</item>
+        <item>1103-JOSE SANTOS GUARDIOLA</item>
+        <item>1104-UTILA</item>
+        <item>1201-LA PAZ</item>
+        <item>1202-AGUANQUETERIQUE</item>
+        <item>1203-CABAÑAS</item>
+        <item>1204-CANE</item>
+        <item>1205-CHINACLA</item>
+        <item>1206-GUAJIQUIRO</item>
+        <item>1207-LAUTERIQUE</item>
+        <item>1208-MARCALA</item>
+        <item>1209-MERCEDES DE ORIENTE</item>
+        <item>1210-OPATORO</item>
+        <item>1211-SAN ANTONIO DEL NORTE</item>
+        <item>1212-SAN JOSE</item>
+        <item>1213-SAN JUAN</item>
+        <item>1214-SAN PEDRO DE TUTULE</item>
+        <item>1215-SANTA ANA</item>
+        <item>1216-SANTA ELENA</item>
+        <item>1217-SANTA MARIA</item>
+        <item>1218-SANTIAGO DE PURINGLA</item>
+        <item>1219-YARULA</item>
+        <item>1301-GRACIAS</item>
+        <item>1302-BELEN</item>
+        <item>1303-CANDELARIA</item>
+        <item>1304-COLOLACA</item>
+        <item>1305-ERANDIQUE</item>
+        <item>1306-GUALCINCE</item>
+        <item>1307-GUARITA</item>
+        <item>1308-LA CAMPA</item>
+        <item>1309-LA IGUALA</item>
+        <item>1310-LAS FLORES</item>
+        <item>1311-LA UNION</item>
+        <item>1312-LA VIRTUD</item>
+        <item>1313-LEPAERA</item>
+        <item>1314-MAPULACA</item>
+        <item>1315-PIRAERA</item>
+        <item>1316-SAN ANDRES</item>
+        <item>1317-SAN FRANCISCO</item>
+        <item>1318-SAN JUAN GUARITA</item>
+        <item>1319-SAN MANUEL COLOHETE</item>
+        <item>1320-SAN RAFAEL</item>
+        <item>1321-SAN SEBASTIAN</item>
+        <item>1322-SANTA CRUZ</item>
+        <item>1323-TALGUA</item>
+        <item>1324-TAMBLA</item>
+        <item>1325-TOMALA</item>
+        <item>1326-VALLADOLID</item>
+        <item>1327-VIRGINIA</item>
+        <item>1328-SAN MARCOS DE CAIQUIN</item>
+        <item>1401-OCOTEPEQUE</item>
+        <item>1402-BELEN GUALCHO</item>
+        <item>1403-CONCEPCION</item>
+        <item>1404-DOLORES MERENDON</item>
+        <item>1405-FRATERNIDAD</item>
+        <item>1406-LA ENCARNACION</item>
+        <item>1407-LA LABOR</item>
+        <item>1408-LUCERNA</item>
+        <item>1409-MERCEDES</item>
+        <item>1410-SAN FERNANDO</item>
+        <item>1411-SAN FRANCISCO DEL VALLE</item>
+        <item>1412-SAN JORGE</item>
+        <item>1413-SAN MARCOS</item>
+        <item>1414-SANTA FE</item>
+        <item>1415-SENSENTI</item>
+        <item>1416-SINUAPA</item>
+        <item>1501-JUTICALPA</item>
+        <item>1502-CAMPAMENTO</item>
+        <item>1503-CATACAMAS</item>
+        <item>1504-CONCORDIA</item>
+        <item>1505-DULCE NOMBRE DE CULMI</item>
+        <item>1506-EL ROSARIO</item>
+        <item>1507-ESQUIPULAS DEL NORTE</item>
+        <item>1508-GUALACO</item>
+        <item>1509-GUARIZAMA</item>
+        <item>1510-GUATA</item>
+        <item>1511-GUAYAPE</item>
+        <item>1512-JANO</item>
+        <item>1513-LA UNION</item>
+        <item>1514-MANGULILE</item>
+        <item>1515-MANTO</item>
+        <item>1516-SALAMA</item>
+        <item>1517-SAN ESTEBAN</item>
+        <item>1518-SAN FRANCISCO DE BECERRA</item>
+        <item>1519-SAN FRANCISCO DE LA PAZ</item>
+        <item>1520-SANTA MARIA DEL REAL</item>
+        <item>1521-SILCA</item>
+        <item>1522-YOCON</item>
+        <item>1523-PATUCA</item>
+        <item>1601-SANTA BARBARA</item>
+        <item>1602-ARADA</item>
+        <item>1603-ATIMA</item>
+        <item>1604-AZACUALPA</item>
+        <item>1605-CEGUACA</item>
+        <item>1606-SAN JOSE DE COLINAS</item>
+        <item>1607-CONCEPCION DEL NORTE</item>
+        <item>1608-CONCEPCION DEL SUR</item>
+        <item>1609-CHINDA</item>
+        <item>1610-EL NISPERO</item>
+        <item>1611-GUALALA</item>
+        <item>1612-ILAMA</item>
+        <item>1613-MACUELIZO</item>
+        <item>1614-NARANJITO</item>
+        <item>1615-NUEVO CELILAC</item>
+        <item>1616-PETOA</item>
+        <item>1617-PROTECCION</item>
+        <item>1618-QUIMISTAN</item>
+        <item>1619-SAN FRANCISCO DE OJUERA</item>
+        <item>1620-SAN LUIS</item>
+        <item>1621-SAN MARCOS</item>
+        <item>1622-SAN NICOLAS</item>
+        <item>1623-SAN PEDRO ZACAPA</item>
+        <item>1624-SANTA RITA</item>
+        <item>1625-SAN VICENTE CENTENARIO</item>
+        <item>1626-TRINIDAD</item>
+        <item>1627-LAS VEGAS</item>
+        <item>1628-NUEVA FRONTERA</item>
+        <item>1701-NACAOME</item>
+        <item>1702-ALIANZA</item>
+        <item>1703-AMAPALA</item>
+        <item>1704-ARAMECINA</item>
+        <item>1705-CARIDAD</item>
+        <item>1706-GOASCORAN</item>
+        <item>1707-LANGUE</item>
+        <item>1708-SAN FRANCISCO DE CORAY</item>
+        <item>1709-SAN LORENZO</item>
+        <item>1801-YORO</item>
+        <item>1802-ARENAL</item>
+        <item>1803-EL NEGRITO</item>
+        <item>1804-EL PROGRESO</item>
+        <item>1805-JOCON</item>
+        <item>1806-MORAZAN</item>
+        <item>1807-OLANCHITO</item>
+        <item>1808-SANTA RITA</item>
+        <item>1809-SULACO</item>
+        <item>1810-VICTORIA</item>
+        <item>1811-YORITO</item>
+    </string-array>
+</resources>

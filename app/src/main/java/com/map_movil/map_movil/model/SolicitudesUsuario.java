@@ -26,7 +26,10 @@ public class SolicitudesUsuario {
     @SerializedName("codigo_estado")
     private Integer intCodEstado;
 
-    public SolicitudesUsuario(Integer intCodSolicitud, String strNombreSolicitante, String strObservacion, Date dateFechaAltaSolicitud, Date dateFechaBajaSolicitud, Integer intCodUsuario, Integer intCodEstado) {
+    @SerializedName("estado_solicitud")
+    private String strEstado;
+
+    public SolicitudesUsuario(Integer intCodSolicitud, String strNombreSolicitante, String strObservacion, Date dateFechaAltaSolicitud, Date dateFechaBajaSolicitud, Integer intCodUsuario, Integer intCodEstado, String strEstado) {
         this.intCodSolicitud = intCodSolicitud;
         this.strNombreSolicitante = strNombreSolicitante;
         this.strObservacion = strObservacion;
@@ -34,6 +37,7 @@ public class SolicitudesUsuario {
         this.dateFechaBajaSolicitud = dateFechaBajaSolicitud;
         this.intCodUsuario = intCodUsuario;
         this.intCodEstado = intCodEstado;
+        this.strEstado = strEstado;
     }
 
     public Integer getIntCodSolicitud() {
@@ -90,5 +94,14 @@ public class SolicitudesUsuario {
 
     public void setIntCodEstado(Integer intCodEstado) {
         this.intCodEstado = intCodEstado;
+    }
+
+
+    public String getStrEstado() {
+        return strEstado;
+    }
+
+    public void setStrEstado(String strEstado) {
+        this.strEstado = strEstado;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -87,6 +88,14 @@ public class VerSolicitudActivity extends AppCompatActivity implements SearchVie
         setContentView(R.layout.activity_ver_solicitud);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ViewCompat.setElevation(findViewById(R.id.appBarVerSolicitud), 8);
 
         intent = getIntent();
         intCodSolicitud = intent.getIntExtra("intCodSolicitud", 0);
@@ -386,12 +395,16 @@ public class VerSolicitudActivity extends AppCompatActivity implements SearchVie
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if(intTipoOperacion == 1){
-            getMenuInflater().inflate(R.menu.menu_buscador, menu);
-
-            MenuItem searchItem = menu.findItem(R.id.buscador);
+            getMenuInflater().inflate(R.menu.menu_multiple_option, menu);
+            MenuItem downloadItem = menu.findItem(R.id.download);
+            MenuItem searchItem = menu.findItem(R.id.searchViewFind);
+            MenuItem saveServerItem = menu.findItem(R.id.saveServer);
             SearchView searchView = (SearchView) searchItem.getActionView();
             searchView.setOnQueryTextListener(this);
             searchView.setQueryHint("Buscar...");
+
+            downloadItem.setVisible(false);
+            saveServerItem.setVisible(false);
             return  super.onCreateOptionsMenu(menu);
         }else{
             return false;

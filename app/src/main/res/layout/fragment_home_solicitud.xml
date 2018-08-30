@@ -18,26 +18,19 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed">
-
+            android:layout_height="wrap_content">
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItemRealizadas"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/ic_playlist_add_check"
                 android:text="Realizadas" />
-
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItemNoRealizadas"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/ic_list_black_24dp"
                 android:text="No Realizadas" />
-
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
-
 
 
     <android.support.v4.view.ViewPager

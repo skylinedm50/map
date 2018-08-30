@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragment;
+import com.map_movil.map_movil.view.descargaNucleo.DescargaNucleoFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
+import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
+import com.map_movil.map_movil.view.planilla.ExcluidoFragment;
 import com.map_movil.map_movil.view.reportes.ReportsFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
@@ -30,7 +34,7 @@ public class HomeActivity extends AppCompatActivity
     private Intent intent;
     private TextView textViewNombreUsuario;
     private SharedPreferences sharedPreferences;
-    private LinearLayout linearLayoutTextoHome;
+    private LinearLayout linearLayoutContentMainHome;
     private Toolbar toolbar;
 
     private int intCodItemSelect;
@@ -42,7 +46,7 @@ public class HomeActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        linearLayoutTextoHome = findViewById(R.id.linearLayoutTextoHome);
+        linearLayoutContentMainHome = findViewById(R.id.linearLayoutContentMainHome);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -93,58 +97,78 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
+        ViewCompat.setElevation(findViewById(R.id.appBar), 8);
+
         if(id != intCodItemSelect) {
 
             showToolbar("Inicio");
-            showTextHome(true);
+            showContentScreenHome(true);
 
             if (id == R.id.nav_soli) {
                 showToolbar("Solicitudes");
-                showTextHome(false);
+                showContentScreenHome(false);
                 if (intCodItemSelect != id) {
+                    ViewCompat.setElevation(findViewById(R.id.appBar), 0);
                     SolicitudHomeFragment fragmentHomeSolitud = new SolicitudHomeFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragmentHomeSolitud).commit();
-
                 }
             } else if (id == R.id.nav_reports) {
-                showTextHome(false);
+                showContentScreenHome(false);
                 showToolbar("Reportes");
                 if (intCodItemSelect != id) {
                     ReportsFragment reportsFragment = new ReportsFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, reportsFragment).commit();
-
                 }
             } else if (id == R.id.nav_logout) {
                 sharedPreferences.edit().clear().commit();
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
             } else if (id == R.id.nav_download) {
-                showTextHome(false);
+                showContentScreenHome(false);
                 showToolbar("Descargar Validaciones");
                 if (intCodItemSelect != id) {
                     DescargarValidacionFragment fragment_descargar = new DescargarValidacionFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragment_descargar).commit();
                 }
             } else if (id == R.id.nav_val) {
-                showTextHome(false);
+                showContentScreenHome(false);
                 showToolbar("Validar Hogares");
                 if (intCodItemSelect != id) {
                     ListarValidacionesFragment fragment_validar = new ListarValidacionesFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragment_validar).commit();
                 }
             } else if (id == R.id.nav_coresponsibility) {
-                Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
+                showContentScreenHome(false);
+                showToolbar("Corresponsabilidad");
+                if (intCodItemSelect != id) {
+                    CorresponsabilidadFragment corresponsabilidadFragment = new CorresponsabilidadFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, corresponsabilidadFragment).commit();
+                }
             } else if (id == R.id.nav_complaint_denunciation) {
-                Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
             } else if (id == R.id.nav_inf_homes) {
-                Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
+                showContentScreenHome(false);
+                showToolbar("Información Hogares");
+                if (intCodItemSelect != id) {
+                    InformacionHogaresFragment informacionHogaresFragment = new InformacionHogaresFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, informacionHogaresFragment).commit();
+                }
             } else if (id == R.id.nav_config_download_data) {
-                Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
+                showContentScreenHome(false);
+                showToolbar("Descarga datos nucleo");
+                if (intCodItemSelect != id) {
+                    DescargaNucleoFragment descargaNucleoFragment = new DescargaNucleoFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, descargaNucleoFragment).commit();
+                }
             } else if (id == R.id.nav_notification) {
-                Toast.makeText(getApplicationContext(), "En desarrollo...", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_programmed) {
+            } else if (id == R.id.nav_excluded) {
+                showContentScreenHome(false);
+                showToolbar("Excluido");
+                if (intCodItemSelect != id) {
+                    ExcluidoFragment excluidoFragment = new ExcluidoFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, excluidoFragment).commit();
+                }
             }
-
-
             cleanFragmmentViewGroup();
         }
 
@@ -155,13 +179,12 @@ public class HomeActivity extends AppCompatActivity
         return true;
     }
 
-    private void showTextHome(boolean show){
+    private void showContentScreenHome(boolean show){
         if(show == true){
-            linearLayoutTextoHome.setVisibility(View.VISIBLE);
+            linearLayoutContentMainHome.setVisibility(View.VISIBLE);
         }else{
-            linearLayoutTextoHome.setVisibility(View.GONE);
+            linearLayoutContentMainHome.setVisibility(View.GONE);
         }
-
     }
 
     private void showToolbar(String strTitle){

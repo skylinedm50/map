@@ -31,6 +31,7 @@ import com.map_movil.map_movil.view.ubicacion.UbicacionView;
 import com.pitt.library.fresh.FreshDownloadView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -90,7 +91,7 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
 
         this.realm = Realm.getDefaultInstance();
         this.descargarValidacionPresenter = new DescargarValidacionPresenterImpl(this);
-        this.ubicacionesPresenter = new UbicacionPresenterImpl(this);
+        this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
 
         this.SpinnerMapDepto   = new HashMap<Integer , String>();
         this.SpinnerMapMuni    = new HashMap<Integer , String>();
@@ -100,7 +101,7 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
         RealmQuery<Hogar_Validar> query = this.realm.where(Hogar_Validar.class);
         RealmResults<Hogar_Validar> result = query.findAll();
 
-        this.getDepartamentos();
+
         DepartamentoSpiner = (AppCompatSpinner) view.findViewById(R.id.departamento);
         MunicipioSpiner = (AppCompatSpinner) view.findViewById(R.id.municipio);
         AldeaSpiner = (AppCompatSpinner) view.findViewById(R.id.aldea);
@@ -108,7 +109,7 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
         DepartamentoSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                getMunicipios(SpinnerMapDepto.get(i));
+                getMunicipios(adapterView.getItemAtPosition(i).toString());
             }
 
             @Override
@@ -119,7 +120,7 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
         MunicipioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                getAldeas(SpinnerMapMuni.get(i));
+                getAldeas(adapterView.getItemAtPosition(i).toString());
             }
 
             @Override
@@ -141,6 +142,8 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
         });
         setHasOptionsMenu(true);
         getTargetFragment();
+        this.getDepartamentos();
+
         return view;
     }
 
@@ -151,17 +154,9 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     }
 
     @Override
-    public void cargarDepartamentos(List<Departamentos> departamentos) {
-
-        List<String> spinner =  new ArrayList<String>();
-        this.SpinnerMapDepto.clear();
-
-        for(int x = 0; x < departamentos.size(); x++){
-            spinner.add(departamentos.get(x).getDesc_departamento());
-            this.SpinnerMapDepto.put(x ,departamentos.get(x).getCod_departamento());
-        }
+    public void cargarDepartamentos(ArrayList<String> departamentos) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this.getContext(), android.R.layout.simple_dropdown_item_1line, spinner);
+                this.getContext(), android.R.layout.simple_dropdown_item_1line, departamentos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.DepartamentoSpiner.setAdapter(adapter);
     }
@@ -172,17 +167,9 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     }
 
     @Override
-    public void cargarMunicipios(List<Municipios> municipios) {
-
-        List<String> spinner =  new ArrayList<String>();
-        this.SpinnerMapMuni.clear();
-
-        for(int x = 0; x < municipios.size(); x++){
-            spinner.add(municipios.get(x).getDesc_municipio());
-            this.SpinnerMapMuni.put(x ,municipios.get(x).getCod_municipio());
-        }
+    public void cargarMunicipios(ArrayList<String> municipios) {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this.getContext(), android.R.layout.simple_dropdown_item_1line, spinner);
+                this.getContext(), android.R.layout.simple_dropdown_item_1line, municipios);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.MunicipioSpiner.setAdapter(adapter);
     }

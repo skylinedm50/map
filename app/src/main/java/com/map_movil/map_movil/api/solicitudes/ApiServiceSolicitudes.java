@@ -2,6 +2,7 @@ package com.map_movil.map_movil.api.solicitudes;
 
 import com.map_movil.map_movil.model.InfoSolicitud;
 import com.map_movil.map_movil.model.ResponseApi;
+import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.model.SolicitudesUsuario;
 
 import java.util.ArrayList;
@@ -33,4 +34,7 @@ public interface ApiServiceSolicitudes {
                                      @Field("baja_programa") int baja_programa,
                                      @Field("reactiva_programa") int reactiva_programa,
                                      @Field("correccion_sancion") int correcion_sancion);
+
+    @GET("solicitudes/solicitud/download/{usuario}/{aldea}")
+    Call<ArrayList<SolicitudesDownload>> getSolicitudesDownload(@Path("usuario") int intCodUser, @Path("aldea") String strCodAldea);
 }

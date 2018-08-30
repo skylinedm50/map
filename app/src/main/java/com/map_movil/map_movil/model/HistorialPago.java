@@ -2,7 +2,9 @@ package com.map_movil.map_movil.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HistorialPago {
+import io.realm.RealmObject;
+
+public class HistorialPago extends RealmObject {
 
     @SerializedName("pag_anyo")
     private int pag_anyo;
@@ -18,6 +20,22 @@ public class HistorialPago {
     private String tit_fecha_cobro;
     @SerializedName("tit_proy_corta")
     private String tit_proy_corta;
+
+    public HistorialPago(){}
+
+    public HistorialPago(int pag_anyo          , String pag_nombre         ,
+                          int tit_hogar         , String nombre_Titular     ,
+                          String estado_Pago    , String tit_fecha_cobro    ,
+                          String tit_proy_corta){
+
+        this.pag_anyo = pag_anyo;
+        this.pag_nombre = pag_nombre;
+        this.tit_hogar = tit_hogar;
+        this.nombre_Titular = nombre_Titular;
+        this.estado_Pago = estado_Pago;
+        this.tit_fecha_cobro = tit_fecha_cobro;
+        this.tit_proy_corta = tit_proy_corta;
+    }
 
 
     public int getPag_anyo() {
@@ -61,7 +79,12 @@ public class HistorialPago {
     }
 
     public String getTit_fecha_cobro() {
-        return tit_fecha_cobro;
+        String FC= tit_fecha_cobro;
+        if (FC==null)
+        {
+            FC="ND";
+        }
+        return FC;
     }
 
     public void setTit_fecha_cobro(String tit_fecha_cobro) {
