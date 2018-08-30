@@ -5,4 +5,5 @@ import io.realm.RealmResults;
 
 public interface ListarValidacionesInteractor {
     void BuscarValidaciones();
+    int [] validacion_hogar(int hog_hogar);
 }

@@ -33,14 +33,18 @@ public class ValidarNucleoRepositoryImpl implements ValidarNucleoRepository {
                 .findAll()
                 .sort("per_titular", Sort.DESCENDING);
 
-        ArrayList<String[]> personas_hogar = new ArrayList<>();
+        RealmResults<Hogar_Validaciones_Realizadas> validaciones_realizadas = this.realm.where(Hogar_Validaciones_Realizadas.class)
+                .equalTo("hog_hogar",hogar.get(0).getHog_hogar())
+                .findAll();
 
-        this.validarNucleoPresenter.MostarDatos(result);
+
+        this.validarNucleoPresenter.MostarDatos(result , validaciones_realizadas);
     }
 
     @Override
     public void GuardarValidacion(int per_persona, int hog_hogar, final int identidad, final int act_compromiso, final int actualizar,
-                                  final int part_nacimiento, final int cons_educacion, final int desagregar, final int debe_documento) {
+                                  final int part_nacimiento, final int cons_educacion, final int desagregar, final int debe_documento,
+                                  int incorporacion , int cambio_titular) {
         this.realm.beginTransaction();
 
         final RealmResults<Hogar_Validaciones_Realizadas> validacion = this.realm.where(Hogar_Validaciones_Realizadas.class).
@@ -49,9 +53,10 @@ public class ValidarNucleoRepositoryImpl implements ValidarNucleoRepository {
         if(validacion.size() == 0){
 
             Hogar_Validaciones_Realizadas validacion_realizada = new Hogar_Validaciones_Realizadas
-                    (   hog_hogar        , per_persona , identidad ,
+                    (   hog_hogar        , per_persona , identidad       ,
                         act_compromiso   , actualizar  , part_nacimiento ,
-                        cons_educacion   , desagregar  , debe_documento
+                        cons_educacion   , desagregar  , debe_documento  ,
+                        incorporacion    , cambio_titular
                     );
             this.realm.copyToRealm(validacion_realizada);
         }else{
@@ -60,9 +65,10 @@ public class ValidarNucleoRepositoryImpl implements ValidarNucleoRepository {
                 validacion.get(0).setActualizar_datos(actualizar);
                 validacion.get(0).setPartidad_nacimiento(part_nacimiento);
                 validacion.get(0).setConstancia_educacion(cons_educacion);
-                validacion.get(0).setActa_compromiso(act_compromiso);
                 validacion.get(0).setDesagregar(desagregar);
                 validacion.get(0).setDebe_documentos(debe_documento);
+                validacion.get(0).setIncorporacion(incorporacion);
+                validacion.get(0).setCambio_titular(cambio_titular);
         }
         this.realm.commitTransaction();
 

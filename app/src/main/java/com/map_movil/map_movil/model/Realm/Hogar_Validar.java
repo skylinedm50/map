@@ -24,6 +24,7 @@ public class Hogar_Validar extends RealmObject{
     private String desc_caserio;
     private String hogar_direccion;
     private String hog_telefono;
+    private String hog_estado_descripcion;
 
 
     public Hogar_Validar(){}
@@ -34,7 +35,7 @@ public class Hogar_Validar extends RealmObject{
                          String cod_departamento, String desc_departamento , String cod_municipio          ,
                          String desc_municipio  , String cod_aldea         , String desc_aldea             ,
                          String cod_caserio     , String desc_caserio      , String hogar_direccion        ,
-                         String hog_telefono    , String per_identidad)
+                         String hog_telefono    , String per_identidad     , String hog_estado_descripcion )
     {
         this.per_persona = per_persona;
         this.nombre = nombre;
@@ -56,6 +57,7 @@ public class Hogar_Validar extends RealmObject{
         this.hogar_direccion = hogar_direccion;
         this.hog_telefono = hog_telefono;
         this.per_identidad = per_identidad;
+        this.hog_estado_descripcion = hog_estado_descripcion;
     }
 
     public int getPer_persona() {
@@ -153,5 +155,11 @@ public class Hogar_Validar extends RealmObject{
     }
     public void setPer_identidad(String per_identidad) {
         this.per_identidad = per_identidad;
+    }
+    public String getHog_estado_descripcion() {
+        return hog_estado_descripcion;
+    }
+    public void setHog_estado_descripcion(String hog_estado_descripcion) {
+        this.hog_estado_descripcion = hog_estado_descripcion;
     }
 }

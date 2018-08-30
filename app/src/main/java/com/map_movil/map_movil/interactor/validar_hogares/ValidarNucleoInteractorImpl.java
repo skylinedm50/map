@@ -22,10 +22,13 @@ public class ValidarNucleoInteractorImpl implements ValidarNucleoInteractor {
     }
 
     @Override
-    public void GuardarValidacion(int per_persona, int hog_hogar, int identidad, int act_compromiso, int actualizar, int part_nacimiento, int cons_educacion, int desagregar, int debe_documento) {
+    public void GuardarValidacion(int per_persona, int hog_hogar, int identidad, int act_compromiso, int actualizar, int part_nacimiento,
+                                  int cons_educacion, int desagregar, int debe_documento, int incorporacion , int cambio_titular) {
         this.validarNucleoRepository.GuardarValidacion(  per_persona, hog_hogar, identidad,
                                                          act_compromiso, actualizar, part_nacimiento,
-                                                         cons_educacion, desagregar, debe_documento);
+                                                         cons_educacion, desagregar, debe_documento ,
+                                                         incorporacion , cambio_titular
+                );
     }
 
 }

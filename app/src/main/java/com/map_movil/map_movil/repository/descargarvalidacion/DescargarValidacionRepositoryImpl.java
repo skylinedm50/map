@@ -6,9 +6,7 @@ import com.map_movil.map_movil.api.hogar.ApiServiceHogar;
 import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.HogaresValidar;
 import com.map_movil.map_movil.presenter.descargarvalidacion.DescargarValidacionPresenter;
-
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

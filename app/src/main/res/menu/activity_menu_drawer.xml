@@ -11,7 +11,6 @@
             <item
                 android:id="@+id/nav_complaint_denunciation"
                 android:icon="@drawable/ic_view_list_dp"
-                android:enabled="false"
                 android:title="Quejas y Denuncias"/>
         </menu>
     </item>

@@ -16,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
 import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragment;
 import com.map_movil.map_movil.view.descargaNucleo.DescargaNucleoFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
@@ -145,6 +147,13 @@ public class HomeActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, corresponsabilidadFragment).commit();
                 }
             } else if (id == R.id.nav_complaint_denunciation) {
+                showContentScreenHome(false);
+                showToolbar("Quejas y Denuncias");
+                if (intCodItemSelect != id) {
+                    ViewCompat.setElevation(findViewById(R.id.appBar), 0);
+                    QuejasHomeFragment fragmentHomQuejas = new QuejasHomeFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragmentHomQuejas).commit();
+                }
             } else if (id == R.id.nav_inf_homes) {
                 showContentScreenHome(false);
                 showToolbar("Información Hogares");

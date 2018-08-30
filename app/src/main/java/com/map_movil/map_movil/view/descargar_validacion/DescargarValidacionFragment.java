@@ -39,8 +39,8 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class DescargarValidacionFragment extends Fragment implements UbicacionView , DescargaView {
 
+public class DescargarValidacionFragment extends Fragment implements UbicacionView , DescargaView {
 
     private UbicacionesPresenter ubicacionesPresenter;
     private DescargarValidacionPresenter descargarValidacionPresenter;
@@ -87,6 +87,7 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_descargar_validacion , container , false);
+
         Realm.init(getContext());
 
         this.realm = Realm.getDefaultInstance();
@@ -237,7 +238,8 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
                     hogaresValidars.get(x).getDesc_caserio()            ,
                     hogaresValidars.get(x).getHogar_direccion()         ,
                     hogaresValidars.get(x).getHog_telefono()            ,
-                    hogaresValidars.get(x).getPer_identidad());
+                    hogaresValidars.get(x).getPer_identidad()           ,
+                    hogaresValidars.get(x).getHog_estado_descripcion());
 
             this.realm.copyToRealm(hogar_validar);
             this.realm.commitTransaction();

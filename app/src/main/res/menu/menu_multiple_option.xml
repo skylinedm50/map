@@ -8,6 +8,12 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="always|collapseActionView"/>
     <item
+        android:title="Enviar"
+        android:id="@+id/next"
+        android:visible="false"
+        android:enabled="false"
+        app:showAsAction="always|collapseActionView"/>
+    <item
         android:title="Descargar"
         android:id="@+id/download"
         android:icon="@drawable/ic_cloud_download_white"

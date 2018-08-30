@@ -4,6 +4,7 @@ import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.HogarByTitular;
 import com.map_movil.map_movil.model.HogarLigth;
 import com.map_movil.map_movil.model.HogaresValidar;
+import com.map_movil.map_movil.model.QuejasDenuncias;
 
 import java.util.ArrayList;
 

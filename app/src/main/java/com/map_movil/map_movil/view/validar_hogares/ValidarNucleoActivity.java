@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.adapter.nucleo_hogar_validar_Nucleo_adapter;
 
+
 public class ValidarNucleoActivity extends AppCompatActivity {
 
 
@@ -34,18 +35,19 @@ public class ValidarNucleoActivity extends AppCompatActivity {
         TextView UmbralHogar = findViewById(R.id.umbral_hogar);
         TextView Aldea       = findViewById(R.id.aldea_hogar);
         TextView Direccion   = findViewById(R.id.direccion_hogar);
+        TextView EstadoHogar = findViewById(R.id.estado_hogar);
 
         NumeroHogar.setText(String.valueOf(getIntent().getIntExtra("hogar",0)));
         UmbralHogar.setText(getIntent().getStringExtra("Umbral"));
         Aldea.setText(getIntent().getStringExtra("Aldea"));
         Direccion.setText(getIntent().getStringExtra("Direccion"));
+        EstadoHogar.setText(getIntent().getStringExtra("EstadoHogar"));
 
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         nucleo_hogar_validar_Nucleo_adapter nucleo_hogar_validar_adapter = new nucleo_hogar_validar_Nucleo_adapter(
                                                         getApplicationContext()                                  ,
                                                         (Activity) this                                          ,
-                                                        getIntent().getIntExtra("per_persona",0) ,
                                                         getIntent().getIntExtra("hogar", 0)  );
 
         Personas_Validar.setAdapter(nucleo_hogar_validar_adapter);

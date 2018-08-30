@@ -56,6 +56,23 @@
                 android:id="@+id/checked"
                 android:orientation="vertical">
 
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:text="Cambio de Titular"
+                    android:buttonTint="@color/colorAccent"
+                    android:textColor="#000"
+                    android:id="@+id/doc_cambio_titular"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:text="Agregar Miembros"
+                    android:buttonTint="@color/colorAccent"
+                    android:textColor="#000"
+                    android:id="@+id/doc_agregar_menor"
+                    android:layout_height="wrap_content" />
+
                 <CheckBox
                     android:id="@+id/doc_identidad"
                     android:buttonTint="@color/colorAccent"

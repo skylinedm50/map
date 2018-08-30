@@ -20,4 +20,9 @@ public class ListarValidacionesInteractorImpl implements ListarValidacionesInter
     public void BuscarValidaciones() {
         this.listarValidacionesRepository.BuscarValidaciones();
     }
+
+    @Override
+    public int[] validacion_hogar(int hog_hogar) {
+        return this.listarValidacionesRepository.validacion_hogar(hog_hogar);
+    }
 }

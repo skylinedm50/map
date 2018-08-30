@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.map_movil.map_movil.R;
 
 public class SolicitudHomeFragment extends Fragment{
+
     private View view;
     private SolicitudHomeFragment.SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;

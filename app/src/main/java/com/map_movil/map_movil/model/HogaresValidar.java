@@ -20,6 +20,8 @@ public class HogaresValidar {
     private int per_ciclo;
     @SerializedName("per_titular")
     private int per_titular;
+    @SerializedName("hog_estado_descripcion")
+    private String hog_estado_descripcion;
     @SerializedName("per_hogar")
     private int hog_hogar;
     @SerializedName("hog_umbral")
@@ -205,5 +207,13 @@ public class HogaresValidar {
 
     public void setPer_identidad(String per_identidad) {
         this.per_identidad = per_identidad;
+    }
+
+    public String getHog_estado_descripcion() {
+        return hog_estado_descripcion;
+    }
+
+    public void setHog_estado_descripcion(String hog_estado_descripcion) {
+        this.hog_estado_descripcion = hog_estado_descripcion;
     }
 }

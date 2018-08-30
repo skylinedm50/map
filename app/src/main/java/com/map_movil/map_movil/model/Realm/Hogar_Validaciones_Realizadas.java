@@ -13,13 +13,16 @@ public class Hogar_Validaciones_Realizadas extends RealmObject {
     private int constancia_educacion;
     private int desagregar;
     private int debe_documentos;
+    private int incorporacion;
+    private int cambio_titular;
 
 
     public Hogar_Validaciones_Realizadas(){}
 
     public Hogar_Validaciones_Realizadas( int hog_hogar , int per_persona , int tarjeta_identidad ,
                                           int acta_compromiso , int actualizar_datos , int partidad_nacimiento ,
-                                          int constancia_educacion , int desagregar , int debe_documentos){
+                                          int constancia_educacion , int desagregar , int debe_documentos ,
+                                          int incorporacion , int cambio_titular){
         this.hog_hogar = hog_hogar;
         this.per_persona = per_persona;
         this.tarjeta_identidad = tarjeta_identidad;
@@ -29,6 +32,8 @@ public class Hogar_Validaciones_Realizadas extends RealmObject {
         this.constancia_educacion = constancia_educacion;
         this.desagregar = desagregar;
         this.debe_documentos = debe_documentos;
+        this.incorporacion = incorporacion;
+        this.cambio_titular = cambio_titular;
     }
 
     public int getHog_hogar() {
@@ -84,5 +89,17 @@ public class Hogar_Validaciones_Realizadas extends RealmObject {
     }
     public void setDebe_documentos(int debe_documentos) {
         this.debe_documentos = debe_documentos;
+    }
+    public int getIncorporacion() {
+        return incorporacion;
+    }
+    public void setIncorporacion(int incorporacion) {
+        this.incorporacion = incorporacion;
+    }
+    public int getCambio_titular() {
+        return cambio_titular;
+    }
+    public void setCambio_titular(int cambio_titular) {
+        this.cambio_titular = cambio_titular;
     }
 }
