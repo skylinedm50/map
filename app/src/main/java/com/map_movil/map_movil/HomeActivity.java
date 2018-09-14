@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
 import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragment;
@@ -29,7 +30,6 @@ import com.map_movil.map_movil.view.programados.ProgramadosFragment;
 import com.map_movil.map_movil.view.reportes.ReportsFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
-
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
@@ -123,6 +123,8 @@ public class HomeActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, reportsFragment).commit();
                 }
             } else if (id == R.id.nav_logout) {
+                RealmConfig realmConfig = new RealmConfig(this.getApplicationContext());
+                realmConfig.EliminarBaseDatos();
                 sharedPreferences.edit().clear().commit();
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);

@@ -6,27 +6,48 @@ import io.realm.RealmObject;
 
 public class Hogar_Validar extends RealmObject{
 
+    @SerializedName("per_persona")
     private int per_persona;
+    @SerializedName("per_identidad")
     private String per_identidad;
+    @SerializedName("nombre")
     private String nombre;
+    @SerializedName("per_estado_descripcion")
     private String per_estado_descripcion;
+    @SerializedName("sexo")
     private String sexo;
+    @SerializedName("edad")
     private String edad;
+    @SerializedName("per_ciclo")
     private int per_ciclo;
+    @SerializedName("per_titular")
     private int per_titular;
-    private int hog_hogar;
-    private String hog_umbral;
-    private String cod_departamento;
-    private String desc_departamento;
-    private String cod_municipio;
-    private String desc_municipio;
-    private String cod_aldea;
-    private String desc_aldea;
-    private String cod_caserio;
-    private String desc_caserio;
-    private String hogar_direccion;
-    private String hog_telefono;
+    @SerializedName("hog_estado_descripcion")
     private String hog_estado_descripcion;
+    @SerializedName("per_hogar")
+    private int hog_hogar;
+    @SerializedName("hog_umbral")
+    private String hog_umbral;
+    @SerializedName("cod_departamento")
+    private String cod_departamento;
+    @SerializedName("departamento")
+    private String desc_departamento;
+    @SerializedName("cod_municipio")
+    private String cod_municipio;
+    @SerializedName("municipio")
+    private String desc_municipio;
+    @SerializedName("cod_aldea")
+    private String cod_aldea;
+    @SerializedName("aldea")
+    private String desc_aldea;
+    @SerializedName("cod_caserio")
+    private String cod_caserio;
+    @SerializedName("caserio")
+    private String desc_caserio;
+    @SerializedName("hog_direccion")
+    private String hogar_direccion;
+    @SerializedName("hog_telefono")
+    private String hog_telefono;
 
 
     public Hogar_Validar(){}

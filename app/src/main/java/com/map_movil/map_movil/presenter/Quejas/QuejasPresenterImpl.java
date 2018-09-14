@@ -44,7 +44,7 @@ public class QuejasPresenterImpl implements QuejasPresenter {
 
     @Override
     public void RegistrarQueja( int usuario      , String Observacio_solicitud , int tipo_gestion ,
-                                String municipio , String Identidad            , String Nombre1   ,
+                                String aldea     , String Identidad            , String Nombre1   ,
                                 String Nombre2   , String Apellido1            , String Apellido2 ,
                                 String Telefono  , int anonimo ) {
 
@@ -52,7 +52,7 @@ public class QuejasPresenterImpl implements QuejasPresenter {
         jsonQuejaDenuncia.addProperty("Usuario" , String.valueOf(usuario));
         jsonQuejaDenuncia.addProperty("Observacion_solicitud" , Observacio_solicitud);
         jsonQuejaDenuncia.addProperty("Tipo_gestion"          , String.valueOf(tipo_gestion));
-        jsonQuejaDenuncia.addProperty("Municipio" , municipio);
+        jsonQuejaDenuncia.addProperty("Aldea"     , aldea);
         jsonQuejaDenuncia.addProperty("Identidad" , Identidad);
         jsonQuejaDenuncia.addProperty("Nombre1"   , Nombre1);
         jsonQuejaDenuncia.addProperty("Nombre2"   , Nombre2);

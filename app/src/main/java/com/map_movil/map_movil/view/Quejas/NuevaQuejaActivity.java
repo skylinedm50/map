@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.broadcasts.BroadCastImpl;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
@@ -41,10 +42,12 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
     private AppCompatSpinner           DepartamentoSpiner;
     private AppCompatSpinner           MunicipioSpiner;
+    private AppCompatSpinner           AldeaSpiner;
     private AppCompatSpinner           TipoSolicitudSpiner;
     private CheckBox                   ChkAnonimo;
     private HashMap<Integer , String > SpinnerMapDepto;
     private HashMap<Integer , String > SpinnerMapMuni;
+    private HashMap<Integer , String > SpinnerMapAldea;
 
     private TextInputEditText          TxtIdentidad         , TxtNombre1   ,
                                        TxtNombre2           , TxtApellido1 ,
@@ -80,11 +83,13 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
         this.SpinnerMapDepto   = new HashMap<Integer , String>();
         this.SpinnerMapMuni    = new HashMap<Integer , String>();
+        this.SpinnerMapAldea   = new HashMap<Integer , String>();
         this.ubicacionesPresenter = new UbicacionPresenterImpl(this, getApplicationContext());
         this.quejasPresenter      = new QuejasPresenterImpl(this );
 
         this.DepartamentoSpiner  = (AppCompatSpinner)  findViewById(R.id.departamento_spinner);
         this.MunicipioSpiner     = (AppCompatSpinner)  findViewById(R.id.municipio_spinner);
+        this.AldeaSpiner         = (AppCompatSpinner)  findViewById(R.id.aldea_spinner);
 
         this.TipoSolicitudSpiner = (AppCompatSpinner)  findViewById(R.id.TipoSolicitud);
         this.TxtIdentidad        = (TextInputEditText) findViewById(R.id.Tinput_Identidad);
@@ -126,7 +131,17 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
+        this.MunicipioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getAldeas(adapterView.getItemAtPosition(i).toString());
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         List<String> TipoSolicitud = new ArrayList<>();
         TipoSolicitud.add(0,"- Seleccione un tipo de solicitud -");
@@ -140,12 +155,9 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.TipoSolicitudSpiner.setAdapter(Adapter);
 
-       getSupportActionBar().setTitle("Registrar Quejas y Denuncias");
-       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-       //BroadCastInternet.subscribeForMessageInternet(this.getApplicationContext(), LinearRoot);
-       getDepartamentos();
-
+        getSupportActionBar().setTitle("Registrar Quejas y Denuncias");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getDepartamentos();
     }
 
     @Override
@@ -237,12 +249,23 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
     @Override
     public void getAldeas(String muni) {
-
+        this.ubicacionesPresenter.getAldeas(muni);
     }
 
     @Override
     public void cargarAldeas(List<Aldeas> aldeas) {
 
+        List<String> spinner =  new ArrayList<String>();
+        this.SpinnerMapAldea.clear();
+
+        for(int x = 0; x < aldeas.size(); x++){
+            spinner.add(aldeas.get(x).getDesc_aldea());
+            this.SpinnerMapAldea.put(x ,aldeas.get(x).getCod_aldea());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+               getApplicationContext(), android.R.layout.simple_dropdown_item_1line, spinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.AldeaSpiner.setAdapter(adapter);
     }
 
     @Override

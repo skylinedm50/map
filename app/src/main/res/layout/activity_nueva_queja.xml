@@ -274,6 +274,22 @@
 
             <TextView
                 android:layout_width="match_parent"
+                android:text="Aldea"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:layout_width="match_parent"
+                android:id="@+id/aldea_spinner"
+                android:layout_height="50dp">
+
+            </android.support.v7.widget.AppCompatSpinner>
+
+            <TextView
+                android:layout_width="match_parent"
                 android:text="Detalle de la Solicitud (*)"
                 android:textSize="13sp"
                 android:textStyle="bold"

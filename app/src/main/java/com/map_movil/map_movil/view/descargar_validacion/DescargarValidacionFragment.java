@@ -13,15 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
-import com.map_movil.map_movil.model.Departamentos;
 import com.map_movil.map_movil.model.HistorialPago;
-import com.map_movil.map_movil.model.HogaresValidar;
-import com.map_movil.map_movil.model.Municipios;
-import com.map_movil.map_movil.model.Realm.Historial_Pago;
 import com.map_movil.map_movil.model.Realm.Hogar_Validar;
 import com.map_movil.map_movil.presenter.descargarvalidacion.DescargarValidacionPresenter;
 import com.map_movil.map_movil.presenter.descargarvalidacion.DescargarValidacionPresenterImpl;
@@ -31,11 +27,9 @@ import com.map_movil.map_movil.view.ubicacion.UbicacionView;
 import com.pitt.library.fresh.FreshDownloadView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -55,10 +49,10 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     private FreshDownloadView DescargarBtn;
     private int Sleep = 1;
     private int Score = 25;
-    private Realm realm;
     private int UsuarioCod;
     private Thread thread_descarga;
     private Thread thread_contador;
+    private RealmConfig realmConfig;
 
     private Handler handler_descarga = new Handler() {
         @Override
@@ -87,10 +81,8 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_descargar_validacion , container , false);
+        this.realmConfig = new RealmConfig(getContext());
 
-        Realm.init(getContext());
-
-        this.realm = Realm.getDefaultInstance();
         this.descargarValidacionPresenter = new DescargarValidacionPresenterImpl(this);
         this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
 
@@ -98,10 +90,6 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
         this.SpinnerMapMuni    = new HashMap<Integer , String>();
         this.SpinnerMapAldea   = new HashMap<Integer , String>();
         this.DescargarBtn      = (FreshDownloadView) view.findViewById(R.id.descargar);
-
-        RealmQuery<Hogar_Validar> query = this.realm.where(Hogar_Validar.class);
-        RealmResults<Hogar_Validar> result = query.findAll();
-
 
         DepartamentoSpiner = (AppCompatSpinner) view.findViewById(R.id.departamento);
         MunicipioSpiner = (AppCompatSpinner) view.findViewById(R.id.municipio);
@@ -135,7 +123,7 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
                 UsuarioCod = sharedPreferences.getInt("codigo",0);
-                Score = 25;
+                Score = 100;
                 MostarProgress(0);
                 Descargar(1);
                 Descargar(2);
@@ -147,7 +135,6 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
 
         return view;
     }
-
 
     @Override
     public void getDepartamentos() {
@@ -196,14 +183,10 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     }
 
     @Override
-    public void getCaserios(String aldea) {
-
-    }
+    public void getCaserios(String aldea) { }
 
     @Override
-    public void cargarCaserios(List<Caserios> caserios) {
-
-    }
+    public void cargarCaserios(List<Caserios> caserios) { }
 
     @Override
     public void SolicitarDatos(String aldea , int Usuario) {
@@ -211,40 +194,12 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     }
 
     @Override
-    public void DescargarDatos(ArrayList<HogaresValidar> hogaresValidars) {
-        this.Sleep = (int) Math.ceil( (hogaresValidars.size()/ 50) );
-        this.Score = 75;
-        this.MostarProgress(25);
-
-        for(int x = 0; x < hogaresValidars.size() ; x++){
-            this.realm.beginTransaction();
-            Hogar_Validar hogar_validar = new Hogar_Validar(
-                    hogaresValidars.get(x).getPer_persona()             ,
-                    hogaresValidars.get(x).getNombre()                  ,
-                    hogaresValidars.get(x).getPer_estado_descripcion()  ,
-                    hogaresValidars.get(x).getHog_umbral()              ,
-                    hogaresValidars.get(x).getSexo()                    ,
-                    hogaresValidars.get(x).getEdad()                    ,
-                    hogaresValidars.get(x).getPer_ciclo()               ,
-                    hogaresValidars.get(x).getPer_titular()             ,
-                    hogaresValidars.get(x).getHog_hogar()               ,
-                    hogaresValidars.get(x).getCod_departamento()        ,
-                    hogaresValidars.get(x).getDesc_departamento()       ,
-                    hogaresValidars.get(x).getCod_municipio()           ,
-                    hogaresValidars.get(x).getDesc_municipio()          ,
-                    hogaresValidars.get(x).getCod_aldea()               ,
-                    hogaresValidars.get(x).getDesc_aldea()              ,
-                    hogaresValidars.get(x).getCod_caserio()             ,
-                    hogaresValidars.get(x).getDesc_caserio()            ,
-                    hogaresValidars.get(x).getHogar_direccion()         ,
-                    hogaresValidars.get(x).getHog_telefono()            ,
-                    hogaresValidars.get(x).getPer_identidad()           ,
-                    hogaresValidars.get(x).getHog_estado_descripcion());
-
-            this.realm.copyToRealm(hogar_validar);
-            this.realm.commitTransaction();
-        }
-        Toast.makeText(this.getContext(),"Descargado...1",Toast.LENGTH_LONG).show();
+    public void DescargarDatos(ArrayList<Hogar_Validar> hogaresValidars) {
+        this.Sleep = (int) Math.ceil( (hogaresValidars.size()/ 5) );
+        this.realmConfig.getRealm().beginTransaction();
+        this.realmConfig.getRealm().insert(hogaresValidars);
+        this.realmConfig.getRealm().commitTransaction();
+        this.realmConfig.getRealm().close();
     }
 
     @Override
@@ -254,22 +209,10 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
 
     @Override
     public void DescargarHistorial(ArrayList<HistorialPago> historialPagos) {
-        this.Sleep = (int) Math.ceil( (historialPagos.size()/ 25) );
-        this.Score = 100;
-        this.MostarProgress(75);
-        for(int x = 0; x < historialPagos.size(); x++){
-            this.realm.beginTransaction();
-            Historial_Pago historialPago = new Historial_Pago(historialPagos.get(x).getPag_anyo()     ,
-                                                            historialPagos.get(x).getPag_nombre()     ,
-                                                            historialPagos.get(x).getTit_hogar()      ,
-                                                            historialPagos.get(x).getNombre_Titular() ,
-                                                            historialPagos.get(x).getEstado_Pago()    ,
-                                                            historialPagos.get(x).getTit_fecha_cobro(),
-                                                            historialPagos.get(x).getTit_proy_corta() );
-            this.realm.copyToRealm(historialPago);
-            this.realm.commitTransaction();
-        }
-        Toast.makeText(this.getContext(),"Descargado...2",Toast.LENGTH_LONG).show();
+        this.realmConfig.getRealm().beginTransaction();
+        this.realmConfig.getRealm().insert(historialPagos);
+        this.realmConfig.getRealm().commitTransaction();
+        this.realmConfig.getRealm().close();
     }
 
     private void MostarProgress( final int start){
@@ -280,7 +223,7 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
 
                 for (int i = start; i <= Score; i++) {
                     try {
-                        Thread.sleep(Sleep*25);
+                        Thread.sleep(Sleep*15);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

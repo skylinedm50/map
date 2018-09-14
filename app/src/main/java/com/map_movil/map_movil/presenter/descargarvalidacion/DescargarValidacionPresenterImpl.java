@@ -3,7 +3,7 @@ package com.map_movil.map_movil.presenter.descargarvalidacion;
 import com.map_movil.map_movil.interactor.DescargarValidacion.DescargarValidacionInteractor;
 import com.map_movil.map_movil.interactor.DescargarValidacion.DescargarValidacionInteractorImpl;
 import com.map_movil.map_movil.model.HistorialPago;
-import com.map_movil.map_movil.model.HogaresValidar;
+import com.map_movil.map_movil.model.Realm.Hogar_Validar;
 import com.map_movil.map_movil.view.descargar_validacion.DescargaView;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class DescargarValidacionPresenterImpl implements DescargarValidacionPres
     }
 
     @Override
-    public void DescargarDatos(ArrayList<HogaresValidar> hogaresValidars) {
+    public void DescargarDatos(ArrayList<Hogar_Validar> hogaresValidars) {
         descargaView.DescargarDatos(hogaresValidars);
     }
 
