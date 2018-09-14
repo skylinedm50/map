@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout android:layout_width="match_parent"
+<FrameLayout
+    android:layout_width="match_parent"
     android:layout_gravity="bottom"
-    android:id="@+id/Fl_BottomItem"
-    android:visibility="gone"
+    android:id="@+id/FragmentLayoutBottomMessage"
     android:layout_marginTop="100dp"
+    android:visibility="gone"
     android:elevation="5sp"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:background="#2b2a2a"
             android:layout_gravity="bottom"
             android:layout_height="wrap_content">
-
             <TextView
                 android:layout_width="match_parent"
                 android:padding="15dp"
                 android:textColor="#f9e82e"
-                android:text="Sin conexión a internet."
+                android:text="Dispositivo sin conexión a internet."
                 android:layout_height="wrap_content" />
-
         </LinearLayout>
-
 </FrameLayout>

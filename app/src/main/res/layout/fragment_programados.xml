@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.excluidos.ExcluidoFragment"
+    tools:context=".view.programados.ProgramadosFragment"
     android:background="#fff">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
+
     <LinearLayout
         android:layout_margin="15dp"
         android:id="@+id/linearLayoutdatos"
@@ -22,81 +23,67 @@
         android:orientation="vertical"
         android:visibility="visible"
         android:layout_height="match_parent">
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/radGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton android:id="@+id/radio_global"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GLOBAL"
-                android:checked="true"
-                android:layout_weight="0.5"/>
-            <RadioButton android:id="@+id/radio_m"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MANCOMUNIDADES"
-                android:layout_weight="0.5"/>
-        </RadioGroup>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:textSize="18dp"
-                android:text="Seleccione un pago:"/>
-            <android.support.v7.widget.AppCompatSpinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/pago"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1">
+
             <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="15dp"
                 android:id="@+id/departamento"
                 android:spinnerMode="dialog"
-                android:layout_weight="0.5"/>
+                android:layout_weight="0.5"></android.support.v7.widget.AppCompatSpinner>
+
             <LinearLayout
                 android:layout_width="1px"
                 android:layout_height="40dp"
                 android:background="#d5d5d5"
                 android:layout_gravity="center"></LinearLayout>
+
             <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:id="@+id/municipio"
                 android:spinnerMode="dialog"
                 android:layout_weight="0.5"></android.support.v7.widget.AppCompatSpinner>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
             <android.support.v7.widget.AppCompatSpinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="15dp"
                 android:id="@+id/aldea"
-                android:spinnerMode="dialog"/>
+                android:spinnerMode="dialog"
+                android:layout_weight="0.5"></android.support.v7.widget.AppCompatSpinner>
+
+            <LinearLayout
+                android:layout_width="1px"
+                android:layout_height="40dp"
+                android:background="#d5d5d5"
+                android:layout_gravity="center"></LinearLayout>
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:id="@+id/pago"
+                android:spinnerMode="dialog"
+                android:layout_weight="0.5"></android.support.v7.widget.AppCompatSpinner>
+
         </LinearLayout>
+
         <Button
             android:id="@+id/buttonsearchex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
             android:textColor="@color/cardview_light_background"
-            android:layout_marginTop="5dp"
             android:text="BUSCAR" />
         <ListView
             android:layout_width="match_parent"
@@ -117,6 +104,9 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:text="NO SE ENCONTRARON DATOS"/>
+
         </LinearLayout>
+
     </LinearLayout>
+
 </FrameLayout>

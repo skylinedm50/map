@@ -46,6 +46,7 @@ public class InfoSolicitud {
     @SerializedName("estado_solicitud")
     private String strEstadoSolicitud;
 
+    public InfoSolicitud(){}
 
     public InfoSolicitud(int intCodSolicitud, int intCodHogar, String strEstadoHogar, String strUmbral,
                          String strDepartamento, String strMunicipio, String strAldea, String strCaserio,

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.HistorialPago;
 
 import java.lang.reflect.Type;
@@ -53,10 +54,9 @@ public class HistorialPagoActivity extends AppCompatActivity {
         Historial_Adapter = new LV_Historial_Adapter(this, Historiales);
         lv_Historial_Pago.setAdapter(Historial_Adapter);
 
-
         tv_Titular.setText(Titular);
         tv_Identidad.setText(Identidad);
-
+        BroadCastInternet.subscribeForMessageInternet(getApplicationContext(), findViewById(R.id.relativeLayoutMain));
     }
 
     public boolean onSupportNavigateUp() {

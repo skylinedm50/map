@@ -22,10 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.map_movil.map_movil.R;
-import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
-import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
 import com.map_movil.map_movil.interactor.solicitudes.AdapterRecyclerViewSolicitudes;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
@@ -39,19 +38,14 @@ import com.map_movil.map_movil.view.ubicacion.UbicacionView;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class SolicitudesFragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener, SolicitudesFragmentView, UbicacionView {
+
     public Integer intCodUser;
     public String strSimbolo;
     private AdapterRecyclerViewSolicitudes objAdapterSolicitudesUsuario;
     private ArrayList<SolicitudesUsuario> arrSolicitudesUsuarios = new ArrayList<SolicitudesUsuario>();
     private RecyclerView objRecycleView;
     private View view;
-    private ApiAdapterSolicitudes objApiAdapterSolicitudes;
-    private ApiServiceSolicitudes objApiServiceSolicitudes;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RelativeLayout relativeLayoutProgressBar;
     private UbicacionesPresenter ubicacionesPresenter;
@@ -63,17 +57,16 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     private AlertDialog dialog;
     private LinearLayout linearLayoutPorcentage;
     private SharedPreferences sharedPreferences;
+    private TextView textViewPorcentageDownload;
 
 
     public SolicitudesFragment() {
-
     }
 
     @Override
     public void onResume(){
         super.onResume();
-        showProgressBar(true);
-        findSolicitud();
+        getSolicitudesGestionadas();
     }
 
     @Override
@@ -86,9 +79,7 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         relativeLayoutProgressBar = view.findViewById(R.id.relativeLayoutProgressBar);
-        objApiAdapterSolicitudes = new ApiAdapterSolicitudes();
 
-        objApiServiceSolicitudes = objApiAdapterSolicitudes.getClientService();
         objAdapterSolicitudesUsuario = new AdapterRecyclerViewSolicitudes(arrSolicitudesUsuarios, getActivity());
 
         objRecycleView = view.findViewById(R.id.recyclerSolicitudes);
@@ -98,7 +89,7 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
             @Override
             public void onitemClick(int position) {
                 int intCodSolicitud = arrSolicitudesUsuarios.get(position).getIntCodSolicitud();
-                Intent intent = new Intent(getActivity(), VerSolicitudActivity.class);
+                Intent intent = new Intent(getActivity(), ShowAddSolicitudActivity.class);
                 intent.putExtra("intTipoOperacion", 2);
                 intent.putExtra("intCodSolicitud", intCodSolicitud);
                 startActivity(intent);
@@ -109,15 +100,17 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                findSolicitud();
+                getSolicitudesGestionadas();
             }
         });
 
         setHasOptionsMenu(true);
+
+
         return view;
     }
 
-    private void filtro(String texto){
+    private void findByTitularOrSolicitud(String texto){
         ArrayList<SolicitudesUsuario> arrayListFilter1 = new ArrayList<>();
         ArrayList<SolicitudesUsuario> arrayListFilter2 = new ArrayList<>();
 
@@ -145,9 +138,16 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_multiple_option, menu);
         MenuItem searchItem = menu.findItem(R.id.searchViewFind);
+        MenuItem downloadItem = menu.findItem(R.id.download);
+        MenuItem saveOnServer = menu.findItem(R.id.saveServer);
         SearchView searchView = (SearchView) searchItem.getActionView();
+
         searchView.setOnQueryTextListener(this);
         searchView.setQueryHint("Buscar...");
+        downloadItem.setVisible(true);
+        downloadItem.setEnabled(true);
+        saveOnServer.setVisible(true);
+        saveOnServer.setEnabled(true);
 
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -166,6 +166,7 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
                 TextView textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
                 TextView textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
                 linearLayoutPorcentage = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
+                textViewPorcentageDownload = viewInflater.findViewById(R.id.textViewPorcentage);
 
                 spinnerDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -175,10 +176,8 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-
                     }
                 });
-
                 spinnerMunicipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -187,7 +186,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-
                     }
                 });
 
@@ -214,12 +212,15 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
                 getDepartamentos();
 
                 return true;
+            case R.id.saveServer:
+
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    //De la implementación de la busqueda y del menu para poder modificarlo.
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;
@@ -227,42 +228,24 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        filtro(newText.toString());
+        findByTitularOrSolicitud(newText.toString());
         return false;
     }
+
     @Override
     public boolean onMenuItemActionExpand(MenuItem item) {
-
         return false;
     }
 
     @Override
     public boolean onMenuItemActionCollapse(MenuItem item) {
-
         return false;
     }
 
-    private void findSolicitud(){
-        Call<ArrayList<SolicitudesUsuario>> call = objApiServiceSolicitudes.getSolicitudesFinalizadasUsuario(intCodUser, strSimbolo);
-        call.enqueue(new Callback<ArrayList<SolicitudesUsuario>>() {
-            @Override
-            public void onResponse(Call<ArrayList<SolicitudesUsuario>> call, Response<ArrayList<SolicitudesUsuario>> response) {
-                if (response.body() != null && response.body().size() > 0) {
-                    arrSolicitudesUsuarios = response.body();
-                    objAdapterSolicitudesUsuario.dataAdapterChange(arrSolicitudesUsuarios);
-                } else {
-                    objAdapterSolicitudesUsuario.dataAdapterChange(new ArrayList<SolicitudesUsuario>());
-                }
-                swipeRefreshLayout.setRefreshing(false);
-                showProgressBar(false);
-            }
-            @Override
-            public void onFailure(Call<ArrayList<SolicitudesUsuario>> call, Throwable t) {
-                objAdapterSolicitudesUsuario.dataAdapterChange(new ArrayList<SolicitudesUsuario>());
-                swipeRefreshLayout.setRefreshing(false);
-                showProgressBar(false);
-            }
-        });
+    @Override
+    public void getSolicitudesGestionadas() {
+        showProgressBar(true);
+        solicitudesFragmentPresenter.getSolicitudesGestionadas(intCodUser, strSimbolo);
     }
 
     private void showProgressBar(boolean show){
@@ -280,9 +263,27 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     }
 
     @Override
+    public void showSolicitudesGestionadas(ArrayList<SolicitudesUsuario> arrayListSolicitudes) {
+        arrSolicitudesUsuarios = arrayListSolicitudes;
+        objAdapterSolicitudesUsuario.dataAdapterChange(arrSolicitudesUsuarios);
+        swipeRefreshLayout.setRefreshing(false);
+        showProgressBar(false);
+    }
+
+    @Override
     public void finishDownloadSolicitudes() {
         linearLayoutPorcentage.setVisibility(View.GONE);
         dialog.cancel();
+    }
+
+    @Override
+    public void changePorcentage(String strPorcentage) {
+        textViewPorcentageDownload.setText(strPorcentage);
+    }
+
+    @Override
+    public void showError(String strError) {
+        Toast.makeText(view.getContext(), strError, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -301,7 +302,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     public void getMunicipios(String depto) {
         this.ubicacionesPresenter.getMunicipios(depto);
     }
-
 
     @Override
     public void cargarMunicipios(ArrayList<String> municipios) {
@@ -334,5 +334,10 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public void cargarCaserios(List<Caserios> caserios) {
 
+    }
+
+    @Override
+    public void synchronizeSolicitudesWithServer() {
+        solicitudesFragmentPresenter.synchronizeWithServer();
     }
 }

@@ -261,8 +261,8 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
                     pieChart.getDescription().setText("TOTAL SOLICITUDES: "+ Func_Total_Cantidad(arreglo));
 
                     colores = new ArrayList<>();
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
                     colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
+                    colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
 
                     dataset = new PieDataSet(yVals,"");
                     dataset.setSliceSpace(3f);
@@ -288,7 +288,6 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
         }
 
         if(Nombre_Grafico.equals(Grafico2)) {
-
             service.getCifrasCantidadDatos().enqueue(new Callback<ArrayList<EstadosCantidadSolicitudes>>() {
                 @Override
                 public void onResponse(Call<ArrayList<EstadosCantidadSolicitudes>> call, Response<ArrayList<EstadosCantidadSolicitudes>> response) {
@@ -321,15 +320,14 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
                     colores.add(ColorTemplate.VORDIPLOM_COLORS[0]);
                     colores.add(ColorTemplate.VORDIPLOM_COLORS[1]);
                     colores.add(ColorTemplate.VORDIPLOM_COLORS[2]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
                     colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
+                    colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
 
                     dataset = new PieDataSet(yVals, null);
                     dataset.setSliceSpace(3f);
                     dataset.setColors(colores);
                     dataset.setValueTextSize(15f);
                     dataset.setValueFormatter(new IntValueFormatter());
-
 
 
                     data = new PieData(dataset);
@@ -368,8 +366,8 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
                     pieChart.getDescription().setText("TOTAL SOLICITUDES: "+ Func_Total_Cantidad(arreglo));
 
                     colores = new ArrayList<>();
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
                     colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
+                    colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
 
                     dataset = new PieDataSet(yVals,"");
                     dataset.setSliceSpace(3f);
@@ -424,15 +422,15 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
                     pieChart.getDescription().setText("TOTAL SOLICITUDES: "+ Func_Total_Cantidad(arreglo));
                     colores = new ArrayList<>();
 
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[0]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[1]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[2]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
-
                     dataset = new PieDataSet(yVals, null);
                     dataset.setSliceSpace(3f);
-                    dataset.setColors(colores);
+
+                    dataset.setColors(new int[] {Color.rgb(102, 255, 204)
+                            ,Color.rgb(255, 255, 153)
+                            ,Color.rgb(128, 179, 255)
+                            ,Color.rgb(92, 214, 92) //Verde
+                            ,Color.rgb(255, 153, 51)});
+
                     dataset.setValueTextSize(15f);
                     dataset.setValueFormatter(new IntValueFormatter());
 

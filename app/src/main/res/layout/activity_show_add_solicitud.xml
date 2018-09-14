@@ -502,7 +502,7 @@
                         android:id="@+id/checkboxCorreccionSancion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Corrección por sación incorrecta (Seguimiento de corresponsabilidad)." />
+                        android:text="Corrección por sanción incorrecta (Seguimiento de corresponsabilidad)." />
                 </LinearLayout>
             </LinearLayout>
 

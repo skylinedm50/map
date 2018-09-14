@@ -3,7 +3,7 @@ package com.map_movil.map_movil.presenter.planilla;
 import com.map_movil.map_movil.interactor.planilla.PlanillaInteractor;
 import com.map_movil.map_movil.interactor.planilla.PlanillaInteractorImpl;
 import com.map_movil.map_movil.model.Pagos;
-import com.map_movil.map_movil.view.planilla.PlanillaView;
+import com.map_movil.map_movil.view.excluidos.PlanillaView;
 
 import java.util.List;
 

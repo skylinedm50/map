@@ -35,6 +35,6 @@ public interface ApiServiceSolicitudes {
                                      @Field("reactiva_programa") int reactiva_programa,
                                      @Field("correccion_sancion") int correcion_sancion);
 
-    @GET("solicitudes/solicitud/download/{usuario}/{aldea}")
+    @GET("solicitudes/gestionadas/download/{usuario}/{aldea}")
     Call<ArrayList<SolicitudesDownload>> getSolicitudesDownload(@Path("usuario") int intCodUser, @Path("aldea") String strCodAldea);
 }

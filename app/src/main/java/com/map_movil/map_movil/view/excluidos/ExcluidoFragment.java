@@ -1,4 +1,4 @@
-package com.map_movil.map_movil.view.planilla;
+package com.map_movil.map_movil.view.excluidos;
 
 
 import android.content.Context;
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +45,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ExcluidoFragment extends Fragment implements UbicacionView, PlanillaView {
+public class ExcluidoFragment extends Fragment implements UbicacionView, PlanillaView, SearchView.OnQueryTextListener {
     private View view;
     private UbicacionesPresenter ubicacionesPresenter;
     private PlanillaPresenter planillaPresenter;
@@ -52,7 +56,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     private RadioButton RadGlobal;
     private RadioButton RadMdesc;
     private ListView listplanillaexcluidos;
-    private ArrayList<PagosExcluido> listexcluidos= new ArrayList<>();
+    private ArrayList<PagosExcluido> listexcluidos = new ArrayList<>();
     private AdaptadorExcluidos adaptadorExcluidos;
     private Context context;
     private RelativeLayout relativeLayout;
@@ -78,69 +82,82 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_excluido, container, false);
-        try {
-            this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
-            this.planillaPresenter = new PlanillaPresenterImpl(this);
-            this.SpinnerMapDepto = new HashMap<Integer, String>();
-            this.SpinnerMapMuni = new HashMap<Integer, String>();
-            this.SpinnerMapAldea = new HashMap<Integer, String>();
-            this.SpinnerMapPagos = new HashMap<Integer, String>();
 
-            RadGlobal = (RadioButton) view.findViewById(R.id.radio_global);
-            RadMdesc = (RadioButton) view.findViewById(R.id.radio_m);
-            relativeLayout =(RelativeLayout) view.findViewById(R.id.relativeLayoutProgressBar);
-            linearLayout = view.findViewById(R.id.linearLayoutdatos);
-            linearLayoutnodata=view.findViewById(R.id.linearLayoutnodata);
+        this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
+        this.planillaPresenter = new PlanillaPresenterImpl(this);
+        this.SpinnerMapDepto = new HashMap<Integer, String>();
+        this.SpinnerMapMuni = new HashMap<Integer, String>();
+        this.SpinnerMapAldea = new HashMap<Integer, String>();
+        this.SpinnerMapPagos = new HashMap<Integer, String>();
 
-            DepartamentoSpiner = (AppCompatSpinner) view.findViewById(R.id.departamento);
-            MunicipioSpiner = (AppCompatSpinner) view.findViewById(R.id.municipio);
-            AldeaSpiner = (AppCompatSpinner) view.findViewById(R.id.aldea);
-            PagosSpiner = (AppCompatSpinner) view.findViewById(R.id.pago);
+        RadGlobal = (RadioButton) view.findViewById(R.id.radio_global);
+        RadMdesc = (RadioButton) view.findViewById(R.id.radio_m);
+        relativeLayout =(RelativeLayout) view.findViewById(R.id.relativeLayoutProgressBar);
+        linearLayout = view.findViewById(R.id.linearLayoutdatos);
+        linearLayoutnodata=view.findViewById(R.id.linearLayoutnodata);
 
-            this.getDepartamentos();
-            this.getPagos();
+        DepartamentoSpiner = (AppCompatSpinner) view.findViewById(R.id.departamento);
+        MunicipioSpiner = (AppCompatSpinner) view.findViewById(R.id.municipio);
+        AldeaSpiner = (AppCompatSpinner) view.findViewById(R.id.aldea);
+        PagosSpiner = (AppCompatSpinner) view.findViewById(R.id.pago);
 
-            final Button button = view.findViewById(R.id.buttonsearchex);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loading("search");
-                    if (RadGlobal.isChecked()){
-                        findexcluidos(SpinnerMapAldea.get(AldeaSpiner.getSelectedItemPosition()),SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()),"Global");
-                    }
-                    else{
-                        findexcluidos(SpinnerMapAldea.get(AldeaSpiner.getSelectedItemPosition()),SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()),"Mancomunidad");
-                    }
+        this.context = view.getContext();
+        listplanillaexcluidos = view.findViewById(R.id.listaexcluidos);
+        adaptadorExcluidos = new AdaptadorExcluidos(context, listexcluidos);
+        listplanillaexcluidos.setAdapter(adaptadorExcluidos);
+
+        this.getDepartamentos();
+        this.getPagos();
+
+        final Button button = view.findViewById(R.id.buttonsearchex);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loading("search");
+                if (RadGlobal.isChecked()){
+                    findexcluidos(SpinnerMapAldea.get(AldeaSpiner.getSelectedItemPosition()),SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()),"Global");
                 }
-            });
-            DepartamentoSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    getMunicipios(adapterView.getItemAtPosition(i).toString());
+                else{
+                    findexcluidos(SpinnerMapAldea.get(AldeaSpiner.getSelectedItemPosition()),SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()),"Mancomunidad");
                 }
+            }
+        });
+        DepartamentoSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getMunicipios(adapterView.getItemAtPosition(i).toString());
+            }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                }
-            });
-            MunicipioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    getAldeas(adapterView.getItemAtPosition(i).toString());
-                }
+            }
+        });
+        MunicipioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getAldeas(adapterView.getItemAtPosition(i).toString());
+            }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                }
-            });
+            }
+        });
+        setHasOptionsMenu(true);
 
-            return view;
-        }catch (Throwable e) {
-            e.printStackTrace();
-        }
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_multiple_option, menu);
+        MenuItem searchItem = menu.findItem(R.id.searchViewFind);
+        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint("Buscar por titular...");
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -219,6 +236,17 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         this.PagosSpiner.setAdapter(adapter);
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        findByTitular(newText);
+        return false;
+    }
+
 
     public class AdaptadorExcluidos extends BaseAdapter {
 
@@ -266,8 +294,19 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
 
         public void changeAdapater(ArrayList<PagosExcluido> listExcluidos){
             this.listExcluidos = listExcluidos;
-
+            notifyDataSetChanged();
         }
+    }
+
+    private void findByTitular(String strNombre){
+        ArrayList<PagosExcluido> arrayListPagosExcluidos = new ArrayList<>();
+        for(PagosExcluido item: listexcluidos){
+            if(item.getStrnombre_titular().toString().toLowerCase().contains(strNombre.toLowerCase())){
+                arrayListPagosExcluidos.add(item);
+            }
+        }
+
+        adaptadorExcluidos.changeAdapater(arrayListPagosExcluidos);
     }
 
     private void loading(String estado){
@@ -298,11 +337,9 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     }
 
     private void findexcluidos(String strCodAldea, String strCodpago,String tipoGM){
-        adapterPlanilla=new ApiAdapterPlanilla();
-        servicePlanilla=adapterPlanilla.getClientService();
-        planillaExcluidos=new ArrayList<>();
-        context=getContext();
-
+        adapterPlanilla = new ApiAdapterPlanilla();
+        servicePlanilla = adapterPlanilla.getClientService();
+        planillaExcluidos = new ArrayList<>();
 
         final List<Map<String, String>> data = new ArrayList<>();
         if(tipoGM.equals("Global")){
@@ -311,9 +348,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                 public void onResponse(Call<ArrayList<PagosExcluido>> call, Response<ArrayList<PagosExcluido>> response) {
                     if(response.body() != null && response.body().size()>0){
                         listexcluidos= response.body();
-                        listplanillaexcluidos = (ListView) view.findViewById(R.id.listaexcluidos);
-                        adaptadorExcluidos=new AdaptadorExcluidos(context,listexcluidos);
-                        listplanillaexcluidos.setAdapter(adaptadorExcluidos);
+                        adaptadorExcluidos.changeAdapater(listexcluidos);
                         loading("datos");
                     }
                     else{
@@ -333,10 +368,8 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
             call.enqueue(new Callback<ArrayList<PagosExcluido>>() {
                 public void onResponse(Call<ArrayList<PagosExcluido>> call, Response<ArrayList<PagosExcluido>> response) {
                     if(response.body() != null && response.body().size()>0){
-                        listexcluidos= response.body();
-                        listplanillaexcluidos = (ListView) view.findViewById(R.id.listaexcluidos);
-                        adaptadorExcluidos=new AdaptadorExcluidos(context,listexcluidos);
-                        listplanillaexcluidos.setAdapter(adaptadorExcluidos);
+                        listexcluidos = response.body();
+                        adaptadorExcluidos.changeAdapater(listexcluidos);
                         loading("datos");
                     }
                     else{

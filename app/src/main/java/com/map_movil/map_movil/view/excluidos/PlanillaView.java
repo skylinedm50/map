@@ -1,4 +1,4 @@
-package com.map_movil.map_movil.view.planilla;
+package com.map_movil.map_movil.view.excluidos;
 
 import com.map_movil.map_movil.model.Pagos;
 

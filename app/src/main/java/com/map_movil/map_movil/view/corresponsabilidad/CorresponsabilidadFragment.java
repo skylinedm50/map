@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -77,6 +78,7 @@ public class CorresponsabilidadFragment extends Fragment implements SearchView.O
         android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(this);
         searchView.setQueryHint("Buscar...");
+        searchView.setInputType(InputType.TYPE_CLASS_NUMBER);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -338,10 +340,10 @@ public class CorresponsabilidadFragment extends Fragment implements SearchView.O
                     holder.parcial1.setText(ListaCorresponsabilidad.get(position).getEstadoParcialI());
                 }
                 else if (ListaCorresponsabilidad.get(position).getEstadoParcialI().equals("CUMPLE")){
-                    holder.parcial1.setText(ListaCorresponsabilidad.get(position).getEstadoParcialI()+" "+ListaCorresponsabilidad.get(position).getParcialI()+" DIAS F.");
+                    holder.parcial1.setText(ListaCorresponsabilidad.get(position).getEstadoParcialI()+" - "+ListaCorresponsabilidad.get(position).getParcialI()+" DIAS F.");
                 }
                 else {
-                    holder.parcial1.setText(ListaCorresponsabilidad.get(position).getEstadoParcialI()+" "+ListaCorresponsabilidad.get(position).getParcialI()+" DIAS F.");
+                    holder.parcial1.setText(ListaCorresponsabilidad.get(position).getEstadoParcialI()+" - "+ListaCorresponsabilidad.get(position).getParcialI()+" DIAS F.");
                     holder.parcial1.setTextColor(Color.RED);
                 }
 
@@ -350,10 +352,10 @@ public class CorresponsabilidadFragment extends Fragment implements SearchView.O
                     holder.parcial2.setText(ListaCorresponsabilidad.get(position).getEstadoParcialII());
                 }
                 else if (ListaCorresponsabilidad.get(position).getEstadoParcialII().equals("CUMPLE")){
-                    holder.parcial2.setText(ListaCorresponsabilidad.get(position).getEstadoParcialII()+" "+ListaCorresponsabilidad.get(position).getParcialII()+" DIAS F.");
+                    holder.parcial2.setText(ListaCorresponsabilidad.get(position).getEstadoParcialII()+" - "+ListaCorresponsabilidad.get(position).getParcialII()+" DIAS F.");
                 }
                 else {
-                    holder.parcial2.setText(ListaCorresponsabilidad.get(position).getEstadoParcialII()+" "+ListaCorresponsabilidad.get(position).getParcialII()+" DIAS F.");
+                    holder.parcial2.setText(ListaCorresponsabilidad.get(position).getEstadoParcialII()+" - "+ListaCorresponsabilidad.get(position).getParcialII()+" DIAS F.");
                     holder.parcial2.setTextColor(Color.RED);
                 }
                 /* sec b parciales*/
@@ -362,10 +364,10 @@ public class CorresponsabilidadFragment extends Fragment implements SearchView.O
                     holder.parcial1b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIB());
                 }
                 else if (ListaCorresponsabilidad.get(position).getEstadoParcialIB().equals("CUMPLE")){
-                    holder.parcial1b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIB()+" "+ListaCorresponsabilidad.get(position).getParcialIB()+" DIAS F.");
+                    holder.parcial1b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIB()+" - "+ListaCorresponsabilidad.get(position).getParcialIB()+" DIAS F.");
                 }
                 else {
-                    holder.parcial1b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIB()+" "+ListaCorresponsabilidad.get(position).getParcialIB()+" DIAS F.");
+                    holder.parcial1b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIB()+" - "+ListaCorresponsabilidad.get(position).getParcialIB()+" DIAS F.");
                     holder.parcial1b.setTextColor(Color.RED);
                 }
 
@@ -374,10 +376,10 @@ public class CorresponsabilidadFragment extends Fragment implements SearchView.O
                     holder.parcial2b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIIB());
                 }
                 else if (ListaCorresponsabilidad.get(position).getEstadoParcialIIB().equals("CUMPLE")){
-                    holder.parcial2b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIIB()+" "+ListaCorresponsabilidad.get(position).getParcialIIB()+" DIAS F.");
+                    holder.parcial2b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIIB()+" - "+ListaCorresponsabilidad.get(position).getParcialIIB()+" DIAS F.");
                 }
                 else {
-                    holder.parcial2b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIIB()+" "+ListaCorresponsabilidad.get(position).getParcialIIB()+" DIAS F.");
+                    holder.parcial2b.setText(ListaCorresponsabilidad.get(position).getEstadoParcialIIB()+" - "+ListaCorresponsabilidad.get(position).getParcialIIB()+" DIAS F.");
                     holder.parcial2b.setTextColor(Color.RED);
                 }
 

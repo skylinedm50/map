@@ -18,6 +18,7 @@ public class HogarByTitular {
     @SerializedName("caserio")
     private String strCaserio;
 
+    public HogarByTitular(){}
 
     public HogarByTitular(int intCodHogar, String strEstadoHogar, String strUmbralHogar, String strDepartamento, String strMunicipio, String strAldea, String strCaserio) {
         this.intCodHogar = intCodHogar;

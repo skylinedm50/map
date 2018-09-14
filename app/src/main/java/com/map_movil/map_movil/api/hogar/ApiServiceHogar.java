@@ -24,5 +24,4 @@ public interface ApiServiceHogar {
 
     @GET("hogares/hogar/pagos/aldea/{aldea}")
     Call<ArrayList<HistorialPago>> getHistorialPago(@Path("aldea") String aldea );
-
 }

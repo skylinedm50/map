@@ -5,65 +5,52 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.opengl.Visibility;
-import android.support.design.widget.BaseTransientBottomBar;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.map_movil.map_movil.R;
 
 public class BroadCastInternet extends BroadcastReceiver {
-
-    private  static final String Tag = "BroadCasts";
+    private static View view;
+    public static boolean bolSubscribe = false;
+    public static boolean isConnected;
+    private static int visible = 0;
+    private static ConnectivityManager connectivityManager;
+    private static FrameLayout frameLayout;
+    private static NetworkInfo networkInfo;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        showMessageConectionInternet(context);
+    }
 
-        try{
+    public static void subscribeForMessageInternet(Context context, View viewClassSubscribe){
+        view = viewClassSubscribe;
+        bolSubscribe = true;
+        showMessageConectionInternet(context);
+    }
 
-            ConnectivityManager connectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            FrameLayout frameLayout = (FrameLayout) BroadCastImpl.getView().findViewById(R.id.Fl_BottomItem);
+    private static void showMessageConectionInternet(Context context){
+        isConnected = false;
+        try {
+            connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            networkInfo = connectivityManager.getActiveNetworkInfo();
+            frameLayout = view.findViewById(R.id.FragmentLayoutBottomMessage);
 
-            if(networkInfo == null){
-                if(BroadCastImpl.isSuscribir() && BroadCastImpl.getVisible() == 0){
+            if (networkInfo == null) {
+                if (bolSubscribe && visible == 0) {
                     frameLayout.setVisibility(View.VISIBLE);
-                    BroadCastImpl.setVisible(1);
+                    visible = 1;
                 }
-            }else{
-                if(BroadCastImpl.isSuscribir() && BroadCastImpl.getVisible() == 1 ){
+            } else {
+                if (bolSubscribe && visible == 1) {
                     frameLayout.setVisibility(View.GONE);
-                    BroadCastImpl.setVisible(0);
+                    visible = 0;
                 }
+                isConnected = true;
             }
+        }catch (Exception e){
+
         }
-        catch (Exception e){}
-
     }
-
-    public static void MostarMensajeInternet(Context context){
-
-        ConnectivityManager connectivityManager = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        FrameLayout frameLayout = (FrameLayout) BroadCastImpl.getView().findViewById(R.id.Fl_BottomItem);
-
-        if(networkInfo == null){
-            if(BroadCastImpl.isSuscribir() && BroadCastImpl.getVisible() == 0){
-                frameLayout.setVisibility(View.VISIBLE);
-                BroadCastImpl.setVisible(1);
-            }
-        }else{
-            if(BroadCastImpl.isSuscribir() && BroadCastImpl.getVisible() == 1 ){
-                frameLayout.setVisibility(View.GONE);
-                BroadCastImpl.setVisible(0);
-            }
-        }
-
-    }
-
-
 }

@@ -26,13 +26,17 @@ import com.google.gson.Gson;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.api.informacionHogares.ApiAdapterInformacionHogares;
 import com.map_movil.map_movil.api.informacionHogares.ApiServiceInformacionHogares;
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.HogarActualizaciones;
 import com.map_movil.map_movil.model.HogarInformacion;
 import com.map_movil.map_movil.model.NucleoHogar;
+import com.map_movil.map_movil.model.Realm.Hogar_Validar;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,6 +64,7 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
     private RecyclerView rv_Nucleo_Hogar;
     private Button buttonVerHistrorialPago;
     private Button buttonVerActualizacionesNoRealizadas;
+    private Realm realm;
 
     private View view;
 
@@ -106,6 +111,7 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
         });
 
         setHasOptionsMenu(true);
+        BroadCastInternet.subscribeForMessageInternet(view.getContext(), view);
         return view;
     }
 
@@ -147,80 +153,136 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
         tv_Mensaje.setTextColor(Color.GRAY);
         tv_Mensaje.setText("Buscando información del titular "+Identidad_Titular+"...");
         pBar.setVisibility(View.VISIBLE);
-        Service.getDatos_Hogar(Identidad_Titular).enqueue(new Callback<ArrayList <HogarInformacion>>() {
-            @Override
-            public void onResponse(Call<ArrayList <HogarInformacion>> call, Response<ArrayList <HogarInformacion>> response) {
-                ArrayList<HogarInformacion> Datos_Hogar;
 
-                Datos_Hogar = response.body();
-                tv_Mensaje.setText("Cargando Nucleo Familiar...");
+        if(BroadCastInternet.isConnected){
+            Service.getDatos_Hogar(Identidad_Titular).enqueue(new Callback<ArrayList<HogarInformacion>>() {
+                @Override
+                public void onResponse(Call<ArrayList<HogarInformacion>> call, Response<ArrayList<HogarInformacion>> response) {
+                    ArrayList<HogarInformacion> Datos_Hogar;
 
-                if(!Datos_Hogar.isEmpty()){
+                    Datos_Hogar = response.body();
+                    tv_Mensaje.setText("Cargando Nucleo Familiar...");
+
+                    if (!Datos_Hogar.isEmpty()) {
+
+                        tv_Aldea.setText(Datos_Hogar.get(0).getDesc_aldea());
+                        tv_Caserio.setText(Datos_Hogar.get(0).getDesc_caserio());
+                        tv_Departamento.setText(Datos_Hogar.get(0).getDesc_departamento());
+                        tv_Estado_Hogar.setText(Datos_Hogar.get(0).getHog_estado_descripcion());
+                        tv_Municipio.setText(Datos_Hogar.get(0).getDesc_municipio());
+                        tv_Umbral.setText(Datos_Hogar.get(0).getHog_umbral());
+                        tv_Telefono.setText(Datos_Hogar.get(0).getHog_telefono());
+
+                        id_Hogar = String.valueOf(Datos_Hogar.get(0).getHog_hogar());
 
 
-                    //etTitleLayout(Identidad_Titular);
-                    tv_Aldea.setText(Datos_Hogar.get(0).getDesc_aldea());
-                    tv_Caserio.setText(Datos_Hogar.get(0).getDesc_caserio());
-                    tv_Departamento.setText(Datos_Hogar.get(0).getDesc_departamento());
-                    tv_Estado_Hogar.setText(Datos_Hogar.get(0).getHog_estado_descripcion());
-                    tv_Municipio.setText(Datos_Hogar.get(0).getDesc_municipio());
-                    tv_Umbral.setText(Datos_Hogar.get(0).getHog_umbral());
-                    tv_Telefono.setText(Datos_Hogar.get(0).getHog_telefono());
+                        Service.getDatos_Personas(id_Hogar).enqueue(new Callback<ArrayList<NucleoHogar>>() {
+                            @Override
+                            public void onResponse(Call<ArrayList<NucleoHogar>> call, Response<ArrayList<NucleoHogar>> response) {
 
-                    id_Hogar = String.valueOf(Datos_Hogar.get(0).getHog_hogar());
+                                ArrayList<NucleoHogar> Datos_Personas;
+                                Datos_Personas = response.body();
 
-                    Service.getDatos_Personas(id_Hogar).enqueue(new Callback <ArrayList <NucleoHogar>>() {
-                        @Override
-                        public void onResponse(Call <ArrayList <NucleoHogar>> call, Response <ArrayList <NucleoHogar>> response) {
+                                layout.setVisibility(View.VISIBLE);
+                                tv_Mensaje.setVisibility(View.GONE);
+                                pBar.setVisibility(View.GONE);
+                                if (!Datos_Personas.isEmpty()) {
+                                    rv_Nucleo_Hogar.setLayoutManager(new LinearLayoutManager(context));
+                                    Nucleo_Hogar_Adapter = new RV_Nucleo_Hogar_Adapter(context, Datos_Personas);
 
-                            ArrayList<NucleoHogar> Datos_Personas;
-                            Datos_Personas = response.body();
+                                    rv_Nucleo_Hogar.setAdapter(Nucleo_Hogar_Adapter);
 
-                            layout.setVisibility(View.VISIBLE);
-                            tv_Mensaje.setVisibility(View.GONE);
-                            pBar.setVisibility(View.GONE);
-                            if(!Datos_Personas.isEmpty()) {
-                                rv_Nucleo_Hogar.setLayoutManager(new LinearLayoutManager(context));
-                                Nucleo_Hogar_Adapter = new RV_Nucleo_Hogar_Adapter(context, Datos_Personas);
-
-                                rv_Nucleo_Hogar.setAdapter(Nucleo_Hogar_Adapter);
-
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call <ArrayList <NucleoHogar>> call, Throwable t) {
-                            //SetTitleLayout("Buscar por Identidad del Titular");
-                            layout.setVisibility(View.GONE);
-                            pBar.setVisibility(View.GONE);
-                            tv_Mensaje.setVisibility(View.VISIBLE);
-                            tv_Mensaje.setTextColor(Color.RED);
-                            tv_Mensaje.setText("Hay problemas con la conexión, verifique e intente de nuevo.");
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<ArrayList<NucleoHogar>> call, Throwable t) {
+                                //SetTitleLayout("Buscar por Identidad del Titular");
+                                layout.setVisibility(View.GONE);
+                                pBar.setVisibility(View.GONE);
+                                tv_Mensaje.setVisibility(View.VISIBLE);
+                                tv_Mensaje.setTextColor(Color.RED);
+                                tv_Mensaje.setText("Hay problemas con la conexión, verifique e intente de nuevo.");
+                            }
+                        });
 
-                }else{
+                    } else {
+                        //SetTitleLayout("Buscar por Identidad del Titular");
+                        layout.setVisibility(View.GONE);
+                        pBar.setVisibility(View.GONE);
+                        tv_Mensaje.setVisibility(View.VISIBLE);
+                        tv_Mensaje.setTextColor(Color.RED);
+                        tv_Mensaje.setText("No se ha encontrado información del titular con identidad: " + Identidad_Titular);
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<HogarInformacion>> call, Throwable t) {
+
                     //SetTitleLayout("Buscar por Identidad del Titular");
                     layout.setVisibility(View.GONE);
                     pBar.setVisibility(View.GONE);
                     tv_Mensaje.setVisibility(View.VISIBLE);
                     tv_Mensaje.setTextColor(Color.RED);
-                    tv_Mensaje.setText("No se ha encontrado información del titular con identidad: "+Identidad_Titular);
+                    tv_Mensaje.setText("Hay problemas con la conexión, verifique e intente de nuevo.");
+                }
+            });
+        }else{
+            Realm.init(view.getContext());
+            realm = Realm.getDefaultInstance();
+            realm.beginTransaction();
+            RealmResults<Hogar_Validar> getTitularHogar;
+            getTitularHogar = realm.where(Hogar_Validar.class).equalTo("per_identidad", Identidad_Titular).and().equalTo("per_titular", 1).findAll();
+
+            RealmResults<Hogar_Validar> getNucleoHogar;
+            getNucleoHogar = realm.where(Hogar_Validar.class).equalTo("hog_hogar", getTitularHogar.get(0).getHog_hogar()).findAll();
+            realm.commitTransaction();
+
+
+            if(getTitularHogar.size() > 0) {
+                tv_Aldea.setText(getTitularHogar.get(0).getDesc_aldea());
+                tv_Caserio.setText(getTitularHogar.get(0).getDesc_caserio());
+                tv_Departamento.setText(getTitularHogar.get(0).getDesc_departamento());
+                tv_Estado_Hogar.setText(getTitularHogar.get(0).getHog_estado_descripcion());
+                tv_Municipio.setText(getTitularHogar.get(0).getDesc_municipio());
+                tv_Umbral.setText(getTitularHogar.get(0).getHog_umbral());
+                tv_Telefono.setText(getTitularHogar.get(0).getHog_telefono());
+
+                id_Hogar = String.valueOf(getTitularHogar.get(0).getHog_hogar());
+
+                ArrayList<NucleoHogar> Datos_Personas = new ArrayList<>();
+
+                for(Hogar_Validar item: getNucleoHogar){
+                    NucleoHogar nucleoHogar = new NucleoHogar();
+                    nucleoHogar.setPer_identidad(item.getPer_identidad());
+                    nucleoHogar.setNombre_completo(item.getNombre());
+                    nucleoHogar.setPer_fch_nacimiento(null);
+                    nucleoHogar.setSexoD(item.getSexo());
+                    nucleoHogar.setPer_estado_descripcion(item.getPer_estado_descripcion());
+                    nucleoHogar.setPer_titular(item.getPer_titular());
+                    Datos_Personas.add(nucleoHogar);
                 }
 
-            }
+                layout.setVisibility(View.VISIBLE);
+                tv_Mensaje.setVisibility(View.GONE);
+                pBar.setVisibility(View.GONE);
+                if (!Datos_Personas.isEmpty()) {
+                    rv_Nucleo_Hogar.setLayoutManager(new LinearLayoutManager(context));
+                    Nucleo_Hogar_Adapter = new RV_Nucleo_Hogar_Adapter(context, Datos_Personas);
 
-            @Override
-            public void onFailure(Call <ArrayList <HogarInformacion>> call, Throwable t) {
+                    rv_Nucleo_Hogar.setAdapter(Nucleo_Hogar_Adapter);
 
-                //SetTitleLayout("Buscar por Identidad del Titular");
+                }
+            }else{
                 layout.setVisibility(View.GONE);
                 pBar.setVisibility(View.GONE);
                 tv_Mensaje.setVisibility(View.VISIBLE);
                 tv_Mensaje.setTextColor(Color.RED);
-                tv_Mensaje.setText("Hay problemas con la conexión, verifique e intente de nuevo.");
+                tv_Mensaje.setText("No se ha encontrado información del titular con identidad: " + Identidad_Titular);
             }
-        });
+            realm.close();
+        }
 
         return false;
     }
@@ -237,104 +299,161 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
         tv_Mensaje.setTextColor(Color.GRAY);
         pBar.setVisibility(View.VISIBLE);
         tv_Mensaje.setText("Cargando Historial del Titular...");
-        Service.getHistorial_Pagos(Identidad_Titular).enqueue(new Callback <ArrayList <HistorialPago>>() {
-            @Override
-            public void onResponse(Call <ArrayList <HistorialPago>> call, Response <ArrayList <HistorialPago>> response) {
-                ArrayList<HistorialPago> Datos_Historial;
-                Datos_Historial = response.body();
 
-                if(!Datos_Historial.isEmpty()){
+
+        if(BroadCastInternet.isConnected) {
+            Service.getHistorial_Pagos(Identidad_Titular).enqueue(new Callback<ArrayList<HistorialPago>>() {
+                @Override
+                public void onResponse(Call<ArrayList<HistorialPago>> call, Response<ArrayList<HistorialPago>> response) {
+                    ArrayList<HistorialPago> Datos_Historial;
+                    Datos_Historial = response.body();
+
+                    if (!Datos_Historial.isEmpty()) {
+                        String jsonHistorial = gson.toJson(Datos_Historial);
+                        Intent intent = new Intent(context, HistorialPagoActivity.class);
+                        intent.putExtra("Identidad_Titular", Identidad_Titular);
+                        intent.putExtra("Titular", Datos_Historial.get(0).getNombre_Titular());
+                        intent.putExtra("jsonHistorial", jsonHistorial);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(context, "No tiene Historial de Pago", Toast.LENGTH_LONG).show();
+                    }
+                    layout.setVisibility(View.VISIBLE);
+                    tv_Mensaje.setVisibility(View.GONE);
+                    pBar.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<HistorialPago>> call, Throwable t) {
+                    layout.setVisibility(View.VISIBLE);
+                    tv_Mensaje.setVisibility(View.GONE);
+                    pBar.setVisibility(View.GONE);
+                    Toast.makeText(context, "Hay problemas con la conexión..", Toast.LENGTH_LONG).show();
+                }
+            });
+        }else{
+            Realm.init(view.getContext());
+            realm = Realm.getDefaultInstance();
+            realm.beginTransaction();
+            RealmResults<Hogar_Validar> getTitularHogar;
+            RealmResults<HistorialPago> historialPagoRealmResults;
+            ArrayList<HistorialPago> Datos_Historial = new ArrayList<>();
+
+            getTitularHogar = realm.where(Hogar_Validar.class).equalTo("per_identidad", Identidad_Titular).and().equalTo("per_titular", 1).findAll();
+
+            if(getTitularHogar.size() > 0) {
+                historialPagoRealmResults = realm.where(HistorialPago.class).equalTo("tit_hogar", getTitularHogar.get(0).getHog_hogar()).findAll();
+                for(HistorialPago item: historialPagoRealmResults){
+                    HistorialPago historialPago = new HistorialPago();
+                    historialPago.setPag_anyo(item.getPag_anyo());
+                    historialPago.setPag_nombre(item.getPag_nombre());
+                    historialPago.setTit_hogar(item.getTit_hogar());
+                    historialPago.setNombre_Titular(item.getNombre_Titular());
+                    historialPago.setEstado_Pago(item.getEstado_Pago());
+                    historialPago.setTit_fecha_cobro(item.getTit_fecha_cobro());
+                    historialPago.setTit_proy_corta(item.getTit_proy_corta());
+                    Datos_Historial.add(historialPago);
+                }
+                if(historialPagoRealmResults.size() > 0){
                     String jsonHistorial = gson.toJson(Datos_Historial);
                     Intent intent = new Intent(context, HistorialPagoActivity.class);
-                    intent.putExtra("Identidad_Titular",Identidad_Titular);
-                    intent.putExtra("Titular",Datos_Historial.get(0).getNombre_Titular());
+                    intent.putExtra("Identidad_Titular", Identidad_Titular);
+                    intent.putExtra("Titular", Datos_Historial.get(0).getNombre_Titular());
                     intent.putExtra("jsonHistorial", jsonHistorial);
                     startActivity(intent);
+                }else{
+                    Toast.makeText(context, "No tiene historial de pago localmente", Toast.LENGTH_LONG).show();
                 }
-                else{ Toast.makeText(context, "No tiene Historial de Pago", Toast.LENGTH_LONG).show();}
+
+                layout.setVisibility(View.VISIBLE);
+                tv_Mensaje.setVisibility(View.GONE);
+                pBar.setVisibility(View.GONE);
+
+
+            }else{
+                Toast.makeText(context, "Localmente no posee información de este hogar", Toast.LENGTH_LONG).show();
                 layout.setVisibility(View.VISIBLE);
                 tv_Mensaje.setVisibility(View.GONE);
                 pBar.setVisibility(View.GONE);
             }
 
-            @Override
-            public void onFailure(Call <ArrayList <HistorialPago>> call, Throwable t) {
-                layout.setVisibility(View.VISIBLE);
-                tv_Mensaje.setVisibility(View.GONE);
-                pBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Hay problemas con la conexión..", Toast.LENGTH_LONG).show();
-            }
-        });
 
+            realm.commitTransaction();
+            realm.close();
+        }
     }
 
     public void Evt_Ver_Actualizacion(){
-        jsonAgregacion_Menores="";
-        jsonCambio_Titulares="";
+        if(BroadCastInternet.isConnected) {
+            jsonAgregacion_Menores = "";
+            jsonCambio_Titulares = "";
 
-        layout.setVisibility(View.GONE);
-        tv_Mensaje.setVisibility(View.VISIBLE);
-        pBar.setVisibility(View.VISIBLE);
-        tv_Mensaje.setTextColor(Color.GRAY);
-        tv_Mensaje.setText("Cargando Actualizaciones No Aplicadas...");
-        Service.getCambio_Titulares(Identidad_Titular).enqueue(new Callback <ArrayList <HogarActualizaciones>>() {
-            @Override
-            public void onResponse(Call <ArrayList <HogarActualizaciones>> call, Response <ArrayList <HogarActualizaciones>> response) {
+            layout.setVisibility(View.GONE);
+            tv_Mensaje.setVisibility(View.VISIBLE);
+            pBar.setVisibility(View.VISIBLE);
+            tv_Mensaje.setTextColor(Color.GRAY);
+            tv_Mensaje.setText("Cargando Actualizaciones No Aplicadas...");
+            Service.getCambio_Titulares(Identidad_Titular).enqueue(new Callback<ArrayList<HogarActualizaciones>>() {
+                @Override
+                public void onResponse(Call<ArrayList<HogarActualizaciones>> call, Response<ArrayList<HogarActualizaciones>> response) {
 
-                final ArrayList<HogarActualizaciones> Datos_Cambio_Titular;
-                Datos_Cambio_Titular = response.body();
+                    final ArrayList<HogarActualizaciones> Datos_Cambio_Titular;
+                    Datos_Cambio_Titular = response.body();
 
-                jsonCambio_Titulares = gson.toJson(Datos_Cambio_Titular);
-                Service.getAgregacionMenores(Identidad_Titular).enqueue(new Callback <ArrayList <HogarActualizaciones>>() {
-                    @Override
-                    public void onResponse(Call <ArrayList <HogarActualizaciones>> call, Response <ArrayList <HogarActualizaciones>> response) {
-                        ArrayList<HogarActualizaciones> Datos_Agregacion_Menor;
-                        Datos_Agregacion_Menor = response.body();
-                        Intent intent = new Intent(context, ActualizacionesNoAplicadasHogarActivity.class);
+                    jsonCambio_Titulares = gson.toJson(Datos_Cambio_Titular);
+                    Service.getAgregacionMenores(Identidad_Titular).enqueue(new Callback<ArrayList<HogarActualizaciones>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<HogarActualizaciones>> call, Response<ArrayList<HogarActualizaciones>> response) {
+                            ArrayList<HogarActualizaciones> Datos_Agregacion_Menor;
+                            Datos_Agregacion_Menor = response.body();
+                            Intent intent = new Intent(context, ActualizacionesNoAplicadasHogarActivity.class);
 
-                        if(!Datos_Agregacion_Menor.isEmpty() || !Datos_Cambio_Titular.isEmpty()){
-                            jsonAgregacion_Menores = gson.toJson(Datos_Agregacion_Menor);
-                            intent.putExtra("jsonAgregacion_Menores", jsonAgregacion_Menores);
-                            intent.putExtra("jsonCambio_Titulares",jsonCambio_Titulares);
-                            startActivity(intent);
+                            if (!Datos_Agregacion_Menor.isEmpty() || !Datos_Cambio_Titular.isEmpty()) {
+                                jsonAgregacion_Menores = gson.toJson(Datos_Agregacion_Menor);
+                                intent.putExtra("jsonAgregacion_Menores", jsonAgregacion_Menores);
+                                intent.putExtra("jsonCambio_Titulares", jsonCambio_Titulares);
+                                startActivity(intent);
 
 
-                        }else if(!Datos_Agregacion_Menor.isEmpty() && !Datos_Cambio_Titular.isEmpty()){
-                            jsonAgregacion_Menores = gson.toJson(Datos_Agregacion_Menor);
-                            intent.putExtra("jsonAgregacion_Menores", jsonAgregacion_Menores);
-                            intent.putExtra("jsonCambio_Titulares",jsonCambio_Titulares);
-                            startActivity(intent);
+                            } else if (!Datos_Agregacion_Menor.isEmpty() && !Datos_Cambio_Titular.isEmpty()) {
+                                jsonAgregacion_Menores = gson.toJson(Datos_Agregacion_Menor);
+                                intent.putExtra("jsonAgregacion_Menores", jsonAgregacion_Menores);
+                                intent.putExtra("jsonCambio_Titulares", jsonCambio_Titulares);
+                                startActivity(intent);
+                            } else if (Datos_Agregacion_Menor.isEmpty() && Datos_Cambio_Titular.isEmpty()) {
+                                Toast.makeText(context, "No tiene Actualizaciones No Aplicadas", Toast.LENGTH_LONG).show();
+                            }
+
+                            tv_Mensaje.setVisibility(View.GONE);
+                            layout.setVisibility(View.VISIBLE);
+                            pBar.setVisibility(View.GONE);
                         }
 
-                        else if(Datos_Agregacion_Menor.isEmpty() && Datos_Cambio_Titular.isEmpty()){
-                            Toast.makeText(context, "No tiene Actualizaciones No Aplicadas", Toast.LENGTH_LONG).show();
+                        @Override
+                        public void onFailure(Call<ArrayList<HogarActualizaciones>> call, Throwable t) {
+                            Toast.makeText(context, "Hay problemas con la conexión...", Toast.LENGTH_LONG).show();
+                            layout.setVisibility(View.VISIBLE);
+                            tv_Mensaje.setVisibility(View.GONE);
+                            pBar.setVisibility(View.GONE);
                         }
+                    });
 
-                        tv_Mensaje.setVisibility(View.GONE);
-                        layout.setVisibility(View.VISIBLE);
-                        pBar.setVisibility(View.GONE);
-                    }
+                }
 
-                    @Override
-                    public void onFailure(Call <ArrayList <HogarActualizaciones>> call, Throwable t) {
-                        Toast.makeText(context, "Hay problemas con la conexión...", Toast.LENGTH_LONG).show();
-                        layout.setVisibility(View.VISIBLE);
-                        tv_Mensaje.setVisibility(View.GONE);
-                        pBar.setVisibility(View.GONE);
-                    }
-                });
-
-            }
-
-            @Override
-            public void onFailure(Call <ArrayList <HogarActualizaciones>> call, Throwable t) {
-                Toast.makeText(context, "Hay problemas con la conexión...", Toast.LENGTH_LONG).show();
-                layout.setVisibility(View.VISIBLE);
-                tv_Mensaje.setVisibility(View.GONE);
-                pBar.setVisibility(View.GONE);
-            }
-        });
-
+                @Override
+                public void onFailure(Call<ArrayList<HogarActualizaciones>> call, Throwable t) {
+                    Toast.makeText(context, "Hay problemas con la conexión...", Toast.LENGTH_LONG).show();
+                    layout.setVisibility(View.VISIBLE);
+                    tv_Mensaje.setVisibility(View.GONE);
+                    pBar.setVisibility(View.GONE);
+                }
+            });
+        }else{
+            Toast.makeText(context, "Es necesario tener conexión para realizar la acción", Toast.LENGTH_LONG).show();
+            layout.setVisibility(View.VISIBLE);
+            tv_Mensaje.setVisibility(View.GONE);
+            pBar.setVisibility(View.GONE);
+        }
     }
 
 

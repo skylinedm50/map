@@ -8,16 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.map_movil.map_movil.R;
-import com.map_movil.map_movil.model.HogaresPersonas;
+import com.map_movil.map_movil.model.Realm.Hogar_Validar;
 
 import java.util.List;
 
 public class MuniDescAdapter extends BaseAdapter {
     private Context context;
-    private List<HogaresPersonas> list;
+    private List<Hogar_Validar> list;
     private int layout;
 
-    public MuniDescAdapter(Context context, List<HogaresPersonas> list, int layout) {
+    public MuniDescAdapter(Context context, List<Hogar_Validar> list, int layout) {
         this.context = context;
         this.list = list;
         this.layout = layout;
@@ -29,7 +29,7 @@ public class MuniDescAdapter extends BaseAdapter {
     }
 
     @Override
-    public HogaresPersonas getItem(int position) {
+    public Hogar_Validar getItem(int position) {
         return getItem(position);
     }
 
@@ -55,7 +55,7 @@ public class MuniDescAdapter extends BaseAdapter {
             vh = (ViewHolder) convertView.getTag();
         }
 
-        HogaresPersonas hp = list.get(position);
+        Hogar_Validar hp = list.get(position);
         vh.Departamento.setText(hp.getDesc_departamento());
         vh.Municipio.setText(hp.getDesc_municipio());
 

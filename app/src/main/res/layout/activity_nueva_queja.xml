@@ -25,7 +25,7 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <include layout="@layout/item_bottom_bar"></include>
+    <include layout="@layout/fragment_layout_message_internet"></include>
 
     <ScrollView
         android:layout_marginTop="?attr/actionBarSize"

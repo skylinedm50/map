@@ -354,4 +354,5 @@
         android:layout_weight="0"
         android:visibility="gone" />
     </LinearLayout>
+    <include layout="@layout/fragment_layout_message_internet"></include>
 </FrameLayout>

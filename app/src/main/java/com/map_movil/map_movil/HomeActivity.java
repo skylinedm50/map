@@ -16,15 +16,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
 import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragment;
 import com.map_movil.map_movil.view.descargaNucleo.DescargaNucleoFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
-import com.map_movil.map_movil.view.planilla.ExcluidoFragment;
+import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
+import com.map_movil.map_movil.view.programados.ProgramadosFragment;
 import com.map_movil.map_movil.view.reportes.ReportsFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
@@ -102,7 +103,7 @@ public class HomeActivity extends AppCompatActivity
         ViewCompat.setElevation(findViewById(R.id.appBar), 8);
 
         if(id != intCodItemSelect) {
-
+            BroadCastInternet.bolSubscribe = false;
             showToolbar("Inicio");
             showContentScreenHome(true);
 
@@ -170,6 +171,12 @@ public class HomeActivity extends AppCompatActivity
                 }
             } else if (id == R.id.nav_notification) {
             } else if (id == R.id.nav_programmed) {
+                showContentScreenHome(false);
+                showToolbar("Programados");
+                if (intCodItemSelect != id) {
+                    ProgramadosFragment programadosFragment = new ProgramadosFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, programadosFragment).commit();
+                }
             } else if (id == R.id.nav_excluded) {
                 showContentScreenHome(false);
                 showToolbar("Excluido");

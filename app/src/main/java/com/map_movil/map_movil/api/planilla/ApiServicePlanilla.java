@@ -2,6 +2,7 @@ package com.map_movil.map_movil.api.planilla;
 
 import com.map_movil.map_movil.model.Pagos;
 import com.map_movil.map_movil.model.PagosExcluido;
+import com.map_movil.map_movil.model.PagosProgramados;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,4 +20,7 @@ public interface ApiServicePlanilla {
 
     @GET("planilla/pagos")
     Call<List<Pagos>> getAllPagos();
+
+    @GET("hogares/programados/{pago}/{aldea}")
+    Call<ArrayList<PagosProgramados>> getPagosProgramados(@Path("pago") String stringCodPago, @Path("aldea") String stringCodaldeaSolicitud);
 }

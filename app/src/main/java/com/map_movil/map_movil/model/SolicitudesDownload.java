@@ -3,17 +3,22 @@ package com.map_movil.map_movil.model;
 import java.util.Date;
 
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 
 public class SolicitudesDownload extends RealmObject {
-    private int codigo_solicitud;
     private int codigo_hogar;
-    private String nombre_solicitante;
     private String estado_hogar;
     private String umbral_hogar;
     private String departamento;
     private String municipio;
     private String aldea;
     private String caserio;
+
+    private int codigo_solicitante;
+    private int per_persona_solicitante;
+    private String nombre_solicitante;
+
+    private int codigo_solicitud;
     private Date fecha_alta;
     private Date fecha_baja;
     private boolean actualizacion_datos;
@@ -25,63 +30,17 @@ public class SolicitudesDownload extends RealmObject {
     private boolean reactiva_programa;
     private boolean correccion_sancion;
     private String observacion;
+    private int codigo_estado;
     private String estado_solicitud;
-    private int tipo_operacion;
+    private boolean isLocal;
 
-    public SolicitudesDownload(){
 
-    }
-    public SolicitudesDownload(int codigo_solicitud,
-                               int codigo_hogar,
-                               String nombre_solicitante,
-                               String estado_hogar,
-                               String umbral_hogar,
-                               String departamento,
-                               String municipio,
-                               String aldea,
-                               String caserio,
-                               Date fecha_alta,
-                               Date fecha_baja,
-                               boolean actualizacion_datos,
-                               boolean cambio_titular,
-                               boolean nuevo_integrante,
-                               boolean baja_integrante,
-                               boolean cambio_domicilio,
-                               boolean baja_programa,
-                               boolean reactiva_programa,
-                               boolean correccion_sancion, String observacion, String estado_solicitud, int tipo_operacion) {
-        this.codigo_solicitud = codigo_solicitud;
-        this.codigo_hogar = codigo_hogar;
-        this.nombre_solicitante = nombre_solicitante;
-        this.estado_hogar = estado_hogar;
-        this.umbral_hogar = umbral_hogar;
-        this.departamento = departamento;
-        this.municipio = municipio;
-        this.aldea = aldea;
-        this.caserio = caserio;
-        this.fecha_alta = fecha_alta;
-        this.fecha_baja = fecha_baja;
-        this.actualizacion_datos = actualizacion_datos;
-        this.cambio_titular = cambio_titular;
-        this.nuevo_integrante = nuevo_integrante;
-        this.baja_integrante = baja_integrante;
-        this.cambio_domicilio = cambio_domicilio;
-        this.baja_programa = baja_programa;
-        this.reactiva_programa = reactiva_programa;
-        this.correccion_sancion = correccion_sancion;
-        this.observacion = observacion;
-        this.estado_solicitud = estado_solicitud;
-        this.tipo_operacion = tipo_operacion;
+    public boolean isLocal() {
+        return isLocal;
     }
 
-
-
-    public int getCodigo_solicitud() {
-        return codigo_solicitud;
-    }
-
-    public void setCodigo_solicitud(int codigo_solicitud) {
-        this.codigo_solicitud = codigo_solicitud;
+    public void setLocal(boolean local) {
+        isLocal = local;
     }
 
     public int getCodigo_hogar() {
@@ -90,14 +49,6 @@ public class SolicitudesDownload extends RealmObject {
 
     public void setCodigo_hogar(int codigo_hogar) {
         this.codigo_hogar = codigo_hogar;
-    }
-
-    public String getNombre_solicitante() {
-        return nombre_solicitante;
-    }
-
-    public void setNombre_solicitante(String nombre_solicitante) {
-        this.nombre_solicitante = nombre_solicitante;
     }
 
     public String getEstado_hogar() {
@@ -146,6 +97,38 @@ public class SolicitudesDownload extends RealmObject {
 
     public void setCaserio(String caserio) {
         this.caserio = caserio;
+    }
+
+    public int getCodigo_solicitante() {
+        return codigo_solicitante;
+    }
+
+    public void setCodigo_solicitante(int codigo_solicitante) {
+        this.codigo_solicitante = codigo_solicitante;
+    }
+
+    public int getPer_persona_solicitante() {
+        return per_persona_solicitante;
+    }
+
+    public void setPer_persona_solicitante(int per_persona_solicitante) {
+        this.per_persona_solicitante = per_persona_solicitante;
+    }
+
+    public String getNombre_solicitante() {
+        return nombre_solicitante;
+    }
+
+    public void setNombre_solicitante(String nombre_solicitante) {
+        this.nombre_solicitante = nombre_solicitante;
+    }
+
+    public int getCodigo_solicitud() {
+        return codigo_solicitud;
+    }
+
+    public void setCodigo_solicitud(int codigo_solicitud) {
+        this.codigo_solicitud = codigo_solicitud;
     }
 
     public Date getFecha_alta() {
@@ -236,6 +219,14 @@ public class SolicitudesDownload extends RealmObject {
         this.observacion = observacion;
     }
 
+    public int getCodigo_estado() {
+        return codigo_estado;
+    }
+
+    public void setCodigo_estado(int codigo_estado) {
+        this.codigo_estado = codigo_estado;
+    }
+
     public String getEstado_solicitud() {
         return estado_solicitud;
     }
@@ -243,13 +234,5 @@ public class SolicitudesDownload extends RealmObject {
     public void setEstado_solicitud(String estado_solicitud) {
         this.estado_solicitud = estado_solicitud;
     }
-
-    public int getTipo_operacion() {
-        return tipo_operacion;
-    }
-
-    public void setTipo_operacion(int tipo_operacion) {
-        this.tipo_operacion = tipo_operacion;
-    }
-
 }
+

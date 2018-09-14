@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
 import com.map_movil.map_movil.model.QuejasDenuncias;
@@ -141,12 +142,8 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
        getSupportActionBar().setTitle("Registrar Quejas y Denuncias");
        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-/*
-       BroadCastImpl.setSuscribir(true);
-       BroadCastImpl.setView(LinearRoot);
-       BroadCastInternet.MostarMensajeInternet(this.getApplicationContext());
-*/
 
+       //BroadCastInternet.subscribeForMessageInternet(this.getApplicationContext(), LinearRoot);
        getDepartamentos();
 
     }

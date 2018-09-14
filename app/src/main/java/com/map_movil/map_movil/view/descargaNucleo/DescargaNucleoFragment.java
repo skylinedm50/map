@@ -23,8 +23,8 @@ import com.map_movil.map_movil.adapter.MuniDescAdapter;
 import com.map_movil.map_movil.api.ApiConfig;
 import com.map_movil.map_movil.api.descargaNucleo.ApiServiceDescargaNucleo;
 import com.map_movil.map_movil.model.HistorialPago;
-import com.map_movil.map_movil.model.HogaresPersonas;
 import com.map_movil.map_movil.model.Municipios;
+import com.map_movil.map_movil.model.Realm.Hogar_Validar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -123,8 +123,8 @@ public class DescargaNucleoFragment extends Fragment {
         service = new ServiceProvider().getService();
 
         ///****QUERY PARA TRAER LOS MUNICIPIOS YA DESCARGADOS EN LA BASE DE DATOS LOCAL*///////
-        RealmQuery<HogaresPersonas> query = realm.where(HogaresPersonas.class).distinct("desc_municipio").sort("cod_municipio");
-        RealmResults<HogaresPersonas> result1 = query.findAll();
+        RealmQuery<Hogar_Validar> query = realm.where(Hogar_Validar.class).distinct("desc_municipio").sort("cod_municipio");
+        RealmResults<Hogar_Validar> result1 = query.findAll();
 
 
 
@@ -215,19 +215,21 @@ public class DescargaNucleoFragment extends Fragment {
 
                         //Toast.makeText(getApplicationContext(),codigoItemSeleccionado,Toast.LENGTH_SHORT).show();
 
-                        service.getDatos(codigoItemSeleccionado.toString()).enqueue(new Callback<List<HogaresPersonas>>() {
+                        service.getDatos(codigoItemSeleccionado.toString()).enqueue(new Callback<List<Hogar_Validar>>() {
                             @Override
-                            public void onResponse(Call<List<HogaresPersonas>> call, Response<List<HogaresPersonas>> response) {
+                            public void onResponse(Call<List<Hogar_Validar>> call, Response<List<Hogar_Validar>> response) {
                                 if (response.isSuccessful())
                                 {
                                     //QUERY PARA BORRAR TODOS LOS REGISTROS INGRESADOS ANTERIORMENTE EN LA BD LOCAL QUE SON DEL MUNICIPIO ACTUALMENTE SELECCIONADOS//
-                                    RealmQuery<HogaresPersonas> query = realm.where(HogaresPersonas.class).equalTo("cod_municipio",codigoItemSeleccionado.toString());
-                                    RealmResults<HogaresPersonas> result1 = query.findAll();
+                                    //RealmQuery<Hogar_Validar> query = realm.where(Hogar_Validar.class).equalTo("cod_municipio",codigoItemSeleccionado.toString());
+                                    //RealmResults<Hogar_Validar> result1 = query.findAll();
                                     realm.beginTransaction();
-                                    result1.deleteAllFromRealm();
+                                    //result1.deleteAllFromRealm();
+                                    realm.delete(Hogar_Validar.class);
+                                    realm.insert(response.body());
                                     realm.commitTransaction();
 
-
+/*
                                     int per_persona;//
                                     String per_identidad;//
                                     String nombre;//
@@ -306,7 +308,7 @@ public class DescargaNucleoFragment extends Fragment {
                                         i++;
 
 
-                                    }
+                                    }*/
 
                                     //******************************HISTORIAL DE PAGO ALMACENAMIENTO*********************************
 
@@ -360,8 +362,8 @@ public class DescargaNucleoFragment extends Fragment {
 
 
 
-                                            RealmQuery<HogaresPersonas> query = realm.where(HogaresPersonas.class).distinct("desc_municipio").sort("cod_municipio");
-                                            RealmResults<HogaresPersonas> result1 = query.findAll();
+                                            RealmQuery<Hogar_Validar> query = realm.where(Hogar_Validar.class).distinct("desc_municipio").sort("cod_municipio");
+                                            RealmResults<Hogar_Validar> result1 = query.findAll();
 
 
                                             listViewMunisDescargado = (ListView) view.findViewById(R.id.ListViewMunisDescargados);
@@ -391,7 +393,7 @@ public class DescargaNucleoFragment extends Fragment {
                             }
 
                             @Override
-                            public void onFailure(Call<List<HogaresPersonas>> call, Throwable t) {
+                            public void onFailure(Call<List<Hogar_Validar>> call, Throwable t) {
                                 progressBar.setVisibility(View.INVISIBLE);
                                 buttonDescargar.setEnabled(true);
                                 Toast.makeText(getContext(),t.getMessage()+" -Error-1-",Toast.LENGTH_SHORT).show();
@@ -445,7 +447,7 @@ public class DescargaNucleoFragment extends Fragment {
 
         realm.beginTransaction();
         //realm.deleteAll();
-        HogaresPersonas hogar = new HogaresPersonas(per_persona
+        Hogar_Validar hogar = new Hogar_Validar(per_persona
                 ,  nombre
                 ,  per_estado_descripcion
                 ,  hog_umbral

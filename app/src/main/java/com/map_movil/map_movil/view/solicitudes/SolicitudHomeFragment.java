@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 
 public class SolicitudHomeFragment extends Fragment{
 
@@ -57,12 +58,13 @@ public class SolicitudHomeFragment extends Fragment{
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
 
-                Intent intent = new Intent(view.getContext(), VerSolicitudActivity.class);
+                Intent intent = new Intent(view.getContext(), ShowAddSolicitudActivity.class);
                 intent.putExtra("intTipoOperacion", 1);
                 startActivity(intent);
             }
         });
 
+        BroadCastInternet.subscribeForMessageInternet(view.getContext(), view);
         return view;
     }
 
