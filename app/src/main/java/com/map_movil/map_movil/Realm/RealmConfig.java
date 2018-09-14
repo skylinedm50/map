@@ -70,6 +70,7 @@ public class RealmConfig {
         this.realm.beginTransaction();
         this.realm.deleteAll();
         this.realm.commitTransaction();
+        this.realm.close();
       /*  try{
             PackageManager PackagenManager = this.cntx.getPackageManager();
             String PackageName = this.cntx.getPackageName();

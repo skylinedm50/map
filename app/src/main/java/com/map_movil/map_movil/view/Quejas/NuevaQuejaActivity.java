@@ -19,7 +19,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.map_movil.map_movil.R;
-import com.map_movil.map_movil.broadcasts.BroadCastImpl;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;

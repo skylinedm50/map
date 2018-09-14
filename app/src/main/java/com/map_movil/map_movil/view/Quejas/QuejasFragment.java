@@ -95,10 +95,10 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
         nextItem.setEnabled(false);
 
         /*comentar*/
-        downloadItem.setVisible(true);
+      /*  downloadItem.setVisible(true);
         downloadItem.setEnabled(true);
         saveItem.setVisible(true);
-        saveItem.setEnabled(true);
+        saveItem.setEnabled(true);*/
         /*********/
 
         android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) searchItem.getActionView();
