@@ -296,7 +296,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
           this.quejasPresenter.RegistrarQueja(sharedPreferences.getInt("codigo",0)      ,
                      this.TxtDetalleSolicitud.getText().toString()      ,
                      (int) this.TipoSolicitudSpiner.getSelectedItemId() ,
-                     this.SpinnerMapMuni.get(this.MunicipioSpiner.getSelectedItemPosition()) ,
+                    this.SpinnerMapAldea.get(this.AldeaSpiner.getSelectedItemPosition()) ,
                      this.TxtIdentidad.getText().toString() ,
                      this.TxtNombre1.getText().toString()   ,
                      this.TxtNombre2.getText().toString()   ,

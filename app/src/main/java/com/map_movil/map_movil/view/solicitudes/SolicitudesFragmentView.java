@@ -9,7 +9,8 @@ public interface SolicitudesFragmentView {
     void getSolicitudesGestionadas();
     void showSolicitudesGestionadas(ArrayList<SolicitudesUsuario> arrayListSolicitudes);
     void finishDownloadSolicitudes();
+    void finishSynchronize();
     void changePorcentage(String strPorcentage);
     void showError(String strError);
-    void synchronizeSolicitudesWithServer();
+    void synchronizeWithServer(int intCodUser);
 }

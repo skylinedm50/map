@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.adapter.MuniDescAdapter;
 import com.map_movil.map_movil.api.ApiConfig;
 import com.map_movil.map_movil.api.descargaNucleo.ApiServiceDescargaNucleo;
@@ -72,7 +73,7 @@ public class DescargaNucleoFragment extends Fragment {
     private ArrayAdapter<String> adapter;
 
     private Button buttonDescargar;
-    private Realm realm;
+    private RealmConfig realmConfig;
     private ApiServiceDescargaNucleo service;
     private ListView listViewMunisDescargado;
     private MuniDescAdapter munisDescAdapter;
@@ -116,14 +117,13 @@ public class DescargaNucleoFragment extends Fragment {
 
 
         ///***INICIO DE LA CONFIGURACION DE LA BASE DE DATOS DB_REALM*/////
-        Realm.init(getContext());
-        realm = Realm.getDefaultInstance();
+        realmConfig = new RealmConfig(view.getContext());
 
         //SET DEL SERVICIO//
         service = new ServiceProvider().getService();
 
         ///****QUERY PARA TRAER LOS MUNICIPIOS YA DESCARGADOS EN LA BASE DE DATOS LOCAL*///////
-        RealmQuery<Hogar_Validar> query = realm.where(Hogar_Validar.class).distinct("desc_municipio").sort("cod_municipio");
+        RealmQuery<Hogar_Validar> query = realmConfig.getRealm().where(Hogar_Validar.class).distinct("desc_municipio").sort("cod_municipio");
         RealmResults<Hogar_Validar> result1 = query.findAll();
 
 
@@ -223,11 +223,11 @@ public class DescargaNucleoFragment extends Fragment {
                                     //QUERY PARA BORRAR TODOS LOS REGISTROS INGRESADOS ANTERIORMENTE EN LA BD LOCAL QUE SON DEL MUNICIPIO ACTUALMENTE SELECCIONADOS//
                                     //RealmQuery<Hogar_Validar> query = realm.where(Hogar_Validar.class).equalTo("cod_municipio",codigoItemSeleccionado.toString());
                                     //RealmResults<Hogar_Validar> result1 = query.findAll();
-                                    realm.beginTransaction();
+                                    realmConfig.getRealm().beginTransaction();
                                     //result1.deleteAllFromRealm();
-                                    realm.delete(Hogar_Validar.class);
-                                    realm.insert(response.body());
-                                    realm.commitTransaction();
+                                    realmConfig.getRealm().delete(Hogar_Validar.class);
+                                    realmConfig.getRealm().insert(response.body());
+                                    realmConfig.getRealm().commitTransaction();
 
 /*
                                     int per_persona;//
@@ -321,7 +321,7 @@ public class DescargaNucleoFragment extends Fragment {
                                             if (response.isSuccessful())
                                             {
 
-                                                int pag_anyo;
+                                                /*int pag_anyo;
                                                 String pag_nombre;
                                                 int tit_hogar;
                                                 String nombre_Titular;
@@ -347,7 +347,14 @@ public class DescargaNucleoFragment extends Fragment {
 
                                                     i++;
 
-                                                }
+                                                }*/
+
+                                                realmConfig.getRealm().beginTransaction();
+                                                //realm.deleteAll();
+                                                //HistorialPago historial_pago = new HistorialPago(pag_anyo,pag_nombre,tit_hogar,nombre_Titular,estado_Pago,tit_fecha_cobro,tit_proy_corta);
+                                                realmConfig.getRealm().delete(HistorialPago.class);
+                                                realmConfig.getRealm().insert(response.body());
+                                                realmConfig.getRealm().commitTransaction();
 
                                             }
                                             else
@@ -362,7 +369,7 @@ public class DescargaNucleoFragment extends Fragment {
 
 
 
-                                            RealmQuery<Hogar_Validar> query = realm.where(Hogar_Validar.class).distinct("desc_municipio").sort("cod_municipio");
+                                            RealmQuery<Hogar_Validar> query = realmConfig.getRealm().where(Hogar_Validar.class).distinct("desc_municipio").sort("cod_municipio");
                                             RealmResults<Hogar_Validar> result1 = query.findAll();
 
 
@@ -445,7 +452,7 @@ public class DescargaNucleoFragment extends Fragment {
             , String per_identidad
             , String hog_estado_descripcion) {
 
-        realm.beginTransaction();
+        realmConfig.getRealm().beginTransaction();
         //realm.deleteAll();
         Hogar_Validar hogar = new Hogar_Validar(per_persona
                 ,  nombre
@@ -468,8 +475,8 @@ public class DescargaNucleoFragment extends Fragment {
                 ,  hog_telefono
                 ,  per_identidad
                 ,  hog_estado_descripcion);
-        realm.copyToRealm(hogar);
-        realm.commitTransaction();
+        realmConfig.getRealm().copyToRealm(hogar);
+        realmConfig.getRealm().commitTransaction();
 
     }
 
@@ -483,11 +490,11 @@ public class DescargaNucleoFragment extends Fragment {
             ,String tit_fecha_cobro
             ,String tit_proy_corta)
     {
-        realm.beginTransaction();
+        realmConfig.getRealm().beginTransaction();
         //realm.deleteAll();
         HistorialPago historial_pago = new HistorialPago(pag_anyo,pag_nombre,tit_hogar,nombre_Titular,estado_Pago,tit_fecha_cobro,tit_proy_corta);
-        realm.copyToRealm(historial_pago);
-        realm.commitTransaction();
+        realmConfig.getRealm().copyToRealm(historial_pago);
+        realmConfig.getRealm().commitTransaction();
 
     }
 

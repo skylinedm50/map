@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.map_movil.map_movil.R;
@@ -32,6 +33,7 @@ public class AdapterRecyclerViewSolicitudes extends RecyclerView.Adapter<Adapter
         private TextView textViewNombreSolicitante;
         private TextView textViewObservacion;
         private TextView textViewEstado;
+        private LinearLayout linearLayoutDivider;
 
         public ViewHolder(View itemView,final OnItemClickListener listener){
             super(itemView);
@@ -40,6 +42,7 @@ public class AdapterRecyclerViewSolicitudes extends RecyclerView.Adapter<Adapter
             textViewNombreSolicitante = itemView.findViewById(R.id.textViewDescripcion);
             textViewObservacion = itemView.findViewById(R.id.textViewReferencia);
             textViewEstado = itemView.findViewById(R.id.textViewEstado);
+            linearLayoutDivider = itemView.findViewById(R.id.linearLayoutDivider);
 
            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -71,12 +74,15 @@ public class AdapterRecyclerViewSolicitudes extends RecyclerView.Adapter<Adapter
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT ,1);
+        int intButtom = (position == (listSolicitudesUsuario.size() - 1)) ? 400 : 0;
         SolicitudesUsuario objSolicitudes = this.listSolicitudesUsuario.get(position);
         holder.textViewCodigoSolicitud.setText(objSolicitudes.getIntCodSolicitud().toString());
         holder.textViewNombreSolicitante.setText(objSolicitudes.getStrNombreSolicitante());
         holder.textViewObservacion.setText(objSolicitudes.getStrObservacion());
         holder.textViewEstado.setText(objSolicitudes.getStrEstado());
-
+        layoutParams.setMargins(0,0,0,intButtom);
+        holder.linearLayoutDivider.setLayoutParams(layoutParams);
     }
 
     @Override

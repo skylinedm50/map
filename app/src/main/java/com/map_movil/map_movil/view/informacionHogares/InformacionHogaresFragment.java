@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.api.informacionHogares.ApiAdapterInformacionHogares;
 import com.map_movil.map_movil.api.informacionHogares.ApiServiceInformacionHogares;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
@@ -64,7 +65,7 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
     private RecyclerView rv_Nucleo_Hogar;
     private Button buttonVerHistrorialPago;
     private Button buttonVerActualizacionesNoRealizadas;
-    private Realm realm;
+    private RealmConfig realmConfig;
 
     private View view;
 
@@ -113,6 +114,12 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
         setHasOptionsMenu(true);
         BroadCastInternet.subscribeForMessageInternet(view.getContext(), view);
         return view;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        BroadCastInternet.subscribeForMessageInternet(view.getContext(), view);
     }
 
     @Override
@@ -229,15 +236,14 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
                 }
             });
         }else{
-            Realm.init(view.getContext());
-            realm = Realm.getDefaultInstance();
-            realm.beginTransaction();
+            realmConfig = new RealmConfig(context);
+            realmConfig.getRealm().beginTransaction();
             RealmResults<Hogar_Validar> getTitularHogar;
-            getTitularHogar = realm.where(Hogar_Validar.class).equalTo("per_identidad", Identidad_Titular).and().equalTo("per_titular", 1).findAll();
+            getTitularHogar = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("per_identidad", Identidad_Titular).and().equalTo("per_titular", 1).findAll();
 
             RealmResults<Hogar_Validar> getNucleoHogar;
-            getNucleoHogar = realm.where(Hogar_Validar.class).equalTo("hog_hogar", getTitularHogar.get(0).getHog_hogar()).findAll();
-            realm.commitTransaction();
+            getNucleoHogar = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("hog_hogar", getTitularHogar.get(0).getHog_hogar()).findAll();
+            realmConfig.getRealm().commitTransaction();
 
 
             if(getTitularHogar.size() > 0) {
@@ -281,7 +287,7 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
                 tv_Mensaje.setTextColor(Color.RED);
                 tv_Mensaje.setText("No se ha encontrado información del titular con identidad: " + Identidad_Titular);
             }
-            realm.close();
+            realmConfig.getRealm().close();
         }
 
         return false;
@@ -332,17 +338,16 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
                 }
             });
         }else{
-            Realm.init(view.getContext());
-            realm = Realm.getDefaultInstance();
-            realm.beginTransaction();
+            realmConfig = new RealmConfig(context);
+            realmConfig.getRealm().beginTransaction();
             RealmResults<Hogar_Validar> getTitularHogar;
             RealmResults<HistorialPago> historialPagoRealmResults;
             ArrayList<HistorialPago> Datos_Historial = new ArrayList<>();
 
-            getTitularHogar = realm.where(Hogar_Validar.class).equalTo("per_identidad", Identidad_Titular).and().equalTo("per_titular", 1).findAll();
+            getTitularHogar = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("per_identidad", Identidad_Titular).and().equalTo("per_titular", 1).findAll();
 
             if(getTitularHogar.size() > 0) {
-                historialPagoRealmResults = realm.where(HistorialPago.class).equalTo("tit_hogar", getTitularHogar.get(0).getHog_hogar()).findAll();
+                historialPagoRealmResults = realmConfig.getRealm().where(HistorialPago.class).equalTo("tit_hogar", getTitularHogar.get(0).getHog_hogar()).findAll();
                 for(HistorialPago item: historialPagoRealmResults){
                     HistorialPago historialPago = new HistorialPago();
                     historialPago.setPag_anyo(item.getPag_anyo());
@@ -377,9 +382,8 @@ public class InformacionHogaresFragment extends Fragment implements SearchView.O
                 pBar.setVisibility(View.GONE);
             }
 
-
-            realm.commitTransaction();
-            realm.close();
+            realmConfig.getRealm().commitTransaction();
+            realmConfig.getRealm().close();
         }
     }
 

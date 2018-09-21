@@ -50,6 +50,15 @@
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".broadcasts.BroadCastDate"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+            </intent-filter>
+        </receiver>
+
+
         <activity android:name=".view.Quejas.NuevaQuejaActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme"></activity>

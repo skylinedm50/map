@@ -11,5 +11,6 @@ public interface SolicitudesFragmentPresenter {
     void finishDownloadSolicitudes();
     void changePorcentage(int intPorcentage);
     void showError(String strError);
-    void synchronizeWithServer();
+    void synchronizeWithServer(int intCodUser);
+    void finishSynchronize();
 }

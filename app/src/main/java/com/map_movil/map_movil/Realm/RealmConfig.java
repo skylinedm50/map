@@ -4,97 +4,93 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+
 import java.io.File;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
 public class RealmConfig {
-
-    private String   Clave      = "";
-    private String   Nombre     = "";
-    private int      Usuario    = 0;
-    private String   Fecha      = "13/01/2018";
-    private String   Consonante = "";
-    private String   Vocales    = "";
-    private byte[]   Key        = new byte[64];
-    private Realm    realm      = null;
-    private Context  cntx       = null;
+    private String strPassword;
+    private String strNombre;
+    private int intCodUser;
+    private String strDate;
+    private String strConsonant = "";
+    private String strVowel = "";
+    private byte[] byteKey = new byte[64];
+    private Realm realm;
+    private Context context;
+    private SharedPreferences sharedPreferences;
+    private  RealmConfiguration config;
 
     public RealmConfig(Context context){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("USER" , context.MODE_PRIVATE);
-        this.Nombre = sharedPreferences.getString("nombre","");
-        this.Usuario = sharedPreferences.getInt("codigo",0);
-        this.cntx = context;
+        this.context = context;
+        Realm.init(this.context);
+        sharedPreferences = context.getSharedPreferences("USER" , context.MODE_PRIVATE);
+        strNombre = sharedPreferences.getString("nombre","");
+        intCodUser = sharedPreferences.getInt("codigo",0);
+        strDate = sharedPreferences.getString("fechaLogin", "");
 
-        Realm.init(context);
-        CrearClave();
-        CrearLlave();
+        //createPassword();
 
-        RealmConfiguration config = new RealmConfiguration.Builder()
-                .encryptionKey(this.Key)
+        config = new RealmConfiguration.Builder()
+                .encryptionKey(byteKey)
                 .build();
 
-        this.realm = Realm.getInstance(config);
+        //this.realm = Realm.getInstance(config);
+       realm = Realm.getDefaultInstance();
     }
 
-    private void CrearClave(){
+    private void createPassword(){
+        strPassword = String.valueOf(strNombre.length());
+        String[] arrStrDateLogin = strDate.split("-");
+        strPassword = strPassword + arrStrDateLogin[0];
 
-        this.Clave = String.valueOf( this.Nombre.length() );
-        String[] Campos = this.Fecha.split("/");
-        this.Clave = this.Clave + Campos[0];
-
-        for(int i = 0; i < this.Nombre.length(); i++){
-
-            if( String.valueOf( this.Nombre.charAt(i) ).matches("[aeiouAEIOU]") == true){
-                this.Vocales = this.Vocales+this.Nombre.charAt(i);
+        for(int i = 0; i < strNombre.length(); i++){
+            if(String.valueOf(strNombre.charAt(i) ).matches("[aeiouAEIOU]") == true){
+               strVowel = strVowel + strNombre.charAt(i);
             }else{
-                this.Consonante = this.Consonante+this.Nombre.charAt(i);
+                strConsonant = strConsonant + strNombre.charAt(i);
             }
         }
-        this.Clave = this.Clave+this.Consonante+String.valueOf(this.Usuario)+this.Vocales+Campos[1]+Campos[2];
+        strPassword = strPassword + strConsonant + String.valueOf(intCodUser) + strVowel + arrStrDateLogin[1] + arrStrDateLogin[2];
+        convertPasswordToByte();
     }
 
-    private void CrearLlave(){
-
-        byte[] ByteTexto = this.Clave.getBytes();
-        for(int i=1; i<16; i++){
-            this.Key[(i*4)-1] = ByteTexto[i];
-            this.Key[(i*4)-2] = ByteTexto[i];
-            this.Key[(i*4)-3] = ByteTexto[i];
-            this.Key[(i*4)-4] = ByteTexto[i];
+    private void convertPasswordToByte(){
+        byte[] byteTexto = strPassword.getBytes();
+        for(int i = 1; i < 16; i++){
+            byteKey[(i*4) - 1] = byteTexto[i];
+            byteKey[(i*4) - 2] = byteTexto[i];
+            byteKey[(i*4) - 3] = byteTexto[i];
+            byteKey[(i*4) - 4] = byteTexto[i];
         }
     }
 
-    public void EliminarBaseDatos(){
-
-        this.realm.beginTransaction();
-        this.realm.deleteAll();
-        this.realm.commitTransaction();
-        this.realm.close();
-      /*  try{
-            PackageManager PackagenManager = this.cntx.getPackageManager();
-            String PackageName = this.cntx.getPackageName();
-            PackageInfo PackageInfo = PackagenManager.getPackageInfo(PackageName, 0);
+    public void deleteDataBase(){
+      try{
+            PackageManager packageManager = context.getPackageManager();
+            String PackageName = context.getPackageName();
+            PackageInfo PackageInfo = packageManager.getPackageInfo(PackageName, 0);
             File[] files = new File(PackageInfo.applicationInfo.dataDir).listFiles();
-            eliminar_archivos(files , 0, true);
+            deleteFiles(files , 0, true);
         }
         catch(Exception e){
             e.printStackTrace();
-        }*/
+        }
     }
 
-    private void eliminar_archivos(File[] files , int tipo , boolean main_contain_realm){
+    private void deleteFiles(File[] files , int tipo , boolean main_contain_realm){
 
         for(int i = 0; i < files.length; i++){
-            /// se verifica que la carpeta principal sea "Files", aqui es donde se contienen los archivos de realm
-            /// el tipo sirve para identificar que los directorios encontrados en la variables "files" son sub-directorios de la carpeta "files"
-
+            /**
+             * Se verifica que la carpeta principal sea "Files", aqui es donde se contienen los archivos de realm.
+             * El tipo sirve para identificar que los directorios encontrados en la variables "files" son sub-directorios de la carpeta "files"
+             * */
             if((files[i].isDirectory() && files[i].getName().equals("files")) || tipo == 1 ){
-
                 if(files[i].isDirectory()){
                     /// la variable "main_contain_realm" sirve para identificar que el subdirectorio en la variable "files"
                     /// es un carpeta de realm, por lo tanto hay que eliminarla, si no es una carpeta realm el subdirectorio no se elimina.
-                    eliminar_archivos(files[i].listFiles() , 1 , files[i].getName().contains("realm"));
+                    deleteFiles(files[i].listFiles() , 1 , files[i].getName().contains("realm"));
                 }else{
                     // si el archivo en la variable "files" no es un archivo realm no se elimina.
                     // si la carpeta padre del archivo no es un subdirectorio de realm no se elimina.

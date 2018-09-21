@@ -29,6 +29,8 @@ public class SolicitudesUsuario {
     @SerializedName("estado_solicitud")
     private String strEstado;
 
+    public SolicitudesUsuario(){}
+
     public SolicitudesUsuario(Integer intCodSolicitud, String strNombreSolicitante, String strObservacion, Date dateFechaAltaSolicitud, Date dateFechaBajaSolicitud, Integer intCodUsuario, Integer intCodEstado, String strEstado) {
         this.intCodSolicitud = intCodSolicitud;
         this.strNombreSolicitante = strNombreSolicitante;

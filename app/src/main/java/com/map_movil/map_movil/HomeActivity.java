@@ -123,8 +123,8 @@ public class HomeActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, reportsFragment).commit();
                 }
             } else if (id == R.id.nav_logout) {
-                RealmConfig realmConfig = new RealmConfig(this.getApplicationContext());
-                realmConfig.EliminarBaseDatos();
+                RealmConfig realmConfig = new RealmConfig(getApplicationContext());
+                realmConfig.deleteDataBase();
                 sharedPreferences.edit().clear().commit();
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);

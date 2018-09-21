@@ -2,6 +2,9 @@ package com.map_movil.map_movil.repository.solicitudes;
 
 import android.content.Context;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.api.hogar.ApiAdapterHogar;
 import com.map_movil.map_movil.api.hogar.ApiServiceHogar;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
@@ -33,7 +36,7 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
     private InfoSolicitud infoSolicitud;
     private HogarByTitular hogarByTitular;
     private Context context;
-    private Realm realm;
+    private RealmConfig realmConfig;
     private boolean isForCreateSolicitud;//Identificar si la informacíón del hogar a buscar es para una nueva solicitud o de una ya existente.
 
     public ShowAddSolicitudAcitivityRepositoryImpl(ShowAddSolicitudAcitivityPresenter showAddSolicitudAcitivityPresenter, Context context) {
@@ -69,14 +72,13 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
 
     @Override
     public void findDataLocalForCreateSolicitud(String strIdentidadTitular) {
-        Realm.init(context);
-        realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
+        realmConfig = new RealmConfig(context);
+        realmConfig.getRealm().beginTransaction();
         RealmResults<Hogar_Validar> nucleoHogarResultsHogAndTitular;
         RealmResults<Hogar_Validar> nucleoHogarResultsNucleo;
         HogarLigth hogarLigth;
         ArrayList<HogarLigth> hogarLigthArrayList = new ArrayList<>();
-        nucleoHogarResultsHogAndTitular = realm.where(Hogar_Validar.class)
+        nucleoHogarResultsHogAndTitular = realmConfig.getRealm().where(Hogar_Validar.class)
                 .equalTo("per_identidad", strIdentidadTitular)
                 .and().equalTo("per_titular", 1).findAll();
 
@@ -90,7 +92,7 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
             hogarByTitular.setStrAldea(nucleoHogarResultsHogAndTitular.get(0).getDesc_aldea());
             hogarByTitular.setStrCaserio(nucleoHogarResultsHogAndTitular.get(0).getDesc_caserio());
 
-            nucleoHogarResultsNucleo = realm.where(Hogar_Validar.class).equalTo("hog_hogar", hogarByTitular.getIntCodHogar()).findAll();
+            nucleoHogarResultsNucleo = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("hog_hogar", hogarByTitular.getIntCodHogar()).findAll();
             for(Hogar_Validar item: nucleoHogarResultsNucleo){
                 hogarLigth = new HogarLigth(
                         item.getNombre(),
@@ -101,12 +103,12 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
                 );
                 hogarLigthArrayList.add(hogarLigth);
             }
-            realm.commitTransaction();
+            realmConfig.getRealm().commitTransaction();
             showAddSolicitudAcitivityPresenter.showOnlyInforHogForCreateSolicitud(hogarByTitular, hogarLigthArrayList);
         }else{
             showAddSolicitudAcitivityPresenter.showMessage("Hogar no disponible localmente");
         }
-        realm.close();
+        realmConfig.getRealm().close();
     }
 
     @Override
@@ -135,14 +137,13 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
 
     @Override
     public void findSolicitudSavedLocal(int intCodSolicitud) {
-        Realm.init(context);
-        realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
+        realmConfig = new RealmConfig(context);
+        realmConfig.getRealm().beginTransaction();
         ArrayList<HogarLigth> hogarLigthArrayList = new ArrayList<>();
         HogarLigth hogarLigth;
         RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
         RealmResults<Hogar_Validar> nucleosHogareRealmResulyts;
-        solicitudesDownloadRealmResults = realm.where(SolicitudesDownload.class).equalTo("codigo_solicitud", intCodSolicitud).findAll();
+        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("codigo_solicitud", intCodSolicitud).findAll();
 
         InfoSolicitud infoSolicitud = new InfoSolicitud();
         infoSolicitud.setIntCodSolicitud(solicitudesDownloadRealmResults.get(0).getCodigo_solicitud());
@@ -164,7 +165,7 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
         infoSolicitud.setBolCorreccionSancion(solicitudesDownloadRealmResults.get(0).isCorreccion_sancion());
         infoSolicitud.setStrObservacion(solicitudesDownloadRealmResults.get(0).getObservacion());
 
-        nucleosHogareRealmResulyts = realm.where(Hogar_Validar.class).equalTo("hog_hogar", infoSolicitud.getIntCodHogar()).findAll();
+        nucleosHogareRealmResulyts = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("hog_hogar", infoSolicitud.getIntCodHogar()).findAll();
         for(Hogar_Validar item: nucleosHogareRealmResulyts){
             hogarLigth = new HogarLigth(
                     item.getNombre(),
@@ -175,14 +176,14 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
             );
             hogarLigthArrayList.add(hogarLigth);
         }
-        realm.commitTransaction();
+        realmConfig.getRealm().commitTransaction();
 
         if(nucleosHogareRealmResulyts.size() > 0){
             showAddSolicitudAcitivityPresenter.showSolicitud(infoSolicitud, hogarLigthArrayList);
         }else{
             showAddSolicitudAcitivityPresenter.showMessage("La solicitud seleccionada contiene un hogar no disponible localmente");
         }
-        realm.close();
+        realmConfig.getRealm().close();
     }
 
     @Override
@@ -209,18 +210,21 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
 
     @Override
     public void saveServerSolicitud(SolicitudesDownload solicitudesDownload, HogarLigth hogarLigth, int intCodUser) {
-        Call<ResponseApi> call = objApiServiceSolicitudes.createSolicitud(
-                hogarLigth.getStrIdentidad(),
-                intCodUser,
-                solicitudesDownload.getObservacion(),
-                (solicitudesDownload.isActualizacion_datos())? 1 : 0,
-                (solicitudesDownload.isCambio_titular())? 1 : 0,
-                (solicitudesDownload.isNuevo_integrante())? 1 : 0,
-                (solicitudesDownload.isBaja_integrante())? 1 : 0,
-                (solicitudesDownload.isCambio_domicilio())? 1 : 0,
-                (solicitudesDownload.isBaja_programa())? 1 : 0,
-                (solicitudesDownload.isReactiva_programa())? 1 : 0,
-                (solicitudesDownload.isCorreccion_sancion())? 1 : 0);
+        JsonObject jsonObject = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+        jsonObject.addProperty("identidad",hogarLigth.getStrIdentidad());
+        jsonObject.addProperty("cod_user",intCodUser);
+        jsonObject.addProperty("observacion",solicitudesDownload.getObservacion());
+        jsonObject.addProperty("actualizacion_datos",(solicitudesDownload.isActualizacion_datos())? 1 : 0);
+        jsonObject.addProperty("cambio_titular",(solicitudesDownload.isCambio_titular())? 1 : 0);
+        jsonObject.addProperty("nuevo_miembro",(solicitudesDownload.isNuevo_integrante())? 1 : 0);
+        jsonObject.addProperty("baja_miembro",(solicitudesDownload.isBaja_integrante())? 1 : 0);
+        jsonObject.addProperty("cambio_domicilio",(solicitudesDownload.isCambio_domicilio())? 1 : 0);
+        jsonObject.addProperty("baja_programa",(solicitudesDownload.isBaja_programa())? 1 : 0);
+        jsonObject.addProperty("reactiva_programa",(solicitudesDownload.isReactiva_programa())? 1 : 0);
+        jsonObject.addProperty("correccion_sancion",(solicitudesDownload.isCorreccion_sancion())? 1 : 0);
+        jsonArray.add(jsonObject);
+        Call<ResponseApi> call = objApiServiceSolicitudes.createSolicitud(jsonArray);
 
         call.enqueue(new Callback<ResponseApi>() {
             @Override
@@ -241,9 +245,8 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
 
     @Override
     public void saveLocalSolicitud(SolicitudesDownload solicitudesDownload, HogarLigth hogarLigth, int intCodUser) {
-        Realm.init(context);
-        realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
+        realmConfig = new RealmConfig(context);
+        realmConfig.getRealm().beginTransaction();
         RealmResults<Hogar_Validar> nucleoHogarReamlResult;
         RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
         int intCodSolicitud = -1;
@@ -253,14 +256,16 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
         solicitudesDownload.setCodigo_estado(1);
         solicitudesDownload.setFecha_alta(new Date());
 
-        solicitudesDownloadRealmResults = realm.where(SolicitudesDownload.class).equalTo("isLocal", true).findAll().sort("codigo_solicitud", Sort.DESCENDING);
+        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class)
+                .equalTo("isLocal", true)
+                .findAll().sort("codigo_solicitud", Sort.DESCENDING);
 
         if(solicitudesDownloadRealmResults.size() > 0) {
             intCodSolicitud = solicitudesDownloadRealmResults.get(0).getCodigo_solicitud() - 1;
         }
         solicitudesDownload.setCodigo_solicitud(intCodSolicitud);
 
-        nucleoHogarReamlResult = realm.where(Hogar_Validar.class)
+        nucleoHogarReamlResult = realmConfig.getRealm().where(Hogar_Validar.class)
                 .equalTo("per_identidad", hogarLigth.getStrIdentidad())
                 .and().equalTo("per_titular", 1).findAll();
 
@@ -275,9 +280,9 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
             solicitudesDownload.setCodigo_hogar(item.getHog_hogar());
             solicitudesDownload.setPer_persona_solicitante(item.getPer_persona());
         }
-        realm.insert(solicitudesDownload);
-        realm.commitTransaction();
-        realm.close();
+        realmConfig.getRealm().insert(solicitudesDownload);
+        realmConfig.getRealm().commitTransaction();
+        realmConfig.getRealm().close();
         showAddSolicitudAcitivityPresenter.finishCreationSolicitud();
     }
 

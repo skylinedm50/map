@@ -14,7 +14,6 @@ public class BroadCastInternet extends BroadcastReceiver {
     private static View view;
     public static boolean bolSubscribe = false;
     public static boolean isConnected;
-    private static int visible = 0;
     private static ConnectivityManager connectivityManager;
     private static FrameLayout frameLayout;
     private static NetworkInfo networkInfo;
@@ -32,25 +31,25 @@ public class BroadCastInternet extends BroadcastReceiver {
 
     private static void showMessageConectionInternet(Context context){
         isConnected = false;
-        try {
-            connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            networkInfo = connectivityManager.getActiveNetworkInfo();
-            frameLayout = view.findViewById(R.id.FragmentLayoutBottomMessage);
+        connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        networkInfo = connectivityManager.getActiveNetworkInfo();
 
+        try {
+            frameLayout = view.findViewById(R.id.FragmentLayoutBottomMessage);
             if (networkInfo == null) {
-                if (bolSubscribe && visible == 0) {
+                if (bolSubscribe) {
                     frameLayout.setVisibility(View.VISIBLE);
-                    visible = 1;
                 }
             } else {
-                if (bolSubscribe && visible == 1) {
+                if (bolSubscribe) {
                     frameLayout.setVisibility(View.GONE);
-                    visible = 0;
                 }
                 isConnected = true;
             }
         }catch (Exception e){
-
+            if (networkInfo != null) {
+                isConnected = true;
+            }
         }
     }
 }

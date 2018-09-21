@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -59,6 +60,12 @@ public class HistorialPagoActivity extends AppCompatActivity {
         BroadCastInternet.subscribeForMessageInternet(getApplicationContext(), findViewById(R.id.relativeLayoutMain));
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        BroadCastInternet.subscribeForMessageInternet(getApplicationContext(), findViewById(R.id.relativeLayoutMain));
+    }
+
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return false;
@@ -81,13 +88,17 @@ public class HistorialPagoActivity extends AppCompatActivity {
 
             LayoutInflater inflater = LayoutInflater.from(context);
             View item = inflater.inflate(R.layout.item_historial_pago, null);
-
+            LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT ,ViewGroup.LayoutParams.MATCH_PARENT);
+            int intButtom = (position == (historiales.size() - 1)) ? 100 : 0;
             TextView tv_Anio_Pago =  item.findViewById(R.id.tv_Anio_Pago);
             TextView tv_Pago = item.findViewById(R.id.tv_Pago);
             TextView tv_Codigo_Hogar = item.findViewById(R.id.tv_Codigo_Hogar);
             TextView tv_Estado_Pago = item.findViewById(R.id.tv_Estado_Pago);
             TextView tv_Fecha_Cobro = item.findViewById(R.id.tv_Fecha_Cobro);
             TextView tv_Descripcion = item.findViewById(R.id.tv_Descripcion);
+            LinearLayout linearLayoutItemPago = item.findViewById(R.id.linearLayoutItemPago);
+            layoutParams.setMargins(0,0,0,intButtom);
+
 
             tv_Anio_Pago.setText(String.valueOf(historiales.get(position).getPag_anyo()));
             tv_Pago.setText(historiales.get(position).getPag_nombre());
@@ -95,6 +106,8 @@ public class HistorialPagoActivity extends AppCompatActivity {
             tv_Fecha_Cobro.setText(historiales.get(position).getTit_fecha_cobro());
             tv_Estado_Pago.setText(historiales.get(position).getEstado_Pago());
             tv_Descripcion.setText(historiales.get(position).getTit_proy_corta());
+            linearLayoutItemPago.setLayoutParams(layoutParams);
+
 
             return item;
         }

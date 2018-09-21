@@ -52,7 +52,12 @@ public class SolicitudesFragmentPresentImpl implements SolicitudesFragmentPresen
     }
 
     @Override
-    public void synchronizeWithServer() {
-        solicitudesFragmentInteractor.synchronizeWithServer();
+    public void synchronizeWithServer(int intCodUser) {
+        solicitudesFragmentInteractor.synchronizeWithServer(intCodUser);
+    }
+
+    @Override
+    public void finishSynchronize() {
+        solicitudesFragmentView.finishDownloadSolicitudes();
     }
 }

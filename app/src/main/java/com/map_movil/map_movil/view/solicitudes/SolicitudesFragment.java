@@ -57,8 +57,10 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     private AlertDialog dialog;
     private LinearLayout linearLayoutPorcentage;
     private SharedPreferences sharedPreferences;
-    private TextView textViewPorcentageDownload;
+    private TextView textViewPorcentageProcess;
 
+    private LayoutInflater layoutInflater;
+    private View viewInflater;
 
     public SolicitudesFragment() {
     }
@@ -104,9 +106,8 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
             }
         });
 
+
         setHasOptionsMenu(true);
-
-
         return view;
     }
 
@@ -155,18 +156,21 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        TextView textViewCancel;
+        TextView textViewDownload;
+
         switch (item.getItemId()) {
             case R.id.download:
                 builder = new AlertDialog.Builder(getActivity());
-                LayoutInflater layoutInflater = getLayoutInflater();
-                View viewInflater = layoutInflater.inflate(R.layout.dialog_download_solicitudes, null);
+                layoutInflater = getLayoutInflater();
+                viewInflater = layoutInflater.inflate(R.layout.dialog_download_solicitudes, null);
                 spinnerDepartamento = viewInflater.findViewById(R.id.spinnerDepartamento);
                 spinnerMunicipio = viewInflater.findViewById(R.id.spinnerMunicipio);
                 spinnerAldea = viewInflater.findViewById(R.id.spinnerAldea);
-                TextView textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
-                TextView textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
+                textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
+                textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
                 linearLayoutPorcentage = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
-                textViewPorcentageDownload = viewInflater.findViewById(R.id.textViewPorcentage);
+                textViewPorcentageProcess = viewInflater.findViewById(R.id.textViewPorcentage);
 
                 spinnerDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -213,8 +217,33 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
                 return true;
             case R.id.saveServer:
+                builder = new AlertDialog.Builder(getActivity());
+                layoutInflater = getLayoutInflater();
+                viewInflater = layoutInflater.inflate(R.layout.dialog_synchronize_data, null);
+                textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
+                textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
+                linearLayoutPorcentage = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
+                textViewPorcentageProcess = viewInflater.findViewById(R.id.textViewPorcentage);
 
+                builder.setTitle("Sincronizar-Solicitudes");
+                builder.setView(viewInflater);
+                builder.setCancelable(false);
+                dialog = builder.create();
+                textViewCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+                textViewDownload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int intCodUser = sharedPreferences.getInt("codigo",0);
+                        synchronizeWithServer(intCodUser);
+                    }
+                });
 
+                dialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -278,7 +307,7 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public void changePorcentage(String strPorcentage) {
-        textViewPorcentageDownload.setText(strPorcentage);
+        textViewPorcentageProcess.setText(strPorcentage);
     }
 
     @Override
@@ -337,7 +366,13 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     }
 
     @Override
-    public void synchronizeSolicitudesWithServer() {
-        solicitudesFragmentPresenter.synchronizeWithServer();
+    public void synchronizeWithServer(int intCodUser) {
+        linearLayoutPorcentage.setVisibility(View.VISIBLE);
+        solicitudesFragmentPresenter.synchronizeWithServer(intCodUser);
+    }
+
+    @Override
+    public void finishSynchronize() {
+        dialog.cancel();
     }
 }

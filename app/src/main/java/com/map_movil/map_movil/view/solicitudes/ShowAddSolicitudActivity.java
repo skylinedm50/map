@@ -23,11 +23,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.api.hogar.ApiAdapterHogar;
 import com.map_movil.map_movil.api.hogar.ApiServiceHogar;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
 import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
+import com.map_movil.map_movil.broadcasts.BroadCastDate;
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.HogarByTitular;
 import com.map_movil.map_movil.model.HogarLigth;
 import com.map_movil.map_movil.model.InfoSolicitud;
@@ -146,6 +149,13 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
             linearLayoutObserEdit.setVisibility(View.VISIBLE);
             linearLayoutObserView.setVisibility(View.GONE);
         }
+        BroadCastInternet.subscribeForMessageInternet(getApplicationContext(), findViewById(R.id.linearLayoutMother));
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        BroadCastInternet.subscribeForMessageInternet(getApplicationContext(), findViewById(R.id.linearLayoutMother));
     }
 
 

@@ -9,5 +9,5 @@ public interface SolicitudesFragmentRepository {
     void getSolicitudesGestionadas(int intCodUser, String strSimbolo);
     void saveLocalSolicitud(ArrayList<SolicitudesDownload> arrayListSolicitudesDownload);
     void getSolicitudesGestionadasLocalDB(int intCodUser, String strSimbolo);
-    void synchronizeWithServer();
+    void synchronizeWithServer(int intCodUser);
 }

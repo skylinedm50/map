@@ -16,6 +16,9 @@ import com.map_movil.map_movil.model.User;
 import com.map_movil.map_movil.presenter.login.LoginPresenter;
 import com.map_movil.map_movil.presenter.login.LoginPresenterImpl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class LoginActivity extends AppCompatActivity  implements LoginView {
     private LoginPresenter loginPresenter;
@@ -93,10 +96,14 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
 
     @Override
     public void saveLocalLogin(int intCodUser, String strNombre, int intCantLogin, int inCodEstado) {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         sharedPreferencesEditor.putInt("codigo", intCodUser);
         sharedPreferencesEditor.putString("nombre", strNombre);
         sharedPreferencesEditor.putInt("cantidadLogin", intCantLogin + 1);
         sharedPreferencesEditor.putInt("estadoLogin", inCodEstado);
+        sharedPreferencesEditor.putString("fechaLogin",  simpleDateFormat.format(date.getTime()));
+        sharedPreferencesEditor.putString("fechaDeleteData", simpleDateFormat.format(date.getTime()));
         sharedPreferencesEditor.commit();
     }
 
