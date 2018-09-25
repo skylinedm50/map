@@ -71,10 +71,19 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
                     realmConfig.getRealm().beginTransaction();
                     RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
 
-                    if(solicitudesUsuarioArrayList.get(0).getIntCodSolicitud() == 5){
-                        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("codigo_estado", 5).findAll();
+                    if(solicitudesUsuarioArrayList.get(0).getIntCodEstado() == 4 || solicitudesUsuarioArrayList.get(0).getIntCodEstado() == 6
+                            || solicitudesUsuarioArrayList.get(0).getIntCodEstado() == 7 ){
+                        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class)
+                                .equalTo("codigo_estado", 4)
+                                .or().equalTo("codigo_estado", 6)
+                                .or().equalTo("codigo_estado", 7)
+                                .findAll();
                     }else{
-                        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).notEqualTo("codigo_estado", 5).findAll();
+                        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class)
+                                .notEqualTo("codigo_estado", 4)
+                                .and().notEqualTo("codigo_estado", 6)
+                                .and().notEqualTo("codigo_estado", 7)
+                                .findAll();
                     }
                     realmConfig.getRealm().commitTransaction();
                     for(SolicitudesDownload solicitudItem: solicitudesDownloadRealmResults){
@@ -120,12 +129,12 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
                         solicitudesDownloadRealmResults.deleteAllFromRealm();
                     }
                     realm.insert(arrayListSolicitudesDownloadFinal);
+                    solicitudesFragmentPresenter.changePorcentage(100);
+                    solicitudesFragmentPresenter.finishDownloadSolicitudes();
+                    solicitudesFragmentPresenter.showError("Las solicitudes fueron descargadas");/////////////////////////////
                 }
             });
             realmConfig.getRealm().close();
-            solicitudesFragmentPresenter.changePorcentage(100);
-            solicitudesFragmentPresenter.finishDownloadSolicitudes();
-            solicitudesFragmentPresenter.showError("Las solicitudes fueron descargadas");/////////////////////////////
         }catch (Exception e){
             solicitudesFragmentPresenter.showError(e.getMessage());
         }
@@ -140,9 +149,17 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
         SolicitudesUsuario solicitudesUsuario;
 
         if(strSimbolo == "resueltas"){
-            solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("codigo_estado", 5).findAll();
+            solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class)
+                    .equalTo("codigo_estado", 4)
+                    .or().equalTo("codigo_estado", 6)
+                    .or().equalTo("codigo_estado", 7)
+                    .findAll();
         }else{
-            solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).notEqualTo("codigo_estado", 5).findAll();
+            solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class)
+                    .notEqualTo("codigo_estado", 4)
+                    .and().notEqualTo("codigo_estado", 6)
+                    .and().notEqualTo("codigo_estado", 7)
+                    .findAll();
         }
         realmConfig.getRealm().commitTransaction();
 
@@ -200,18 +217,19 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
                 public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
                     if (response.body() != null && response.body().getIntState() == 1) {
                         realmConfig = new RealmConfig(context);
+                        realmConfig.getRealm().beginTransaction();
                         final RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
                         solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("isLocal", true).findAll();
-                        realmConfig.getRealm().beginTransaction();
                         realmConfig.getRealm().commitTransaction();
                         realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
                                 solicitudesDownloadRealmResults.deleteAllFromRealm();
+                                solicitudesFragmentPresenter.finishSynchronize();
+                                solicitudesFragmentPresenter.showError("Sincronización exitosa.");
                             }
                         });
                         realmConfig.getRealm().close();
-                        solicitudesFragmentPresenter.finishSynchronize();
                     }else{
                         solicitudesFragmentPresenter.showError("Error en el servidor, imposible almacenar información");
                     }

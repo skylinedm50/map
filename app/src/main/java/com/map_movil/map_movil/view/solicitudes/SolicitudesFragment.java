@@ -47,7 +47,7 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     private RecyclerView objRecycleView;
     private View view;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private RelativeLayout relativeLayoutProgressBar;
+    private RelativeLayout relativeLayoutTextMessage;
     private UbicacionesPresenter ubicacionesPresenter;
     private SolicitudesFragmentPresenter solicitudesFragmentPresenter;
     private Spinner spinnerDepartamento;
@@ -80,7 +80,7 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
         this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
 
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
-        relativeLayoutProgressBar = view.findViewById(R.id.relativeLayoutProgressBar);
+        relativeLayoutTextMessage = view.findViewById(R.id.relativeLayoutTextMessage);//Pendiente de uso.
 
         objAdapterSolicitudesUsuario = new AdapterRecyclerViewSolicitudes(arrSolicitudesUsuarios, getActivity());
 
@@ -105,7 +105,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
                 getSolicitudesGestionadas();
             }
         });
-
 
         setHasOptionsMenu(true);
         return view;
@@ -134,7 +133,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
         }
     }
 
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_multiple_option, menu);
@@ -152,7 +150,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -273,16 +270,12 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public void getSolicitudesGestionadas() {
-        showProgressBar(true);
+        showSwipeRefreshLayout(true);
         solicitudesFragmentPresenter.getSolicitudesGestionadas(intCodUser, strSimbolo);
     }
 
-    private void showProgressBar(boolean show){
-        if(show == true){
-            relativeLayoutProgressBar.setVisibility(View.VISIBLE);
-        }else{
-            relativeLayoutProgressBar.setVisibility(View.GONE);
-        }
+    private void showSwipeRefreshLayout(boolean show){
+        swipeRefreshLayout.setRefreshing(show);
     }
 
     @Override
@@ -296,7 +289,7 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
         arrSolicitudesUsuarios = arrayListSolicitudes;
         objAdapterSolicitudesUsuario.dataAdapterChange(arrSolicitudesUsuarios);
         swipeRefreshLayout.setRefreshing(false);
-        showProgressBar(false);
+        showSwipeRefreshLayout(false);
     }
 
     @Override
@@ -313,6 +306,7 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public void showError(String strError) {
         Toast.makeText(view.getContext(), strError, Toast.LENGTH_SHORT).show();
+        showSwipeRefreshLayout(false);
     }
 
     @Override

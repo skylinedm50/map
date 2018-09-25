@@ -15,7 +15,7 @@ public class ChangePasswordPresenterImpl implements ChangePasswordPresenter {
 
     @Override
     public void setChangePassword(int intCodUser, String strNewPassword, String strRepetPassword) {
-        checkPasswords(intCodUser, strNewPassword, strRepetPassword);
+        checkPasswords(intCodUser, strNewPassword.replaceAll("\\s+",""), strRepetPassword.replaceAll("\\s+",""));
     }
 
     @Override
