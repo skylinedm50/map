@@ -27,7 +27,7 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void getDataUser(String strUser, String strPassword){
-        getDetectError(strUser, strPassword);
+        getDetectError(strUser.replaceAll("\\s+",""), strPassword.replaceAll("\\s+",""));
     }
 
     @Override

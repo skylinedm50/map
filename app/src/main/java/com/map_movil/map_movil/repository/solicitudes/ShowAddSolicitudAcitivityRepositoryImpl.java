@@ -258,10 +258,10 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
 
         solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class)
                 .equalTo("isLocal", true)
-                .findAll().sort("codigo_solicitud", Sort.DESCENDING);
+                .findAll().sort("codigo_solicitud", Sort.ASCENDING);
 
         if(solicitudesDownloadRealmResults.size() > 0) {
-            intCodSolicitud = solicitudesDownloadRealmResults.get(0).getCodigo_solicitud() - 1;
+            intCodSolicitud = (solicitudesDownloadRealmResults.get(0).getCodigo_solicitud() - 1);
         }
         solicitudesDownload.setCodigo_solicitud(intCodSolicitud);
 
