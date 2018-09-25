@@ -25,24 +25,18 @@ import com.map_movil.map_movil.presenter.ubicaciones.UbicacionPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
 import com.map_movil.map_movil.view.ubicacion.UbicacionView;
 import com.pitt.library.fresh.FreshDownloadView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 
 public class DescargarValidacionFragment extends Fragment implements UbicacionView , DescargaView {
 
     private UbicacionesPresenter ubicacionesPresenter;
     private DescargarValidacionPresenter descargarValidacionPresenter;
-
     private AppCompatSpinner DepartamentoSpiner;
     private AppCompatSpinner MunicipioSpiner;
     private AppCompatSpinner AldeaSpiner;
-
     private HashMap<Integer , String > SpinnerMapDepto;
     private HashMap<Integer , String > SpinnerMapMuni;
     private HashMap<Integer , String > SpinnerMapAldea;
@@ -53,7 +47,6 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
     private Thread thread_descarga;
     private Thread thread_contador;
     private RealmConfig realmConfig;
-
     private Handler handler_descarga = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -61,7 +54,6 @@ public class DescargarValidacionFragment extends Fragment implements UbicacionVi
             DescargarBtn.upDateProgress(progress);
         }
     };
-
 
     private Handler Descargar_Datos = new Handler(){
         @Override

@@ -1,7 +1,6 @@
 package com.map_movil.map_movil.presenter.Quejas;
 
-import com.map_movil.map_movil.model.QuejasDenuncias;
-
+import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
 import java.util.ArrayList;
 
 public interface QuejasPresenter {
@@ -12,4 +11,9 @@ public interface QuejasPresenter {
                              String Nombre2   , String Apellido1            , String Apellido2 ,
                              String Telefono  , int anonimo );
         void ActualizarDatos();
+        void DescargarQuejas(int usuario , String aldea);
+        void SincronizarQuejas(int usuario);
+        void FinalizarSincronizacion();
+        void ListarQuejasOffline(ArrayList<QuejasDenuncias> quejasDenuncias);
+        void CambiarPorcentaje(int porcentaje);
 }

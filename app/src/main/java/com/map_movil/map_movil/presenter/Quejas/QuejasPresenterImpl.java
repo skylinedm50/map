@@ -1,23 +1,27 @@
 package com.map_movil.map_movil.presenter.Quejas;
 
+import android.content.Context;
+
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.interactor.Quejas.QuejasInteractoImpl;
 import com.map_movil.map_movil.interactor.Quejas.QuejasInteractor;
-import com.map_movil.map_movil.model.QuejasDenuncias;
+import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
+import com.map_movil.map_movil.view.Quejas.QuejasOfflineView;
 import com.map_movil.map_movil.view.Quejas.QuejasView;
-import com.map_movil.map_movil.view.Quejas.RefrescarDatos;
 
 import java.util.ArrayList;
 
 public class QuejasPresenterImpl implements QuejasPresenter {
 
     private QuejasView quejasView;
+    private QuejasOfflineView quejasOfflineView;
     private QuejasInteractor QuejasInteractor;
 
-    public QuejasPresenterImpl(QuejasView quejasView){
+    public QuejasPresenterImpl(QuejasView quejasView , QuejasOfflineView offlineView , Context context){
+        this.quejasOfflineView = offlineView;
         this.quejasView = quejasView;
-        this.QuejasInteractor = new QuejasInteractoImpl(this);
-
+        this.QuejasInteractor = new QuejasInteractoImpl(this , context);
     }
 
     @Override
@@ -27,7 +31,9 @@ public class QuejasPresenterImpl implements QuejasPresenter {
         int noRealizadosLenght = 0;
 
         for(int x = 0 ; x < respuesta.size(); x++){
-            if(respuesta.get(x).getEstado().equals("Realizada")){
+            if( respuesta.get(x).getEstado().equals("No Aplicable")          ||
+                respuesta.get(x).getEstado().equals("Resuelta Conforme")     ||
+                respuesta.get(x).getEstado().equals("Resuelta No Conforme")      ){
                 RealizadosLenght = RealizadosLenght+1;
             }else{
                 noRealizadosLenght = noRealizadosLenght+1;
@@ -61,12 +67,56 @@ public class QuejasPresenterImpl implements QuejasPresenter {
         jsonQuejaDenuncia.addProperty("Telefono"  , Telefono);
         jsonQuejaDenuncia.addProperty("Anonimo"   , String.valueOf(anonimo));
 
-        this.QuejasInteractor.RegistrarQueja(jsonQuejaDenuncia);
+        JsonArray jsonArrayQueja = new JsonArray();
+        jsonArrayQueja.add(jsonQuejaDenuncia);
+
+        this.QuejasInteractor.RegistrarQueja(jsonArrayQueja);
     }
 
     @Override
     public void ActualizarDatos() {
         this.quejasView.ActualizarDatos();
+    }
+
+    @Override
+    public void DescargarQuejas(int usuario, String aldea) {
+        this.QuejasInteractor.DescargarQuejas(usuario , aldea);
+    }
+
+    @Override
+    public void SincronizarQuejas(int usuario) {
+        this.QuejasInteractor.SincronizarQuejas(usuario);
+    }
+
+    @Override
+    public void FinalizarSincronizacion() {
+        this.quejasOfflineView.FinalizarSincronizacion();
+    }
+
+    @Override
+    public void ListarQuejasOffline(ArrayList<QuejasDenuncias> quejasDenuncias) {
+        int RealizadosLenght = 0;
+        int noRealizadosLenght = 0;
+        ArrayList<QuejasDenuncias> Respuesta = new ArrayList<>();
+
+        for(int x = 0 ; x < quejasDenuncias.size(); x++){
+            Respuesta.add(quejasDenuncias.get(x));
+            if(     quejasDenuncias.get(x).getEstado().equals("No Aplicable")          ||
+                    quejasDenuncias.get(x).getEstado().equals("Resuelta Conforme")     ||
+                    quejasDenuncias.get(x).getEstado().equals("Resuelta No Conforme")      ){
+
+                RealizadosLenght = RealizadosLenght+1;
+            }else{
+                noRealizadosLenght = noRealizadosLenght+1;
+            }
+        }
+
+        this.quejasView.MostarQuejas(Respuesta, RealizadosLenght , noRealizadosLenght);
+    }
+
+    @Override
+    public void CambiarPorcentaje(int porcentaje) {
+        this.quejasOfflineView.CambiarPorcentaje(porcentaje);
     }
 
 

@@ -17,20 +17,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
-import com.map_movil.map_movil.model.QuejasDenuncias;
+import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenter;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
 import com.map_movil.map_movil.view.ubicacion.UbicacionView;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionView , QuejasView {
@@ -44,14 +41,11 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     private AppCompatSpinner           AldeaSpiner;
     private AppCompatSpinner           TipoSolicitudSpiner;
     private CheckBox                   ChkAnonimo;
-    private HashMap<Integer , String > SpinnerMapDepto;
-    private HashMap<Integer , String > SpinnerMapMuni;
-    private HashMap<Integer , String > SpinnerMapAldea;
 
     private TextInputEditText          TxtIdentidad         , TxtNombre1   ,
-                                       TxtNombre2           , TxtApellido1 ,
-                                       TxtApellido2         , TxtTelefono  ,
-                                       TxtDetalleSolicitud  ;
+            TxtNombre2           , TxtApellido1 ,
+            TxtApellido2         , TxtTelefono  ,
+            TxtDetalleSolicitud  ;
 
     private TextInputLayout LayoutSolicitud  ;
     private TextInputLayout LayoutIdentidad  ;
@@ -80,11 +74,8 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         this.LayoutApellido1   = (TextInputLayout)   findViewById(R.id.InputLayoutApellido);
         this.LayoutDescripcion = (TextInputLayout)   findViewById(R.id.InputLayoutDescripcion);
 
-        this.SpinnerMapDepto   = new HashMap<Integer , String>();
-        this.SpinnerMapMuni    = new HashMap<Integer , String>();
-        this.SpinnerMapAldea   = new HashMap<Integer , String>();
         this.ubicacionesPresenter = new UbicacionPresenterImpl(this, getApplicationContext());
-        this.quejasPresenter      = new QuejasPresenterImpl(this );
+        this.quejasPresenter      = new QuejasPresenterImpl(this , null, getApplicationContext() );
 
         this.DepartamentoSpiner  = (AppCompatSpinner)  findViewById(R.id.departamento_spinner);
         this.MunicipioSpiner     = (AppCompatSpinner)  findViewById(R.id.municipio_spinner);
@@ -156,6 +147,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
         getSupportActionBar().setTitle("Registrar Quejas y Denuncias");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        BroadCastInternet.subscribeForMessageInternet(getApplicationContext(), findViewById(R.id.LyRoot));
         getDepartamentos();
     }
 
@@ -171,7 +163,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         continuar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-               if(VerificarVacios()){
+                if(VerificarVacios()){
                     RegistrarQueja();
                 }
 
@@ -198,14 +190,14 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     public boolean VerificarVacios(){
 
         if(
-            this.TipoSolicitudSpiner.getSelectedItemId() != 0 &&
-                    ( ( !this.TxtIdentidad.getText().toString().equals("")   &&
-                        !this.TxtNombre1.getText().toString().equals("")     &&
-                        !this.TxtApellido1.getText().toString().equals("")   &&
-                        !this.ChkAnonimo.isChecked()
-                      ) || this.ChkAnonimo.isChecked()
-                    ) &&
-            !this.TxtDetalleSolicitud.getText().toString().equals("") ){
+                this.TipoSolicitudSpiner.getSelectedItemId() != 0 &&
+                        ( ( !this.TxtIdentidad.getText().toString().equals("")   &&
+                                !this.TxtNombre1.getText().toString().equals("")     &&
+                                !this.TxtApellido1.getText().toString().equals("")   &&
+                                !this.ChkAnonimo.isChecked()
+                        ) || this.ChkAnonimo.isChecked()
+                        ) &&
+                        !this.TxtDetalleSolicitud.getText().toString().equals("") ){
 
             return  true;
         }
@@ -255,14 +247,12 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     public void cargarAldeas(List<Aldeas> aldeas) {
 
         List<String> spinner =  new ArrayList<String>();
-        this.SpinnerMapAldea.clear();
 
         for(int x = 0; x < aldeas.size(); x++){
-            spinner.add(aldeas.get(x).getDesc_aldea());
-            this.SpinnerMapAldea.put(x ,aldeas.get(x).getCod_aldea());
+            spinner.add(aldeas.get(x).getCod_aldea()+"-"+aldeas.get(x).getDesc_aldea());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-               getApplicationContext(), android.R.layout.simple_dropdown_item_1line, spinner);
+                getApplicationContext(), android.R.layout.simple_dropdown_item_1line, spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.AldeaSpiner.setAdapter(adapter);
     }
@@ -278,9 +268,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     }
 
     @Override
-    public void MostarQuejas(ArrayList<QuejasDenuncias> respuesta, int RealizadosLenght, int noRealizadosLenght) {
-
-    }
+    public void MostarQuejas(ArrayList<QuejasDenuncias> respuesta, int RealizadosLenght, int noRealizadosLenght) { }
 
     @Override
     public void SolicitarQuejas() {
@@ -291,25 +279,26 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     public void RegistrarQueja() {
 
         SharedPreferences sharedPreferences = getApplicationContext()
-                                                  .getSharedPreferences("USER", Context.MODE_PRIVATE);
+                .getSharedPreferences("USER", Context.MODE_PRIVATE);
 
-          this.quejasPresenter.RegistrarQueja(sharedPreferences.getInt("codigo",0)      ,
-                     this.TxtDetalleSolicitud.getText().toString()      ,
-                     (int) this.TipoSolicitudSpiner.getSelectedItemId() ,
-                    this.SpinnerMapAldea.get(this.AldeaSpiner.getSelectedItemPosition()) ,
-                     this.TxtIdentidad.getText().toString() ,
-                     this.TxtNombre1.getText().toString()   ,
-                     this.TxtNombre2.getText().toString()   ,
-                     this.TxtApellido1.getText().toString() ,
-                     this.TxtApellido2.getText().toString() ,
-                     this.TxtTelefono.getText().toString()  ,
-                     (this.ChkAnonimo.isChecked())?1:0
-          );
+        this.quejasPresenter.RegistrarQueja(sharedPreferences.getInt("codigo",0)      ,
+                this.TxtDetalleSolicitud.getText().toString()      ,
+                (int) this.TipoSolicitudSpiner.getSelectedItemId() ,
+                AldeaSpiner.getSelectedItem().toString().split("-")[0] ,
+                this.TxtIdentidad.getText().toString() ,
+                this.TxtNombre1.getText().toString()   ,
+                this.TxtNombre2.getText().toString()   ,
+                this.TxtApellido1.getText().toString() ,
+                this.TxtApellido2.getText().toString() ,
+                this.TxtTelefono.getText().toString()  ,
+                (this.ChkAnonimo.isChecked())?1:0
+        );
     }
 
     @Override
     public void ActualizarDatos() {
         finish();
     }
+
 
 }

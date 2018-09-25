@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 
 public class QuejasHomeFragment extends Fragment
 {
@@ -26,7 +27,7 @@ public class QuejasHomeFragment extends Fragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        final View view = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_home_quejas , container , false);
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_home_quejas , container , false);
         this.pager_adapter = new Pager_Adapter(getFragmentManager());
         this.viewPager = (ViewPager) view.findViewById(R.id.quejas_container);
         this.viewPager.setAdapter(this.pager_adapter);
@@ -43,11 +44,9 @@ public class QuejasHomeFragment extends Fragment
                      view.getContext().startActivity(intent);
             }
         });
-
+        BroadCastInternet.subscribeForMessageInternet(view.getContext(), view);
         return view;
     }
-
-
 
 
     public static class HolderTabs extends Fragment{

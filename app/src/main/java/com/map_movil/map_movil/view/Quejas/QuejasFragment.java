@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +24,9 @@ import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.adapter.quejas_denuncias_adapter;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
-import com.map_movil.map_movil.model.QuejasDenuncias;
+import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
+import com.map_movil.map_movil.presenter.Quejas.QuejasPresenter;
+import com.map_movil.map_movil.presenter.Quejas.QuejasPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
 import com.map_movil.map_movil.view.ubicacion.UbicacionView;
@@ -42,8 +45,11 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
     private UbicacionesPresenter ubicacionesPresenter;
+    private QuejasPresenter quejasPresenter;
     private LinearLayout linearLayoutPorcentaje;
     private SharedPreferences sharedPreferences;
+    private TextView textViewPorcentageDownload;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public QuejasFragment(){}
 
@@ -53,21 +59,30 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
 
         rv_quejas = (RecyclerView)view.findViewById(R.id.rvQuejas);
         this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
+        this.quejasPresenter = new QuejasPresenterImpl(null , this , getContext());
+        this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.quejas_swipe);
         this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
 
         linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
 
-        denuncias_adapter = new quejas_denuncias_adapter(getContext() , codigo_accion );
+        denuncias_adapter = new quejas_denuncias_adapter(getContext() , codigo_accion , this.swipeRefreshLayout );
         rv_quejas.setAdapter(denuncias_adapter);
         rv_quejas.setLayoutManager(linearLayoutManager);
 
-        denuncias_adapter.SolicitarQuejas();
+   //     denuncias_adapter.SolicitarQuejas();
         setHasOptionsMenu(true);
+
+        this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+               denuncias_adapter.SolicitarQuejas();
+            }
+        });
+
         return  view;
     }
-
 
     @Override
     public void onResume() {
@@ -81,8 +96,6 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
         });
     }
 
-
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_multiple_option, menu);
@@ -95,10 +108,10 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
         nextItem.setEnabled(false);
 
         /*comentar*/
-      /*  downloadItem.setVisible(true);
+        downloadItem.setVisible(true);
         downloadItem.setEnabled(true);
         saveItem.setVisible(true);
-        saveItem.setEnabled(true);*/
+        saveItem.setEnabled(true);
         /*********/
 
         android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) searchItem.getActionView();
@@ -151,7 +164,6 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
         return false;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -166,6 +178,7 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
                 TextView textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
                 TextView textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
                 linearLayoutPorcentaje = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
+                textViewPorcentageDownload = viewInflater.findViewById(R.id.textViewPorcentage);
 
                 spinnerDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -206,18 +219,45 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
                     @Override
                     public void onClick(View v) {
                         int intCodUser = sharedPreferences.getInt("codigo",0);
-                      //  downloadSolicitudes(spinnerAldea.getSelectedItem().toString(), intCodUser);
+                        DescargarQuejas(intCodUser , spinnerAldea.getSelectedItem().toString().split("-")[0]);
+                    }
+                });
+                dialog.show();
+                getDepartamentos();
+                return true;
+
+            case R.id.saveServer:
+                builder = new AlertDialog.Builder(getActivity());
+                layoutInflater = getLayoutInflater();
+                viewInflater = layoutInflater.inflate(R.layout.dialog_synchronize_data, null);
+                textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
+                textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
+                linearLayoutPorcentaje = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
+                textViewPorcentageDownload = viewInflater.findViewById(R.id.textViewPorcentage);
+
+                builder.setTitle("Sincronizar-Quejas");
+                builder.setView(viewInflater);
+                builder.setCancelable(false);
+                dialog = builder.create();
+                textViewCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+                textViewDownload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SincronizarQuejas();
                     }
                 });
 
                 dialog.show();
-                getDepartamentos();
-
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
 
+        }
     }
 
     @Override
@@ -273,11 +313,28 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
 
     @Override
     public void DescargarQuejas(int usuario, String aldea) {
-
+        this.linearLayoutPorcentaje.setVisibility(View.VISIBLE);
+        this.quejasPresenter.DescargarQuejas(usuario , aldea);
     }
 
     @Override
     public void SincronizarQuejas() {
-
+        this.linearLayoutPorcentaje.setVisibility(View.VISIBLE);
+        this.quejasPresenter.SincronizarQuejas(sharedPreferences.getInt("codigo",0));
     }
+
+    @Override
+    public void FinalizarSincronizacion() {
+        this.linearLayoutPorcentaje.setVisibility(View.GONE);
+        this.dialog.cancel();
+    }
+
+    @Override
+    public void CambiarPorcentaje(int porcentaje) {
+        textViewPorcentageDownload.setText(String.valueOf(porcentaje));
+        if(porcentaje == 100){
+            dialog.cancel();
+        }
+    }
+
 }

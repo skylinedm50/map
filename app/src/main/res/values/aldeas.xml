@@ -1,0 +1,3743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="aldeas_array">
+        <item>010101-LA CEIBA</item>
+        <item>010102-ARMENIA BONITO</item>
+        <item>010104-COROZAL</item>
+        <item>010107-EL PARAISO O BATACA</item>
+        <item>010108-EL PERU</item>
+        <item>010109-EL PITAL</item>
+        <item>010110-LA AUSENCIA</item>
+        <item>010111-LA PRESA</item>
+        <item>010112-LAS MANGAS</item>
+        <item>010113-LOS LIMPIOS</item>
+        <item>010114-PIEDRA PINTADA O LA COLORADA</item>
+        <item>010115-RIO MARIA</item>
+        <item>010116-RIO VIEJO</item>
+        <item>010117-SAMBO CREEK</item>
+        <item>010119-TONCONTIN</item>
+        <item>010120-URRACO</item>
+        <item>010121-YARUCA</item>
+        <item>010201-EL PORVENIR</item>
+        <item>010202-BURGOS</item>
+        <item>010203-CACERES</item>
+        <item>010204-CAMPO SALADO BARRA</item>
+        <item>010205-CARACAS</item>
+        <item>010206-CEIBA MOCHA</item>
+        <item>010207-EL GANCHO</item>
+        <item>010208-EL PINO</item>
+        <item>010209-LA RUIDOSA</item>
+        <item>010210-LA UNION</item>
+        <item>010211-LOPEZ BONITO</item>
+        <item>010212-OROTINA</item>
+        <item>010213-SAN JOSE DE MONTEVIDEO</item>
+        <item>010301-ESPARTA</item>
+        <item>010302-AGUA CALIENTE</item>
+        <item>010303-BARRANQUILLA NORTE</item>
+        <item>010304-BUENOS AIRES</item>
+        <item>010305-CAMPO NUEVO</item>
+        <item>010306-CAYO DE VENADO</item>
+        <item>010307-CEIBITA WAY</item>
+        <item>010308-COLONIA BRISAS DE AMERICA</item>
+        <item>010309-COLORADO BARRA</item>
+        <item>010310-EL JAZMIN</item>
+        <item>010311-EL SUSPIRO</item>
+        <item>010312-FLORES DE ITALIA</item>
+        <item>010313-LA GUADALUPE</item>
+        <item>010314-LA LIBERTAD</item>
+        <item>010315-LA TARRALOSA</item>
+        <item>010316-LAS AMERICAS NO.1</item>
+        <item>010317-LAS DELICIAS</item>
+        <item>010318-LAS DELICIAS DEL NORTE</item>
+        <item>010319-LAS FLORES DE LEAN</item>
+        <item>010320-LOMBARDIA O LA CURVA</item>
+        <item>010321-LOS CERRITOS</item>
+        <item>010322-MATA DE GUINEO</item>
+        <item>010323-NUEVA ESPERANZA</item>
+        <item>010324-NUEVA GO</item>
+        <item>010325-PARIS DE LEAN</item>
+        <item>010326-PIEDRAS DE AFILAR</item>
+        <item>010327-RIO CHIQUITO NORTE</item>
+        <item>010328-LA ROSITA</item>
+        <item>010329-SAN JOSE</item>
+        <item>010330-SIEMPRE VIVA</item>
+        <item>010331-SOMBRA VERDE</item>
+        <item>010401-JUTIAPA</item>
+        <item>010402-BERLIN NO.1</item>
+        <item>010403-CANTOR</item>
+        <item>010404-CEFALU</item>
+        <item>010405-CEIBA GRANDE</item>
+        <item>010406-CORRALITOS</item>
+        <item>010407-DESCOMBROS</item>
+        <item>010408-EL AGUACATE EN LINEA</item>
+        <item>010409-EL CACAO</item>
+        <item>010410-EL DIAMANTE</item>
+        <item>010411-EL NARANJO</item>
+        <item>010412-EL URRACO</item>
+        <item>010413-EL ZAPOTAL</item>
+        <item>010414-EL ZAPOTE</item>
+        <item>010415-ENTELINA</item>
+        <item>010416-ILAMAPA</item>
+        <item>010417-JALAN</item>
+        <item>010418-LA BOMBA</item>
+        <item>010419-LAS MARIAS</item>
+        <item>010420-LOS OLANCHITOS</item>
+        <item>010421-NUEVA ARMENIA</item>
+        <item>010422-PAPALOTECA</item>
+        <item>010423-PIEDRAS AMARILLAS</item>
+        <item>010424-QUEBRADA GRANDE</item>
+        <item>010425-ROMA</item>
+        <item>010426-SALITRAN</item>
+        <item>010427-SALTOS</item>
+        <item>010428-SAN RAMON</item>
+        <item>010429-SONAGUERITA</item>
+        <item>010430-SUBIRANA</item>
+        <item>010431-TOMALA</item>
+        <item>010501-LA MASICA</item>
+        <item>010502-AGUA CALIENTE</item>
+        <item>010503-AGUA FRIA</item>
+        <item>010504-BOCA CERRADA</item>
+        <item>010505-COLINAS</item>
+        <item>010506-EL DESVIO</item>
+        <item>010507-EL NARANJAL</item>
+        <item>010508-EL ORO</item>
+        <item>010509-EL RECREO</item>
+        <item>010510-LA CUMBRE</item>
+        <item>010511-MONTE NEGRO</item>
+        <item>010512-SAN ANTONIO</item>
+        <item>010513-SAN JUAN BENQUE</item>
+        <item>010514-SAN JUAN PUEBLO</item>
+        <item>010515-SAN MARCOS</item>
+        <item>010516-SANTA FE</item>
+        <item>010517-SOLEDAD</item>
+        <item>010518-TIERRA FIRME</item>
+        <item>010519-TRIPOLI</item>
+        <item>010601-SAN FRANCISCO</item>
+        <item>010602-FRISCO NO.1</item>
+        <item>010603-LA FRUTERA</item>
+        <item>010604-LA LLAVE</item>
+        <item>010605-LAS CAMELIAS</item>
+        <item>010606-MICELLY</item>
+        <item>010607-PAGUALES</item>
+        <item>010608-RIO CUERO</item>
+        <item>010609-SALADITO</item>
+        <item>010610-SANTA ANA</item>
+        <item>010611-SANTIAGO</item>
+        <item>010612-SANTIAGO ARRIBA</item>
+        <item>010701-TELA</item>
+        <item>010702-AGUA BLANCA</item>
+        <item>010703-AGUA CHIQUITA</item>
+        <item>010704-BARRA ULUA</item>
+        <item>010705-BRISAS DEL LEAN</item>
+        <item>010706-BUENA VISTA</item>
+        <item>010707-BUENOS AIRES NO.1</item>
+        <item>010708-BUENOS AIRES NO.2</item>
+        <item>010709-CAMPO ELVIR</item>
+        <item>010710-CANGELICA DEL COROZAL</item>
+        <item>010711-CANGELIQUITA ABAJO</item>
+        <item>010712-CANGELIQUITA ARRIBA</item>
+        <item>010713-COL. LOS LAURELES</item>
+        <item>010714-CONCEPCION LA FLORIDA VIEJA O CONCEP. VALLE DE LEAN</item>
+        <item>010715-CREEK MARTINEZ</item>
+        <item>010716-CHAMPERIO O EL TRIUNFO DE ESQUIPULAS</item>
+        <item>010717-EL BARRO O BUENA VISTA</item>
+        <item>010718-EL CEDRO</item>
+        <item>010719-EL DESVIO DEL ZAPOTE MOJIMAN</item>
+        <item>010720-EL DORADO</item>
+        <item>010721-EL ENCANTO</item>
+        <item>010722-EL GUANO</item>
+        <item>010723-EL GUAYABAL</item>
+        <item>010724-EL JUNCO</item>
+        <item>010725-EL JUTE</item>
+        <item>010726-EL RODEO</item>
+        <item>010727-EL TIGRE</item>
+        <item>010728-EL TRIUNFO DE LA CRUZ</item>
+        <item>010729-EL ZAPOTE NO.1</item>
+        <item>010730-EL ZAPOTE NO.2</item>
+        <item>010731-KILOMETRO TRECE</item>
+        <item>010732-LANCETILLA</item>
+        <item>010733-LA ESPERANZA</item>
+        <item>010734-LA ESPERANZA DE SANTIAGO</item>
+        <item>010735-LA FORTUNA</item>
+        <item>010736-LA ICA</item>
+        <item>010737-LA PAZ</item>
+        <item>010738-LA UNION</item>
+        <item>010739-LA YUSA</item>
+        <item>010740-LAS DELICIAS NO.1</item>
+        <item>010741-LAS MERCEDES</item>
+        <item>010742-LAS METALIAS</item>
+        <item>010743-LAS MINAS</item>
+        <item>010744-LAS PALMAS</item>
+        <item>010745-LAS QUEBRADAS</item>
+        <item>010746-LOS CERRITOS</item>
+        <item>010747-MELCHER O KILOMETRO DIEZ Y SIETE</item>
+        <item>010748-MEROA OCHO</item>
+        <item>010749-MEROA RIO</item>
+        <item>010750-MEZAPA O SANTA ROSA DEL NORTE</item>
+        <item>010751-MONTE SION</item>
+        <item>010752-MORAZAN</item>
+        <item>010753-NOMBRE DE DIOS</item>
+        <item>010754-NUEVA ESPERANZA</item>
+        <item>010755-NUEVA SUYAPA</item>
+        <item>010756-NUEVO BERLIN O LAS JICOTEAS</item>
+        <item>010757-PAUJILES</item>
+        <item>010758-PEMAN O ULUITA ADENTRO</item>
+        <item>010759-PIEDRAS GORDAS</item>
+        <item>010760-PLANES</item>
+        <item>010761-PROCON</item>
+        <item>010762-PUERTO ARTURO</item>
+        <item>010763-RIO TINTO</item>
+        <item>010764-SAN ALEJO</item>
+        <item>010765-SAN ANTONIO</item>
+        <item>010766-SAN ANTONIO DE VILLAFRANCA</item>
+        <item>010767-SAN JOSE</item>
+        <item>010768-SAN JUAN</item>
+        <item>010769-SAN JUAN LEMPIRA</item>
+        <item>010770-SANTIAGO</item>
+        <item>010771-TARRALOSA</item>
+        <item>010772-TOLOA ADENTRO</item>
+        <item>010773-TOLOA CREEK</item>
+        <item>010774-TORNABE</item>
+        <item>010775-VILLAFRANCA</item>
+        <item>010776-ZOILABE</item>
+        <item>010801-ARIZONA</item>
+        <item>010802-AGUA CALIENTE</item>
+        <item>010803-ATENAS DE SAN CRISTOBAL O KM. 17</item>
+        <item>010804-BARRANQUILLA SUR</item>
+        <item>010805-COLONIA RIO PLATANO</item>
+        <item>010806-COLORADITO</item>
+        <item>010807-EL COCO</item>
+        <item>010808-EL EMPALME</item>
+        <item>010809-EL RETIRO</item>
+        <item>010810-HICAQUE</item>
+        <item>010811-HISOPO</item>
+        <item>010812-JILAMITO NUEVO</item>
+        <item>010813-JILAMITO VIEJO</item>
+        <item>010814-JILAMO NUEVO</item>
+        <item>010815-JILAMO VIEJO</item>
+        <item>010816-LA LEONA O KM. DOCE</item>
+        <item>010817-LAS LOMAS</item>
+        <item>010818-MEZAPA</item>
+        <item>010819-MEZAPITA</item>
+        <item>010820-PLANES DE HICAQUE</item>
+        <item>010821-RIO CHIQUITO SUR</item>
+        <item>010822-SAN FRANCISCO DE SACO</item>
+        <item>010824-SAN JOSE DE TIBURON</item>
+        <item>010825-SANTA MARIA</item>
+        <item>010826-SISAMA</item>
+        <item>010827-SUYAPA DE LEAN O MATARAS</item>
+        <item>020101-TRUJILLO</item>
+        <item>020102-COL. AGUAN</item>
+        <item>020103-CHAPAGUA</item>
+        <item>020104-EL COCO NO.1</item>
+        <item>020105-ILANGA</item>
+        <item>020106-JERICO</item>
+        <item>020107-LA BREA</item>
+        <item>020108-PUERTO CASTILLA</item>
+        <item>020109-TARROS</item>
+        <item>020201-BALFATE</item>
+        <item>020202-ARENALOSA</item>
+        <item>020203-BAMBU</item>
+        <item>020204-CUYAMEL</item>
+        <item>020205-EL CENIZO</item>
+        <item>020206-EL PORVENIR</item>
+        <item>020207-EL SATAL</item>
+        <item>020208-EL SATALITO</item>
+        <item>020209-LAS CRUCITAS</item>
+        <item>020210-LAS FLORES</item>
+        <item>020211-LAS MANGAS</item>
+        <item>020212-LIMERA</item>
+        <item>020213-LIS LIS</item>
+        <item>020214-LUCINDA</item>
+        <item>020215-PLANES DE BAMBU</item>
+        <item>020216-RIO COCO</item>
+        <item>020217-RIO ESTEBAN</item>
+        <item>020218-SAN LUIS</item>
+        <item>020301-IRIONA</item>
+        <item>020302-CIRIBOYA</item>
+        <item>020303-CUSUNA</item>
+        <item>020304-IRIONA VIEJO</item>
+        <item>020305-LAS CHAMPAS U OCOTALES</item>
+        <item>020306-PAYA</item>
+        <item>020307-PUNTA DE PIEDRA</item>
+        <item>020308-SAN JOSE DE LA PUNTA</item>
+        <item>020309-SANGRELAYA</item>
+        <item>020310-SICO</item>
+        <item>020311-TOCAMACHO</item>
+        <item>020401-LIMON</item>
+        <item>020402-FRANCIA</item>
+        <item>020403-VALLECITO</item>
+        <item>020501-SABA</item>
+        <item>020502-BARRANCO CHELE</item>
+        <item>020506-CAMPO VALLY</item>
+        <item>020507-CEIBITA</item>
+        <item>020508-COOPERATIVA EL ESFUERZO</item>
+        <item>020509-EL ACHIOTE</item>
+        <item>020510-EL JAGUILLO MUERTO</item>
+        <item>020511-ELIXIR</item>
+        <item>020513-LAS GOLONDRINAS</item>
+        <item>020514-ORICA</item>
+        <item>020515-PAGUALES</item>
+        <item>020516-PALOS DE AGUA ABAJO</item>
+        <item>020517-SONAMBULA</item>
+        <item>020518-TIBURONES</item>
+        <item>020601-SANTA FE</item>
+        <item>020602-GUADALUPE</item>
+        <item>020603-PLAN GRANDE</item>
+        <item>020604-SAN ANTONIO</item>
+        <item>020701-SANTA ROSA DE AGUAN</item>
+        <item>020702-VUELTA GRANDE</item>
+        <item>020801-SONAGUERA</item>
+        <item>020802-AGUA CALIENTE</item>
+        <item>020803-ALTO SECO</item>
+        <item>020807-CAMPO LA PAZ</item>
+        <item>020808-COLONIA VEINTE Y UNO DE NOVIEM</item>
+        <item>020809-CHURRUSQUERA</item>
+        <item>020811-EL GUAYABAL</item>
+        <item>020812-EL LIMON</item>
+        <item>020813-EL PORVENIR DE AIDA O EL BERRI</item>
+        <item>020814-EL SASTRE</item>
+        <item>020815-FAUST</item>
+        <item>020816-FLORES DEL ESTE</item>
+        <item>020817-FLORES DEL TERRERO</item>
+        <item>020818-GIOCONDA</item>
+        <item>020819-ISLETA CENTRAL</item>
+        <item>020820-JUAN LAZARO ABAJO O SAN JOSE D</item>
+        <item>020821-LA CUBANA</item>
+        <item>020822-LA CURVA DE ISLETAS</item>
+        <item>020823-LA HOYA ARRIBA</item>
+        <item>020824-LA PRESA O JUAN LAZARO ARRIBA</item>
+        <item>020825-LANZA</item>
+        <item>020826-LEZCANO</item>
+        <item>020827-LORELAY</item>
+        <item>020828-LORENCITO</item>
+        <item>020829-LUCIA</item>
+        <item>020830-LOS CARRIOLES</item>
+        <item>020831-LOS PLANES</item>
+        <item>020832-MIRAMAR</item>
+        <item>020833-MONTE DE ORO</item>
+        <item>020834-PARMAS</item>
+        <item>020835-PUENTE ALTO</item>
+        <item>020836-QUEBRADA DE ARENA</item>
+        <item>020837-RIO DE PIEDRA</item>
+        <item>020838-SABANA DE LA PITA</item>
+        <item>020839-SABANA DE UTILA</item>
+        <item>020840-TOSCA</item>
+        <item>020841-TRES LUCES</item>
+        <item>020842-TROVADOR</item>
+        <item>020843-UTILA</item>
+        <item>020901-TOCOA</item>
+        <item>020902-CAYO SIERRA</item>
+        <item>020903-CUACA NUEVA O JARAL</item>
+        <item>020904-CUACA VIEJA O CUACA ZONA</item>
+        <item>020905-CHIRIPA</item>
+        <item>020906-EL GUAPINOL</item>
+        <item>020907-JUAN ANTONIO</item>
+        <item>020908-LA ABISINIA</item>
+        <item>020909-LA CEIBITA</item>
+        <item>020910-LA CONCEPCION</item>
+        <item>020911-LAS MANGAS</item>
+        <item>020912-LERIDA</item>
+        <item>020913-PRIETA</item>
+        <item>020914-QUEBRADA DE AGUA</item>
+        <item>020915-QUEBRADA DE ARENA</item>
+        <item>020916-SALAMA</item>
+        <item>020917-TAUJICA</item>
+        <item>020918-ZAMORA</item>
+        <item>021001-BONITO ORIENTAL</item>
+        <item>021002-COROCITO</item>
+        <item>021003-EL ACHIOTE</item>
+        <item>021004-EL ANTIGUAL</item>
+        <item>021005-FEO</item>
+        <item>021006-LA ESPERANZA</item>
+        <item>021007-PLAYA DE GANADO</item>
+        <item>021008-RIO PIEDRA BLANCA</item>
+        <item>021009-SAN JOSE DEL CINCO</item>
+        <item>021010-VISTA HERMOSA O BRAVO</item>
+        <item>030101-COMAYAGUA</item>
+        <item>030102-AGUA SALADA</item>
+        <item>030103-CACAHUAPA</item>
+        <item>030104-CANTORAL</item>
+        <item>030105-EL CIRUELO</item>
+        <item>030106-EL GUACHIPILIN</item>
+        <item>030107-EL HORNO</item>
+        <item>030108-EL PARAISO</item>
+        <item>030109-EL PLAN DE LA ROSA</item>
+        <item>030110-EL PORTILLO DE LA MORA</item>
+        <item>030111-EL RESUMIDERO</item>
+        <item>030112-EL SAUCE</item>
+        <item>030113-EL SITIO</item>
+        <item>030114-EL TALADRO</item>
+        <item>030115-EL VOLCAN</item>
+        <item>030116-GUACAMAYA</item>
+        <item>030117-LA COOPERATIVA</item>
+        <item>030118-LA ESCALERA</item>
+        <item>030119-LA FLOR AGUA SALADA</item>
+        <item>030120-LA JAGUITA</item>
+        <item>030121-LA LAGUNA</item>
+        <item>030122-LA PALMA</item>
+        <item>030123-LA SAMPEDRANA</item>
+        <item>030124-LAS ANONAS</item>
+        <item>030125-LAS LICONAS</item>
+        <item>030126-LAS MESAS</item>
+        <item>030127-LOMAS DEL CORDERO</item>
+        <item>030128-LOS PLANES</item>
+        <item>030129-MOTAGUA DEL ROBLITO</item>
+        <item>030130-NUEVA VALLADOLID DE CAPIRO</item>
+        <item>030131-PALO PINTADO</item>
+        <item>030132-PIEDRAS AZULES</item>
+        <item>030133-PLANES DE CHURUNE</item>
+        <item>030134-RIO BLANCO O SAN JOSE</item>
+        <item>030135-SAN ANTONIO DE CAÑAS</item>
+        <item>030136-SAN ANTONIO DE LA LIBERTAD</item>
+        <item>030137-SAN JOSE DE PANE</item>
+        <item>030138-SAN MIGUEL DE SELGUAPA</item>
+        <item>030139-VALLE DE ANGELES</item>
+        <item>030140-VERACRUZ</item>
+        <item>030141-LA CHARAMUSCA</item>
+        <item>030201-AJUTERIQUE</item>
+        <item>030202-EL MISTERIO</item>
+        <item>030203-PLAYITAS</item>
+        <item>030204-SAN ANTONIO DEL PLAYON</item>
+        <item>030301-EL ROSARIO</item>
+        <item>030302-AGUA DULCITA</item>
+        <item>030303-CERRO BLANCO</item>
+        <item>030304-CONCEPCION DE GUASISTAGUA</item>
+        <item>030305-EL BUEN PASTOR</item>
+        <item>030306-LA LAGUNA</item>
+        <item>030307-LAS HUERTAS</item>
+        <item>030308-LOMAS VERDES</item>
+        <item>030309-LOS LLANITOS O LEONCITO</item>
+        <item>030310-SAN FRANCISCO DE LA CAMPA</item>
+        <item>030311-SAN FRANCISCO DE LOMA LARGA</item>
+        <item>030312-SAN ISIDRO</item>
+        <item>030313-SAN JACINTO O CARBONERAS</item>
+        <item>030401-ESQUIAS</item>
+        <item>030402-EL ORO ABAJO</item>
+        <item>030403-EL PLAYON</item>
+        <item>030404-NETAPA</item>
+        <item>030405-PELADERITOS</item>
+        <item>030406-RANCHO GRANDE</item>
+        <item>030407-RIO CHIQUITO</item>
+        <item>030501-HUMUYA</item>
+        <item>030502-EL JUNQUILLO</item>
+        <item>030503-TRAVESIA</item>
+        <item>030601-LA LIBERTAD</item>
+        <item>030602-CABECERAS</item>
+        <item>030603-CANTON SAN ANTONIO</item>
+        <item>030604-CUESTA DEL NEO</item>
+        <item>030605-EL HIGUERON</item>
+        <item>030606-EL OLVIDO</item>
+        <item>030608-GOTERAS</item>
+        <item>030609-LA PITA</item>
+        <item>030610-LOMA ALTA</item>
+        <item>030611-LOS ALFAROS</item>
+        <item>030612-MONTAÑUELAS</item>
+        <item>030613-PLAN DE ALEJANDRO</item>
+        <item>030614-SAN ANDRES</item>
+        <item>030615-SAN ANTONIO DE SAQUE</item>
+        <item>030616-SAN JOSE</item>
+        <item>030617-SANTA FE</item>
+        <item>030618-TERRERITOS</item>
+        <item>030619-VALLE BONITO</item>
+        <item>030620-VALLE DE ANGELES</item>
+        <item>030621-VALLECITOS</item>
+        <item>030622-ZACATALITOS</item>
+        <item>030701-LAMANI</item>
+        <item>030702-GUACHIPILIN</item>
+        <item>030703-LAGUNETAS</item>
+        <item>030704-LAS MESETAS</item>
+        <item>030705-MULACAGUA</item>
+        <item>030706-OJO DE AGUA</item>
+        <item>030707-TABLAZON</item>
+        <item>030708-VALLADOLID</item>
+        <item>030801-LA TRINIDAD</item>
+        <item>030802-EL CORDONCILLO</item>
+        <item>030803-EL PEÑON</item>
+        <item>030804-GUACAMAYA BARRIO ABAJO</item>
+        <item>030805-LAS TIERRAS</item>
+        <item>030806-LOS ANISES</item>
+        <item>030807-TIERRA BLANCA</item>
+        <item>030901-LEJAMANI</item>
+        <item>031001-MEAMBAR</item>
+        <item>031003-AGUA CALIENTE</item>
+        <item>031004-CHICHIPATE</item>
+        <item>031005-EL AGUAJE</item>
+        <item>031006-EL BUEN PASTOR</item>
+        <item>031007-EL CIENEGAL NO. 1</item>
+        <item>031008-EL PALMITAL</item>
+        <item>031009-EL ZAPOTE</item>
+        <item>031010-JICARITO</item>
+        <item>031011-LA CONCEPCION</item>
+        <item>031012-LA JOYA</item>
+        <item>031013-LA MESA</item>
+        <item>031014-LA PIMIENTA</item>
+        <item>031015-LAS LAJAS</item>
+        <item>031016-LOS GLOBOS</item>
+        <item>031017-SAN JOSE DE LOS PLANES</item>
+        <item>031018-MATAPALO</item>
+        <item>031019-MONTE DE DIOS</item>
+        <item>031020-OJO DE AGUA</item>
+        <item>031021-POTRERILLOS</item>
+        <item>031022-PUEBLO NUEVO</item>
+        <item>031023-SAN ANTONIO DE BUENOS AIRES</item>
+        <item>031024-SAN ISIDRO</item>
+        <item>031025-SANTA ANA</item>
+        <item>031026-SANTA ELENA</item>
+        <item>031101-MINAS DE ORO</item>
+        <item>031102-AGUA BLANCA</item>
+        <item>031103-EL SOCORRO</item>
+        <item>031104-EL ZOMPOPERO</item>
+        <item>031105-LA HOYA DE LA PUERTA</item>
+        <item>031106-LAS HUERTAS</item>
+        <item>031107-MINAS DE SAN ANTONIO</item>
+        <item>031108-MONTECITOS</item>
+        <item>031109-PIMIENTILLA</item>
+        <item>031110-SAN ISIDRO DEL MAL PASO</item>
+        <item>031111-SANTA CRUZ</item>
+        <item>031201-OJOS DE AGUA</item>
+        <item>031202-AGUA BLANCA</item>
+        <item>031203-BUEN PASTOR</item>
+        <item>031204-CAMPO DOS</item>
+        <item>031205-CORRALITOS</item>
+        <item>031206-EL HIELO</item>
+        <item>031207-EL PACAYAL</item>
+        <item>031208-EL PINABETOSO</item>
+        <item>031209-EL ROBLEDAL</item>
+        <item>031210-LA BALASTRERA O BUENOS AIRES</item>
+        <item>031211-LA CANDELARIA</item>
+        <item>031212-LA CAÑADA</item>
+        <item>031213-LA PROVIDENCIA</item>
+        <item>031214-LOS ANISES</item>
+        <item>031215-LOS DOS RIOS</item>
+        <item>031216-LOS GUINEOS</item>
+        <item>031217-PORTILLO GRANDE</item>
+        <item>031218-SAN RAFAEL</item>
+        <item>031301-SAN JERONIMO</item>
+        <item>031302-BUENA VISTA</item>
+        <item>031303-JARDINES</item>
+        <item>031304-JACINTILLOS</item>
+        <item>031305-JAMALTECA</item>
+        <item>031306-LA CEIBITA</item>
+        <item>031307-LA UNION</item>
+        <item>031308-LAS ARENAS</item>
+        <item>031309-LA CRUCITA</item>
+        <item>031310-LOS MANZANOS</item>
+        <item>031311-LOS TALNETES</item>
+        <item>031312-OCOTES CAIDOS</item>
+        <item>031313-PLAN DE LEONES</item>
+        <item>031314-POTRERO SUCIO</item>
+        <item>031315-SAN ANTONIO DE LA CUESTA</item>
+        <item>031316-TALANGUITA</item>
+        <item>031317-TERRERO DEL CEDRO</item>
+        <item>031318-VALLECILLOS</item>
+        <item>031401-SAN JOSE DE COMAYAGUA</item>
+        <item>031402-EL CALICHITO</item>
+        <item>031403-EL CHAPARRAL</item>
+        <item>031404-EL PORVENIR</item>
+        <item>031405-EL ZARZAL</item>
+        <item>031406-HIGUERONES</item>
+        <item>031407-LA LAGUNA SECA</item>
+        <item>031408-LA PIMIENTA</item>
+        <item>031409-LA PITA</item>
+        <item>031410-LAS DELICIAS</item>
+        <item>031411-LOS ANISES</item>
+        <item>031412-LOS LLANOS DE SAN JOSE O SUNZA</item>
+        <item>031413-PUERTA DEL POTRERO</item>
+        <item>031501-SAN JOSE DEL POTRERO</item>
+        <item>031502-EL CHORRO</item>
+        <item>031503-MINAS DE PLATA</item>
+        <item>031504-OJO DE AGUA O AGUA BLANCA</item>
+        <item>031505-POTRERITOS</item>
+        <item>031506-QUEZALAPA</item>
+        <item>031507-TERRERITOS DE LOS COELLO</item>
+        <item>031508-TERRERITOS DE LAS TRANCAS</item>
+        <item>031601-SAN LUIS</item>
+        <item>031602-EL TABLON</item>
+        <item>031603-EL TULE</item>
+        <item>031604-LAS MINITAS</item>
+        <item>031605-LAS QUEBRADAS</item>
+        <item>031606-LOMA PELADA</item>
+        <item>031607-LOS ANISALES</item>
+        <item>031608-LOS PUENTES</item>
+        <item>031609-LOS TRES PALOS</item>
+        <item>031610-LOS ZACATALES</item>
+        <item>031611-EL PLAN GRANDE</item>
+        <item>031612-QUEBRADA AMARILLA</item>
+        <item>031613-TROJES</item>
+        <item>031701-SAN SEBASTIAN</item>
+        <item>031702-EL OJO DE AGUA</item>
+        <item>031703-LA PEÑITA</item>
+        <item>031801-SIGUATEPEQUE</item>
+        <item>031802-AGUA DULCE</item>
+        <item>031803-AGUAS DEL PADRE</item>
+        <item>031804-BUENA VISTA DE RIO BONITO</item>
+        <item>031805-CHORRERITAS</item>
+        <item>031806-EL ACHIOTE</item>
+        <item>031807-EL CAOBANAL</item>
+        <item>031808-EL PACAYAL</item>
+        <item>031809-EL PITO</item>
+        <item>031810-EL PORVENIR</item>
+        <item>031811-EL POTRERON</item>
+        <item>031812-EL RINCON</item>
+        <item>031813-EL SAUCE</item>
+        <item>031814-EL SOCORRO</item>
+        <item>031815-EL ZAPOTE</item>
+        <item>031816-GUARAJAO NUEVO</item>
+        <item>031817-GUARAJAO VIEJO NO.1</item>
+        <item>031818-LA CRUCITA</item>
+        <item>031819-LA UNION DEL SUTE</item>
+        <item>031820-OJO DE AGUA</item>
+        <item>031821-POTRERILLOS</item>
+        <item>031822-RIO BONITO</item>
+        <item>031823-SAN ANTONIO DE LA CUCHILLA</item>
+        <item>031824-SAN IGNACIO</item>
+        <item>031825-SAN JOSE DE LA CUESTA</item>
+        <item>031826-SAN JOSE DE LOS CHAGUITES</item>
+        <item>031827-SANTA CRUZ DEL DULCE</item>
+        <item>031828-SANTA ROSITA</item>
+        <item>031829-TAUPAZ</item>
+        <item>031901-VILLA DE SAN ANTONIO</item>
+        <item>031902-FLORES</item>
+        <item>031903-LAS BOTIJAS</item>
+        <item>031904-LOS CIMIENTOS</item>
+        <item>031905-POTRERO GRANDE O QUEBRADA HOND</item>
+        <item>031906-PROTECCION</item>
+        <item>032001-LAS LAJAS</item>
+        <item>032002-BUEN PASTOR</item>
+        <item>032003-DULCE NOMBRE</item>
+        <item>032004-LA DALIA</item>
+        <item>032005-LAS PIÑAS</item>
+        <item>032007-NUEVA CONCEPCION</item>
+        <item>032008-SAN MANUEL DE LA PARRA</item>
+        <item>032009-SANTA ROSA</item>
+        <item>032010-VALLE SUCIO</item>
+        <item>032011-LA PROVIDENCIA</item>
+        <item>032101-TAULABE</item>
+        <item>032102-BUENA VISTA DE VARSOVIA</item>
+        <item>032103-BUENOS AIRES</item>
+        <item>032104-CAMALOTALES</item>
+        <item>032105-CERRO AZUL NO.1</item>
+        <item>032106-CHOLOMA</item>
+        <item>032107-EL CARRIZAL</item>
+        <item>032108-EL CERRON</item>
+        <item>032109-EL PALMICHAL O LA FATIMA</item>
+        <item>032110-JAITIQUE</item>
+        <item>032111-JARDINES</item>
+        <item>032112-LA ANGOSTURA</item>
+        <item>032113-LA MISION</item>
+        <item>032114-LA UNION DE SAN ANTONIO</item>
+        <item>032115-LAS ALEJANDRAS</item>
+        <item>032116-LAS CONCHAS</item>
+        <item>032117-LAS LAJAS</item>
+        <item>032118-MONTAÑUELAS</item>
+        <item>032119-OCOMAN</item>
+        <item>032120-QUEBRADITAS</item>
+        <item>032121-SAN ANTONIO DE YURE</item>
+        <item>032122-TERRERO BLANCO</item>
+        <item>032123-VACADILLA</item>
+        <item>032124-VARSOVIA</item>
+        <item>040101-SANTA ROSA DE COPAN</item>
+        <item>040102-CALZONTES</item>
+        <item>040103-CONAL TRINCHERAS</item>
+        <item>040104-EL CALLEJON</item>
+        <item>040105-EL CARRIZAL</item>
+        <item>040106-EL CONAL</item>
+        <item>040107-EL CORRALITO</item>
+        <item>040108-EL DERRUMBO</item>
+        <item>040109-EL PERICONAL</item>
+        <item>040110-EL PINALITO</item>
+        <item>040111-EL RODEO</item>
+        <item>040112-EL ROSARIO</item>
+        <item>040113-EL SALITRILLO</item>
+        <item>040114-EL ZAPOTE</item>
+        <item>040115-INCHUMA</item>
+        <item>040116-LAS DELICIAS O LAS PILAS</item>
+        <item>040117-LAS SANDIAS</item>
+        <item>040118-OROMILACA</item>
+        <item>040119-POTRERILLOS</item>
+        <item>040120-QUEZAILICA</item>
+        <item>040121-YARUSHIN</item>
+        <item>040201-CABAÑAS</item>
+        <item>040202-BARBASQUEADERO</item>
+        <item>040203-DESCOMBROS</item>
+        <item>040204-EL GUAYABO</item>
+        <item>040205-EL LLANO</item>
+        <item>040206-GUARUMAL</item>
+        <item>040207-INGENIOS</item>
+        <item>040208-LA CUMBRE DE SAN JUAN</item>
+        <item>040209-LA UNION DE SAN JUAN</item>
+        <item>040210-LAS JUNTAS NO.1</item>
+        <item>040211-LAS PEÑAS NO.2</item>
+        <item>040212-LOMAS DE LA ESPERANZA</item>
+        <item>040213-SAN ANTONIO DE MIRAMAR</item>
+        <item>040214-MIRASOLITO DE LA ESPERANZA</item>
+        <item>040215-MIRASOLITO DE RIO NEGRO</item>
+        <item>040216-MOTAGUA</item>
+        <item>040217-PINALITO</item>
+        <item>040218-PLATANARES</item>
+        <item>040219-PUEBLO VIEJO</item>
+        <item>040220-RIO NEGRO</item>
+        <item>040221-SAN JOSE DE MIRAMAR</item>
+        <item>040222-NUEVA ESPERANZA</item>
+        <item>040301-CONCEPCION</item>
+        <item>040302-ALDEA NUEVA</item>
+        <item>040303-BAÑADEROS</item>
+        <item>040304-BARBASCALES</item>
+        <item>040305-CANDELARIA</item>
+        <item>040306-LAS DELICIAS</item>
+        <item>040307-LAS PAVAS</item>
+        <item>040308-PIEDRAS COLORADAS</item>
+        <item>040309-PLAN GRANDE</item>
+        <item>040310-SAN JOSE DE LAS QUEBRADITAS</item>
+        <item>040311-SAN JUAN</item>
+        <item>040312-VERTIENTES</item>
+        <item>040401-COPAN RUINAS</item>
+        <item>040402-AGUA BUENA ARRIBA</item>
+        <item>040403-AGUA CALIENTE</item>
+        <item>040404-BARBASQUEADERO</item>
+        <item>040405-BOCA DEL MONTE</item>
+        <item>040406-BUENA VISTA</item>
+        <item>040407-BUENOS AIRES</item>
+        <item>040408-CARRIZALON</item>
+        <item>040409-CEIBA PRIMERA</item>
+        <item>040410-CEIBA SEGUNDA</item>
+        <item>040411-COLON JUBUCO</item>
+        <item>040412-CORRALITO</item>
+        <item>040413-EL CISNE</item>
+        <item>040414-EL CORDONCILLO</item>
+        <item>040415-EL CHICAL</item>
+        <item>040416-EL CHILAR O AGUA ZARCA</item>
+        <item>040417-EL CHISPAL</item>
+        <item>040418-EL ENCINO</item>
+        <item>040419-EL HORNO</item>
+        <item>040420-EL OCOTE</item>
+        <item>040421-EL PORVENIR PRIMERO</item>
+        <item>040422-EL PORVENIR SEGUNDO</item>
+        <item>040423-EL QUEBRACHO</item>
+        <item>040424-EL SALITRON</item>
+        <item>040425-EL TESORITO</item>
+        <item>040426-EL TRIUNFO</item>
+        <item>040427-HACIENDA GRANDE</item>
+        <item>040428-JUBUCON</item>
+        <item>040429-LA ESPERANZA</item>
+        <item>040430-LA ESTANZUELA</item>
+        <item>040431-LA LAGUNA</item>
+        <item>040432-LAS DELICIAS</item>
+        <item>040433-LAS FLORES</item>
+        <item>040434-LOS ARCOS</item>
+        <item>040435-LLANETILLOS</item>
+        <item>040436-MONTE DE LOS NEGROS</item>
+        <item>040437-MONTECRISTO</item>
+        <item>040438-NUEVA ARMENIA</item>
+        <item>040439-OSTUMAN</item>
+        <item>040440-SAN ANTONIO TAPESCO</item>
+        <item>040441-SAN CRISTOBAL</item>
+        <item>040442-SAN FRANCISCO</item>
+        <item>040443-SAN ISIDRO</item>
+        <item>040444-SAN RAFAEL</item>
+        <item>040445-SANTA CRUZ DE VIRGINIA</item>
+        <item>040446-SANTA ROSITA</item>
+        <item>040447-SESESMIL PRIMERO</item>
+        <item>040448-SESESMIL SEGUNDO</item>
+        <item>040449-UNION CEDRAL</item>
+        <item>040450-VIRGINIA NO.1</item>
+        <item>040501-CORQUIN</item>
+        <item>040502-AGUA CALIENTE</item>
+        <item>040503-BOCA DEL MONTE</item>
+        <item>040504-CAPUCAS</item>
+        <item>040505-EL CARRIZAL</item>
+        <item>040506-GUALME</item>
+        <item>040507-JIMILILE</item>
+        <item>040508-LAS CASITAS</item>
+        <item>040509-POTRERILLOS</item>
+        <item>040601-CUCUYAGUA</item>
+        <item>040602-CARTAGUA</item>
+        <item>040603-EL NISPERO</item>
+        <item>040604-EL PORTILLO</item>
+        <item>040605-EL TRANSITO</item>
+        <item>040606-GUALTAYA</item>
+        <item>040607-OJOS DE AGUA</item>
+        <item>040608-SAN JOSE DE LAS PALMAS</item>
+        <item>040701-DOLORES</item>
+        <item>040702-AGUA BUENA</item>
+        <item>040703-EL BALSAMO O LA CANTEADA</item>
+        <item>040704-EL CAMALOTE</item>
+        <item>040705-JOYAS GALANAS</item>
+        <item>040706-PASQUINGUAL</item>
+        <item>040707-PLAN DEL NARANJO</item>
+        <item>040708-SAN ANTONIO</item>
+        <item>040709-VEGA REDONDA O SAN ANTONIO DE FLORES</item>
+        <item>040710-YARUCONTE</item>
+        <item>040801-DULCE NOMBRE</item>
+        <item>040802-AGUA BUENA</item>
+        <item>040803-EL LIMON</item>
+        <item>040804-EL PRADO DE LA CRUZ</item>
+        <item>040805-EL ZAPOTE</item>
+        <item>040806-LAS CALERAS O EL HORNO</item>
+        <item>040807-SAN JERONIMO</item>
+        <item>040901-EL PARAISO</item>
+        <item>040902-AGUA BUENA</item>
+        <item>040903-BUENA VISTA</item>
+        <item>040904-EL CHARCON</item>
+        <item>040905-EL INFIERNILLO O NUEVO TRIUNFO</item>
+        <item>040906-EL LIMON</item>
+        <item>040907-EL MANACAL</item>
+        <item>040908-EL MANGUITO</item>
+        <item>040909-EL TESORO</item>
+        <item>040910-LA CUMBRE</item>
+        <item>040911-LA LAGUNA</item>
+        <item>040912-LA PEÑA</item>
+        <item>040913-LA PIMIENTA</item>
+        <item>040914-LA PLAYONA</item>
+        <item>040915-LAS DELICIAS DEL CHISPAL</item>
+        <item>040916-LAS FLORES</item>
+        <item>040917-LAS JUNTAS</item>
+        <item>040918-LAS ORQUIDEAS O EL ASTILLERO</item>
+        <item>040919-LIBERTAD NUEVA</item>
+        <item>040920-LIBERTAD VIEJA</item>
+        <item>040921-NARANJITO</item>
+        <item>040922-RIO LINDO</item>
+        <item>040923-SAN ANTONIO DE LAS CRUCITAS</item>
+        <item>040924-SAN CRISTOBAL</item>
+        <item>040925-SAN MARCOS</item>
+        <item>040926-SANTA CRUZ</item>
+        <item>040927-SANTA LUCIA</item>
+        <item>040928-JUBUCON</item>
+        <item>041001-FLORIDA</item>
+        <item>041002-ARRANCA BARBA</item>
+        <item>041003-BARRANCA GRITA</item>
+        <item>041004-BUENA VISTA</item>
+        <item>041005-BUENOS AIRES</item>
+        <item>041006-CONCEPCION DE LA BARRANCA</item>
+        <item>041007-EL DORMITORIO NO.2</item>
+        <item>041008-EL ESPIRITU SANTO</item>
+        <item>041009-EL JARDIN</item>
+        <item>041010-EL NUEVO PORVENIR</item>
+        <item>041011-EL PORVENIR O SAN MARCOS</item>
+        <item>041012-EL ROSARIO O ZOMPOPERO</item>
+        <item>041013-GRITADEROS</item>
+        <item>041014-LA CUMBRE DE LAS FLORES</item>
+        <item>041015-LA ELENCIA</item>
+        <item>041016-LA ELENCITA</item>
+        <item>041017-LA LAGUNA DE SAN JOSE</item>
+        <item>041018-LA RUIDOSA</item>
+        <item>041019-LA SIERRA</item>
+        <item>041020-LA UNION</item>
+        <item>041021-LAS CAÑAS</item>
+        <item>041022-LAS FLORES DE TECHIN</item>
+        <item>041023-LAS PALMERAS DE LA PLANADA</item>
+        <item>041024-LOS DUBONES</item>
+        <item>041025-LOS LESQUINES</item>
+        <item>041026-PASTOREADERO</item>
+        <item>041027-PLANCITOS O BERLIN</item>
+        <item>041028-POTRERILLOS</item>
+        <item>041029-PUEBLO NUEVO</item>
+        <item>041030-RASTROJITOS</item>
+        <item>041031-SAN ANTONIO</item>
+        <item>041032-SAN JOSE DE LA FRONTERA</item>
+        <item>041033-SAN LORENZO DE TECHIN</item>
+        <item>041034-SAN RAFAEL</item>
+        <item>041035-SIETE CUCHILLAS</item>
+        <item>041036-NUEVA SUYAPA</item>
+        <item>041037-LA CUMBRE DE LAS FLORES # 2 O LAS PILAS</item>
+        <item>041101-LA JIGUA</item>
+        <item>041102-ALDEA NUEVA</item>
+        <item>041103-CHEPELARES</item>
+        <item>041104-EL CAMPANARIO</item>
+        <item>041105-EL PUENTE GOASCORAN</item>
+        <item>041106-EL RINCON O SAN FRANCISCO</item>
+        <item>041107-LA COLMENA</item>
+        <item>041108-LA CUCHILLA DE PLATANARES</item>
+        <item>041109-LA NUEVA UNION</item>
+        <item>041110-PIEDRA PINTADA</item>
+        <item>041111-VALLE DE MAGDALENA O LA LAGUNA</item>
+        <item>041201-LA UNION</item>
+        <item>041202-AZACUALPA</item>
+        <item>041203-EL CORPUS</item>
+        <item>041204-EL JUNCO</item>
+        <item>041205-EL TRIGO</item>
+        <item>041206-LA ARENA</item>
+        <item>041207-LAS MINAS DE SAN ANDRES</item>
+        <item>041208-SAN MIGUEL</item>
+        <item>041209-SANTA CRUZ</item>
+        <item>041301-LA ENTRADA</item>
+        <item>041302-AGUA BUENA</item>
+        <item>041303-BUENOS AIRES</item>
+        <item>041304-CHALMECA</item>
+        <item>041305-JIMERICO O PIEDRA PARADA</item>
+        <item>041306-LA CUCHILLA</item>
+        <item>041307-LA UNION</item>
+        <item>041308-LOS POZOS</item>
+        <item>041309-LOS TANGOS</item>
+        <item>041310-NUEVA ARCADIA</item>
+        <item>041311-QUEBRADA SECA</item>
+        <item>041312-SAN ISIDRO</item>
+        <item>041313-SAN PABLO DEL ROBLE</item>
+        <item>041401-SAN AGUSTIN</item>
+        <item>041402-CERRO NEGRO</item>
+        <item>041403-EL DESCOMBRO</item>
+        <item>041404-GRANADILLAL</item>
+        <item>041501-SAN ANTONIO</item>
+        <item>041502-CONCEPCION</item>
+        <item>041503-EL OCOTON O VILLA NUEVA</item>
+        <item>041504-LA REINA</item>
+        <item>041505-LA ZUMBADORA</item>
+        <item>041506-LOMA ANCHA</item>
+        <item>041507-PEÑA BLANCA</item>
+        <item>041508-PUEBLO NUEVO</item>
+        <item>041509-QUEBRADA GRANDE</item>
+        <item>041510-QUEBRADA HONDA</item>
+        <item>041511-SAN JOAQUIN</item>
+        <item>041512-SAN LUIS</item>
+        <item>041513-SAN RAIMUNDO</item>
+        <item>041514-TIERRA COLORADA</item>
+        <item>041601-SAN JERONIMO</item>
+        <item>041602-AGUA ZARCA</item>
+        <item>041603-EL ROSARIO</item>
+        <item>041604-EL TRANSITO</item>
+        <item>041605-EL VOLCAN</item>
+        <item>041606-LA ESPERANZA</item>
+        <item>041607-SANTA ELENA</item>
+        <item>041608-TIERRA BLANCA</item>
+        <item>041701-SAN JOSE</item>
+        <item>041702-BUENA VISTA</item>
+        <item>041703-EL PORVENIR</item>
+        <item>041704-LAS DELICIAS</item>
+        <item>041705-PLAN DE SAN JERONIMO</item>
+        <item>041706-VIVISTORIO</item>
+        <item>041801-SAN JUAN DE OPOA</item>
+        <item>041802-LA COLATINA</item>
+        <item>041803-EL CONTAMAL</item>
+        <item>041804-EL COYOLAR</item>
+        <item>041805-EL LIMON</item>
+        <item>041806-EL PINAL</item>
+        <item>041807-EL PORTILLO</item>
+        <item>041808-LA CEBRATANA</item>
+        <item>041809-LA LAGUNA NEGRA</item>
+        <item>041811-LA MAJADA</item>
+        <item>041812-LAS SANDIAS</item>
+        <item>041813-LOS LINDEROS</item>
+        <item>041814-LOS POZOS</item>
+        <item>041815-SANTA ELENA</item>
+        <item>041816-TORIHUAQUE</item>
+        <item>041901-SAN NICOLAS</item>
+        <item>041902-BUENA VISTA O EL TABLON</item>
+        <item>041903-EL ACHIOTAL</item>
+        <item>041904-EL MODELO</item>
+        <item>041905-EL PORVENIR</item>
+        <item>041906-LA PUERTA</item>
+        <item>041907-NUEVA CONCEPCION DEL CARMEN</item>
+        <item>041908-CERRO REDONDO</item>
+        <item>041909-EL CARRIZAL</item>
+        <item>041910-SANTA TERESA</item>
+        <item>042001-SAN PEDRO</item>
+        <item>042002-CARTAGUA</item>
+        <item>042003-EL ZAPOTE</item>
+        <item>042004-LAS CAPUCAS</item>
+        <item>042005-SAN FCO. O EL EJIDO</item>
+        <item>042006-YAUNERA</item>
+        <item>042101-SANTA RITA</item>
+        <item>042102-AGUA CALIENTE</item>
+        <item>042103-BUENA VISTA</item>
+        <item>042104-CAMPAMENTO</item>
+        <item>042105-EL GOBIADO</item>
+        <item>042106-EL JARAL</item>
+        <item>042107-EL MIRADOR</item>
+        <item>042108-EL PLANON</item>
+        <item>042109-EL RAIZAL</item>
+        <item>042110-EL ROSARIO</item>
+        <item>042111-EL TAMARINDO</item>
+        <item>042112-GOTAS DE SANGRE</item>
+        <item>042113-LA CANTEADA</item>
+        <item>042114-LA CASITA</item>
+        <item>042115-LA LIBERTAD</item>
+        <item>042116-LA REFORMA</item>
+        <item>042117-LA UNION OTUTA</item>
+        <item>042118-LAS MEDIAS</item>
+        <item>042119-LAS MESAS</item>
+        <item>042120-LOS ACHIOTES</item>
+        <item>042121-LOS PLANES DE LA BREA</item>
+        <item>042122-LOS RANCHOS</item>
+        <item>042123-MINAS DE PIEDRAS</item>
+        <item>042124-MIRASOL</item>
+        <item>042125-PLAN GRANDE</item>
+        <item>042126-RASTROJITOS</item>
+        <item>042127-RIO AMARILLO</item>
+        <item>042128-RIO BLANCO</item>
+        <item>042129-SAN JERONIMO</item>
+        <item>042130-TIERRA FRIA NO.1</item>
+        <item>042131-TIERRA FRIA NO.2</item>
+        <item>042132-VARA DE COHETE</item>
+        <item>042201-TRINIDAD DE COPAN</item>
+        <item>042202-CERRO AZUL</item>
+        <item>042203-LA CUMBRE</item>
+        <item>042204-LEPAERITA</item>
+        <item>042205-QUEBRADITAS</item>
+        <item>042206-SAN JUAN DE PLANES</item>
+        <item>042301-VERACRUZ</item>
+        <item>042302-AGUA CALIENTE</item>
+        <item>042303-EL TRIUNFO</item>
+        <item>042304-SAN ANTONIO</item>
+        <item>050101-SAN PEDRO SULA</item>
+        <item>050102-ARTEMISALES</item>
+        <item>050103-BAÑADEROS O GUADALUPE</item>
+        <item>050104-BERLIN</item>
+        <item>050105-BUENA VISTA</item>
+        <item>050106-BUENOS AIRES DE BAÑADEROS</item>
+        <item>050107-CAMPO LA MESA</item>
+        <item>050108-COFRADIA</item>
+        <item>050109-COPEN</item>
+        <item>050110-CORRIENTES</item>
+        <item>050111-CHOTEPE</item>
+        <item>050112-EL CORBANO</item>
+        <item>050113-EL GALLITO O LAGUNA DE TEMBLADEROS</item>
+        <item>050114-EL PALMAR</item>
+        <item>050115-EL ZAPOTAL SUR</item>
+        <item>050116-FLOR DEL VALLE</item>
+        <item>050117-LA CEIBITA</item>
+        <item>050119-LA CUMBRE</item>
+        <item>050120-LA FORTUNA</item>
+        <item>050122-LA NEBLINA DE MIRAMAR</item>
+        <item>050123-LA PITA</item>
+        <item>050124-LA UNION DE RIO FRIO</item>
+        <item>050125-LA VIRTUD</item>
+        <item>050126-LAGUNA DE BAÑADEROS</item>
+        <item>050127-LAS BRISAS DEL MERENDON</item>
+        <item>050128-LAS DELICIAS</item>
+        <item>050129-LAS FLORES DE RIO FRIO</item>
+        <item>050130-LAS JUNTAS DE BAÑADEROS</item>
+        <item>050131-MAYEN</item>
+        <item>050133-NACO</item>
+        <item>050134-NUEVO EDEN</item>
+        <item>050135-PEÑITAS ABAJO</item>
+        <item>050136-PEÑITAS ARRIBA</item>
+        <item>050137-PERU</item>
+        <item>050138-SABANA DE JUCUTUMA</item>
+        <item>050139-SAN ANTONIO DE LAS PALMAS</item>
+        <item>050140-SAN ANTONIO DEL PERU O EL CARMEN</item>
+        <item>050141-SAN CRISTOBAL</item>
+        <item>050142-SAN JOSE DE CORTES</item>
+        <item>050143-SAN JOSE DEL BOQUERON</item>
+        <item>050144-SAN JOSE DE MANCHAGUALA</item>
+        <item>050145-SAN LORENZO</item>
+        <item>050146-SAN MARTIN</item>
+        <item>050147-SANTA ANA</item>
+        <item>050148-SANTA ELENA</item>
+        <item>050149-SANTA LUCIA</item>
+        <item>050150-SANTA MARGARITA O GUANALES</item>
+        <item>050151-SANTA MARTA</item>
+        <item>050152-SANTA TERESA DE BAÑADEROS</item>
+        <item>050153-TOMALA</item>
+        <item>050154-ZAPOTAL DEL NORTE</item>
+        <item>050155-ARMENTA</item>
+        <item>050156-EL RETIRO</item>
+        <item>050199-SAN PEDRO SULA URBANO</item>
+        <item>050201-CHOLOMA</item>
+        <item>050202-BANDERAS</item>
+        <item>050203-BUENOS AIRES DE CALIFORNIA</item>
+        <item>050204-EL BARREAL NO.1</item>
+        <item>050205-EL CHORRERON</item>
+        <item>050206-EL GUANACASTE</item>
+        <item>050207-EL HIGUERO</item>
+        <item>050208-EL OCOTILLO OCCIDENTAL</item>
+        <item>050209-EL PLANCHON DE LUPO VIEJO</item>
+        <item>050210-EL PORTILLO NO.1</item>
+        <item>050211-EL RANCHO</item>
+        <item>050212-EL TAMARINDO</item>
+        <item>050213-FINCA TIBOMBO</item>
+        <item>050214-LA BUESO</item>
+        <item>050215-LA CEIBITA</item>
+        <item>050216-LA DANTA NO.1</item>
+        <item>050217-LA DAVIS</item>
+        <item>050218-LA FUNEZ</item>
+        <item>050219-LA GALVEZ</item>
+        <item>050220-LA HICACA O SAN ISIDRO</item>
+        <item>050221-LA JUTOSA</item>
+        <item>050222-LA LECHUGA NO.1</item>
+        <item>050223-LA PROTECCION</item>
+        <item>050224-LAS DELICIAS</item>
+        <item>050225-LAS FLORES</item>
+        <item>050226-LOS CARAOS</item>
+        <item>050227-LOS PLANES</item>
+        <item>050228-MONTAÑUELA</item>
+        <item>050229-MONTERREY</item>
+        <item>050230-NUEVA FLORIDA</item>
+        <item>050231-POZA DEL RIEL</item>
+        <item>050232-QUEBRADA SECA</item>
+        <item>050234-RIO BIJAO</item>
+        <item>050235-RIO BLANQUITO</item>
+        <item>050236-SAN JOSE DE LOS LAURELES</item>
+        <item>050237-SAN MARCOS DE MAJAINE</item>
+        <item>050238-SANTA MARTA</item>
+        <item>050239-TICAMAYA</item>
+        <item>050240-VICTORIA DE CRISTALES</item>
+        <item>050241-WALER ADENTRO</item>
+        <item>050242-WALER BORDO</item>
+        <item>050301-OMOA</item>
+        <item>050302-BARBAS CHELES</item>
+        <item>050303-BARRA DE CUYAMEL</item>
+        <item>050304-BARRA DEL MOTAGUA</item>
+        <item>050305-CORINTO</item>
+        <item>050306-CORTESITO</item>
+        <item>050307-CUYAMEL</item>
+        <item>050308-CUYAMELITO</item>
+        <item>050309-CHACHAGUALA O COL. TEGUCIGALPITA</item>
+        <item>050310-CHIVANA</item>
+        <item>050311-EL PARAISO</item>
+        <item>050312-LA CAMISA</item>
+        <item>050313-LOS LAURELES</item>
+        <item>050314-MASCA</item>
+        <item>050315-MILLA CUATRO</item>
+        <item>050316-MILLA TRES</item>
+        <item>050317-MUCHILENA</item>
+        <item>050318-NUEVO TULIAN</item>
+        <item>050319-POTRERILLOS</item>
+        <item>050320-PUEBLO NUEVO</item>
+        <item>050321-RIO COTO</item>
+        <item>050322-RIO CHIQUITO</item>
+        <item>050323-SAN CARLOS</item>
+        <item>050324-SAN JOSE DE JALISCO</item>
+        <item>050325-SUYAPA O GARCIA</item>
+        <item>050326-TULIAN CAMPO</item>
+        <item>050327-TEGUCIGALPITA</item>
+        <item>050328-VERACRUZ</item>
+        <item>050401-PIMIENTA</item>
+        <item>050402-SANTIAGO</item>
+        <item>050501-POTRERILLOS</item>
+        <item>050502-BEJUCO</item>
+        <item>050503-BLANCO CASERIO</item>
+        <item>050504-EL CARACOL</item>
+        <item>050505-EL MANACAL</item>
+        <item>050506-HIGUERITO CENTRAL</item>
+        <item>050507-LA GARROBA</item>
+        <item>050508-SAN MIGUEL</item>
+        <item>050601-PUERTO CORTES</item>
+        <item>050602-AGUA CALIENTE</item>
+        <item>050603-BAJAMAR</item>
+        <item>050604-BARACOA</item>
+        <item>050605-BARRA DE CHAMELECON</item>
+        <item>050606-BULICHAMPA</item>
+        <item>050607-CALAN</item>
+        <item>050608-CEDROS</item>
+        <item>050609-COLONIA GRACIAS A DIOS</item>
+        <item>050610-CONCORDIA</item>
+        <item>050611-CHAMELECONCITO</item>
+        <item>050612-EL BALSAMO</item>
+        <item>050613-EL BUN</item>
+        <item>050614-EL CHILE</item>
+        <item>050615-EL NISPERO</item>
+        <item>050616-EL SEIS</item>
+        <item>050617-GUANACASTALES</item>
+        <item>050618-KELE KELE</item>
+        <item>050619-LA CAMPANA</item>
+        <item>050620-LA CAOBA</item>
+        <item>050621-LA JUNTA</item>
+        <item>050622-LA PITA</item>
+        <item>050623-LA SABANA</item>
+        <item>050624-LAS DELICIAS</item>
+        <item>050625-MANACALITO</item>
+        <item>050626-MEDINA ABAJO</item>
+        <item>050627-NISPERALES</item>
+        <item>050628-NOLA</item>
+        <item>050629-PALETO</item>
+        <item>050630-PUENTE ALTO</item>
+        <item>050631-PUENTE BARACOA</item>
+        <item>050632-RIO ARRIBA</item>
+        <item>050633-ROBLES</item>
+        <item>050634-SANTA INES</item>
+        <item>050635-SARAGUAYNA</item>
+        <item>050636-SAUCE</item>
+        <item>050637-TICAMAYA</item>
+        <item>050638-TRAVESIA</item>
+        <item>050701-SAN ANTONIO DE CORTES</item>
+        <item>050702-BUENOS AIRES</item>
+        <item>050703-EL AGUACATE</item>
+        <item>050704-EL ENCANTO</item>
+        <item>050705-EL PICACHO</item>
+        <item>050706-EL SITIO</item>
+        <item>050707-LA CALERA O BUENA VISTA</item>
+        <item>050708-LA CEIBITA</item>
+        <item>050709-LA CHACHONA O EL PARAISO</item>
+        <item>050710-LA MASICA</item>
+        <item>050711-LA PROVIDENCIA</item>
+        <item>050712-LAS CASITAS</item>
+        <item>050713-LAS COLMENAS</item>
+        <item>050714-LAS CRUCITAS</item>
+        <item>050715-LAS MARGARITAS</item>
+        <item>050716-LAS PALOMAS</item>
+        <item>050717-LOMA LARGA</item>
+        <item>050718-NUEVA GRANADA</item>
+        <item>050719-QUEBRADA SECA</item>
+        <item>050720-SAN JOSE DE CORTES O CORDONCILLOS</item>
+        <item>050721-SAN LUIS</item>
+        <item>050722-SANTA RITA</item>
+        <item>050723-VALLECITO</item>
+        <item>050801-SAN FRANCISCO DE YOJOA</item>
+        <item>050802-CAÑAVERAL</item>
+        <item>050803-LA VIRTUD</item>
+        <item>050804-SAN JOSE DE LOS HULES</item>
+        <item>050805-PEDERNALES</item>
+        <item>050806-QUEBRADA DE AGUA</item>
+        <item>050807-RIO LINDO</item>
+        <item>050808-SAN BUENAVENTURA</item>
+        <item>050809-TAPIQUILARES</item>
+        <item>050901-SAN MANUEL</item>
+        <item>050902-CAMPO CASENAVE</item>
+        <item>050903-COL. LA DEMOCRACIA</item>
+        <item>050904-COL. LA GUADALUPE</item>
+        <item>050905-COL. PINEDA NO.1</item>
+        <item>050906-COOWLE</item>
+        <item>050907-EL PLAN</item>
+        <item>050908-EL PORVENIR</item>
+        <item>050909-LA LIBERTAD O LAS LOMAS</item>
+        <item>050910-LA SABANA</item>
+        <item>050911-OMONITA</item>
+        <item>051001-SANTA CRUZ DE YOJOA</item>
+        <item>051002-ACHIOTAL</item>
+        <item>051003-AGUA AZUL RANCHO</item>
+        <item>051004-AGUA AZUL SIERRA</item>
+        <item>051005-BUENA VISTA</item>
+        <item>051006-CAMPO LLANO</item>
+        <item>051007-CAMPO OLIVO</item>
+        <item>051008-CASAS VIEJAS</item>
+        <item>051009-CONCEPCION</item>
+        <item>051010-CORDONCILLO</item>
+        <item>051011-EL CACAO</item>
+        <item>051012-EL CHAGUITON</item>
+        <item>051013-EL EDEN</item>
+        <item>051014-EL JARAL</item>
+        <item>051015-EL LLANO</item>
+        <item>051016-EL OLIVAR</item>
+        <item>051017-EL PLAN GRANDE</item>
+        <item>051018-EL TIGRE</item>
+        <item>051019-EL ZAPOTE</item>
+        <item>051020-LA BARCA</item>
+        <item>051022-LA CEIBITA</item>
+        <item>051023-LA DANTA</item>
+        <item>051024-LA ESTRIBANA</item>
+        <item>051025-LA GUAMA</item>
+        <item>051026-LA JUTOSA</item>
+        <item>051027-LA LAGUNA</item>
+        <item>051028-LA QUESERA O EL PARAISO</item>
+        <item>051029-LAS CAÑAS</item>
+        <item>051030-LAS DELICIAS</item>
+        <item>051031-LAS MARIAS</item>
+        <item>051032-LOS CAMINOS</item>
+        <item>051033-LOS MANGOS</item>
+        <item>051034-LOS NARANJOS</item>
+        <item>051035-MONTAÑA DE LA REINA</item>
+        <item>051036-MONTE VERDE</item>
+        <item>051037-NUEVA ESPERANZA</item>
+        <item>051038-OROPENDOLAS</item>
+        <item>051039-PEÑA BLANCA</item>
+        <item>051040-PINOLAPA</item>
+        <item>051041-PUEBLO QUEMADO</item>
+        <item>051042-SAN ANTONIO</item>
+        <item>051043-SAN ISIDRO</item>
+        <item>051044-SAN JOSE DE BALINCITO</item>
+        <item>051045-SAN LUIS DE ZACATALES</item>
+        <item>051046-SANTA ELENA</item>
+        <item>051047-TERRERITOS DE LA LIBERTAD</item>
+        <item>051048-VICTORIA</item>
+        <item>051049-YOJOA</item>
+        <item>051101-VILLANUEVA</item>
+        <item>051102-BUENOS AIRES</item>
+        <item>051103-CALAN</item>
+        <item>051104-CAMPO DOS CAMINOS</item>
+        <item>051105-EL CUABANO</item>
+        <item>051106-EL MARAÑON</item>
+        <item>051107-EL MILAGRO</item>
+        <item>051108-EL SAUCE</item>
+        <item>051109-GUARUMA DOS</item>
+        <item>051110-LA BOLSA</item>
+        <item>051111-LA CEBADILLA</item>
+        <item>051112-LA COROZA</item>
+        <item>051113-LA ESPERANZA O EL VENADO</item>
+        <item>051114-LAS CAÑADAS</item>
+        <item>051115-NUEVO CHAMELECON</item>
+        <item>051116-PALOS BLANCOS</item>
+        <item>051117-PUEBLO NUEVO</item>
+        <item>051118-SAN FRANCISCO O EL COYOLAR</item>
+        <item>051119-SAN ISIDRO</item>
+        <item>051120-SANTA ANA DE CHASNIGUA</item>
+        <item>051201-LA LIMA</item>
+        <item>051202-CRUZ DE VALENCIA</item>
+        <item>051203-EL PARAISO</item>
+        <item>051204-FLOR DE ORIENTE</item>
+        <item>060101-CHOLUTECA</item>
+        <item>060102-AGUA CALIENTE DE LINACA</item>
+        <item>060103-COPAL ABAJO</item>
+        <item>060104-COPAL ARRIBA</item>
+        <item>060105-EL APINTAL</item>
+        <item>060106-EL CARRIZO</item>
+        <item>060107-EL PALENQUE</item>
+        <item>060109-EL PILLADO</item>
+        <item>060110-EL TERRERO BLANCO</item>
+        <item>060111-EL TRAPICHE</item>
+        <item>060112-FRAY LAZARO</item>
+        <item>060113-HATO NUEVO</item>
+        <item>060114-LA CASTAÑA O SANTA CRUZ DE YA</item>
+        <item>060115-LA PICOTA</item>
+        <item>060116-LINACA</item>
+        <item>060117-MADRIAL</item>
+        <item>060118-PAVANA</item>
+        <item>060119-SAN JOSE DE LA LANDA</item>
+        <item>060120-SAN MARTIN</item>
+        <item>060121-SAN RAFAEL</item>
+        <item>060122-SAN RAMON ABAJO</item>
+        <item>060123-SAN RAMON ARRIBA</item>
+        <item>060124-SANTA ROSA DE SAMPILE</item>
+        <item>060125-TAPAIRE</item>
+        <item>060126-TAPATOCA</item>
+        <item>060201-APACILAGUA</item>
+        <item>060202-LA ALBARRADA</item>
+        <item>060203-LA GARZA</item>
+        <item>060204-LOS LIMONES</item>
+        <item>060205-LOS MEZCALES</item>
+        <item>060206-MONTE GRANDE</item>
+        <item>060207-SAN FELIPE</item>
+        <item>060208-SOMUINA</item>
+        <item>060301-CONCEPCION DE MARIA</item>
+        <item>060302-CERRO COLORADO</item>
+        <item>060303-EL AGUACATAL</item>
+        <item>060304-EL CACAO</item>
+        <item>060305-EL CERRON</item>
+        <item>060306-EL JICARITO</item>
+        <item>060307-EL PACON</item>
+        <item>060308-EL PALITO</item>
+        <item>060309-EL PAPALON</item>
+        <item>060310-EL PEÑON</item>
+        <item>060311-EL POTRERITO</item>
+        <item>060312-EL SUNZAPOTE</item>
+        <item>060313-EL TEJAR</item>
+        <item>060314-EL TERRERO</item>
+        <item>060315-GUANACASTE</item>
+        <item>060316-LA GUARUMA</item>
+        <item>060317-LA JOYA</item>
+        <item>060318-LA MAJADA</item>
+        <item>060319-LA MONTAÑA</item>
+        <item>060320-LA PABELLONA</item>
+        <item>060321-LA PLOMOSA NO.2</item>
+        <item>060322-LA VETA</item>
+        <item>060323-LAS CHAPERNAS</item>
+        <item>060324-LAS MESAS</item>
+        <item>060325-LAS PINTADAS</item>
+        <item>060326-LOS ESPAVELES</item>
+        <item>060327-LOS LLANITOS</item>
+        <item>060328-LOS MATAPALOS</item>
+        <item>060329-NANCE DULCE</item>
+        <item>060330-PALO SOLO NO.1</item>
+        <item>060331-SANTA ROSA</item>
+        <item>060332-SAN BENITO NUEVO</item>
+        <item>060333-SAN BENITO VIEJO O ABAJO</item>
+        <item>060401-DUYURE</item>
+        <item>060402-ARADO GRANDE</item>
+        <item>060403-EL CARRIZAL PRIETO</item>
+        <item>060404-EL HORNO</item>
+        <item>060405-LIRAQUI</item>
+        <item>060406-TIERRA COLORADA</item>
+        <item>060501-EL CORPUS</item>
+        <item>060502-AGUA FRIA</item>
+        <item>060503-CALAIRE</item>
+        <item>060504-CAYANINI</item>
+        <item>060505-EL BALDOQUIN</item>
+        <item>060506-EL BANQUITO</item>
+        <item>060507-EL DESPOBLADO</item>
+        <item>060508-EL NARANJAL</item>
+        <item>060509-EL PEDREGAL</item>
+        <item>060510-EL ZAPOTAL</item>
+        <item>060511-LA ALBARRADA</item>
+        <item>060512-LA FORTUNA</item>
+        <item>060513-LA GALERA</item>
+        <item>060514-SAN ISIDRO</item>
+        <item>060515-SAN JUAN ABAJO</item>
+        <item>060516-SAN JUAN ARRIBA</item>
+        <item>060517-SAN JUDAS</item>
+        <item>060601-EL TRIUNFO</item>
+        <item>060602-AZACUALPA</item>
+        <item>060603-EL CEDRITO</item>
+        <item>060604-EL PERICO</item>
+        <item>060605-LA CALERA</item>
+        <item>060606-LAS HACIENDAS</item>
+        <item>060607-NANCE DULCE</item>
+        <item>060608-RIO GRANDE NO.2</item>
+        <item>060609-SAN JUAN</item>
+        <item>060610-SANTA MARIA</item>
+        <item>060611-SANTA TERESA ARRIBA</item>
+        <item>060701-MARCOVIA</item>
+        <item>060702-CEDEÑO</item>
+        <item>060703-COLONIA BUENA VISTA</item>
+        <item>060704-EL BOTADERO</item>
+        <item>060705-EL OBRAJE</item>
+        <item>060706-EL PAPALON</item>
+        <item>060707-GUAPINOL</item>
+        <item>060708-LA GERVACIA</item>
+        <item>060709-LA JOYADA</item>
+        <item>060710-LAS ARENAS</item>
+        <item>060711-LAS POZAS</item>
+        <item>060712-LOS LLANITOS</item>
+        <item>060713-LOS MANGLES</item>
+        <item>060714-MONJARAS</item>
+        <item>060715-PIEDRA DE AGUA</item>
+        <item>060716-PUEBLO NUEVO</item>
+        <item>060717-PUNTA RATON</item>
+        <item>060718-SAN JOSE DE LAS CONCHAS</item>
+        <item>060719-SAN JUAN BOSCO NO.2</item>
+        <item>060720-SANTA CRUZ</item>
+        <item>060721-TAMBOR ABAJO</item>
+        <item>060801-MOROLICA</item>
+        <item>060802-AGUALCAGUAIRE</item>
+        <item>060803-CERCO DE PIEDRA</item>
+        <item>060804-EL POTRERO</item>
+        <item>060805-LA ENEA</item>
+        <item>060806-SAN MARQUITOS</item>
+        <item>060901-NAMASIGUE</item>
+        <item>060902-SAN BERNARDO</item>
+        <item>060903-SAN FRANCISCO</item>
+        <item>060904-SAN ISIDRO</item>
+        <item>060905-SAN JERONIMO</item>
+        <item>060906-SAN RAFAEL</item>
+        <item>060907-SANTA IRENE</item>
+        <item>060908-TIERRA BLANCA</item>
+        <item>060909-YOROLAN</item>
+        <item>061001-OROCUINA</item>
+        <item>061002-CONCEPCION</item>
+        <item>061003-EL BARREAL</item>
+        <item>061004-MAL PASO</item>
+        <item>061005-SAN ANDRES</item>
+        <item>061006-SAN JOSE</item>
+        <item>061007-SANTA ANA</item>
+        <item>061008-SANTA CRUZ</item>
+        <item>061009-SANTA LUCIA</item>
+        <item>061101-PESPIRE</item>
+        <item>061102-CACAUTARE</item>
+        <item>061103-CONCEPCION EL BRASILAR</item>
+        <item>061104-EL ESPINAL</item>
+        <item>061105-EL GUAYABO</item>
+        <item>061106-ESQUIMAY ARRIBA O LA ERMITA</item>
+        <item>061107-MARILICA</item>
+        <item>061108-SAN ANTONIO DE PADUA</item>
+        <item>061109-SAN JUAN BAUTISTA</item>
+        <item>061110-SAN JUAN BOSCO</item>
+        <item>061111-EL CHAPARRAL O MARILICA</item>
+        <item>061201-SAN ANTONIO DE FLORES</item>
+        <item>061202-EL JICARO</item>
+        <item>061203-LAS PLAYITAS</item>
+        <item>061204-MORAMULCA</item>
+        <item>061205-EL REBALSE</item>
+        <item>061206-LAS CAÑAS</item>
+        <item>061207-LAS TROJAS</item>
+        <item>061301-SAN ISIDRO</item>
+        <item>061302-EL CAULOTE</item>
+        <item>061303-EL OBRAJITO</item>
+        <item>061304-SONIT</item>
+        <item>061401-SAN JOSE</item>
+        <item>061402-CORAYCITO</item>
+        <item>061403-EL CACAO</item>
+        <item>061404-EL MACUELIZO</item>
+        <item>061405-LA CRUCITA</item>
+        <item>061406-LAS MARIAS</item>
+        <item>061501-SAN MARCOS DE COLON</item>
+        <item>061502-CACAMUYA</item>
+        <item>061503-CAIRE</item>
+        <item>061504-COMALI</item>
+        <item>061505-EL INVENTARIO</item>
+        <item>061506-EL OJO DE AGUA</item>
+        <item>061507-EL RODEO</item>
+        <item>061508-JAYACAYAN</item>
+        <item>061509-LA JOYA</item>
+        <item>061510-LA QUESERA</item>
+        <item>061511-LAS MESAS DE COLON</item>
+        <item>061512-LOS ENCUENTROS</item>
+        <item>061513-LOS MAICILLALES</item>
+        <item>061514-OYOTO</item>
+        <item>061515-SAN DIEGO</item>
+        <item>061516-SAN FRANCISCO</item>
+        <item>061517-SAN JUAN DE DUYUSUPO</item>
+        <item>061518-SANTA RITA</item>
+        <item>061601-SANTA ANA DE YUSGUARE</item>
+        <item>061602-CERCO DE PIEDRA</item>
+        <item>061603-EL CERRO</item>
+        <item>061604-LA TAJEADA</item>
+        <item>061605-PUEBLO NUEVO</item>
+        <item>061606-TABLONES ABAJO</item>
+        <item>061607-TABLONES ARRIBA</item>
+        <item>070101-YUSCARAN</item>
+        <item>070102-EL BARRO</item>
+        <item>070103-EL CORDONCILLO</item>
+        <item>070104-EL CHAGUITE DE ORIENTE</item>
+        <item>070105-EL CHAGUITE SUR</item>
+        <item>070106-EL OCOTAL</item>
+        <item>070107-EL PERICON</item>
+        <item>070108-EL RANCHO DEL OBISPO</item>
+        <item>070109-EL ROBLEDAL</item>
+        <item>070110-EL RODEO</item>
+        <item>070111-EL TEÑIDERO</item>
+        <item>070112-EL ZARZAL</item>
+        <item>070113-LA CIENEGA</item>
+        <item>070114-LA INSULA</item>
+        <item>070115-LAS CRUCITAS</item>
+        <item>070116-LOS LAINEZ</item>
+        <item>070117-OJO DE AGUA</item>
+        <item>070118-SABANA REDONDA</item>
+        <item>070201-ALAUCA</item>
+        <item>070202-BUENA VISTA</item>
+        <item>070203-CHAGUITE GRANDE</item>
+        <item>070204-CHINAMPA O CHILAMPA</item>
+        <item>070205-EL JICARO</item>
+        <item>070206-EL MATAPALO</item>
+        <item>070207-EL PEDREGALITO</item>
+        <item>070208-LA CHICHIGUA</item>
+        <item>070209-LA JAGUA</item>
+        <item>070210-LA MANZANILLA</item>
+        <item>070211-LAS LIMAS</item>
+        <item>070212-LAS MANOS</item>
+        <item>070213-LOS MATASANOS DE RIO ARRIBA</item>
+        <item>070214-SAN ANTONIO</item>
+        <item>070301-DANLI</item>
+        <item>070302-AGUA FRIA</item>
+        <item>070303-APALI</item>
+        <item>070304-ARAULI</item>
+        <item>070305-BAÑADEROS</item>
+        <item>070306-BUENA ESPERANZA DE AZABACHE</item>
+        <item>070307-CHIRINOS</item>
+        <item>070308-EL ARENAL</item>
+        <item>070309-EL BARRO</item>
+        <item>070310-EL CHICHICASTE</item>
+        <item>070311-EL MAGUELAR</item>
+        <item>070312-EL MATASANO</item>
+        <item>070313-EL OBRAJE</item>
+        <item>070314-EL OLINGO O EL PORVENIR</item>
+        <item>070315-EL PATASTE</item>
+        <item>070316-EL PESCADERO</item>
+        <item>070317-EL PORVENIR</item>
+        <item>070318-EL POZO BENDITO</item>
+        <item>070319-EL TABLON</item>
+        <item>070320-EL ZAMORANO</item>
+        <item>070321-EL ZAPOTILLO</item>
+        <item>070322-EL ZARZAL</item>
+        <item>070323-GUALIQUEME</item>
+        <item>070324-JUTIAPA</item>
+        <item>070325-LA LIMA</item>
+        <item>070326-LA LODOSA</item>
+        <item>070327-LA TRINIDAD O SARTENEJAS</item>
+        <item>070328-LAS ANIMAS</item>
+        <item>070329-LINACA</item>
+        <item>070330-PALMILLAS</item>
+        <item>070331-QUEBRADA ARRIBA U OCULI</item>
+        <item>070332-QUEBRADA LARGA</item>
+        <item>070333-SAN DIEGO</item>
+        <item>070334-SAN JULIAN</item>
+        <item>070335-SAN MARCOS ABAJO</item>
+        <item>070336-SANTA MARIA</item>
+        <item>070338-VILLA SANTA</item>
+        <item>070401-EL PARAISO</item>
+        <item>070402-CUYALI</item>
+        <item>070403-DIFICULTADES</item>
+        <item>070404-GRANADILLOS</item>
+        <item>070405-LA UNION</item>
+        <item>070406-LAS CAÑAS</item>
+        <item>070407-LAS FLORES</item>
+        <item>070408-LAS MANOS</item>
+        <item>070409-LAS SELVAS</item>
+        <item>070410-LOS TERRONES</item>
+        <item>070411-LOS VOLCANES</item>
+        <item>070412-SAN ANTONIO DE CONCHAGUA</item>
+        <item>070413-SANTA CRUZ</item>
+        <item>070501-GUINOPE</item>
+        <item>070502-ARRAYANES</item>
+        <item>070503-CASITAS</item>
+        <item>070504-GALERAS</item>
+        <item>070505-LIQUIDAMBAR</item>
+        <item>070506-LAVANDEROS</item>
+        <item>070507-MANSARAGUA</item>
+        <item>070508-PACAYAS</item>
+        <item>070509-SANTA ROSA</item>
+        <item>070510-SILISGUALAGUA</item>
+        <item>070601-JACALEAPA</item>
+        <item>070602-LA CHORRERA</item>
+        <item>070603-LOMAS LIMPIAS</item>
+        <item>070701-LIURE</item>
+        <item>070702-ASUNCION</item>
+        <item>070703-BOCUIRE</item>
+        <item>070704-MONTE GRANDE</item>
+        <item>070705-SAN RAMON</item>
+        <item>070706-SANTA CRUZ</item>
+        <item>070801-MOROCELI</item>
+        <item>070802-BUENA VISTA</item>
+        <item>070803-EL CHILE O QUEBRADA GRANDE</item>
+        <item>070804-EL CHILITO</item>
+        <item>070805-EL LLANO</item>
+        <item>070806-EL PLAN</item>
+        <item>070807-EL RETIRO</item>
+        <item>070808-EL SUYATE</item>
+        <item>070809-GUADALAJARA</item>
+        <item>070810-HOYA GRANDE</item>
+        <item>070811-LOS LIMONES</item>
+        <item>070812-LOS LIQUIDAMBOS</item>
+        <item>070813-LOS POZOS</item>
+        <item>070814-MATA DE PLATANO</item>
+        <item>070815-VALLE ARRIBA</item>
+        <item>070901-OROPOLI</item>
+        <item>070902-CHAGUITE GRANDE</item>
+        <item>070903-EL BARRO</item>
+        <item>070904-EL CORRALITO</item>
+        <item>070905-EL DESHECHO</item>
+        <item>070906-EL JICARO</item>
+        <item>070907-LA MESA</item>
+        <item>070908-LAS CASITAS</item>
+        <item>070909-LAS CRUCITAS</item>
+        <item>070910-OREALI</item>
+        <item>070911-SAMAYARE</item>
+        <item>071001-POTRERILLOS</item>
+        <item>071002-EL JUNQUILLO</item>
+        <item>071003-EL LIMONCILLO</item>
+        <item>071004-LAS CRUCITAS</item>
+        <item>071005-LAS DELICIAS</item>
+        <item>071006-LOMA DE ENMEDIO</item>
+        <item>071007-LOMANILLOS</item>
+        <item>071008-SABANA REDONDA</item>
+        <item>071101-SAN ANTONIO DE FLORES</item>
+        <item>071102-APALIPI</item>
+        <item>071103-COMUNIDAD</item>
+        <item>071104-EL CHAGUITE</item>
+        <item>071105-EL ESPINAL</item>
+        <item>071106-MANDASTA</item>
+        <item>071107-ORLICA</item>
+        <item>071108-QUEBRADA GRANDE</item>
+        <item>071109-TOLOBRITO</item>
+        <item>071201-SAN LUCAS</item>
+        <item>071202-APALIPI</item>
+        <item>071203-CANDELARIA</item>
+        <item>071204-JUNACATAL</item>
+        <item>071205-LA MONTAÑITA</item>
+        <item>071206-LOS QUEBRACHOS</item>
+        <item>071207-MACTUCA</item>
+        <item>071208-NAVIJUPE</item>
+        <item>071209-SURULE</item>
+        <item>071210-TAPAHUASCA</item>
+        <item>071301-SAN MATIAS</item>
+        <item>071302-CORRAL FALSO</item>
+        <item>071303-EL ESPINITO</item>
+        <item>071304-EL GUAYACAN</item>
+        <item>071305-EL ROBLEDAL</item>
+        <item>071306-LA CONCEPCION</item>
+        <item>071307-LAS TUNAS</item>
+        <item>071308-SAN JERONIMO</item>
+        <item>071309-SANTA ROSA</item>
+        <item>071401-SOLEDAD</item>
+        <item>071402-LA PAZ O RODEITO</item>
+        <item>071403-LA VICTORIA</item>
+        <item>071404-LAS MARIAS</item>
+        <item>071405-LOS ALPES</item>
+        <item>071406-SAN DIEGO</item>
+        <item>071407-SAN MARCOS</item>
+        <item>071408-SANTO DOMINGO</item>
+        <item>071501-TEUPASENTI</item>
+        <item>071502-AGUA FRIA</item>
+        <item>071503-BAÑADEROS</item>
+        <item>071504-EL CANTON</item>
+        <item>071505-EL CORRALITO</item>
+        <item>071506-EL CHELON NO.1</item>
+        <item>071507-EL CHILITO</item>
+        <item>071508-EL ENCINO</item>
+        <item>071509-EL JUTE</item>
+        <item>071510-EL OCOTAL</item>
+        <item>071511-EL RIITO NO.1</item>
+        <item>071512-EL RIITO NO.2</item>
+        <item>071513-EL RIITO DEL ESQUILLAL</item>
+        <item>071514-EL RODEO</item>
+        <item>071515-EL SUYATAL</item>
+        <item>071516-ESCOBAS AMARILLAS</item>
+        <item>071517-LA AGUJA</item>
+        <item>071518-LA CEBADILLA</item>
+        <item>071519-LA COMUNIDAD</item>
+        <item>071520-LA GRANJA</item>
+        <item>071521-LA LAGUNA NO.1</item>
+        <item>071522-LA LAGUNA NO.2</item>
+        <item>071523-LA ZACATERA</item>
+        <item>071524-LAS CORTINAS</item>
+        <item>071525-LAS DELICIAS</item>
+        <item>071526-LAS FLORES</item>
+        <item>071527-LAS UVAS</item>
+        <item>071528-LOS PLANCITOS NO.1</item>
+        <item>071529-PASO HONDO</item>
+        <item>071530-PEDRIOS</item>
+        <item>071531-PEÑA BLANCA</item>
+        <item>071532-POTRERILLOS</item>
+        <item>071533-QUEBRADA DEL ZAPOTILLO</item>
+        <item>071534-SALADINO NO.1</item>
+        <item>071535-SAN ISIDRO</item>
+        <item>071536-SAN JOSE DEL POTRERO</item>
+        <item>071537-SANTA CRUZ</item>
+        <item>071538-SANTA ROSA NO.1</item>
+        <item>071539-SANTA ROSA NO.2</item>
+        <item>071601-TEXIGUAT</item>
+        <item>071602-ASUNCION</item>
+        <item>071603-EL ZAPOTAL</item>
+        <item>071604-GUINOPITO</item>
+        <item>071605-JAMAYUPE</item>
+        <item>071606-RIO ARRIBA</item>
+        <item>071607-SAN LORENZO</item>
+        <item>071608-SAN SEBASTIAN</item>
+        <item>071701-VADO ANCHO</item>
+        <item>071702-APAUSUPO</item>
+        <item>071703-LAS UVILLAS</item>
+        <item>071704-SAN JERONIMO DE VADO ANCHO</item>
+        <item>071705-TOLOBRE</item>
+        <item>071801-YAUYUPE</item>
+        <item>071802-EL CHAGUITILLO</item>
+        <item>071803-EL HORNITO</item>
+        <item>071901-TROJES</item>
+        <item>071902-ARENALES</item>
+        <item>071903-CAPIRE</item>
+        <item>071904-CIFUENTES</item>
+        <item>071905-EL GUINEO</item>
+        <item>071906-TALPACHI</item>
+        <item>071907-YAMALES</item>
+        <item>080101-DISTRITO CENTRAL</item>
+        <item>080102-AMARATECA</item>
+        <item>080103-AZACUALPA</item>
+        <item>080104-CARPINTERO</item>
+        <item>080105-CERRO GRANDE</item>
+        <item>080106-COA ABAJO</item>
+        <item>080107-COA ARRIBA</item>
+        <item>080108-COFRADIA</item>
+        <item>080109-CONCEPCION DE RIO GRANDE</item>
+        <item>080110-EL NARANJAL</item>
+        <item>080111-EL PILIGUIN</item>
+        <item>080112-EL TIZATILLO</item>
+        <item>080113-GERMANIA</item>
+        <item>080114-GUANGOLOLO</item>
+        <item>080115-GUASCULILE</item>
+        <item>080116-JACALEAPA</item>
+        <item>080117-JUTIAPA</item>
+        <item>080118-LA CALERA</item>
+        <item>080119-LA CUESTA NO.2</item>
+        <item>080120-LA MONTAÑITA</item>
+        <item>080121-LA SABANA</item>
+        <item>080122-LA VENTA</item>
+        <item>080123-LAS CASITAS</item>
+        <item>080124-LAS FLORES</item>
+        <item>080125-LAS TAPIAS</item>
+        <item>080126-LOS JUTES</item>
+        <item>080127-MATEO</item>
+        <item>080128-MONTE REDONDO</item>
+        <item>080129-NUEVA ALDEA</item>
+        <item>080130-RIO ABAJO</item>
+        <item>080131-RIO HONDO</item>
+        <item>080132-SAN FRANCISCO DE SOROGUARA</item>
+        <item>080133-SAN JUANCITO</item>
+        <item>080134-SAN JUAN DEL RANCHO</item>
+        <item>080135-SAN JUAN DEL RIO GRANDE</item>
+        <item>080136-SAN MATIAS</item>
+        <item>080137-SANTA CRUZ ABAJO</item>
+        <item>080138-SANTA CRUZ ARRIBA</item>
+        <item>080139-SANTA ROSA</item>
+        <item>080140-SAN JOSE DE SOROGUARA</item>
+        <item>080141-TAMARA</item>
+        <item>080142-VILLA NUEVA</item>
+        <item>080143-YAGUACIRE</item>
+        <item>080144-ZAMBRANO</item>
+        <item>080199-DISTRITO CENTRAL URBANO</item>
+        <item>080201-ALUBAREN</item>
+        <item>080202-LA CONCEPCION</item>
+        <item>080203-LOS TABLONES</item>
+        <item>080204-RIO ARRIBA</item>
+        <item>080301-CEDROS</item>
+        <item>080302-AGALTECA</item>
+        <item>080303-CEDROS ABAJO</item>
+        <item>080304-EL GUANTE</item>
+        <item>080305-EL SUYATAL</item>
+        <item>080306-EL TABLON</item>
+        <item>080307-LA GUADALUPE</item>
+        <item>080308-LAS ANIMAS</item>
+        <item>080309-MATA DE PLATANO</item>
+        <item>080310-PUEBLO NUEVO</item>
+        <item>080311-SIRIA</item>
+        <item>080312-TAMARINDO</item>
+        <item>080401-CURAREN</item>
+        <item>080402-CARTAGUA</item>
+        <item>080403-CUNIMISCA</item>
+        <item>080404-EL PORTILLO DE SAN JUAN BOSCO</item>
+        <item>080405-EL PORVENIR</item>
+        <item>080406-EMITUCA</item>
+        <item>080407-HATO VIEJO</item>
+        <item>080408-LA COSTITA</item>
+        <item>080409-LA MANZANILLA</item>
+        <item>080410-LA VICTORINA</item>
+        <item>080411-LODO NEGRO</item>
+        <item>080412-MACANCICRE</item>
+        <item>080413-MANDASTA</item>
+        <item>080414-SAN JOSE DEL POTRERO</item>
+        <item>080415-SAN MARCOS</item>
+        <item>080416-TONCONTIN</item>
+        <item>080501-EL PORVENIR</item>
+        <item>080502-EL AGUA CALIENTE</item>
+        <item>080503-EL ESCANITO</item>
+        <item>080504-EL GUANTILLO</item>
+        <item>080505-EL PEDERNAL</item>
+        <item>080506-EL TERRERO</item>
+        <item>080507-GUAYABILLAS</item>
+        <item>080508-PUEBLO NUEVO</item>
+        <item>080601-GUAIMACA</item>
+        <item>080602-CASAS VIEJAS</item>
+        <item>080603-CERRO BONITO</item>
+        <item>080604-EL GUANACASTE</item>
+        <item>080605-EL TOMATE</item>
+        <item>080606-GONES</item>
+        <item>080607-LA ASERRADERA</item>
+        <item>080608-LA LAGUNA NO.1</item>
+        <item>080609-RIO ABAJO</item>
+        <item>080610-SABANA GRANDE</item>
+        <item>080611-SAN JOSE</item>
+        <item>080612-SAN MARCOS</item>
+        <item>080613-SANQUIN</item>
+        <item>080701-LA LIBERTAD</item>
+        <item>080702-EL PEDRERO</item>
+        <item>080703-QUEBRACHAL</item>
+        <item>080801-LA VENTA</item>
+        <item>080802-EL PORVENIR</item>
+        <item>080803-OJOS DE AGUA</item>
+        <item>080804-OPIMUCA</item>
+        <item>080805-SAN JORGE</item>
+        <item>080901-LEPATERIQUE</item>
+        <item>080902-CULGUAQUE</item>
+        <item>080903-EL CARRIZAL</item>
+        <item>080904-EL ESPINO</item>
+        <item>080905-HIERBABUENA</item>
+        <item>080906-LA BREA</item>
+        <item>080907-MULHUACA O EL LLANO</item>
+        <item>081001-MARAITA</item>
+        <item>081002-COATO</item>
+        <item>081003-EL CHAGUITE</item>
+        <item>081004-EL RETIRO</item>
+        <item>081005-LA UNION</item>
+        <item>081006-LIZAPA</item>
+        <item>081007-REDUCTO</item>
+        <item>081008-SAN PEDRO</item>
+        <item>081009-TERRERO BLANCO</item>
+        <item>081010-TERRERO PRIETO</item>
+        <item>081101-MARALE</item>
+        <item>081102-EL CARRIZAL</item>
+        <item>081103-EL PANAL</item>
+        <item>081104-NUEVO PARAISO</item>
+        <item>081105-LA ESPERANZA O EL CACAO</item>
+        <item>081106-LA TRAVESIA</item>
+        <item>081107-LAS CASITAS</item>
+        <item>081108-LAS LAGUNAS</item>
+        <item>081109-LOS NARANJOS O MURRANGA</item>
+        <item>081110-LOS PLANES</item>
+        <item>081111-RIO ABAJO</item>
+        <item>081201-NUEVA ARMENIA</item>
+        <item>081202-ADURASTA</item>
+        <item>081203-BARAJANA</item>
+        <item>081204-CUESTA CHIQUITA</item>
+        <item>081205-EL PLATANAL</item>
+        <item>081206-LAS PIÑUELAS</item>
+        <item>081207-SALALICA</item>
+        <item>081301-OJOJONA</item>
+        <item>081302-ARAGUA</item>
+        <item>081303-EL AGUACATAL</item>
+        <item>081304-EL CIRCULO</item>
+        <item>081305-EL JICARO</item>
+        <item>081306-GUASUCARAN</item>
+        <item>081307-GUERISNE</item>
+        <item>081308-SANTA CRUZ</item>
+        <item>081309-SARACARAN</item>
+        <item>081310-SURCOS DE CAÑA</item>
+        <item>081401-ORICA</item>
+        <item>081402-EL ENCINO</item>
+        <item>081403-EL NANCE</item>
+        <item>081404-GUATEMALITA</item>
+        <item>081405-LA JOYA DEL QUEBRACHO</item>
+        <item>081406-SAN FRANCISCO DE ORICA</item>
+        <item>081407-SAN MARQUITOS</item>
+        <item>081501-REITOCA</item>
+        <item>081502-AZACUALPA</item>
+        <item>081503-CERRO DEL SEÑOR</item>
+        <item>081504-EL RODEO</item>
+        <item>081505-LA GUADALUPE</item>
+        <item>081506-SABANETAS</item>
+        <item>081507-SAN CARLOS</item>
+        <item>081508-SAN JOSE DEL NARANJO</item>
+        <item>081509-SANTA CRUZ</item>
+        <item>081510-SARACARAN</item>
+        <item>081601-SABANAGRANDE</item>
+        <item>081602-APASINIGUA</item>
+        <item>081603-DULCE NOMBRE</item>
+        <item>081604-EL CALVARIO NO.1</item>
+        <item>081605-EL CALVARIO NO.2</item>
+        <item>081606-EL CARRIZAL</item>
+        <item>081607-EL DIVISADERO</item>
+        <item>081608-EL VINO</item>
+        <item>081609-LA CEIBA</item>
+        <item>081610-LA TRINIDAD</item>
+        <item>081611-LOS NANZALES</item>
+        <item>081612-SACAHUATO</item>
+        <item>081613-SAN ANTONIO</item>
+        <item>081614-SAN NICOLAS O EL ZAPOTE</item>
+        <item>081701-SAN ANTONIO DE ORIENTE</item>
+        <item>081702-EL JICARITO</item>
+        <item>081703-EL LIMON</item>
+        <item>081704-HOYA GRANDE</item>
+        <item>081705-LA CIENEGA</item>
+        <item>081706-LAS MESAS</item>
+        <item>081707-LAS PLAYAS</item>
+        <item>081708-LOS RANCHOS DE FLOR AZUL</item>
+        <item>081709-SAN ANTONIO DE OCCIDENTE</item>
+        <item>081710-SAN FRANCISCO</item>
+        <item>081711-SANTA INES</item>
+        <item>081713-TABLA GRANDE</item>
+        <item>081801-SAN BUENAVENTURA</item>
+        <item>081802-EL CALVARIO</item>
+        <item>081803-EL CIRUELO</item>
+        <item>081804-EL HORNO</item>
+        <item>081901-SAN IGNACIO</item>
+        <item>081902-EL ESCANO DE TEPALE</item>
+        <item>081903-EL NARANJAL</item>
+        <item>081904-EL PORTILLO DE SIALE</item>
+        <item>081905-SAN MIGUEL DE BARROSA</item>
+        <item>081906-URRUTIA</item>
+        <item>081907-YOCULATECA</item>
+        <item>082001-SAN JUAN DE FLORES</item>
+        <item>082002-CERRO BONITO</item>
+        <item>082003-COFRADIA</item>
+        <item>082004-CHANDALA</item>
+        <item>082005-EL CARBON</item>
+        <item>082006-EL JICARITO</item>
+        <item>082007-EL OCOTE</item>
+        <item>082008-EL ZARZAL</item>
+        <item>082009-EL ZURZULAR</item>
+        <item>082010-JOYAS DE CARBALLO</item>
+        <item>082011-LA CRUZ O SUYAPA</item>
+        <item>082012-LAS DELICIAS</item>
+        <item>082013-MARCOS</item>
+        <item>082014-MIRAVALLE</item>
+        <item>082015-PACAYAS</item>
+        <item>082016-PAJARILLOS</item>
+        <item>082017-SAN JOSE DE RAMOS</item>
+        <item>082018-SAN LUIS</item>
+        <item>082019-SICAGUARA</item>
+        <item>082020-YAMAGUARE</item>
+        <item>082101-SAN MIGUELITO</item>
+        <item>082102-EL HATO</item>
+        <item>082103-SANTA MARTA</item>
+        <item>082201-SANTA ANA</item>
+        <item>082202-CICATACARE</item>
+        <item>082203-EL LIMON</item>
+        <item>082204-LA BODEGA</item>
+        <item>082205-NUEVA ARCADIA</item>
+        <item>082206-SAN ISIDRO DE HISOPO</item>
+        <item>082301-SANTA LUCIA</item>
+        <item>082302-EL CHIMBO</item>
+        <item>082303-EL EDEN</item>
+        <item>082304-EL PILIGUIN</item>
+        <item>082305-MONTAÑA GRANDE O DE LOS LAGOS</item>
+        <item>082306-ZARABANDA</item>
+        <item>082401-TALANGA</item>
+        <item>082402-AGUA BLANCA</item>
+        <item>082403-CORRALITOS</item>
+        <item>082404-EL OCOTAL</item>
+        <item>082405-EL ROSARIO O LAJA PICADA</item>
+        <item>082406-JALACA</item>
+        <item>082407-LA ERMITA</item>
+        <item>082408-LA ESPERANZA</item>
+        <item>082409-LA LABRANZA</item>
+        <item>082410-LA MAJADA VERDE</item>
+        <item>082411-LAS QUEBRADAS</item>
+        <item>082412-LOS CHARCOS</item>
+        <item>082413-PALMIRA</item>
+        <item>082414-RIO DULCE</item>
+        <item>082415-SAN ANTONIO DE PASTOS</item>
+        <item>082416-VALLE ARRIBA</item>
+        <item>082501-TATUMBLA</item>
+        <item>082502-COFRADIA</item>
+        <item>082503-CUESTA GRANDE</item>
+        <item>082504-LA LIMA</item>
+        <item>082505-LA UNION</item>
+        <item>082506-LINACA</item>
+        <item>082601-VALLE DE ANGELES</item>
+        <item>082602-CERRO GRANDE</item>
+        <item>082603-EL GUANACASTE</item>
+        <item>082604-EL LIQUIDAMBAR</item>
+        <item>082605-LA SABANETA</item>
+        <item>082606-LAS CAÑADAS</item>
+        <item>082607-RIO ABAJO O PLAYAS</item>
+        <item>082701-VILLA DE SAN FRANCISCO</item>
+        <item>082702-EL COYOLITO</item>
+        <item>082703-EL HATO</item>
+        <item>082704-EL PEDREGAL</item>
+        <item>082705-GUARUMAS</item>
+        <item>082801-VALLECILLO</item>
+        <item>082802-TRINIDAD DE QUEBRADAS</item>
+        <item>090101-PUERTO LEMPIRA</item>
+        <item>090103-AWASVILA</item>
+        <item>090104-AUKA</item>
+        <item>090105-AURATA</item>
+        <item>090106-BARRA DE CARATASCA</item>
+        <item>090108-CANCO</item>
+        <item>090109-CAUQUIRA</item>
+        <item>090116-KRATA</item>
+        <item>090118-KURI</item>
+        <item>090121-LA TABILA</item>
+        <item>090122-LEIMUS</item>
+        <item>090124-MISTRUCK</item>
+        <item>090125-MOCORON</item>
+        <item>090127-PALKAKA</item>
+        <item>090130-PRUNNITARA</item>
+        <item>090131-RATLAYA</item>
+        <item>090133-RUS-RUS</item>
+        <item>090134-SIAKWALAYA</item>
+        <item>090135-SIRSIRTARA</item>
+        <item>090136-SUHI</item>
+        <item>090137-TANSIN</item>
+        <item>090138-TIKIURAYA</item>
+        <item>090139-TIPILALMA</item>
+        <item>090140-TUBURUS</item>
+        <item>090141-TUIMAWALA</item>
+        <item>090143-TUNTUNTARA</item>
+        <item>090145-UJI</item>
+        <item>090147-WALPATA</item>
+        <item>090152-WAUPLAYA</item>
+        <item>090154-YAHURABILA</item>
+        <item>090155-YAMANTA</item>
+        <item>090201-BRUS LAGUNA</item>
+        <item>090202-BARRA PATUCA</item>
+        <item>090204-BELEN</item>
+        <item>090205-COCOBILA</item>
+        <item>090208-LAS MARIAS</item>
+        <item>090209-NUEVA JERUSALEN</item>
+        <item>090212-RIO PLATANO</item>
+        <item>090301-AHUAS</item>
+        <item>090302-KROPUNTA</item>
+        <item>090303-PAPTALAYA</item>
+        <item>090304-WAKSMA</item>
+        <item>090305-WARUNTA</item>
+        <item>090306-WAWINA</item>
+        <item>090401-BATALLA</item>
+        <item>090402-BANAKA</item>
+        <item>090403-GUAPOTE ABAJO</item>
+        <item>090404-IBANS</item>
+        <item>090405-LAS MARIAS</item>
+        <item>090406-PALACIOS</item>
+        <item>090407-PLAPLAYA</item>
+        <item>090501-RAYA</item>
+        <item>090502-BENK</item>
+        <item>090503-IRALAYA O ILAYA</item>
+        <item>090504-KALPO</item>
+        <item>090505-KARASUNTA O KARASUATLA</item>
+        <item>090507-KLUBKI</item>
+        <item>090508-KRUTA O WALPATARA</item>
+        <item>090509-MANGOTARA</item>
+        <item>090510-NUEVA GUINEA</item>
+        <item>090511-PAKWI</item>
+        <item>090513-TUSIDAKSA</item>
+        <item>090514-USUBILA</item>
+        <item>090515-WANGKIAWALA</item>
+        <item>090601-WAMPUSIRPI</item>
+        <item>090602-KRAUSIRPI</item>
+        <item>090603-KURHPA</item>
+        <item>090604-PIMIENTA</item>
+        <item>090605-TUKRUN</item>
+        <item>100101-LA ESPERANZA</item>
+        <item>100102-CHOGOLA</item>
+        <item>100103-EL PELON</item>
+        <item>100104-LA PIMIENTA</item>
+        <item>100105-NUEVA ESPERANZA</item>
+        <item>100201-CAMASCA</item>
+        <item>100202-AGUA ZARCA</item>
+        <item>100203-EL CARMEN</item>
+        <item>100204-EL ROSARIO</item>
+        <item>100205-HACIENDA STA. LUCIA</item>
+        <item>100206-SAN ANTONIO DEL MONTE</item>
+        <item>100207-SAN IGNACIO</item>
+        <item>100208-SAN ISIDRO</item>
+        <item>100209-SAN JUAN DE DIOS</item>
+        <item>100210-SAN LUCAS</item>
+        <item>100211-SANTA CATARINA</item>
+        <item>100212-SANTA CRUZ</item>
+        <item>100301-COLOMONCAGUA</item>
+        <item>100302-EL PICACHO O EL CARACOL</item>
+        <item>100303-LAS LOMAS</item>
+        <item>100304-LOS AMATES</item>
+        <item>100305-LLANO GRANDE</item>
+        <item>100306-MAL PASO</item>
+        <item>100307-SAN MARCOS</item>
+        <item>100308-SANTA ANA</item>
+        <item>100309-SANTO DOMINGO</item>
+        <item>100310-VADOS DE SAN ANTONIO</item>
+        <item>100401-CONCEPCION</item>
+        <item>100402-CALUCICA</item>
+        <item>100403-COLOMARIGUA O EL TABLON</item>
+        <item>100404-EL GUACHIPILINCITO</item>
+        <item>100405-EL GUAJINIQUIL</item>
+        <item>100406-EL RODEO</item>
+        <item>100407-JIQUINLACA</item>
+        <item>100408-SAN NICOLAS</item>
+        <item>100409-SANTIAGO</item>
+        <item>100501-DOLORES</item>
+        <item>100502-AZACUALPA O LLANO DE SAN ANTONIO</item>
+        <item>100503-SAN JOSE O PIEDRA REDONDA</item>
+        <item>100504-TOCO</item>
+        <item>100601-INTIBUCA</item>
+        <item>100602-AZACUALPA</item>
+        <item>100603-EL NARANJO</item>
+        <item>100604-EL PELON DE OLOGOSI</item>
+        <item>100605-LA LAGUNA DE CHILIGATORO</item>
+        <item>100606-LA SORTO</item>
+        <item>100607-MALGUARA</item>
+        <item>100608-MANAZAPA</item>
+        <item>100609-MIXCURE</item>
+        <item>100610-MONQUECAGUA</item>
+        <item>100611-PUEBLO VIEJO</item>
+        <item>100612-QUEBRADA HONDA</item>
+        <item>100613-RIO BLANCO</item>
+        <item>100614-RIO COLORADO</item>
+        <item>100615-RIO GRANDE O EL NANCE</item>
+        <item>100616-SAN JOSE</item>
+        <item>100617-SAN NICOLAS</item>
+        <item>100618-SAN PEDRO</item>
+        <item>100619-SANTA CATARINA</item>
+        <item>100620-TOGOPALA</item>
+        <item>100701-JESUS DE OTORO</item>
+        <item>100702-COCLAN</item>
+        <item>100703-EL JUNQUILLO</item>
+        <item>100704-SAN ANTONIO</item>
+        <item>100705-SAN JERONIMO</item>
+        <item>100706-SAN RAFAEL</item>
+        <item>100801-MAGDALENA</item>
+        <item>100802-SAN JUAN</item>
+        <item>100901-MASAGUARA</item>
+        <item>100902-GUASORE</item>
+        <item>100903-LAGUNETAS</item>
+        <item>100904-POTRERITO O EL ROSARIO</item>
+        <item>100905-QUIRAGUIRA</item>
+        <item>100906-SANTA CRUZ DE HORCONES</item>
+        <item>101001-SAN ANTONIO</item>
+        <item>101002-BAÑADEROS</item>
+        <item>101003-EL CACAHUATAL</item>
+        <item>101004-SAN FRANCISCO</item>
+        <item>101005-SAN JACINTO</item>
+        <item>101006-SAN JOSE</item>
+        <item>101007-SAN SEBASTIAN</item>
+        <item>101008-SANTA TERESA</item>
+        <item>101101-SAN ISIDRO</item>
+        <item>101102-MACUELIZO O HATO VIEJO</item>
+        <item>101103-SUYAPA</item>
+        <item>101201-SAN JUAN</item>
+        <item>101202-LLANO REDONDO</item>
+        <item>101203-PELONCITOS</item>
+        <item>101204-SAN JOSE DE CATAULACA</item>
+        <item>101301-SAN MARCOS DE LA SIERRA</item>
+        <item>101302-LAS DELICIAS</item>
+        <item>101303-SAN JOSE</item>
+        <item>101304-SAN LUIS</item>
+        <item>101401-SAN MIGUELITO</item>
+        <item>101402-COFRADIA</item>
+        <item>101403-CHUPUCAY O RESINA</item>
+        <item>101404-SAN ANTONIO</item>
+        <item>101405-SEGUA</item>
+        <item>101501-SANTA LUCIA</item>
+        <item>101502-BAÑADEROS</item>
+        <item>101503-EL JICARAL</item>
+        <item>101504-PALACIOS</item>
+        <item>101505-SAN MARCOS</item>
+        <item>101506-SANTA RITA</item>
+        <item>101601-YAMARANGUILA</item>
+        <item>101603-AZACUALPA</item>
+        <item>101604-COFRADIA</item>
+        <item>101605-EL CARRIZAL</item>
+        <item>101606-EL CERRON</item>
+        <item>101607-EL MEMBRILLO NO.1</item>
+        <item>101609-EL PELON</item>
+        <item>101610-EL PICACHO</item>
+        <item>101614-LAS LAJAS</item>
+        <item>101617-OLOAS</item>
+        <item>101619-PLANES</item>
+        <item>101620-SEMANE</item>
+        <item>101621-SEQUIRE</item>
+        <item>101622-ZACATE BLANCO</item>
+        <item>101701-SAN FRANCISCO DE OPALACA O MONTE VERDE</item>
+        <item>101702-AGUA SUCIA</item>
+        <item>101703-EL NARANJO O SANTA LUCIA</item>
+        <item>101704-EL ZACATAL O SUYAPA</item>
+        <item>101705-LA CEIBITA</item>
+        <item>101706-LA CHORRERA ASPERA</item>
+        <item>101707-OJO DE AGUA</item>
+        <item>101708-PLAN DE BARRIO</item>
+        <item>110101-ROATAN</item>
+        <item>110102-CAYOS COCHINOS</item>
+        <item>110103-COROZAL</item>
+        <item>110104-CRAWFISH ROCK</item>
+        <item>110105-FLOWERS BAY</item>
+        <item>110106-FRENCH HARBOR</item>
+        <item>110107-SANDY BAY</item>
+        <item>110108-THATCH POINT</item>
+        <item>110109-WEST END</item>
+        <item>110201-GUANAJA</item>
+        <item>110202-EAST END</item>
+        <item>110203-MANGROVE BIGHT</item>
+        <item>110204-SAVANNAH BIGHT</item>
+        <item>110301-JOSE SANTOS GUARDIOLA</item>
+        <item>110302-CALABASH BIGHT</item>
+        <item>110303-ISLA DE BARBARETA</item>
+        <item>110304-JONESVILLE POINT</item>
+        <item>110305-LONG THE SHORE</item>
+        <item>110306-POLLYTILLY BIGHT</item>
+        <item>110307-PUNTA GORDA</item>
+        <item>110308-SANTA ELENA O BANDA SUR</item>
+        <item>110309-SIX HUTS</item>
+        <item>110401-UTILA</item>
+        <item>120101-LA PAZ</item>
+        <item>120102-CONCEPCION DE SOLUTECA</item>
+        <item>120103-MATASANO</item>
+        <item>120104-POTRERILLOS</item>
+        <item>120105-SAN JOSE DEL PLAYON</item>
+        <item>120106-SAN RAFAEL</item>
+        <item>120107-TEPANGUARE</item>
+        <item>120108-TIERRA PRIETA</item>
+        <item>120109-YARUMELA</item>
+        <item>120201-AGUANQUETERIQUE</item>
+        <item>120202-BARRANCARAY</item>
+        <item>120301-CABAÑAS</item>
+        <item>120302-AZACUALPA</item>
+        <item>120303-EL BAILADERO</item>
+        <item>120304-EL PALMAR</item>
+        <item>120305-LAS LAJITAS</item>
+        <item>120401-CANE</item>
+        <item>120402-LAS CALABAZAS</item>
+        <item>120501-CHINACLA</item>
+        <item>120502-EL TRAPICHE</item>
+        <item>120503-LA PIEDRONA</item>
+        <item>120504-LAS PILAS</item>
+        <item>120505-PLANES DE MUYEN</item>
+        <item>120506-PORTILLO DEL NORTE</item>
+        <item>120507-SAN MARCOS DE LINDEROS</item>
+        <item>120508-TIERRA COLORADA</item>
+        <item>120601-GUAJIQUIRO</item>
+        <item>120602-DOLORES</item>
+        <item>120603-EL GUAPINOL</item>
+        <item>120604-GUAJIQUIRITO</item>
+        <item>120605-INGRULA</item>
+        <item>120606-LA CRUCITA</item>
+        <item>120607-LAS DELICIAS</item>
+        <item>120608-LAS VEGAS DEL PARAISO</item>
+        <item>120609-SAN ANTONIO</item>
+        <item>120610-SAN JOSE</item>
+        <item>120611-SAN MARCOS</item>
+        <item>120612-SAN MATIAS O LAS JOYAS</item>
+        <item>120613-SAN PEDRO</item>
+        <item>120614-SANTA ROSITA</item>
+        <item>120701-LAUTERIQUE</item>
+        <item>120702-EL AMATE</item>
+        <item>120703-LAS MINITAS</item>
+        <item>120704-OJO DE AGUA</item>
+        <item>120801-MARCALA</item>
+        <item>120802-SABANETA</item>
+        <item>120803-SANTA CRUZ</item>
+        <item>120901-MERCEDES DE ORIENTE</item>
+        <item>120902-LA GOLONDRINA</item>
+        <item>120903-LAS LOMAS</item>
+        <item>121001-OPATORO</item>
+        <item>121002-EL CEDRO</item>
+        <item>121003-EL PARAISO</item>
+        <item>121004-LA FLORIDA</item>
+        <item>121005-SAN ISIDRO</item>
+        <item>121006-SANTA CRUZ</item>
+        <item>121007-VALLE DE ANGELES</item>
+        <item>121101-SAN ANTONIO DEL NORTE</item>
+        <item>121102-HATO VIEJO</item>
+        <item>121103-LAS CAÑAS</item>
+        <item>121104-MATAPALO</item>
+        <item>121105-PITAHAYAS</item>
+        <item>121201-SAN JOSE</item>
+        <item>121202-EL AGUACATAL</item>
+        <item>121203-EL PEDERNAL</item>
+        <item>121204-LA FLORIDA</item>
+        <item>121301-SAN JUAN</item>
+        <item>121302-EL QUEBRACHAL</item>
+        <item>121303-HORCONES</item>
+        <item>121304-LAS TRANCAS</item>
+        <item>121305-OCOTILLOS</item>
+        <item>121401-SAN PEDRO DE TUTULE</item>
+        <item>121402-EL GUAYABAL</item>
+        <item>121403-LAGUNA SECA</item>
+        <item>121404-LAS HUERTAS</item>
+        <item>121405-SAN MIGUEL</item>
+        <item>121501-SANTA ANA</item>
+        <item>121502-ESTANCIA</item>
+        <item>121503-JUNIGUARA</item>
+        <item>121504-LOS HORNOS</item>
+        <item>121505-SAN ANTONIO</item>
+        <item>121506-SAN ISIDRO</item>
+        <item>121507-SAN MIGUEL</item>
+        <item>121508-SANTIAGO</item>
+        <item>121601-SANTA ELENA</item>
+        <item>121602-AGUANQUETERIQUE</item>
+        <item>121603-EL CARRIZAL</item>
+        <item>121604-LOS PATIOS</item>
+        <item>121605-LLANO ALEGRE</item>
+        <item>121606-MONTE COPADO</item>
+        <item>121607-SOLOARA</item>
+        <item>121608-NAHUATERIQUE</item>
+        <item>121701-SANTA MARIA</item>
+        <item>121702-EL NARANJO</item>
+        <item>121703-EL OCOTAL</item>
+        <item>121704-LAS CRUCITAS O BARRIO NUEVO</item>
+        <item>121705-LAS PAVAS</item>
+        <item>121706-LINDEROS</item>
+        <item>121707-LOS PLANES</item>
+        <item>121708-MIRATORO</item>
+        <item>121709-SAN FRANCISCO</item>
+        <item>121801-SANTIAGO DE PURINGLA</item>
+        <item>121802-CEDRITOS</item>
+        <item>121803-EL HIGUITO</item>
+        <item>121804-EL OCOTAL</item>
+        <item>121805-EL RANCHO DE JESUS</item>
+        <item>121806-GUALAZARA</item>
+        <item>121807-HORNITOS</item>
+        <item>121808-HUERTAS</item>
+        <item>121809-LAS DELICIAS</item>
+        <item>121810-SAN ANTONIO</item>
+        <item>121901-YARULA</item>
+        <item>121902-LAS HUERTAS</item>
+        <item>121903-LAS LAJAS</item>
+        <item>121904-TIERRA COLORADA</item>
+        <item>121905-EL ZANCUDO</item>
+        <item>130101-GRACIAS</item>
+        <item>130102-ARCILACA</item>
+        <item>130103-AZACUALPITA</item>
+        <item>130104-CAMPUCA O EL CAMALOTE</item>
+        <item>130105-CATULACA</item>
+        <item>130106-CEDROS DE MEJICAPA</item>
+        <item>130107-EL CARAL</item>
+        <item>130108-LA MISION</item>
+        <item>130109-EL PINAL SAN JOSE</item>
+        <item>130110-EL REFUGIO</item>
+        <item>130111-EL RODEO</item>
+        <item>130112-EL RODEO DE QUELACASQUE</item>
+        <item>130113-EL SILE</item>
+        <item>130114-EL TABLON</item>
+        <item>130115-EL ZAPOTE</item>
+        <item>130116-JACAN O SAN ISIDRO</item>
+        <item>130117-LA ASOMADA</item>
+        <item>130118-LA LIMA</item>
+        <item>130119-MEJOCOTE</item>
+        <item>130120-PLATANARES</item>
+        <item>130121-SAN JOSE DEL ALTO</item>
+        <item>130122-VILLAMI</item>
+        <item>130123-MONTAÑA VERDE</item>
+        <item>130201-BELEN</item>
+        <item>130202-EL CARRIZAL</item>
+        <item>130203-EL NARANJO O LA PENCA</item>
+        <item>130204-LAS CAÑADAS</item>
+        <item>130205-LOS PLANES DE OJUERA</item>
+        <item>130301-CANDELARIA</item>
+        <item>130302-LA ARADA</item>
+        <item>130303-SAN FRANCISCO</item>
+        <item>130304-SAN JOSE</item>
+        <item>130305-SAN LORENZO</item>
+        <item>130401-COLOLACA</item>
+        <item>130402-CASITAS</item>
+        <item>130403-LAS FLORES</item>
+        <item>130404-MALSINCALES</item>
+        <item>130405-SAN ISIDRO CANGUACOTA</item>
+        <item>130501-ERANDIQUE</item>
+        <item>130502-AZACUALPA GRANDE</item>
+        <item>130503-AZACUALPA MONTAÑA</item>
+        <item>130504-CONCEPCION O BARRIO NUEVO</item>
+        <item>130505-EL CARRIZAL</item>
+        <item>130506-EL CONAL</item>
+        <item>130507-EL CHIMISAL</item>
+        <item>130508-EL RODEO</item>
+        <item>130509-GUALGUIRE</item>
+        <item>130510-GUATINCARA</item>
+        <item>130511-LA LAGUNA</item>
+        <item>130512-SAN ANTONIO MONTAÑA</item>
+        <item>130513-SAN ANTONIO VALLE</item>
+        <item>130514-VALLE DE LA CRUZ</item>
+        <item>130515-YOLOMON</item>
+        <item>130601-GUALCINCE</item>
+        <item>130602-CONGOLON</item>
+        <item>130603-GUACUAL</item>
+        <item>130604-GUALCEA</item>
+        <item>130605-GUATEMALITA</item>
+        <item>130606-QUESUNGUAL</item>
+        <item>130607-SANTA CRUZ</item>
+        <item>130608-SANTO TOMAS</item>
+        <item>130609-SAN MARCOS CERIQUE</item>
+        <item>130610-SAN MARCOS MORA</item>
+        <item>130611-TENANGO</item>
+        <item>130612-TIXILA</item>
+        <item>130701-GUARITA</item>
+        <item>130702-CHAPULIN SANTA LUCIA</item>
+        <item>130703-SAN ANTONIO</item>
+        <item>130704-SAN JOSE OLOSINGO</item>
+        <item>130705-SAN JUAN JUNIGUAL</item>
+        <item>130706-SAN PABLO</item>
+        <item>130707-SANTA CRUZ DEL REPASTEADERO</item>
+        <item>130708-SANTA CRUZ QUERUCO</item>
+        <item>130709-SANTO TOMAS CHINQUIN</item>
+        <item>130710-TERLACA</item>
+        <item>130801-LA CAMPA</item>
+        <item>130804-EL MEZCALILLO</item>
+        <item>130807-LAS CAÑADAS</item>
+        <item>130808-NUEVA ESPERANZA</item>
+        <item>130809-SANTA CATARINA</item>
+        <item>130901-LA IGUALA</item>
+        <item>130902-CHUSQUIN</item>
+        <item>130903-EL JUNCAL</item>
+        <item>130904-EL MANGO</item>
+        <item>130905-EL MATASANO</item>
+        <item>130906-EL RODEITO</item>
+        <item>130907-EL ZAPOTE</item>
+        <item>130908-LA GUADALUPE</item>
+        <item>130909-LAGUNAS</item>
+        <item>130910-LAS PILAS</item>
+        <item>130911-LAS PLAYAS</item>
+        <item>130912-LAS OLOMINAS</item>
+        <item>130913-LAS VEGAS</item>
+        <item>130914-LOS LLANOS</item>
+        <item>130915-LOS TABLONES</item>
+        <item>130916-LLANO LARGO</item>
+        <item>130918-MONTE LARGO</item>
+        <item>130919-NUEVA PAZ</item>
+        <item>130920-OJACA</item>
+        <item>130921-POTRERILLOS</item>
+        <item>130922-QUIOCO</item>
+        <item>130923-RIO BLANCO</item>
+        <item>130924-SAN ISIDRO DE JACAN</item>
+        <item>130925-SAN JOSE DE CURUNATE</item>
+        <item>130926-SAN MIGUEL</item>
+        <item>130927-TARAGUAL</item>
+        <item>131001-LAS FLORES</item>
+        <item>131002-COALACA</item>
+        <item>131003-EL SOCORRO O LA LOMA DE LA CUE</item>
+        <item>131004-GUANAS</item>
+        <item>131005-LAS MERCEDES</item>
+        <item>131006-MARIPOSAS</item>
+        <item>131007-MONGUAL</item>
+        <item>131008-MONTE DE LA VIRGEN</item>
+        <item>131009-NUEVA ESPERANZA</item>
+        <item>131010-TEPUSUNA</item>
+        <item>131101-LA UNION</item>
+        <item>131102-AGUA ZARCA</item>
+        <item>131103-EL SITIO</item>
+        <item>131104-GUALCIRAS</item>
+        <item>131105-LAS PEÑAS</item>
+        <item>131106-SAN BARTOLO</item>
+        <item>131201-LA VIRTUD</item>
+        <item>131202-CATULACA</item>
+        <item>131203-EL AMATILLO</item>
+        <item>131204-EL CACAHUATAL O LA MAJADA</item>
+        <item>131205-EL LIMON</item>
+        <item>131206-GUAJINIQUIL</item>
+        <item>131207-GUALCIMACA</item>
+        <item>131208-LA CUESTA</item>
+        <item>131209-LA HACIENDITA</item>
+        <item>131210-LA TRINIDAD</item>
+        <item>131211-LOS HERNANDEZ</item>
+        <item>131212-SAN FRANCISCO</item>
+        <item>131213-SAN JOSE</item>
+        <item>131301-LEPAERA</item>
+        <item>131302-ALEGRIAS</item>
+        <item>131303-ARENALES</item>
+        <item>131304-BRISAS DEL OCOTILLO</item>
+        <item>131305-BUENOS AIRES</item>
+        <item>131306-CEMENTERA</item>
+        <item>131307-CONSOLACION</item>
+        <item>131308-EL AGUACATAL</item>
+        <item>131309-EL BARRIO</item>
+        <item>131310-EL CARMEN</item>
+        <item>131311-EL CHAGUITE</item>
+        <item>131312-EL MATASANITO</item>
+        <item>131313-EL ROSARIO</item>
+        <item>131314-ESTANCIAS</item>
+        <item>131315-GUALAN</item>
+        <item>131316-LA JAGUA</item>
+        <item>131317-LA LAGUNA DEL PEDERNAL</item>
+        <item>131318-LA LIBERTAD</item>
+        <item>131319-LA LIMA</item>
+        <item>131320-LA RINCONADA</item>
+        <item>131321-LAGUNAS DE PAJAPAS</item>
+        <item>131322-LAS CRUCITAS</item>
+        <item>131323-LAS DANTAS</item>
+        <item>131324-LAS PILAS DE CANMAYA</item>
+        <item>131325-LAS TEJERAS</item>
+        <item>131326-LOMA ALTA</item>
+        <item>131327-LOS CERRITOS NO.1</item>
+        <item>131328-LOS CERRITOS NO.2</item>
+        <item>131329-MERCEDES OCOTILLO O PECANERA</item>
+        <item>131330-MISIORA</item>
+        <item>131331-NUEVA EDEN</item>
+        <item>131332-OCOTE CHACHO</item>
+        <item>131333-OCOTILLO TIERRA COLORADA</item>
+        <item>131334-SAN JOSE DE PAJAPAS</item>
+        <item>131335-PLAN DE LA PUA</item>
+        <item>131336-PLAN DEL JARRO O SANTA EDUVIGE</item>
+        <item>131337-PLAN DEL OCOTAL</item>
+        <item>131338-PLAN DEL SOCORRO</item>
+        <item>131339-PLAN GRANDE</item>
+        <item>131340-PLAYITAS</item>
+        <item>131341-SAN ISIDRO EL BELLOTO</item>
+        <item>131342-SANTA RITA</item>
+        <item>131343-TIERRA COLORADA</item>
+        <item>131344-YUENA</item>
+        <item>131345-YUENITA</item>
+        <item>131401-MAPULACA</item>
+        <item>131402-EL SITIO</item>
+        <item>131403-LOS PLANES</item>
+        <item>131404-EL LLANO DE LA HAMACA</item>
+        <item>131405-SAN ANTONIO</item>
+        <item>131501-PIRAERA</item>
+        <item>131502-LAS MORAS</item>
+        <item>131503-QUISIMACA</item>
+        <item>131504-SAN FELIPE</item>
+        <item>131505-SAN JERONIMO</item>
+        <item>131506-SAN JOSE</item>
+        <item>131507-SAN PEDRO</item>
+        <item>131508-SAN SEBASTIAN</item>
+        <item>131509-SANTA LUCIA O GUASQUIN</item>
+        <item>131510-SUYAPITA O PICHIGUAL NO. 1</item>
+        <item>131601-SAN ANDRES</item>
+        <item>131602-CAONA</item>
+        <item>131603-CENALACA</item>
+        <item>131604-SAN JOSE DE ESQUIMPARA</item>
+        <item>131605-SAN SIMON</item>
+        <item>131606-SANTIAGO</item>
+        <item>131607-SOSOAL</item>
+        <item>131608-SUNSUNLACA</item>
+        <item>131701-SAN FRANCISCO</item>
+        <item>131702-CONCORDIA</item>
+        <item>131703-JELPOA</item>
+        <item>131704-MAGDALENA</item>
+        <item>131705-MARQUIRA</item>
+        <item>131706-RORRUCA</item>
+        <item>131707-SAN LUCAS</item>
+        <item>131801-SAN JUAN GUARITA</item>
+        <item>131802-EL RODEO</item>
+        <item>131803-LOS HORCONES</item>
+        <item>131804-PORTILLO DEL FRAYLE O DEL AGUA</item>
+        <item>131805-PUEBLO VIEJO</item>
+        <item>131806-SAZALAPA</item>
+        <item>131901-SAN MANUEL COLOHETE</item>
+        <item>131902-CORANTE</item>
+        <item>131903-GUACUTAO</item>
+        <item>131904-PIEDRA LARGA</item>
+        <item>131905-PULAJE</item>
+        <item>131906-SAN ANTONIO</item>
+        <item>131907-SAN ANTONIO DEL AGUACATILLO</item>
+        <item>131908-SAN PEDRITO</item>
+        <item>131909-SANTA TERESA</item>
+        <item>131910-CERRO COLORADA</item>
+        <item>132001-SAN RAFAEL</item>
+        <item>132002-CONCEPCION</item>
+        <item>132003-EL CAMPANARIO</item>
+        <item>132004-EL EDEN</item>
+        <item>132005-QUERUCO</item>
+        <item>132006-SAN ANTONIO</item>
+        <item>132007-SAN JOSE LEMPIRA</item>
+        <item>132008-SAN PEDRITO</item>
+        <item>132009-SUYAPA</item>
+        <item>132101-SAN SEBASTIAN</item>
+        <item>132102-AGUA FRIA</item>
+        <item>132103-EL CUTAL</item>
+        <item>132104-EL SUCTE</item>
+        <item>132105-EL VOLCANCITO</item>
+        <item>132106-SAN ANTONIO</item>
+        <item>132107-SAN ISIDRO</item>
+        <item>132201-SANTA CRUZ</item>
+        <item>132202-CANDELARIA</item>
+        <item>132203-LOMA LIMPIA</item>
+        <item>132204-PAJAPAS</item>
+        <item>132205-SAN PEDRO</item>
+        <item>132206-SANTA ROSA</item>
+        <item>132301-TALGUA</item>
+        <item>132302-CANSINCAMON</item>
+        <item>132303-EL AGUACATE</item>
+        <item>132304-EL CAMALOTE</item>
+        <item>132305-EL CIRUELITO</item>
+        <item>132306-EL HIGUITO O CILIANTUQUE</item>
+        <item>132307-EL MATASANO</item>
+        <item>132308-EL PINABETAL</item>
+        <item>132309-LA CAFETALERA</item>
+        <item>132310-LA PEÑA</item>
+        <item>132311-LA RINCONADA</item>
+        <item>132312-LA TEJERA</item>
+        <item>132313-LAS LAJITAS</item>
+        <item>132314-SAN RAMON</item>
+        <item>132401-TAMBLA</item>
+        <item>132402-EL ZARZAL</item>
+        <item>132403-SAN FRANCISCO DEL ACEITUNO</item>
+        <item>132404-SANTA GUADALUPE O CHORRERA</item>
+        <item>132501-TOMALA</item>
+        <item>132502-AZACUALPA</item>
+        <item>132503-EL COPANTE</item>
+        <item>132504-LA SOLEDAD DEL MORRO</item>
+        <item>132505-LOS HORCONCILLOS</item>
+        <item>132506-LOS ZUNCUYOS</item>
+        <item>132507-SAN CRISTOBAL</item>
+        <item>132508-SAN JUAN</item>
+        <item>132509-SAN LORENZO</item>
+        <item>132510-SAN MARQUITOS</item>
+        <item>132511-SAN PABLO DE CONSOLACION</item>
+        <item>132512-SANTO DOMINGO</item>
+        <item>132513-ALDEA NUEVA</item>
+        <item>132601-VALLADOLID</item>
+        <item>132602-AGUA ZARCA</item>
+        <item>132603-CHANCOYOTE</item>
+        <item>132604-EL CORDONCILLO</item>
+        <item>132605-EL SOCORRO</item>
+        <item>132606-EL YUPURAL</item>
+        <item>132607-GUALCIXE</item>
+        <item>132608-LOS PATIOS</item>
+        <item>132609-LOS REALES</item>
+        <item>132610-SAN LORENZO O LA HACIENDA</item>
+        <item>132611-SANTA BARBARA</item>
+        <item>132612-TIERRA BLANCA</item>
+        <item>132701-VIRGINIA</item>
+        <item>132702-AGUA ZARCA</item>
+        <item>132703-CELILAC</item>
+        <item>132704-EL RODEO</item>
+        <item>132705-GUAQUINCORA</item>
+        <item>132801-SAN MARCOS DE CAIQUIN</item>
+        <item>132802-LA AZACUALPA</item>
+        <item>132803-COALACA</item>
+        <item>132804-ARCAMON</item>
+        <item>132805-SUNTULIN</item>
+        <item>132806-GUANAJULQUE</item>
+        <item>132807-LAGUNA SECA</item>
+        <item>140101-OCOTEPEQUE</item>
+        <item>140102-ANTIGUA OCOTEPEQUE</item>
+        <item>140103-EL BARREAL</item>
+        <item>140104-EL VOLCAN</item>
+        <item>140105-LA COMUNIDAD</item>
+        <item>140106-PIE DEL CERRO</item>
+        <item>140107-SAN JOSE DE LA REUNION</item>
+        <item>140108-SAN MIGUEL</item>
+        <item>140109-SAN RAFAEL</item>
+        <item>140201-BELEN GUALCHO</item>
+        <item>140202-CERRO GRANDE</item>
+        <item>140203-CERRO VERDE</item>
+        <item>140204-EL CIPRES</item>
+        <item>140205-EL MAGUEYAL</item>
+        <item>140206-EL PARAISO</item>
+        <item>140207-JUALACA</item>
+        <item>140208-LA GOCIA</item>
+        <item>140209-LA MOAGA</item>
+        <item>140210-LA TEJERA</item>
+        <item>140211-PALOS BLANCOS</item>
+        <item>140212-SUYANDE</item>
+        <item>140213-YARUCHEL</item>
+        <item>140301-CONCEPCION</item>
+        <item>140302-SAN JOSE</item>
+        <item>140303-SANTA ANITA</item>
+        <item>140304-TULAS</item>
+        <item>140401-DOLORES MERENDON</item>
+        <item>140402-SAN JERONIMO</item>
+        <item>140501-FRATERNIDAD</item>
+        <item>140502-LAS CRUCES</item>
+        <item>140503-LOS VADOS</item>
+        <item>140504-SAN FRANCISCO</item>
+        <item>140601-LA ENCARNACION</item>
+        <item>140602-CUAJO SECO O LAS DELICIAS</item>
+        <item>140603-EL LIMONCITO</item>
+        <item>140604-EL NARANJO</item>
+        <item>140605-SAN ANTONIO DE LIMONCITO</item>
+        <item>140606-SESESMILES</item>
+        <item>140701-LA LABOR</item>
+        <item>140702-EL INGENIO</item>
+        <item>140703-EL ROSARIO</item>
+        <item>140704-LLANO LARGO</item>
+        <item>140705-MONTEPEQUE</item>
+        <item>140706-PASHAPA</item>
+        <item>140707-SANTA EFIGENIA</item>
+        <item>140708-SANTA LUCIA</item>
+        <item>140801-LUCERNA</item>
+        <item>140802-LA CONCORDIA</item>
+        <item>140803-RIO HONDO</item>
+        <item>140804-SANTA ROSITA</item>
+        <item>140901-MERCEDES</item>
+        <item>140902-CONCEPCION</item>
+        <item>140903-EL CORAL</item>
+        <item>140904-EL LIMONCITO</item>
+        <item>140905-LAGUNA SECA</item>
+        <item>140906-LAS VEGAS DEL RIO CHIQUITO</item>
+        <item>140907-PLAN DEL ROSARIO</item>
+        <item>140908-SAN ANTONIO</item>
+        <item>140909-SAN JOSE DEL JOCOTAN</item>
+        <item>140910-YUSCARAN</item>
+        <item>141001-SAN FERNANDO</item>
+        <item>141002-EL MANZANO</item>
+        <item>141003-EL ROSARIO</item>
+        <item>141004-NUEVO ESPIRITU</item>
+        <item>141005-QUESERAS</item>
+        <item>141006-SAN ANTONIO DE CURAREN</item>
+        <item>141007-SAN JOSE DE CURAREN</item>
+        <item>141008-SANTA INES</item>
+        <item>141009-SULAY</item>
+        <item>141101-SAN FRANCISCO DEL VALLE</item>
+        <item>141102-COLOAL</item>
+        <item>141103-EL SILE</item>
+        <item>141104-EL TABLON</item>
+        <item>141105-LA LAGUNA</item>
+        <item>141106-SANTA TERESA</item>
+        <item>141201-SAN JORGE</item>
+        <item>141202-EL RASTROJON O NUEVA ESPERANZA</item>
+        <item>141203-EL SOCORRO</item>
+        <item>141204-LAS LAGUNAS</item>
+        <item>141205-LOS PLANES</item>
+        <item>141206-RIO BLANCO</item>
+        <item>141207-SANTA ELENA</item>
+        <item>141301-SAN MARCOS</item>
+        <item>141302-CALLEJONES</item>
+        <item>141303-CUNCE</item>
+        <item>141304-EL CARRIZAL</item>
+        <item>141305-EL GRANZAL</item>
+        <item>141306-EL JARALON O NUEVA ALDEA</item>
+        <item>141307-EL REFUGIO</item>
+        <item>141308-EL TRANSITO</item>
+        <item>141309-LA ASCENSION</item>
+        <item>141310-POTRERILLOS</item>
+        <item>141311-SABANA LARGA</item>
+        <item>141312-SAN JUAN</item>
+        <item>141313-SAN LUIS</item>
+        <item>141314-SANTA MARTA</item>
+        <item>141401-SANTA FE</item>
+        <item>141402-AGUA CALIENTE</item>
+        <item>141403-EL MOJANAL O EL CARMEN</item>
+        <item>141404-LA QUESERA</item>
+        <item>141405-LOS ENCINOS</item>
+        <item>141406-PIEDRAS BONITAS</item>
+        <item>141407-PIÑUELAS</item>
+        <item>141408-SULNETE</item>
+        <item>141501-SENSENTI</item>
+        <item>141502-AZACUALPA</item>
+        <item>141503-COLONIA SANTA CRUZ</item>
+        <item>141504-EL MATASANO</item>
+        <item>141505-GUALTAYA</item>
+        <item>141506-LA LOMA O SAN FELIPE</item>
+        <item>141507-LAS MESITAS</item>
+        <item>141508-LOS PLANES</item>
+        <item>141509-SAN ANTONIO</item>
+        <item>141510-SAN FRANCISCO DE CONES</item>
+        <item>141601-SINUAPA</item>
+        <item>141602-CACALGUAPA</item>
+        <item>141603-EL CARRIZAL</item>
+        <item>141604-EL MORAL</item>
+        <item>141605-EL OCOTILLO</item>
+        <item>141606-EL PEÑASCO</item>
+        <item>141607-EL TEPESCUINTE</item>
+        <item>141608-LA LABORCITA</item>
+        <item>141609-PLAN DEL RANCHO</item>
+        <item>141610-VALLE DE MERCEDES</item>
+        <item>141611-VERACRUZ</item>
+        <item>141612-EL PORTILLO</item>
+        <item>150101-JUTICALPA</item>
+        <item>150103-ARIMIS</item>
+        <item>150104-AZACUALPA</item>
+        <item>150105-BIJAGUAL</item>
+        <item>150106-CALPULES NO.1</item>
+        <item>150107-CALPULES NO.2</item>
+        <item>150108-CASAS VIEJAS</item>
+        <item>150109-CAYO BLANCO</item>
+        <item>150110-EL BIJAO</item>
+        <item>150111-EL CARBONAL</item>
+        <item>150112-EL CHAPARRO</item>
+        <item>150113-EL ENCINAL NO.1</item>
+        <item>150114-EL ENCINAL NO.2</item>
+        <item>150115-EL ESPINAL</item>
+        <item>150116-EL HIGUERITO</item>
+        <item>150118-EL PLAN DE LOS CIRUELOS</item>
+        <item>150119-EL PLOMO</item>
+        <item>150120-EL POTRERO DE LAS CASAS O SANT</item>
+        <item>150121-EL RINCON DE MAMISACA</item>
+        <item>150122-EL RUSIO</item>
+        <item>150123-EL TIGRE</item>
+        <item>150124-EL ZARZAL</item>
+        <item>150125-GUACAMAYA</item>
+        <item>150128-JUTIQUILE</item>
+        <item>150129-LA CONCEPCION</item>
+        <item>150130-LA EMPALIZADA</item>
+        <item>150131-LA LAGUNA</item>
+        <item>150133-LA PUERTA</item>
+        <item>150134-LA SIERRA LEPAGUARE</item>
+        <item>150135-LA VENTA</item>
+        <item>150136-LAS FLORES</item>
+        <item>150137-LAS LOMAS</item>
+        <item>150138-LAS LLAVES</item>
+        <item>150139-LAS MINAS</item>
+        <item>150141-LIMONES</item>
+        <item>150145-PANUAYA</item>
+        <item>150146-POTRERILLOS O CAMPO</item>
+        <item>150147-PUEBLO NUEVO</item>
+        <item>150148-PUNUARE</item>
+        <item>150149-PUZUNCA O SAN AGUSTIN</item>
+        <item>150150-QUILINCHUCHE</item>
+        <item>150151-RANCHO QUEMADO</item>
+        <item>150152-SAN ANTONIO DE SAHARA</item>
+        <item>150154-SAN JUAN</item>
+        <item>150155-SAN MARCOS</item>
+        <item>150156-SAN NICOLAS</item>
+        <item>150157-SAN PEDRO DE LA JOYA</item>
+        <item>150158-SANTA INES O LAS PARRAS</item>
+        <item>150159-SINCUYAPA</item>
+        <item>150160-TAPIQUILE</item>
+        <item>150161-TELICA</item>
+        <item>150164-TROJAS ARRIBA</item>
+        <item>150165-ZOPILOTEPE</item>
+        <item>150201-CAMPAMENTO</item>
+        <item>150202-EL BARRO</item>
+        <item>150203-EL CARRIZAL</item>
+        <item>150204-EL NANCE</item>
+        <item>150205-LA LIBERTAD</item>
+        <item>150206-LA LIMA</item>
+        <item>150207-LA MANACA</item>
+        <item>150208-LOS CORTES</item>
+        <item>150209-MORAN</item>
+        <item>150210-QUEBRADA GRANDE</item>
+        <item>150301-CATACAMAS</item>
+        <item>150302-BACADIA</item>
+        <item>150303-CONCEPCION DE RIO TINTO</item>
+        <item>150304-EL CERRO</item>
+        <item>150305-EL PATASTE</item>
+        <item>150306-LA BODEGA</item>
+        <item>150307-LA COLONIA AGRICOLA</item>
+        <item>150308-LA COLONIA DE PONCAYA</item>
+        <item>150309-LA CRUZ</item>
+        <item>150310-LA GLORIA DEL PATASTE</item>
+        <item>150311-LA SOSA</item>
+        <item>150312-LAS MESETAS</item>
+        <item>150313-SAN JOSE DE RIO TINTO</item>
+        <item>150314-SAN PEDRO DE CATACAMAS</item>
+        <item>150315-SIGUATE</item>
+        <item>150401-CONCORDIA</item>
+        <item>150402-AMARANGUILES</item>
+        <item>150403-EL PORTILLO</item>
+        <item>150404-JUAN FRANCISCO</item>
+        <item>150405-LA LAGUNA</item>
+        <item>150406-LAS ANIMAS</item>
+        <item>150407-LAVADEROS</item>
+        <item>150408-PEDERNALES</item>
+        <item>150409-TERREROS BLANCOS</item>
+        <item>150410-VILLA DE FATIMA O EL TABLON</item>
+        <item>150411-VILLA VIEJA</item>
+        <item>150501-DULCE NOMBRE DE CULMI</item>
+        <item>150502-AGUA BLANCA</item>
+        <item>150503-AGUA BUENA NO.1</item>
+        <item>150504-AGUAQUIRE</item>
+        <item>150505-EL CERRO</item>
+        <item>150506-EL ZAPOTE</item>
+        <item>150507-LA CAMPANA</item>
+        <item>150508-LA COLONIA</item>
+        <item>150509-LA ESPERANZA O PLAN DE LOS BLA</item>
+        <item>150510-LA LLORONA</item>
+        <item>150511-LA PIMIENTA</item>
+        <item>150512-LA UNION O EL GUANO</item>
+        <item>150513-LAS CASITAS</item>
+        <item>150514-LAS FLORES</item>
+        <item>150515-LAS MARIAS</item>
+        <item>150516-LAS MINAS</item>
+        <item>150517-LOS ANGELES</item>
+        <item>150518-NUEVA ESPERANZA</item>
+        <item>150519-PAULAYA</item>
+        <item>150520-PUEBLO VIEJO</item>
+        <item>150521-RIO NEGRO</item>
+        <item>150522-SAN JOSE DE LA MONTAÑA</item>
+        <item>150523-SAN PEDRO DE PISIJIRE</item>
+        <item>150524-SUBIRANA</item>
+        <item>150525-SUYAPITA</item>
+        <item>150526-TROPICAL PLYWOOD</item>
+        <item>150527-VALLECITO</item>
+        <item>150601-EL ROSARIO</item>
+        <item>150602-EL OCOTAL</item>
+        <item>150603-EL SALITRE</item>
+        <item>150604-LA CEIBA</item>
+        <item>150605-LAS LAJAS</item>
+        <item>150606-LOS ZAPOTES</item>
+        <item>150607-RIO TABACO</item>
+        <item>150608-YUPITE</item>
+        <item>150701-ESQUIPULAS DEL NORTE</item>
+        <item>150702-EL CARRIZAL</item>
+        <item>150703-EL ENCINO</item>
+        <item>150704-EL RIO</item>
+        <item>150705-LA ZUNCUYA</item>
+        <item>150706-LOS ENCUENTROS</item>
+        <item>150707-MIRAMAR</item>
+        <item>150708-PALMIRA</item>
+        <item>150801-GUALACO</item>
+        <item>150802-CHINDONA</item>
+        <item>150803-JICALAPA</item>
+        <item>150804-LA BOCA</item>
+        <item>150805-LA VENTA</item>
+        <item>150806-LAS LOMAS</item>
+        <item>150807-SAGUAY</item>
+        <item>150809-SAN ANTONIO</item>
+        <item>150810-SAN ANTONIO DE PACURA</item>
+        <item>150811-SAN BUENAVENTURA</item>
+        <item>150812-SAN PEDRO</item>
+        <item>150813-VARGAS</item>
+        <item>150901-GUARIZAMA</item>
+        <item>150902-EL ZAPOTAL</item>
+        <item>150903-LA CARTA</item>
+        <item>150904-LOS CAJONES</item>
+        <item>150905-TRINIDAD</item>
+        <item>151001-GUATA</item>
+        <item>151002-AZACUALPITA</item>
+        <item>151003-CORRALITOS</item>
+        <item>151004-LA ENSENADA</item>
+        <item>151005-LA ESTANCIA</item>
+        <item>151006-PUEBLO VIEJO</item>
+        <item>151101-GUAYAPE</item>
+        <item>151102-COYOLES</item>
+        <item>151103-EL COYOL</item>
+        <item>151104-EL COYOLAR</item>
+        <item>151105-EL PARAISO</item>
+        <item>151106-EL PASO DE LA HOYA</item>
+        <item>151107-EL RODEO</item>
+        <item>151108-JUCURUNCA</item>
+        <item>151109-LA CONCEPCION</item>
+        <item>151110-MONTE GRANDE</item>
+        <item>151111-SAN JOSE</item>
+        <item>151112-SANTA CRUZ DE GUAYAPE</item>
+        <item>151113-SUYAPITA</item>
+        <item>151114-TABLONCITOS</item>
+        <item>151115-VALLECITO</item>
+        <item>151201-JANO</item>
+        <item>151202-COMAYAGUELA</item>
+        <item>151203-EL ZAPOTILLO</item>
+        <item>151204-LA PITA</item>
+        <item>151205-LA VICTORIA</item>
+        <item>151206-LAS LABRANZAS</item>
+        <item>151207-PACAYA</item>
+        <item>151208-PINTORA</item>
+        <item>151301-LA UNION</item>
+        <item>151302-EL DICTAMO</item>
+        <item>151303-LA PITA</item>
+        <item>151304-LOS ENCUENTROS</item>
+        <item>151305-PALALA</item>
+        <item>151401-MANGULILE</item>
+        <item>151402-CAMALOTILLO</item>
+        <item>151403-EL AGUILA</item>
+        <item>151404-EL CERRO</item>
+        <item>151405-EL POTRERO</item>
+        <item>151406-EL TERRERO</item>
+        <item>151407-GUATA</item>
+        <item>151408-JULIAN</item>
+        <item>151409-LA CHINGA</item>
+        <item>151410-LA PEÑA O PORTILLO DE LA PEÑA</item>
+        <item>151411-LOMITAS</item>
+        <item>151412-LOS BLANCOS</item>
+        <item>151413-MANGULILITO</item>
+        <item>151414-QUEBRADA GRANDE</item>
+        <item>151415-SAN ANTONIO</item>
+        <item>151416-SILACA</item>
+        <item>151501-MANTO</item>
+        <item>151502-AMACUAPA</item>
+        <item>151503-BOCA DEL MONTE</item>
+        <item>151504-EL BEBEDERO</item>
+        <item>151505-EL CERRO</item>
+        <item>151506-JIMASQUE</item>
+        <item>151507-SABANA LARGA</item>
+        <item>151508-SAN ANTONIO</item>
+        <item>151509-ULUAPA</item>
+        <item>151601-SALAMA</item>
+        <item>151602-COFRADIA</item>
+        <item>151603-JUTIAPA</item>
+        <item>151604-LA JAGUA</item>
+        <item>151605-MENDEZ</item>
+        <item>151606-POZO ZARCO</item>
+        <item>151607-SABANA GRANDE</item>
+        <item>151608-TALGUA</item>
+        <item>151701-SAN ESTEBAN</item>
+        <item>151702-AGUA BLANCA</item>
+        <item>151703-CARNIZUELAR</item>
+        <item>151704-CONQUIRE</item>
+        <item>151705-CORONADO</item>
+        <item>151706-CORRAL VIEJO</item>
+        <item>151707-EL AGUACATE</item>
+        <item>151708-EL CIRUELO</item>
+        <item>151709-EL LIMONAL</item>
+        <item>151710-EL OCOTE</item>
+        <item>151711-EL QUEBRACHAL</item>
+        <item>151712-EL TUNAL</item>
+        <item>151713-LA CONCEPCION</item>
+        <item>151714-LAS MANZANAS</item>
+        <item>151715-LAS TROJAS</item>
+        <item>151716-MORENO</item>
+        <item>151717-RIO ABAJO</item>
+        <item>151718-SAN AGUSTIN ABAJO</item>
+        <item>151719-SAN MARTIN</item>
+        <item>151720-SANTA MARIA</item>
+        <item>151721-SANTA MARIA DEL CARBON</item>
+        <item>151722-TORO MUERTO</item>
+        <item>151801-SAN FRANCISCO DE BECERRA</item>
+        <item>151802-BELLA VISTA</item>
+        <item>151803-EL GUINEO</item>
+        <item>151804-LAGUNA SECA</item>
+        <item>151805-LAS TRES CEIBAS</item>
+        <item>151806-SAN LUIS</item>
+        <item>151807-SANTA MARTA</item>
+        <item>151901-SAN FRANCISCO DE LA PAZ</item>
+        <item>151902-EL CARRIZAL</item>
+        <item>151903-EL GUAPINOL</item>
+        <item>151904-EL NANCE</item>
+        <item>151905-EL OCOTAL</item>
+        <item>151906-EL OCOTE</item>
+        <item>151907-EL PEDREGAL</item>
+        <item>151908-GUACOCA</item>
+        <item>151909-LA CRUZ</item>
+        <item>151910-REGADIO</item>
+        <item>151911-SAN AGUSTIN</item>
+        <item>151912-SANTA ANA</item>
+        <item>151913-TILAPA</item>
+        <item>152001-SANTA MARIA DEL REAL</item>
+        <item>152002-EL GUAYABITO</item>
+        <item>152003-SAN CARLOS DE LAS FLORES</item>
+        <item>152101-SILCA</item>
+        <item>152102-EL CARBONAL</item>
+        <item>152103-LA CRUZ</item>
+        <item>152104-PANUAYA</item>
+        <item>152105-PARUMBLE NUEVO</item>
+        <item>152106-SANTA ELENA</item>
+        <item>152201-YOCON</item>
+        <item>152202-CAÑADA GALANA</item>
+        <item>152203-EL CUABANO</item>
+        <item>152204-EL POTRERO</item>
+        <item>152205-LA EMPALIZADA</item>
+        <item>152206-OCOTAL DEL NAIPE</item>
+        <item>152207-SAN ANTONIO ABAJO</item>
+        <item>152208-SAN PEDRO</item>
+        <item>152209-SANTA RITA O PLAN DEL CONEJO</item>
+        <item>152301-FROYLAN TURCIOS O NUEVA PALEST</item>
+        <item>152302-ARENAS BLANCAS</item>
+        <item>152303-EL OCOTILLAL</item>
+        <item>152304-GUINEO ABAJO</item>
+        <item>152305-GUINEO ARRIBA</item>
+        <item>152306-LA LAGUNA</item>
+        <item>152307-LA LIBERTAD</item>
+        <item>152308-LAS PLANCHAS</item>
+        <item>152309-NUEVA CHOLUTECA</item>
+        <item>152310-ONOFIO</item>
+        <item>152311-SAN FERNANDO</item>
+        <item>152312-TEPEMECHIN</item>
+        <item>152313-TERRERO BLANCO</item>
+        <item>160101-SANTA BARBARA</item>
+        <item>160102-AGUA BLANQUITA</item>
+        <item>160103-CERRO GRANDE</item>
+        <item>160104-EL DIEZ Y OCHO O MIRAFLORES</item>
+        <item>160105-EL MOGUETE</item>
+        <item>160106-GUALJOCO</item>
+        <item>160107-LA CEIBITA</item>
+        <item>160108-LA CUESTA</item>
+        <item>160109-LA ESTANCIA</item>
+        <item>160110-LA UNION DEL DORADO</item>
+        <item>160111-LAS CRUCITAS</item>
+        <item>160112-LAS QUEBRADAS</item>
+        <item>160113-LOS ANISES</item>
+        <item>160114-LOS BANCOS</item>
+        <item>160115-LOS LAURELES</item>
+        <item>160116-MACHOLOA</item>
+        <item>160117-RIO SECO</item>
+        <item>160118-SAN GASPAR DE TABLONES</item>
+        <item>160119-SAN LUIS DE PLANES</item>
+        <item>160120-SANTA RITA DE ORIENTE</item>
+        <item>160201-ARADA</item>
+        <item>160202-BUENA VISTA</item>
+        <item>160203-CANDELARIA</item>
+        <item>160204-CAULOTALES</item>
+        <item>160205-EL OCOTAL</item>
+        <item>160206-EL OCOTILLO</item>
+        <item>160207-EL PALMO</item>
+        <item>160208-EL TULAR</item>
+        <item>160209-LAS BRISAS DE ORO</item>
+        <item>160210-LOS PLANES</item>
+        <item>160211-SORCA</item>
+        <item>160301-ATIMA</item>
+        <item>160302-BERLIN</item>
+        <item>160303-LEMPA</item>
+        <item>160304-NUEVA VICTORIA</item>
+        <item>160305-SAN JOSE DE BUENA VISTA</item>
+        <item>160306-SAN PEDRITO</item>
+        <item>160307-SAN RAFAEL</item>
+        <item>160308-TALANGA</item>
+        <item>160401-AZACUALPA</item>
+        <item>160402-AGUALOTE</item>
+        <item>160403-BUENOS AIRES</item>
+        <item>160404-EL NARANJO</item>
+        <item>160405-EL PINABETE</item>
+        <item>160406-JOCONAL</item>
+        <item>160407-LAGUNA VERDE</item>
+        <item>160408-LA PUERTA</item>
+        <item>160409-LOMA ALTA</item>
+        <item>160410-SAN ANTONIO</item>
+        <item>160501-CEGUACA</item>
+        <item>160502-EL EDEN</item>
+        <item>160503-LA LIBERTAD</item>
+        <item>160504-SAN JUAN</item>
+        <item>160505-SANTA ANA O LAS LOMAS</item>
+        <item>160601-SAN JOSE DE COLINAS</item>
+        <item>160602-AGUA HELADA</item>
+        <item>160603-CACAHULAPA</item>
+        <item>160604-EL CEIBON</item>
+        <item>160605-EL ENCANTO</item>
+        <item>160606-EL JICARAL</item>
+        <item>160607-EL PACAYALITO</item>
+        <item>160608-EL PASTORERO</item>
+        <item>160609-EL PINABETE</item>
+        <item>160610-EL PORVENIR</item>
+        <item>160611-EL TRIUNFO</item>
+        <item>160612-HUNDICIONES</item>
+        <item>160613-LA ALIANZA</item>
+        <item>160614-LA COMUNIDAD</item>
+        <item>160615-LA ISLA</item>
+        <item>160616-LA LIBERTAD</item>
+        <item>160617-LA NUEVA FLORIDA</item>
+        <item>160618-LA UNION</item>
+        <item>160619-LAGUNA COLORADA</item>
+        <item>160620-LAGUNA INEA</item>
+        <item>160621-LAS JOYAS</item>
+        <item>160622-LOMA LARGA</item>
+        <item>160623-NUEVA ESPERANZA</item>
+        <item>160624-PEÑA BLANCA</item>
+        <item>160625-PIEDRA GRANDE</item>
+        <item>160626-SAN FRANCISCO DEL CARRIZAL</item>
+        <item>160627-SAN JOSE DE COLON</item>
+        <item>160628-SAN LUIS DEL PACAYAL</item>
+        <item>160629-SAN LUIS PLANES</item>
+        <item>160630-SAN MIGUEL DE LAJAS</item>
+        <item>160631-SANTA CRUZ CUCHILLA</item>
+        <item>160632-VICTORIA</item>
+        <item>160701-CONCEPCION DEL NORTE</item>
+        <item>160702-AGUA DULCE</item>
+        <item>160703-BUENA VISTA</item>
+        <item>160704-CONCORDIA</item>
+        <item>160705-CUCHILLA ALTA</item>
+        <item>160706-EL CERRON</item>
+        <item>160707-EL MACUELIZO</item>
+        <item>160708-EL ROBLEDAL</item>
+        <item>160709-EL VOLCAN</item>
+        <item>160710-LA LAGUNA DE PROTECCION</item>
+        <item>160711-LAS FLORES</item>
+        <item>160712-SANTA ANA</item>
+        <item>160713-SUYAPA</item>
+        <item>160801-CONCEPCION DEL SUR</item>
+        <item>160802-EL AGUAJE</item>
+        <item>160803-EL PLAYON</item>
+        <item>160804-LA VUELTOSA</item>
+        <item>160805-NUEVA ESPERANZA</item>
+        <item>160901-CHINDA</item>
+        <item>160902-BARRIO NUEVO O CHIQUIGUITE</item>
+        <item>160903-EL LIMON</item>
+        <item>160904-EL RETIRO</item>
+        <item>160905-EL TULE</item>
+        <item>160906-LA BREA</item>
+        <item>160907-LA CUCHILLA</item>
+        <item>160908-PLATANARES</item>
+        <item>160909-RIO CAÑAS</item>
+        <item>160910-SAN RAFAEL</item>
+        <item>161001-EL NISPERO</item>
+        <item>161002-EL PARAISO</item>
+        <item>161003-EL TONTOLO</item>
+        <item>161004-NEJAPA</item>
+        <item>161005-NUEVA YORK</item>
+        <item>161006-SAN JERONIMO</item>
+        <item>161007-SANTA CRUZ</item>
+        <item>161101-GUALALA</item>
+        <item>161102-ARENALES</item>
+        <item>161103-EL CARRIZAL</item>
+        <item>161104-GUACAMAYA</item>
+        <item>161105-GUALJOQUITO</item>
+        <item>161106-PLATANARES</item>
+        <item>161107-QUEBRADA ARRIBA</item>
+        <item>161108-SANTA ROSITA</item>
+        <item>161201-ILAMA</item>
+        <item>161202-AGUA ZARCA</item>
+        <item>161203-CECECAPA</item>
+        <item>161204-LA CAÑADA</item>
+        <item>161205-LA CUCHILLA</item>
+        <item>161206-LA ESTANCIA</item>
+        <item>161207-LA FE</item>
+        <item>161208-LA MICA</item>
+        <item>161209-LA MONTAÑITA</item>
+        <item>161210-SAN JOSE DE ORIENTE</item>
+        <item>161211-SAN JUAN DE LA CRUZ</item>
+        <item>161212-SAN VICENTE DE LAS NIEVES</item>
+        <item>161213-UNCANA</item>
+        <item>161301-MACUELIZO</item>
+        <item>161302-AGUA HELADA</item>
+        <item>161303-ALDEA NUEVA</item>
+        <item>161304-BUENA VISTA</item>
+        <item>161305-CALLEJONES O LA LIBERTAD</item>
+        <item>161306-CASA QUEMADA</item>
+        <item>161307-CHIQUILA</item>
+        <item>161309-EL CIRUELO</item>
+        <item>161311-EL MANGUITO</item>
+        <item>161313-EL PITAL</item>
+        <item>161314-EL ROSARIO</item>
+        <item>161315-LA CUMBRE DE PALMICHAL</item>
+        <item>161316-CUNTA</item>
+        <item>161317-LA FLECHA</item>
+        <item>161318-LA VEGONA</item>
+        <item>161319-LA VIRTUD</item>
+        <item>161320-LAGUNA SECA</item>
+        <item>161321-LAS DELICIAS</item>
+        <item>161322-LAS FLORES</item>
+        <item>161323-LAS MINAS</item>
+        <item>161324-LAS VARAS</item>
+        <item>161325-MATA DE PLATANO</item>
+        <item>161326-OJOS DE AGUA</item>
+        <item>161328-PIÑUELAS</item>
+        <item>161330-RIO BLANCO</item>
+        <item>161331-SABANETAS</item>
+        <item>161332-SAN ANTONIO DE LA CUMBRE</item>
+        <item>161333-SAN ANTONIO DE MACUELIZO</item>
+        <item>161336-SULA</item>
+        <item>161338-ZAPOTALITO</item>
+        <item>161401-NARANJITO</item>
+        <item>161402-CAMACAL</item>
+        <item>161403-EL NISPERAL</item>
+        <item>161404-EL PORTILLO</item>
+        <item>161405-JIMILILE</item>
+        <item>161406-LAS CRUCITAS</item>
+        <item>161408-QUEBRADA DEL RANCHO</item>
+        <item>161409-SAN ISIDRO</item>
+        <item>161410-SAN JUAN</item>
+        <item>161411-SANTA ANA</item>
+        <item>161412-SANTIAGO DE POSTA</item>
+        <item>161413-ULAPA</item>
+        <item>161501-NUEVO CELILAC</item>
+        <item>161502-LA ARADITA</item>
+        <item>161503-LAS CRUCITAS</item>
+        <item>161504-NUEVO JALAPA O TIERRA BLANCA</item>
+        <item>161505-SAN JERONIMO DEL PINAL</item>
+        <item>161506-SAN NICOLASITO</item>
+        <item>161507-VALLE DE LA CRUZ</item>
+        <item>161601-PETOA</item>
+        <item>161602-BARANDILLALES</item>
+        <item>161603-CAMALOTALES</item>
+        <item>161604-EL PARAISO</item>
+        <item>161605-EL PLAN DE OLOLA</item>
+        <item>161606-LAS FLORES</item>
+        <item>161607-MEZCALITO</item>
+        <item>161608-PUEBLO NUEVO</item>
+        <item>161609-QUEBRADITAS</item>
+        <item>161610-SAN ANTONIO DE LA MAJADA</item>
+        <item>161611-SAN JOAQUIN</item>
+        <item>161612-SAN JOSE DE LA MAJADA</item>
+        <item>161613-SANTA CLARA</item>
+        <item>161614-SANTO DOMINGO</item>
+        <item>161701-PROTECCION</item>
+        <item>161702-BUENOS AIRES</item>
+        <item>161703-EL CHILE</item>
+        <item>161704-EL ENCANTO</item>
+        <item>161705-EL OCOTE O CERRO EL OCOTE</item>
+        <item>161706-EL TRIUNFO O EL JUNCAL</item>
+        <item>161707-LA JAGUILLA O LOMA ENCERRADA</item>
+        <item>161708-LA LAGUNA</item>
+        <item>161709-LA REINA</item>
+        <item>161710-LA RUIDOSA</item>
+        <item>161711-LAS DELICIAS O LAS LORAS</item>
+        <item>161712-LAS VUELTAS</item>
+        <item>161713-PUEBLO NUEVO</item>
+        <item>161714-ZAMBRANO</item>
+        <item>161801-QUIMISTAN</item>
+        <item>161802-AGUA SUCIA</item>
+        <item>161803-ALDEA NUEVA O LA DIVISORIA</item>
+        <item>161804-BUENOS AIRES</item>
+        <item>161805-CAMALOTE</item>
+        <item>161806-CORREDEROS</item>
+        <item>161807-EL AGUACATE</item>
+        <item>161808-EL CHAGUITE</item>
+        <item>161809-EL HIGUERITO</item>
+        <item>161810-EL TABLON</item>
+        <item>161811-LA ACEQUIA</item>
+        <item>161812-LA CEIBITA</item>
+        <item>161814-LA MINA</item>
+        <item>161815-LA MONTAÑITA</item>
+        <item>161816-NUEVA ESPERANZA</item>
+        <item>161817-LAGUNA DEL CARMEN</item>
+        <item>161818-LAS CRUCITAS</item>
+        <item>161819-LAS FLORES DE RIO CHIQUITO</item>
+        <item>161820-MILPA ARADA</item>
+        <item>161821-NACO</item>
+        <item>161822-NUEVA ESPERANZA DE RIO CHIQUITO</item>
+        <item>161823-OCOTAL TUPIDO</item>
+        <item>161824-PICHINEL</item>
+        <item>161825-PINALEJO</item>
+        <item>161826-RIO BLANCO</item>
+        <item>161827-SAN ISIDRO</item>
+        <item>161828-SAN JOSE DEL CACAO</item>
+        <item>161829-SAN JUAN DEL SITIO</item>
+        <item>161830-SAN MIGUEL DEL PASO VIEJO</item>
+        <item>161831-SANTA CRUZ MINAS</item>
+        <item>161832-TIERRA AMARILLA</item>
+        <item>161833-CONCEPCION DEL LISTON</item>
+        <item>161834-EL PINAL</item>
+        <item>161835-VISTA HERMOSA</item>
+        <item>161836-COL. BRISAS DEL CAMPO</item>
+        <item>161837-RIO CHIQUITO</item>
+        <item>161838-EL VENADO</item>
+        <item>161839-EL POVENIR O EL DESCANSO</item>
+        <item>161840-UNION FRONTERA</item>
+        <item>161841-BUENA VISTA</item>
+        <item>161901-SAN FRANCISCO DE OJUERA</item>
+        <item>161902-EL DIVISO</item>
+        <item>161903-EL GAVILAN</item>
+        <item>161904-EL PILON</item>
+        <item>161905-LA CHORRERA</item>
+        <item>161906-LA PALCA</item>
+        <item>161907-LA VEGA</item>
+        <item>161908-PLAN DE LOS CEDROS</item>
+        <item>161909-PUEBLO NUEVO</item>
+        <item>161910-SAN ISIDRO</item>
+        <item>161911-SAN RAMON</item>
+        <item>161912-SANTA ANA</item>
+        <item>161913-SANTA FE</item>
+        <item>162001-SAN LUIS</item>
+        <item>162002-CALPULES</item>
+        <item>162003-EL SAUCE</item>
+        <item>162004-EL REGADIO</item>
+        <item>162005-LAS FLORES</item>
+        <item>162006-LAS ROSAS</item>
+        <item>162007-LA UNION O EL PLAYON</item>
+        <item>162008-NISPERALES</item>
+        <item>162009-PALMA REAL</item>
+        <item>162010-SAN FRANCISCO</item>
+        <item>162011-SAN ISIDRO</item>
+        <item>162012-SAN JUAN</item>
+        <item>162013-SAN MIGUEL CUABANALES</item>
+        <item>162014-SANTA ELENA</item>
+        <item>162015-TEJUTALES</item>
+        <item>162016-TATOCA O EL BARRO</item>
+        <item>162017-VILLA LUZ</item>
+        <item>162101-SAN MARCOS</item>
+        <item>162102-AGUA TAPADA</item>
+        <item>162103-BELLA VISTA</item>
+        <item>162104-CAMPO ALEGRE</item>
+        <item>162105-CORRALITO</item>
+        <item>162106-CHUMBAGUA</item>
+        <item>162107-EL CHORRO</item>
+        <item>162108-LLANO DE LOS PANALES</item>
+        <item>162109-EL ROBLEDAL</item>
+        <item>162110-LA PRESA</item>
+        <item>162111-LA PUERTA</item>
+        <item>162112-LAS MINITAS</item>
+        <item>162113-PILETAS</item>
+        <item>162114-PLAN DE OLOLA</item>
+        <item>162115-POTRERILLOS</item>
+        <item>162116-REGADIO</item>
+        <item>162117-SAN FRANCISCO DE LOS VALLES</item>
+        <item>162118-SITIO VIEJO</item>
+        <item>162119-ZAPOTE NO.1</item>
+        <item>162120-ZAPOTE NO.2</item>
+        <item>162201-SAN NICOLAS</item>
+        <item>162202-CRUZ GRANDE</item>
+        <item>162203-CHOLOMA O HACIENDA LAS MINITAS</item>
+        <item>162204-EL DESCANSADERO</item>
+        <item>162205-EL PINALEJO</item>
+        <item>162206-EL PORVENIR</item>
+        <item>162207-EL RESUMIDERO</item>
+        <item>162208-LA CUCHILLA</item>
+        <item>162209-SAN MANUEL DEL TRIUNFO</item>
+        <item>162210-SANTA CRUZ</item>
+        <item>162301-SAN PEDRO ZACAPA</item>
+        <item>162302-AGUA CALIENTE</item>
+        <item>162303-AZACUALPA</item>
+        <item>162304-CANCULUNCOS</item>
+        <item>162305-EL MOGOTE</item>
+        <item>162306-EL OCOTE</item>
+        <item>162307-HORCONCITOS</item>
+        <item>162308-LA BOQUITA</item>
+        <item>162309-MOJARRAS</item>
+        <item>162310-SAN ANTONIO DE CHUCHEPEQUE</item>
+        <item>162401-SANTA RITA</item>
+        <item>162402-EL AGUAJE</item>
+        <item>162403-EL JENGIBRAL</item>
+        <item>162404-EL TEUXINTE</item>
+        <item>162405-SAN FERNANDO</item>
+        <item>162501-SAN VICENTE CENTENARIO</item>
+        <item>162601-TRINIDAD</item>
+        <item>162602-CEBADILLA</item>
+        <item>162603-CHIMIZALES</item>
+        <item>162604-EL CARMEN</item>
+        <item>162605-EL COROZAL</item>
+        <item>162606-EL DIVISO</item>
+        <item>162607-EL GUINEAL</item>
+        <item>162608-EL HIGUITO</item>
+        <item>162609-EL RODEO</item>
+        <item>162610-EL TIGRE</item>
+        <item>162611-EL TUMBO</item>
+        <item>162612-LA ALEGRIA</item>
+        <item>162613-LA ANGOSTURA</item>
+        <item>162614-LA HUERTA</item>
+        <item>162615-LA UNION</item>
+        <item>162616-LAS DELICIAS</item>
+        <item>162617-LAS TROJES</item>
+        <item>162618-MATASANALES</item>
+        <item>162619-PINABETE O LOMA LIMPIA</item>
+        <item>162620-SAN FRANCISCO</item>
+        <item>162621-SANTA ROSITA</item>
+        <item>162622-TASCALAPA</item>
+        <item>162701-LAS VEGAS</item>
+        <item>162702-EL CARRETO</item>
+        <item>162703-EL MOCHITO O MOCHO ARRIBA</item>
+        <item>162704-EL SAUCE</item>
+        <item>162705-FLORES DE BIJAO</item>
+        <item>162706-LA UNION SUYAPA</item>
+        <item>162707-SAN JOSE DE LOS ANDES</item>
+        <item>162801-TRASCERROS</item>
+        <item>162802-EL BARRANCO</item>
+        <item>162803-EL ERMITAÑO</item>
+        <item>162804-EL ORO</item>
+        <item>162805-PILADEROS</item>
+        <item>162806-PUEBLO NUEVO</item>
+        <item>162807-SAN JOSE DE TARROS</item>
+        <item>162808-SAN MIGUELITO</item>
+        <item>170101-NACAOME</item>
+        <item>170102-AGUA CALIENTE</item>
+        <item>170103-EL ROSARIO</item>
+        <item>170104-EL TABACAL</item>
+        <item>170105-EL TULAR</item>
+        <item>170106-GUACIROPE</item>
+        <item>170107-MOROPOCAY</item>
+        <item>170108-SAN ANTONIO</item>
+        <item>170109-SAN NICOLAS ARRIBA</item>
+        <item>170110-SAN RAFAEL</item>
+        <item>170201-ALIANZA</item>
+        <item>170202-ALTO DE JESUS</item>
+        <item>170203-LOS AMATES</item>
+        <item>170204-SAN JERONIMO</item>
+        <item>170205-SAN PEDRO CALERO</item>
+        <item>170206-SONORA</item>
+        <item>170301-AMAPALA</item>
+        <item>170302-COYOLITO</item>
+        <item>170303-EL ZOPE</item>
+        <item>170304-GUALORITA</item>
+        <item>170305-LA FLOR</item>
+        <item>170306-LA PINTADILLERA</item>
+        <item>170307-LOS LANGUES</item>
+        <item>170308-PLAYA GRANDE</item>
+        <item>170309-PLAYA NEGRA</item>
+        <item>170310-PUNTA NOVILLO</item>
+        <item>170311-PUERTO GRANDE</item>
+        <item>170312-SAN CARLOS O EL GARROBO</item>
+        <item>170313-SAN PABLO</item>
+        <item>170401-ARAMECINA</item>
+        <item>170402-EL CANTIL</item>
+        <item>170403-EL PEDREGAL</item>
+        <item>170404-EL TABLON</item>
+        <item>170405-LA PEÑA</item>
+        <item>170406-LAS POZAS</item>
+        <item>170407-LOS TERREROS</item>
+        <item>170408-MACUELIZO</item>
+        <item>170409-SAMPITO</item>
+        <item>170410-SANTA LUCIA</item>
+        <item>170411-SOLUBRE</item>
+        <item>170412-TIERRA BLANCA</item>
+        <item>170501-CARIDAD</item>
+        <item>170502-HONDABLE NO.1</item>
+        <item>170503-LA ESPERANZA</item>
+        <item>170504-LAS DELICIAS</item>
+        <item>170505-SAN ANTONIO</item>
+        <item>170601-GOASCORAN</item>
+        <item>170602-EL PICACHO</item>
+        <item>170603-LA ARADA</item>
+        <item>170604-LLANO DE JESUS</item>
+        <item>170605-PIEDRAS BLANCAS</item>
+        <item>170606-SAN ANDRES</item>
+        <item>170607-SANTA INES</item>
+        <item>170608-SANTA RITA</item>
+        <item>170701-LANGUE</item>
+        <item>170702-CANDELARIA</item>
+        <item>170703-CONCEPCION DE MARIA O POTRERO GRANDE</item>
+        <item>170704-LOS LLANOS</item>
+        <item>170705-SAN FRANCISCO NO.2</item>
+        <item>170706-SAN MARCOS O TAMAYO</item>
+        <item>170801-SAN FRANCISCO DE CORAY</item>
+        <item>170802-CALEAS NO.2</item>
+        <item>170803-CERRO GRANDE</item>
+        <item>170804-EL ESPINO</item>
+        <item>170805-EL GUAYABO</item>
+        <item>170806-EL RODEO</item>
+        <item>170807-EL SALITRE</item>
+        <item>170808-LA CAÑADA O CALEA NO.1</item>
+        <item>170809-LA LAGUNA NO.1</item>
+        <item>170810-LA LAGUNA NO.2 O LAS FLORES</item>
+        <item>170811-LAS DELICIAS</item>
+        <item>170812-LAS MESAS</item>
+        <item>170813-LOS AMATES</item>
+        <item>170814-MONTECRISTO</item>
+        <item>170815-PANASACARAN</item>
+        <item>170816-TALPETATES</item>
+        <item>170901-SAN LORENZO</item>
+        <item>170902-EL CAIMITO</item>
+        <item>170903-EL COMERCIO</item>
+        <item>170904-EL MATIARAL</item>
+        <item>170905-GUANACASTALES</item>
+        <item>170906-LA CRIBA</item>
+        <item>170907-LA CUESTA</item>
+        <item>170908-LAURE ABAJO</item>
+        <item>170909-LAURE ARRIBA</item>
+        <item>170910-SAN JERONIMO</item>
+        <item>180101-YORO</item>
+        <item>180102-AYAPA</item>
+        <item>180103-CHALMECA</item>
+        <item>180104-GUARE</item>
+        <item>180105-LA CAPA</item>
+        <item>180106-LA GUATA</item>
+        <item>180107-LA LAGUNA DEL NARANJO</item>
+        <item>180108-LA LAGUNA DE LA CAPA</item>
+        <item>180109-LA ROSA</item>
+        <item>180110-LA TRINIDAD</item>
+        <item>180111-LAS QUEBRADAS</item>
+        <item>180112-LOCOMAPA NO.1</item>
+        <item>180113-LOCOMAPA NO.2</item>
+        <item>180114-MEJIA</item>
+        <item>180115-NUEVA FLORIDA</item>
+        <item>180116-SAN DIEGO</item>
+        <item>180117-SAN JOSE DE TEXIGUAT</item>
+        <item>180118-SUBIRANA</item>
+        <item>180119-TULANGUARE</item>
+        <item>180201-ARENAL</item>
+        <item>180202-CAMPO EL CAYO</item>
+        <item>180203-CHAMPERIO EL CAYO</item>
+        <item>180204-EL RETIRO</item>
+        <item>180205-SANTA CRUZ</item>
+        <item>180206-TEGUAJAL</item>
+        <item>180207-TIERRA BLANCA</item>
+        <item>180301-EL NEGRITO</item>
+        <item>180302-BATTAN</item>
+        <item>180303-CAMPO PAUJIL</item>
+        <item>180304-CAMPO PERDIZ</item>
+        <item>180305-CERRO PRIETO NO.1</item>
+        <item>180306-CERRO PRIETO NO.2</item>
+        <item>180307-EL JOCOMICO</item>
+        <item>180308-EL JUNCO</item>
+        <item>180309-EL NARANJO</item>
+        <item>180310-EL PATE</item>
+        <item>180311-EL ROBLEDAL</item>
+        <item>180312-EL RODEO</item>
+        <item>180313-ESTERO INDIO</item>
+        <item>180314-FINCA TREINTA Y CINCO</item>
+        <item>180315-FINCA TREINTA Y SEIS</item>
+        <item>180316-GUAYMON</item>
+        <item>180317-LA LAGUNA</item>
+        <item>180318-LA MAJADA</item>
+        <item>180319-LA VEINTE Y NUEVE</item>
+        <item>180320-LA VEINTE Y OCHO</item>
+        <item>180321-LAS DELICIAS</item>
+        <item>180322-NUEVA SAN ANTONIO</item>
+        <item>180323-SAMAR</item>
+        <item>180324-SAN JERONIMO</item>
+        <item>180325-SAN JOSE DEL NEGRITO</item>
+        <item>180326-TOYOS</item>
+        <item>180327-VILLA DEL CARMEN O FINCA TREINTA Y SIETE</item>
+        <item>180401-EL PROGRESO</item>
+        <item>180402-AGUA BLANCA DEL NORTE</item>
+        <item>180403-AGUA BLANCA SUR</item>
+        <item>180404-ARENAS BLANCAS</item>
+        <item>180405-BUENOS AIRES DEL NORTE</item>
+        <item>180406-BUENOS AIRES O PAUJILES</item>
+        <item>180407-CAMPO AMAPA</item>
+        <item>180408-CAMPO BIRICHICHE O LAS PALOMAS</item>
+        <item>180409-CAMPO BUENA VISTA</item>
+        <item>180410-CAMPO COOB</item>
+        <item>180411-CAMPO DIEZ Y SEIS O BUENOS AMIGOS</item>
+        <item>180412-CAMPO DIEZ ALBOROTO</item>
+        <item>180415-CAMPO LA FRAGUA</item>
+        <item>180416-CAMPO LAS FLORES</item>
+        <item>180417-CAMPO MOCULA</item>
+        <item>180418-CAMPO MONTERREY</item>
+        <item>180419-CAMPO NARANJO CHINO</item>
+        <item>180421-CAMPO ONCE</item>
+        <item>180422-CAMPO PALOS BLANCOS O BRECK</item>
+        <item>180423-COLONIA BRISAS DE LA LIBERTAD</item>
+        <item>180424-COL. COHBASA</item>
+        <item>180425-COL. GUANCHIAS</item>
+        <item>180426-COL. SAN JOSE O LA TREINTA Y NUEVE</item>
+        <item>180427-CUATRO DE MARZO</item>
+        <item>180428-EL BALSAMO</item>
+        <item>180429-EL PORVENIR DEL NORTE O EL CAMALOTE</item>
+        <item>180431-GUANCHIA CERRO</item>
+        <item>180432-GUAYMITAS</item>
+        <item>180433-GUAYMITAS VIEJO O EL CASTAÑO</item>
+        <item>180434-LA COLORADA</item>
+        <item>180435-LA CUARENTA</item>
+        <item>180436-LA CURVA O KILOMETRO CUARENTA Y CINCO</item>
+        <item>180437-LA GUACAMAYA</item>
+        <item>180438-LA MINA</item>
+        <item>180439-LA OCHO O EL SOCORRO</item>
+        <item>180440-LA SARROSA</item>
+        <item>180441-LAS BRISAS DEL NORTE</item>
+        <item>180442-LAS CHUMBAS</item>
+        <item>180443-LAS DELICIAS DEL JUTE</item>
+        <item>180445-MEALER</item>
+        <item>180446-MICO QUEMADO</item>
+        <item>180447-OJO DE AGUA</item>
+        <item>180448-QUEBRADA DE YORO</item>
+        <item>180449-SAN ANTONIO</item>
+        <item>180450-SAN LUIS SEIS</item>
+        <item>180451-SANTA ELENA</item>
+        <item>180452-SANTA INES</item>
+        <item>180453-SUYAPA O KILOMETRO SETENTA</item>
+        <item>180454-URRACO PUEBLO</item>
+        <item>180455-URRACO SUR</item>
+        <item>180456-VERACRUZ PALOMA</item>
+        <item>180501-JOCON</item>
+        <item>180502-AGUA FRIA</item>
+        <item>180503-ALTA CRUZ</item>
+        <item>180504-LA DALIA</item>
+        <item>180505-LA LOMA</item>
+        <item>180506-LA ROSA</item>
+        <item>180507-LAMA</item>
+        <item>180508-MACORA</item>
+        <item>180509-PUENTE GRANDE</item>
+        <item>180510-TAPIQUIL</item>
+        <item>180601-MORAZAN</item>
+        <item>180602-AGUA BLANCA</item>
+        <item>180603-BUENA VISTA</item>
+        <item>180604-CANDELARIA</item>
+        <item>180605-CARIDAD</item>
+        <item>180606-CUYAMAPA</item>
+        <item>180607-CHILILENGA</item>
+        <item>180608-EL FILON DEL PORVENIR</item>
+        <item>180609-LA BOLSITA</item>
+        <item>180610-LA CRUZ</item>
+        <item>180611-LA ESTANCIA</item>
+        <item>180612-LEMPIRA</item>
+        <item>180613-LOS PRIETOS O SAN MARTIN</item>
+        <item>180614-MANGO SECO</item>
+        <item>180615-MOJIMAN</item>
+        <item>180616-NOMBRE DE DIOS</item>
+        <item>180617-NUEVA ESPERANZA</item>
+        <item>180618-NUEVA FLORIDA</item>
+        <item>180619-OCOTE PAULINO</item>
+        <item>180620-PAYA</item>
+        <item>180621-PORTILLO DE GONZALEZ</item>
+        <item>180623-SAN ANTONIO O PALMAR</item>
+        <item>180624-SAN JUAN DE CAMALOTE</item>
+        <item>180625-SAN RAFAEL DE AGUACATALES</item>
+        <item>180701-OLANCHITO</item>
+        <item>180702-AGALTECA</item>
+        <item>180703-AGUA CALIENTE</item>
+        <item>180704-ARMENIA</item>
+        <item>180705-BALSAMO ORIENTAL</item>
+        <item>180706-BARRANCO</item>
+        <item>180707-BOCA DE MAME</item>
+        <item>180708-BRIONES</item>
+        <item>180709-CALPULES</item>
+        <item>180710-CAMPO AGUA BUENA</item>
+        <item>180711-CAMPO BALSAMO</item>
+        <item>180712-CAMPO CALPULES</item>
+        <item>180713-CAMPO EL CHORRO</item>
+        <item>180714-CAMPO LIMONES NO.4 O A</item>
+        <item>180715-CAMPO LIMONES NO.6</item>
+        <item>180716-CAMPO NERONES</item>
+        <item>180717-CAMPO NUEVO</item>
+        <item>180718-CAMPO PALO VERDE NO.2</item>
+        <item>180719-CAMPO ROSARIO</item>
+        <item>180720-CAMPO TROJAS A O NO.2</item>
+        <item>180721-CAMPO TROJAS B O NO.3</item>
+        <item>180722-CARBAJALES</item>
+        <item>180723-CLIFTON</item>
+        <item>180724-COOPERATIVA BRISAS DE CUYAMAPA</item>
+        <item>180725-COOPERATIVA DOCE DE DICIEMBRE</item>
+        <item>180726-COYOLES</item>
+        <item>180727-COYOLES CENTRAL</item>
+        <item>180728-CHORRERA</item>
+        <item>180729-EL CARRIL</item>
+        <item>180730-EL CERRO</item>
+        <item>180731-EL COYOLAR</item>
+        <item>180732-EL CHAPARRAL</item>
+        <item>180733-EL JUNCAL</item>
+        <item>180734-EL NANCE</item>
+        <item>180735-EL OCOTE</item>
+        <item>180736-EL TERRERO</item>
+        <item>180737-EL URRACO</item>
+        <item>180738-LA AMERICA</item>
+        <item>180739-LA FLORIDA</item>
+        <item>180740-LA HICACA</item>
+        <item>180741-LA LIBERTAD</item>
+        <item>180742-LA REFORMA</item>
+        <item>180743-LA SABANA DE SAN CARLOS</item>
+        <item>180744-LA VEGUITA</item>
+        <item>180745-LAS FLORES</item>
+        <item>180746-LAS HICOTECAS</item>
+        <item>180747-LAS JAGUAS</item>
+        <item>180748-LAS MINAS</item>
+        <item>180749-MALOA</item>
+        <item>180750-MEDINA</item>
+        <item>180751-NUEVA MENDEZ</item>
+        <item>180752-NOMBRE DE JESUS</item>
+        <item>180753-POTRERILLOS</item>
+        <item>180754-PUERTO ESCONDIDO</item>
+        <item>180755-SABANETAS</item>
+        <item>180756-SAN CARLOS</item>
+        <item>180757-SAN DIMAS</item>
+        <item>180758-SAN FRANCISCO</item>
+        <item>180759-SAN JERONIMO</item>
+        <item>180760-SAN JOSE</item>
+        <item>180761-SAN JUAN</item>
+        <item>180762-SAN LORENZO ABAJO</item>
+        <item>180763-SAN LORENZO ARRIBA</item>
+        <item>180764-SAN MARCOS</item>
+        <item>180765-SANTA BARBARA</item>
+        <item>180766-TACUALTUSTE</item>
+        <item>180767-TEGUAJINAL</item>
+        <item>180768-LAS TEJERAS</item>
+        <item>180769-TEPUSTECA</item>
+        <item>180770-TROJAS</item>
+        <item>180801-SANTA RITA</item>
+        <item>180802-CANGREJALES</item>
+        <item>180803-CASIANO</item>
+        <item>180804-EL CALICHE</item>
+        <item>180805-EL CAPULIN</item>
+        <item>180806-EL REMOLINO</item>
+        <item>180807-EL SANTUARIO DE PLACIDO</item>
+        <item>180808-EL VERTIENTE</item>
+        <item>180809-FINCA DIEZ Y NUEVE</item>
+        <item>180810-GUANCHIAS CRIQUE</item>
+        <item>180811-PLACIDO</item>
+        <item>180812-PLAN GRANDE</item>
+        <item>180813-TAPIQUILARES</item>
+        <item>180814-TERRERO NEGRO</item>
+        <item>180901-SULACO</item>
+        <item>180902-EL DESMONTE</item>
+        <item>180903-EL JARAL</item>
+        <item>180904-LA ALBARDILLA</item>
+        <item>180905-LAS CAÑAS</item>
+        <item>180906-SAN ANTONIO</item>
+        <item>180907-SAN JUAN</item>
+        <item>181001-VICTORIA</item>
+        <item>181002-BAJO GRANDE</item>
+        <item>181003-BUENOS AIRES</item>
+        <item>181004-COYOLITO</item>
+        <item>181005-EL JICARO</item>
+        <item>181006-EL MANGO</item>
+        <item>181007-EL PATASTE</item>
+        <item>181008-GUARABUQUI</item>
+        <item>181009-JACAGUA</item>
+        <item>181010-LA ZARZA</item>
+        <item>181011-LAS FLORES</item>
+        <item>181012-LAS LOMAS</item>
+        <item>181013-LAS VEGAS</item>
+        <item>181014-LOMAS DEL JICARO</item>
+        <item>181015-LOS CACAOS</item>
+        <item>181016-MENDEZ</item>
+        <item>181017-SAN ISIDRO</item>
+        <item>181018-SANTA LUCIA</item>
+        <item>181019-TIERRA AMARILLA</item>
+        <item>181101-YORITO</item>
+        <item>181102-EL DESTINO</item>
+        <item>181103-EL PORTILLO</item>
+        <item>181104-JALAPA</item>
+        <item>181105-LA ESPERANZA</item>
+        <item>181106-LUQUIGUE</item>
+        <item>181107-PUEBLO VIEJO</item>
+        <item>181108-SANTA MARTA</item>
+        <item>181109-VALLECILLOS</item>
+    </string-array>
+</resources>

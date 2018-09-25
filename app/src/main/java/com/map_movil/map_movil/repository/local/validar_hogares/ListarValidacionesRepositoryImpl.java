@@ -12,15 +12,18 @@ public class ListarValidacionesRepositoryImpl implements ListarValidacionesRepos
 
     private ListarValidacionesPresenter listarValidacionesPresenter;
     private RealmConfig realmConfig;
+    private Context context;
 
     public ListarValidacionesRepositoryImpl(ListarValidacionesPresenter ListarValidacionesPresenter , Context context){
 
         this.listarValidacionesPresenter = ListarValidacionesPresenter;
-        this.realmConfig = new RealmConfig(context);
+        this.context = context;
     }
 
     @Override
     public void BuscarValidaciones() {
+
+        this.realmConfig = new RealmConfig(context);
         RealmResults<Hogar_Validar>  hogares  =  this.realmConfig.getRealm().where(Hogar_Validar.class)
                 .distinct("hog_hogar","per_identidad",
                         "nombre","hogar_direccion","desc_departamento",
@@ -36,6 +39,7 @@ public class ListarValidacionesRepositoryImpl implements ListarValidacionesRepos
 
         int[] validacion_hogar = new int [2];
 
+        this.realmConfig = new RealmConfig(context);
         RealmResults<Hogar_Validar> personas_hogares =  this.realmConfig.getRealm().where(Hogar_Validar.class)
                 .distinct("hog_hogar","per_persona")
                 .equalTo("hog_hogar", hog_hogar)

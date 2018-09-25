@@ -1,25 +1,19 @@
 package com.map_movil.map_movil.repository.ubicaciones;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.api.ubicaciones.ApiAdapterUbicacion;
 import com.map_movil.map_movil.api.ubicaciones.ApiServicesUbicacion;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
-import com.map_movil.map_movil.model.Departamentos;
-import com.map_movil.map_movil.model.Municipios;
-
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class UbicacionesRepositoryImpl implements UbicacionesRepository {
     ApiAdapterUbicacion apiAdapterUbicacion;
@@ -60,23 +54,24 @@ public class UbicacionesRepositoryImpl implements UbicacionesRepository {
 
     @Override
     public void getAldeas(String muni) {
-        Call<List<Aldeas>> aldeas = this.apiServicesUbicacion.getAllAldeas(muni);
-        aldeas.enqueue(new Callback<List<Aldeas>>() {
-            @Override
-            public void onResponse(Call<List<Aldeas>> call, Response<List<Aldeas>> response) {
-                if(response.isSuccessful()){
+        String[] arrayList = context.getResources().getStringArray(R.array.aldeas_array);
+        List<Aldeas> arrayListNew = new ArrayList<>();
 
-                    if(response.body().size()>0){
-                        ubicacionesPresenter.cargarAldeas(response.body());
-                    }
-                }
-            }
+        for (String item: arrayList){
+            String[] arrayItem = item.toString().split("-");
+            String string = arrayItem[0].substring(0,4);
 
-            @Override
-            public void onFailure(Call<List<Aldeas>> call, Throwable t) {
+            if(muni.contains(string)){
+                Aldeas aldeas = new Aldeas();
+                aldeas.setCod_aldea(arrayItem[0]);
+                aldeas.setDesc_aldea(arrayItem[1]);
+                arrayListNew.add(aldeas);
             }
-        });
+        }
+
+        ubicacionesPresenter.cargarAldeas(arrayListNew);
     }
+
 
     @Override
     public void getCaserios(String aldea) {
@@ -98,4 +93,5 @@ public class UbicacionesRepositoryImpl implements UbicacionesRepository {
             }
         });
     }
+
 }

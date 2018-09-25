@@ -13,15 +13,17 @@ public class ValidarNucleoRepositoryImpl implements ValidarNucleoRepository {
 
     private ValidarNucleoPresenter validarNucleoPresenter;
     private RealmConfig realmConfig;
+    private Context context;
 
     public ValidarNucleoRepositoryImpl(ValidarNucleoPresenter validarNucleoPresenter, Context context){
         this.validarNucleoPresenter = validarNucleoPresenter;
-        this.realmConfig = new RealmConfig(context);
+        this.context = context;
     }
 
     @Override
     public void BuscarDatos(String identidad) {
 
+        this.realmConfig = new RealmConfig(context);
         RealmResults<Hogar_Validar>  hogar  = this.realmConfig.getRealm().where(Hogar_Validar.class).distinct("hog_hogar").equalTo("per_identidad",identidad).findAll();
         RealmResults<Hogar_Validar>  result = this.realmConfig.getRealm().where(Hogar_Validar.class)
                 .equalTo("hog_hogar",hogar.get(0).getHog_hogar())
@@ -33,7 +35,6 @@ public class ValidarNucleoRepositoryImpl implements ValidarNucleoRepository {
                 .equalTo("hog_hogar",hogar.get(0).getHog_hogar())
                 .findAll();
 
-
         this.validarNucleoPresenter.MostarDatos(result , validaciones_realizadas);
     }
 
@@ -41,6 +42,8 @@ public class ValidarNucleoRepositoryImpl implements ValidarNucleoRepository {
     public void GuardarValidacion(int per_persona, int hog_hogar, final int identidad, final int act_compromiso, final int actualizar,
                                   final int part_nacimiento, final int cons_educacion, final int desagregar, final int debe_documento,
                                   int incorporacion , int cambio_titular) {
+
+        this.realmConfig = new RealmConfig(context);
         this.realmConfig.getRealm().beginTransaction();
 
         final RealmResults<Hogar_Validaciones_Realizadas> validacion = this.realmConfig.getRealm().where(Hogar_Validaciones_Realizadas.class).

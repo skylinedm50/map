@@ -2,6 +2,7 @@ package com.map_movil.map_movil.interactor.ubicaciones;
 
 import android.content.Context;
 
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
 import com.map_movil.map_movil.repository.ubicaciones.UbicacionesRepository;
 import com.map_movil.map_movil.repository.ubicaciones.UbicacionesRepositoryImpl;
@@ -31,7 +32,6 @@ public class UbicacionesInteractorImpl implements UbicacionesInteractor  {
     public void getAldeas(String muni) {
         this.UbicacionRepository.getAldeas(muni);
     }
-
 
     @Override
     public void getCaserios(String aldea) {
