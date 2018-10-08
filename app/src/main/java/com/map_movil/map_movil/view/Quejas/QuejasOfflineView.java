@@ -6,5 +6,4 @@ public interface QuejasOfflineView {
     void SincronizarQuejas();
     void FinalizarSincronizacion();
     void CambiarPorcentaje(int porcentaje);
-
 }

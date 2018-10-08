@@ -102,7 +102,7 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
         MenuItem searchItem = menu.findItem(R.id.searchViewFind);
         MenuItem nextItem = menu.findItem(R.id.next);
         MenuItem downloadItem = menu.findItem(R.id.download);
-        MenuItem saveItem = menu.findItem(R.id.saveServer);
+        MenuItem saveItem = menu.findItem(R.id.saveData);
 
         nextItem.setVisible(false);
         nextItem.setEnabled(false);
@@ -226,7 +226,7 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
                 getDepartamentos();
                 return true;
 
-            case R.id.saveServer:
+            case R.id.saveData:
                 builder = new AlertDialog.Builder(getActivity());
                 layoutInflater = getLayoutInflater();
                 viewInflater = layoutInflater.inflate(R.layout.dialog_synchronize_data, null);

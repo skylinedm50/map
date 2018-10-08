@@ -178,7 +178,7 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
         int Total=0;
 
         for(int i = 0 ; i < ES.size() ; i++){
-            if(!ES.get(i).getEstado().equals("Realizada")) {
+            if(!ES.get(i).getEstado().equals("No Aplicable") && !ES.get(i).getEstado().equals("Resuelta Conforme") && !ES.get(i).getEstado().equals("Resuelta No Conforme")) {
                 Total = ES.get(i).getCantidad() + Total;
             }
         }
@@ -357,7 +357,11 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                     yVals = new ArrayList<>();
 
-                    int CantidadRealizada= Func_Cantidad_Segun_Estado("Realizada",arreglo);
+                    int CantidadRealizada = Func_Cantidad_Segun_Estado("No Aplicable",arreglo);
+                    CantidadRealizada += Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo);
+                    CantidadRealizada += Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo);
+
+
                     int CantidadNoRealizada= Func_Total_Cantidad_No_Realizada(arreglo);
 
                     if(CantidadNoRealizada != 0){yVals.add(new PieEntry(CantidadNoRealizada, "NO REALIZADAS"));}
@@ -403,20 +407,29 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
                     yVals = new ArrayList<>();
 
 
-                    if(Func_Cantidad_Segun_Estado("Denegada", arreglo)!=0) {
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Denegada", arreglo), "DENEGADAS"));
-                    }
-                    if(Func_Cantidad_Segun_Estado("En proceso", arreglo)!=0){
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("En proceso", arreglo), "EN PROCESO"));
+                    if(Func_Cantidad_Segun_Estado("Ingresada", arreglo)!=0) {
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Ingresada", arreglo), "INGRESADA"));
                     }
                     if(Func_Cantidad_Segun_Estado("Incompleta", arreglo)!=0){
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Incompleta", arreglo), "INCOMPLETAS"));
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Incompleta", arreglo), "INCOMPLETA"));
                     }
-                    if(Func_Cantidad_Segun_Estado("Ingresada", arreglo)!=0){
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Ingresada", arreglo), "INGRESADAS"));
+                    if(Func_Cantidad_Segun_Estado("No Conforme", arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("No Conforme", arreglo), "NO COMFORME"));
                     }
-                    if(Func_Cantidad_Segun_Estado("Realizada",arreglo)!=0){
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Realizada",arreglo), "REALIZADAS"));
+                    if(Func_Cantidad_Segun_Estado("No Aplicable", arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("No Aplicable", arreglo), "NO APLICABLE"));
+                    }
+                    if(Func_Cantidad_Segun_Estado("Procesando",arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Procesando",arreglo), "PROCESANDO"));
+                    }
+                    if(Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo), "RESUELTA CONFORME"));
+                    }
+                    if(Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo), "RESUELTA NO CONFORME"));
+                    }
+                    if(Func_Cantidad_Segun_Estado("Resuelta Parcialmente",arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta Parcialmente",arreglo), "RESUELTA PARCIALMENTE"));
                     }
 
                     pieChart.getDescription().setText("TOTAL SOLICITUDES: "+ Func_Total_Cantidad(arreglo));

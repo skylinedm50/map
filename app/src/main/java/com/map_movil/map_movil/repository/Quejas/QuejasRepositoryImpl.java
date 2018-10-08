@@ -126,7 +126,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
 
     @Override
     public void DescargarQuejas(int usuario, String aldea) {
-
+        /**
         ApiAdapterQuejas  apiAdapterQuejas = new ApiAdapterQuejas();
         ApiServicesQuejas apiServicesQuejas = apiAdapterQuejas.getClientService();
         Call<ArrayList<QuejasDenuncias>>  call = apiServicesQuejas.getDownloadQuejas(usuario , aldea);
@@ -148,7 +148,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
 
             @Override
             public void onFailure(Call<ArrayList<QuejasDenuncias>> call, Throwable t) {  }
-        });
+        });*/
     }
 
     @Override

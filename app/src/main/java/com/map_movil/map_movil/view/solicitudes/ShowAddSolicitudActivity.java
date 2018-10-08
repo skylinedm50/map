@@ -8,6 +8,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -23,29 +25,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.adapter.AdapaterItemMiembroNucleoRecyclerView;
 import com.map_movil.map_movil.api.hogar.ApiAdapterHogar;
 import com.map_movil.map_movil.api.hogar.ApiServiceHogar;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
 import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
-import com.map_movil.map_movil.broadcasts.BroadCastDate;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.HogarByTitular;
 import com.map_movil.map_movil.model.HogarLigth;
 import com.map_movil.map_movil.model.InfoSolicitud;
-import com.map_movil.map_movil.model.ResponseApi;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.presenter.solicitud.ShowAddSolicitudAcitivityPresenter;
 import com.map_movil.map_movil.presenter.solicitud.ShowAddSolicitudAcitivityPresenterImpl;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class ShowAddSolicitudActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener, ShowAddSolicitudAcitivityView {
+public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuItem.OnActionExpandListener, ShowAddSolicitudAcitivityView {
     private Intent intent;
     private ShowAddSolicitudAcitivityPresenter showAddSolicitudAcitivityPresenter;
     private SharedPreferences sharedPreferences;
@@ -53,14 +49,10 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
     private int intTipoOperacion;
     private ApiAdapterSolicitudes objApiAdapterSolicitudes;
     private ApiServiceSolicitudes objApiServiceSolicitudes;
-    private ApiAdapterHogar adapterHogar;
-    private ApiServiceHogar serviceHogar;
 
-    private ArrayList<InfoSolicitud> infoSolicitud = new ArrayList<InfoSolicitud>();
     private ArrayList<HogarLigth> hogarLigthsList = new ArrayList<>();
 
     private TextInputEditText textInputEditTextObservacion;
-    private Button buttonGuardar;
     private TextView textViewCodSolitud;
     private TextView textViewEstadoSolicitud;
     private TextView textViewMessageFind;
@@ -90,6 +82,10 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
     private CheckBox checkBoxCorrecionSancion;
     private CheckBox checkBoxReactivaPrograma;
 
+    private MenuItem saveDataItem;
+    private RecyclerView recyclerViewMiembros;
+    private AdapaterItemMiembroNucleoRecyclerView adapaterItemMiembroNucleoRecyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +113,6 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
         relativeLayoutProgressBar = findViewById(R.id.relativeLayoutProgressBar);
         textViewMessageFind = findViewById(R.id.textViewMessageFind);
 
-        buttonGuardar = findViewById(R.id.buttonGuardar);
         linearLayoutNucleo = findViewById(R.id.conteinerLinearLayoutNucleo);
         linearLayoutObserEdit = findViewById(R.id.linearLayoutObserEdit);
         linearLayoutObserView = findViewById(R.id.linearLayoutObserView);
@@ -132,15 +127,15 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
         checkBoxCorrecionSancion = findViewById(R.id.checkboxCorreccionSancion);
         checkBoxReactivaPrograma = findViewById(R.id.checkboxReactivaPrograma);
 
+        recyclerViewMiembros = findViewById(R.id.recyclerViewMiembros);
+        recyclerViewMiembros.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        adapaterItemMiembroNucleoRecyclerView = new AdapaterItemMiembroNucleoRecyclerView(hogarLigthsList);
+        recyclerViewMiembros.setAdapter(adapaterItemMiembroNucleoRecyclerView);
+
         objApiAdapterSolicitudes = new ApiAdapterSolicitudes();
         objApiServiceSolicitudes = objApiAdapterSolicitudes.getClientService();
 
-        buttonGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveSolicitud();
-            }
-        });
+
 
         if(intTipoOperacion == 2) {//Buscar una solicitud
             findSolicitudSave(intCodSolicitud);
@@ -163,31 +158,36 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
     public boolean onCreateOptionsMenu(Menu menu) {
         if(intTipoOperacion == 1){
             getMenuInflater().inflate(R.menu.menu_multiple_option, menu);
-            MenuItem downloadItem = menu.findItem(R.id.download);
             MenuItem searchItem = menu.findItem(R.id.searchViewFind);
-            MenuItem saveServerItem = menu.findItem(R.id.saveServer);
             SearchView searchView = (SearchView) searchItem.getActionView();
-            searchView.setOnQueryTextListener(this);
+
+            saveDataItem = menu.findItem(R.id.saveData);
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    findDataCreateSolicitud(query);
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
             searchView.setInputType(InputType.TYPE_CLASS_NUMBER);
             searchView.setQueryHint("Buscar...");
-
-            downloadItem.setVisible(false);
-            saveServerItem.setVisible(false);
-            return  super.onCreateOptionsMenu(menu);
+            saveDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    saveSolicitud();
+                    return true;
+                }
+            });
+            saveDataItem.setEnabled(true);
+            return super.onCreateOptionsMenu(menu);
         }else{
             return false;
         }
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        findDataCreateSolicitud(query.toString());
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
     }
 
     @Override
@@ -199,7 +199,6 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
     public boolean onMenuItemActionCollapse(MenuItem item) {
         return false;
     }
-
 
     private void showProgressBar(Boolean show){
         if(show == true){
@@ -251,10 +250,10 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
         solicitudesDownload.setReactiva_programa(checkBoxReactivaPrograma.isChecked());
         solicitudesDownload.setObservacion((textInputEditTextObservacion.getText().toString()) == null? "SIN OBSERVACION": textInputEditTextObservacion.getText().toString());
 
-        if(solicitudesDownload.isActualizacion_datos() && solicitudesDownload.isCambio_titular() &&
-                solicitudesDownload.isNuevo_integrante() && solicitudesDownload.isBaja_integrante() &&
-                solicitudesDownload.isCambio_domicilio() && solicitudesDownload.isBaja_programa() &&
-                solicitudesDownload.isReactiva_programa() && solicitudesDownload.isCorreccion_sancion()) {
+        if(!solicitudesDownload.isActualizacion_datos() && !solicitudesDownload.isCambio_titular() &&
+                !solicitudesDownload.isNuevo_integrante() && !solicitudesDownload.isBaja_integrante() &&
+                !solicitudesDownload.isCambio_domicilio() && !solicitudesDownload.isBaja_programa() &&
+                !solicitudesDownload.isReactiva_programa() && !solicitudesDownload.isCorreccion_sancion()) {
             Toast.makeText(getApplicationContext(), "ERROR: Favor seleccionar uno o más tipos de solicitudes.", Toast.LENGTH_SHORT).show();
         }else{
             for(HogarLigth item: hogarLigthsList){
@@ -283,8 +282,10 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
         textViewAldea.setText(String.valueOf(hogarByTitular.getStrAldea()));
         textViewCaserio.setText(String.valueOf(hogarByTitular.getStrCaserio()));
 
-        buttonGuardar.setVisibility(View.VISIBLE);
-        createStructureHogar(hogarLigthArrayList);
+        saveDataItem.setVisible(true);
+        adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthArrayList);
+        showProgressBar(false);
+        findDataShowMessage(true);
     }
 
     @Override
@@ -330,7 +331,10 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
         textViewAldea.setText(String.valueOf(infoSolicitud.getStrAldea()));
         textViewCaserio.setText(String.valueOf(infoSolicitud.getStrCaserio()));
         textViewObservacion.setText(String.valueOf(infoSolicitud.getStrObservacion()));
-        createStructureHogar(hogarLigthArrayList);
+
+        adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthArrayList);
+        showProgressBar(false);
+        findDataShowMessage(true);
     }
 
     @Override
@@ -343,65 +347,6 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
         findDataShowMessage(false);
         Toast.makeText(getApplicationContext(), strMessage, Toast.LENGTH_SHORT).show();
 
-    }
-
-    @Override
-    public void createStructureHogar(ArrayList<HogarLigth> hogarLigthArrayList) {
-        hogarLigthsList = hogarLigthArrayList;
-        Float intSizeFond = 11f;
-        for(HogarLigth item: hogarLigthArrayList) {
-            TextView textViewNombre = new TextView(getApplicationContext());
-            TextView textViewEdad = new TextView(getApplicationContext());
-            TextView textViewSexo = new TextView(getApplicationContext());
-            TextView textViewIdentidad = new TextView(getApplicationContext());
-
-            LinearLayout linearLayoutRow = new LinearLayout(getApplicationContext());
-            LinearLayout linearLayoutNombre = new LinearLayout(getApplicationContext());
-            LinearLayout linearLayoutEdad = new LinearLayout(getApplicationContext());
-            LinearLayout linearLayoutSexo = new LinearLayout(getApplicationContext());
-            LinearLayout linearLayoutIdentidad = new LinearLayout(getApplicationContext());
-
-            textViewNombre.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            textViewEdad.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            textViewSexo.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            textViewIdentidad.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-            linearLayoutRow.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-            if(item.isBolTitular() == true) {
-                linearLayoutRow.setBackgroundColor(Color.GREEN);
-            }
-
-            linearLayoutRow.setOrientation(LinearLayout.HORIZONTAL);
-            linearLayoutNombre.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 3f));
-            linearLayoutSexo.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 2f));
-            linearLayoutEdad.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 3f));
-            linearLayoutIdentidad.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-
-            textViewNombre.setText(item.getStrNombreBeneficiario());
-            textViewSexo.setText(item.getStrSexo());
-            textViewEdad.setText(String.valueOf(item.getStrEdad()));
-            textViewIdentidad.setText(item.getStrIdentidad());
-
-            textViewNombre.setTextSize(intSizeFond);
-            textViewSexo.setTextSize(intSizeFond);
-            textViewEdad.setTextSize(intSizeFond);
-            textViewIdentidad.setTextSize(intSizeFond);
-
-            linearLayoutNombre.addView(textViewNombre);
-            linearLayoutSexo.addView(textViewSexo);
-            linearLayoutEdad.addView(textViewEdad);
-            linearLayoutIdentidad.addView(textViewIdentidad);
-
-            linearLayoutRow.addView(linearLayoutNombre);
-            linearLayoutRow.addView(linearLayoutSexo);
-            linearLayoutRow.addView(linearLayoutEdad);
-            linearLayoutRow.addView(linearLayoutIdentidad);
-
-            linearLayoutNucleo.addView(linearLayoutRow);
-        }
-        showProgressBar(false);
-        findDataShowMessage(true);
     }
 
     @Override

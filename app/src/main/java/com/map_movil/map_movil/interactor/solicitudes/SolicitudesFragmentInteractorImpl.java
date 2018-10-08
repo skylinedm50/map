@@ -17,26 +17,11 @@ public class SolicitudesFragmentInteractorImpl implements SolicitudesFragmentInt
     }
 
     @Override
-    public void downloadSolicitudes(String Aldea, int intCodUser) {
-        this.solicitudesFragmentRepository.downloadSolicitudes(Aldea, intCodUser);
-    }
-
-    @Override
     public void getSolicitudesGestionadas(int intCodUser, String strSimbolo) {
         if(BroadCastInternet.isConnected){
             this.solicitudesFragmentRepository.getSolicitudesGestionadas(intCodUser, strSimbolo);
         }else{
             this.solicitudesFragmentRepository.getSolicitudesGestionadasLocalDB(intCodUser, strSimbolo);
-        }
-    }
-
-    @Override
-    public void synchronizeWithServer(int intCodUser) {
-        if(BroadCastInternet.isConnected) {
-            solicitudesFragmentRepository.synchronizeWithServer(intCodUser);
-        }else{
-            solicitudesFragmentPresenter.finishSynchronize();
-            solicitudesFragmentPresenter.showError("Es nececario tener conexión a Internet para realizar la acción.");
         }
     }
 }
