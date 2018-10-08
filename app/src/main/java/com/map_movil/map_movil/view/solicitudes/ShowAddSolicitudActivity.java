@@ -283,7 +283,8 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         textViewCaserio.setText(String.valueOf(hogarByTitular.getStrCaserio()));
 
         saveDataItem.setVisible(true);
-        adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthArrayList);
+        hogarLigthsList = hogarLigthArrayList;
+        adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthsList);
         showProgressBar(false);
         findDataShowMessage(true);
     }
@@ -331,8 +332,8 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         textViewAldea.setText(String.valueOf(infoSolicitud.getStrAldea()));
         textViewCaserio.setText(String.valueOf(infoSolicitud.getStrCaserio()));
         textViewObservacion.setText(String.valueOf(infoSolicitud.getStrObservacion()));
-
-        adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthArrayList);
+        hogarLigthsList = hogarLigthArrayList;
+        adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthsList);
         showProgressBar(false);
         findDataShowMessage(true);
     }
@@ -351,6 +352,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
 
     @Override
     public void finishCreationSolicitud() {
+        
         finish();
     }
 
