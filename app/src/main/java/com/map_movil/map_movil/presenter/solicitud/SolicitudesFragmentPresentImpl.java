@@ -51,13 +51,4 @@ public class SolicitudesFragmentPresentImpl implements SolicitudesFragmentPresen
         this.solicitudesFragmentView.showError(strError);
     }
 
-    @Override
-    public void synchronizeWithServer(int intCodUser) {
-        solicitudesFragmentInteractor.synchronizeWithServer(intCodUser);
-    }
-
-    @Override
-    public void finishSynchronize() {
-        solicitudesFragmentView.finishDownloadSolicitudes();
-    }
 }

@@ -3,6 +3,7 @@ package com.map_movil.map_movil.view.Quejas;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -48,8 +49,10 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
     private QuejasPresenter quejasPresenter;
     private LinearLayout linearLayoutPorcentaje;
     private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharePrederencesEditor;
     private TextView textViewPorcentageDownload;
     private SwipeRefreshLayout swipeRefreshLayout;
+
 
     public QuejasFragment(){}
 
@@ -64,8 +67,8 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
         this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
 
         linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
+       // linearLayoutManager.setReverseLayout(true);
+       // linearLayoutManager.setStackFromEnd(true);
 
         denuncias_adapter = new quejas_denuncias_adapter(getContext() , codigo_accion , this.swipeRefreshLayout );
         rv_quejas.setAdapter(denuncias_adapter);
@@ -101,18 +104,9 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
         inflater.inflate(R.menu.menu_multiple_option, menu);
         MenuItem searchItem = menu.findItem(R.id.searchViewFind);
         MenuItem nextItem = menu.findItem(R.id.next);
-        MenuItem downloadItem = menu.findItem(R.id.download);
-        MenuItem saveItem = menu.findItem(R.id.saveServer);
 
         nextItem.setVisible(false);
         nextItem.setEnabled(false);
-
-        /*comentar*/
-        downloadItem.setVisible(true);
-        downloadItem.setEnabled(true);
-        saveItem.setVisible(true);
-        saveItem.setEnabled(true);
-        /*********/
 
         android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(this);
@@ -162,102 +156,6 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
     public boolean onQueryTextChange(String s) {
         filtro(s);
         return false;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.download:
-                builder = new AlertDialog.Builder(getActivity());
-                LayoutInflater layoutInflater = getLayoutInflater();
-                View viewInflater = layoutInflater.inflate(R.layout.dialog_download_solicitudes, null);
-                spinnerDepartamento = viewInflater.findViewById(R.id.spinnerDepartamento);
-                spinnerMunicipio = viewInflater.findViewById(R.id.spinnerMunicipio);
-                spinnerAldea = viewInflater.findViewById(R.id.spinnerAldea);
-                TextView textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
-                TextView textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
-                linearLayoutPorcentaje = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
-                textViewPorcentageDownload = viewInflater.findViewById(R.id.textViewPorcentage);
-
-                spinnerDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        getMunicipios(parent.getItemAtPosition(position).toString());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                spinnerMunicipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        getAldeas(parent.getItemAtPosition(position).toString());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-                builder.setTitle("Descargar-Quejas");
-                builder.setView(viewInflater);
-                builder.setCancelable(false);
-                dialog = builder.create();
-
-                textViewCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.cancel();
-                    }
-                });
-                textViewDownload.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int intCodUser = sharedPreferences.getInt("codigo",0);
-                        DescargarQuejas(intCodUser , spinnerAldea.getSelectedItem().toString().split("-")[0]);
-                    }
-                });
-                dialog.show();
-                getDepartamentos();
-                return true;
-
-            case R.id.saveServer:
-                builder = new AlertDialog.Builder(getActivity());
-                layoutInflater = getLayoutInflater();
-                viewInflater = layoutInflater.inflate(R.layout.dialog_synchronize_data, null);
-                textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
-                textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
-                linearLayoutPorcentaje = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
-                textViewPorcentageDownload = viewInflater.findViewById(R.id.textViewPorcentage);
-
-                builder.setTitle("Sincronizar-Quejas");
-                builder.setView(viewInflater);
-                builder.setCancelable(false);
-                dialog = builder.create();
-                textViewCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.cancel();
-                    }
-                });
-                textViewDownload.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        SincronizarQuejas();
-                    }
-                });
-
-                dialog.show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
     }
 
     @Override
@@ -315,18 +213,6 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
     public void DescargarQuejas(int usuario, String aldea) {
         this.linearLayoutPorcentaje.setVisibility(View.VISIBLE);
         this.quejasPresenter.DescargarQuejas(usuario , aldea);
-    }
-
-    @Override
-    public void SincronizarQuejas() {
-        this.linearLayoutPorcentaje.setVisibility(View.VISIBLE);
-        this.quejasPresenter.SincronizarQuejas(sharedPreferences.getInt("codigo",0));
-    }
-
-    @Override
-    public void FinalizarSincronizacion() {
-        this.linearLayoutPorcentaje.setVisibility(View.GONE);
-        this.dialog.cancel();
     }
 
     @Override

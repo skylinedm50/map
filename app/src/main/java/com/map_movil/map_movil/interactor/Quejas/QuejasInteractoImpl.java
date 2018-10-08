@@ -3,7 +3,6 @@ package com.map_movil.map_movil.interactor.Quejas;
 import android.content.Context;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenter;
 import com.map_movil.map_movil.repository.Quejas.QuejasRepository;
@@ -43,8 +42,4 @@ public class QuejasInteractoImpl implements QuejasInteractor {
         this.quejasRepository.DescargarQuejas(usuario , aldea);
     }
 
-    @Override
-    public void SincronizarQuejas(int usuario) {
-        this.quejasRepository.SincronizarQuejas(usuario);
-    }
 }

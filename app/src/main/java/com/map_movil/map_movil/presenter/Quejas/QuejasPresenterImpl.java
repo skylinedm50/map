@@ -25,7 +25,7 @@ public class QuejasPresenterImpl implements QuejasPresenter {
     }
 
     @Override
-    public void MostarQuejas(ArrayList<QuejasDenuncias> respuesta) {
+    public void MostarQuejas(ArrayList<QuejasDenuncias> respuesta , int proceso) {
 
         int RealizadosLenght = 0;
         int noRealizadosLenght = 0;
@@ -40,7 +40,11 @@ public class QuejasPresenterImpl implements QuejasPresenter {
             }
         }
 
-        this.quejasView.MostarQuejas(respuesta, RealizadosLenght , noRealizadosLenght);
+        if(proceso == 1){
+            this.quejasView.MostarQuejas(respuesta, RealizadosLenght , noRealizadosLenght);
+        }else{
+            this.quejasView.MostarQuejas(respuesta, RealizadosLenght , noRealizadosLenght);
+        }
     }
 
     @Override
@@ -60,10 +64,10 @@ public class QuejasPresenterImpl implements QuejasPresenter {
         jsonQuejaDenuncia.addProperty("Tipo_gestion"          , String.valueOf(tipo_gestion));
         jsonQuejaDenuncia.addProperty("Aldea"     , aldea);
         jsonQuejaDenuncia.addProperty("Identidad" , Identidad);
-        jsonQuejaDenuncia.addProperty("Nombre1"   , Nombre1);
-        jsonQuejaDenuncia.addProperty("Nombre2"   , Nombre2);
-        jsonQuejaDenuncia.addProperty("Apellido1" , Apellido1);
-        jsonQuejaDenuncia.addProperty("Apellido2" , Apellido2);
+        jsonQuejaDenuncia.addProperty("Nombre1"   , Nombre1.toUpperCase());
+        jsonQuejaDenuncia.addProperty("Nombre2"   , Nombre2.toUpperCase());
+        jsonQuejaDenuncia.addProperty("Apellido1" , Apellido1.toUpperCase());
+        jsonQuejaDenuncia.addProperty("Apellido2" , Apellido2.toUpperCase());
         jsonQuejaDenuncia.addProperty("Telefono"  , Telefono);
         jsonQuejaDenuncia.addProperty("Anonimo"   , String.valueOf(anonimo));
 
@@ -81,37 +85,6 @@ public class QuejasPresenterImpl implements QuejasPresenter {
     @Override
     public void DescargarQuejas(int usuario, String aldea) {
         this.QuejasInteractor.DescargarQuejas(usuario , aldea);
-    }
-
-    @Override
-    public void SincronizarQuejas(int usuario) {
-        this.QuejasInteractor.SincronizarQuejas(usuario);
-    }
-
-    @Override
-    public void FinalizarSincronizacion() {
-        this.quejasOfflineView.FinalizarSincronizacion();
-    }
-
-    @Override
-    public void ListarQuejasOffline(ArrayList<QuejasDenuncias> quejasDenuncias) {
-        int RealizadosLenght = 0;
-        int noRealizadosLenght = 0;
-        ArrayList<QuejasDenuncias> Respuesta = new ArrayList<>();
-
-        for(int x = 0 ; x < quejasDenuncias.size(); x++){
-            Respuesta.add(quejasDenuncias.get(x));
-            if(     quejasDenuncias.get(x).getEstado().equals("No Aplicable")          ||
-                    quejasDenuncias.get(x).getEstado().equals("Resuelta Conforme")     ||
-                    quejasDenuncias.get(x).getEstado().equals("Resuelta No Conforme")      ){
-
-                RealizadosLenght = RealizadosLenght+1;
-            }else{
-                noRealizadosLenght = noRealizadosLenght+1;
-            }
-        }
-
-        this.quejasView.MostarQuejas(Respuesta, RealizadosLenght , noRealizadosLenght);
     }
 
     @Override

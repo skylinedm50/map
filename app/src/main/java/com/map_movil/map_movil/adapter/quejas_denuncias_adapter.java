@@ -58,15 +58,6 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
                 holder.NombreSolicitante.setText(this.Realizadas.get(position).getNombre_solicitante());
                 holder.Descripcion.setText(this.Realizadas.get(position).getObservacion());
                 holder.EstadoQueja.setText(this.Realizadas.get(position).getEstado());
-               /* if(position == 0){
-                    LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT ,1);
-                    layoutParams.setMargins(0,0,0,400);
-                    holder.ly_Divider.setLayoutParams(layoutParams);
-                }else{
-                    LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT , 1);
-                    layoutParams.setMargins(0,0,0,0);
-                    holder.ly_Divider.setLayoutParams(layoutParams);
-                }*/
         }
         else if(this.tipo_queja == 2) {
                 holder.CodigoSolicitud.setText(this.NoRealizadas.get(position).getTipo_gestion()+" N°: "+
@@ -76,7 +67,8 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
                 holder.EstadoQueja.setText(this.NoRealizadas.get(position).getEstado());
         }
 
-        if(position == 0){
+        int UltimaPosicion = (tipo_queja==2)?this.noRealizadosLenght[0]:this.RealizadosLenght[0];
+        if(position == UltimaPosicion){
             LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT ,1);
             layoutParams.setMargins(0,0,0,400);
             holder.ly_Divider.setLayoutParams(layoutParams);
@@ -85,8 +77,6 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
             layoutParams.setMargins(0,0,0,0);
             holder.ly_Divider.setLayoutParams(layoutParams);
         }
-
-
     }
 
     public ArrayList<QuejasDenuncias> ArrayAdapterQuejas(int accion){

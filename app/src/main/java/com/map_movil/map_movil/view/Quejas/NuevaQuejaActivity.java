@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+
+import com.map_movil.map_movil.HomeActivity;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.Aldeas;
@@ -30,11 +32,14 @@ import com.map_movil.map_movil.view.ubicacion.UbicacionView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionView , QuejasView {
+public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionView , QuejasView  {
 
     private CoordinatorLayout          LinearRoot;
     private UbicacionesPresenter       ubicacionesPresenter;
     private QuejasPresenter            quejasPresenter;
+
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPreferencesEditor;
 
     private AppCompatSpinner           DepartamentoSpiner;
     private AppCompatSpinner           MunicipioSpiner;
@@ -43,9 +48,9 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     private CheckBox                   ChkAnonimo;
 
     private TextInputEditText          TxtIdentidad         , TxtNombre1   ,
-            TxtNombre2           , TxtApellido1 ,
-            TxtApellido2         , TxtTelefono  ,
-            TxtDetalleSolicitud  ;
+                                       TxtNombre2           , TxtApellido1 ,
+                                       TxtApellido2         , TxtTelefono  ,
+                                       TxtDetalleSolicitud  ;
 
     private TextInputLayout LayoutSolicitud  ;
     private TextInputLayout LayoutIdentidad  ;
@@ -66,6 +71,9 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
                 onBackPressed();
             }
         });
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
 
         this.LinearRoot        = (CoordinatorLayout) findViewById(R.id.LyRoot);
         this.LayoutSolicitud   = (TextInputLayout)   findViewById(R.id.InputLayoutSolicitudes);
@@ -111,7 +119,6 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
                 }
             }
         });
-
         this.DepartamentoSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -155,7 +162,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_multiple_option, menu);
         MenuItem searchView = menu.findItem(R.id.searchViewFind);
-        MenuItem continuar = menu.findItem(R.id.next);
+        MenuItem continuar = menu.findItem(R.id.saveData);
         searchView.setEnabled(false);
         searchView.setVisible(false);
         continuar.setEnabled(true);
@@ -166,7 +173,6 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
                 if(VerificarVacios()){
                     RegistrarQueja();
                 }
-
                 return false;
             }
         });
@@ -282,8 +288,8 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
                 .getSharedPreferences("USER", Context.MODE_PRIVATE);
 
         this.quejasPresenter.RegistrarQueja(sharedPreferences.getInt("codigo",0)      ,
-                this.TxtDetalleSolicitud.getText().toString()      ,
-                (int) this.TipoSolicitudSpiner.getSelectedItemId() ,
+                this.TxtDetalleSolicitud.getText().toString()                ,
+                (int) this.TipoSolicitudSpiner.getSelectedItemId()           ,
                 AldeaSpiner.getSelectedItem().toString().split("-")[0] ,
                 this.TxtIdentidad.getText().toString() ,
                 this.TxtNombre1.getText().toString()   ,
@@ -297,8 +303,11 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
     @Override
     public void ActualizarDatos() {
-        finish();
-    }
 
+        sharedPreferencesEditor.putInt("Sincronizar",1);
+        sharedPreferencesEditor.commit();
+        finish();
+
+    }
 
 }

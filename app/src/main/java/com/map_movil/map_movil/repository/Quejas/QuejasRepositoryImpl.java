@@ -1,6 +1,8 @@
 package com.map_movil.map_movil.repository.Quejas;
 
 import android.content.Context;
+import android.widget.Toast;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.Realm.RealmConfig;
@@ -18,7 +20,7 @@ import retrofit2.Response;
 
 public class QuejasRepositoryImpl implements QuejasRepository {
 
-  private QuejasPresenter quejasPresenter;
+   private QuejasPresenter quejasPresenter;
    private RealmConfig realmConfig;
    private Context context;
 
@@ -53,13 +55,64 @@ public class QuejasRepositoryImpl implements QuejasRepository {
 
                             lista.add(quejasDenunciasVista);
                     }
-                    quejasPresenter.MostarQuejas(lista);
+
+                    IncluirQuejasOffline(lista  , 1 );
                 }
             }
             @Override
-            public void onFailure(Call<ArrayList<QuejasDenuncias>> call, Throwable t) { }
+            public void onFailure(Call<ArrayList<QuejasDenuncias>> call, Throwable t) {
+
+            }
         });
    }
+
+    @Override
+    public void ListarQuejasOffline() {
+
+        ArrayList<QuejasDenuncias> lista = new ArrayList<>();
+        IncluirQuejasOffline(lista , 0);
+    }
+
+    public void IncluirQuejasOffline(final ArrayList<QuejasDenuncias> Lista , final int proceso){
+        realmConfig = new RealmConfig(context);
+        realmConfig.getRealm().beginTransaction();
+        final RealmResults<QuejasDenuncias> quejasDenuncias = realmConfig.getRealm().where(QuejasDenuncias.class).findAll();
+
+        realmConfig.getRealm().commitTransaction();
+        realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+
+                for(int i = 0; i < quejasDenuncias.size() ; i++){
+
+                    String Gestion="";
+                    switch(  quejasDenuncias.get(i).getCodigo_gestion() ){
+                        case 1: Gestion ="Quejas";
+                            break;
+                        case 2: Gestion = "Denuncias";
+                            break;
+                        default: Gestion = "Solicitud";
+                    }
+
+                    QuejasDenuncias quejasDenuncias_1 = new QuejasDenuncias();
+                    quejasDenuncias_1.setCodigo_solicitud(quejasDenuncias.get(i).getCodigo_solicitud());
+                    quejasDenuncias_1.setFecha_alta(quejasDenuncias.get(i).getFecha_alta());
+                    quejasDenuncias_1.setObservacion(quejasDenuncias.get(i).getObservacion());
+                    quejasDenuncias_1.setTipo_gestion(Gestion);
+                    quejasDenuncias_1.setEstado(quejasDenuncias.get(i).getEstado());
+                    quejasDenuncias_1.setIdentidad(quejasDenuncias.get(i).getIdentidad());
+                    quejasDenuncias_1.setCodigo_solicitante(quejasDenuncias.get(i).getCodigo_solicitante());
+                    quejasDenuncias_1.setNombre_solicitante(
+                            (quejasDenuncias.get(i).getAnonimo() == 1)?"ANONIMO":quejasDenuncias.get(i).getNombre_solicitante()
+                    );
+                    quejasDenuncias_1.setAldea(quejasDenuncias.get(i).getAldea());
+                    Lista.add(quejasDenuncias_1);
+                }
+                quejasPresenter.MostarQuejas(Lista, proceso);
+            }
+        });
+        realmConfig.getRealm().close();
+    }
 
     @Override
     public void RegistrarQueja(JsonArray jsonQuejaDenuncia) {
@@ -75,7 +128,9 @@ public class QuejasRepositoryImpl implements QuejasRepository {
            }
 
            @Override
-           public void onFailure(Call<ResponseApi> call, Throwable t) { }
+           public void onFailure(Call<ResponseApi> call, Throwable t) {
+               Toast.makeText(context,"Error del servidor al realizar el nuevos registro" , Toast.LENGTH_LONG).show();
+           }
        });
 
     }
@@ -151,110 +206,4 @@ public class QuejasRepositoryImpl implements QuejasRepository {
         });
     }
 
-    @Override
-    public void ListarQuejasOffline() {
-
-        realmConfig = new RealmConfig(context);
-        realmConfig.getRealm().beginTransaction();
-        final RealmResults<QuejasDenuncias> quejasDenuncias = realmConfig.getRealm().where(QuejasDenuncias.class).findAll();
-
-        realmConfig.getRealm().commitTransaction();
-        realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                ArrayList<QuejasDenuncias> lista = new ArrayList<>();
-                for(int i = 0; i < quejasDenuncias.size() ; i++){
-
-                    String Gestion="";
-                    switch(  quejasDenuncias.get(i).getCodigo_gestion() ){
-                        case 1: Gestion ="Quejas";
-                            break;
-                        case 2: Gestion = "Denuncias";
-                            break;
-                        default: Gestion = "Solicitud";
-                    }
-
-                    QuejasDenuncias quejasDenuncias_1 = new QuejasDenuncias();
-                    quejasDenuncias_1.setCodigo_solicitud(quejasDenuncias.get(i).getCodigo_solicitud());
-                    quejasDenuncias_1.setFecha_alta(quejasDenuncias.get(i).getFecha_alta());
-                    quejasDenuncias_1.setObservacion(quejasDenuncias.get(i).getObservacion());
-                    quejasDenuncias_1.setTipo_gestion(Gestion);
-                    quejasDenuncias_1.setEstado(quejasDenuncias.get(i).getEstado());
-                    quejasDenuncias_1.setIdentidad(quejasDenuncias.get(i).getIdentidad());
-                    quejasDenuncias_1.setCodigo_solicitante(quejasDenuncias.get(i).getCodigo_solicitante());
-                    quejasDenuncias_1.setNombre_solicitante(
-                            (quejasDenuncias.get(i).getAnonimo() == 1)?"ANONIMO":quejasDenuncias.get(i).getNombre_solicitante()
-                    );
-                    quejasDenuncias_1.setAldea(quejasDenuncias.get(i).getAldea());
-                    lista.add(quejasDenuncias_1);
-                }
-                quejasPresenter.ListarQuejasOffline(lista);
-            }
-        });
-        realmConfig.getRealm().close();
-   }
-
-    @Override
-    public void SincronizarQuejas(int usuario) {
-
-        this.realmConfig = new RealmConfig(this.context);
-        final RealmResults<QuejasDenuncias> queja = this.realmConfig.getRealm().where(QuejasDenuncias.class)
-                .equalTo("Offline" , 1)
-                .findAll();
-        JsonArray JsonArrayQuejasDenuncias = new JsonArray();
-
-        for(int i = 0; i < queja.size() ; i++){
-
-            String [] NombreSolicitante = queja.get(i).getNombre_solicitante().split(" ");
-
-            JsonObject jsonQuejasDenuncias = new JsonObject();
-            jsonQuejasDenuncias.addProperty("Usuario" , String.valueOf(usuario));
-            jsonQuejasDenuncias.addProperty("Observacion_solicitud" , queja.get(i).getObservacion());
-            jsonQuejasDenuncias.addProperty("Tipo_gestion"          , String.valueOf(queja.get(i).getCodigo_gestion()));
-            jsonQuejasDenuncias.addProperty("Aldea"     , queja.get(i).getAldea());
-            jsonQuejasDenuncias.addProperty("Identidad" , queja.get(i).getIdentidad());
-            jsonQuejasDenuncias.addProperty("Nombre1"   ,
-                    (queja.get(i).getAnonimo() == 1 || NombreSolicitante.length < 1)?"": NombreSolicitante[0]);
-            jsonQuejasDenuncias.addProperty("Nombre2"   ,
-                    (queja.get(i).getAnonimo() == 1 || NombreSolicitante.length < 2)?"": NombreSolicitante[1]);
-            jsonQuejasDenuncias.addProperty("Apellido1" ,
-                    (queja.get(i).getAnonimo() == 1 || NombreSolicitante.length < 3)?"": NombreSolicitante[2]);
-            jsonQuejasDenuncias.addProperty("Apellido2" ,
-                    (queja.get(i).getAnonimo() == 1 || NombreSolicitante.length < 4)?"": NombreSolicitante[3]);
-            jsonQuejasDenuncias.addProperty("Telefono"  , queja.get(i).getTelefono());
-            jsonQuejasDenuncias.addProperty("Anonimo"   , queja.get(i).getAnonimo());
-
-            JsonArrayQuejasDenuncias.add(jsonQuejasDenuncias);
-        }
-
-        ApiAdapterQuejas apiAdapterQuejas = new ApiAdapterQuejas();
-        ApiServicesQuejas apiServicesQuejas = apiAdapterQuejas.getClientService();
-
-        Call<ResponseApi> call = apiServicesQuejas.IngregarQueja(JsonArrayQuejasDenuncias);
-        call.enqueue(new Callback<ResponseApi>() {
-            @Override
-            public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
-                if(response.isSuccessful()){
-
-                    realmConfig.getRealm().beginTransaction();
-                    realmConfig.getRealm().commitTransaction();
-                    realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
-                        @Override
-                        public void execute(Realm realm) {
-                            queja.deleteAllFromRealm();
-                        }
-                    });
-                    realmConfig.getRealm().close();
-                    quejasPresenter.FinalizarSincronizacion();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseApi> call, Throwable t) {
-                int l = 0;
-            }
-        });
-
-
-    }
 }

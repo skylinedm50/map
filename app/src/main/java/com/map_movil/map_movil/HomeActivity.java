@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
@@ -28,18 +27,20 @@ import com.map_movil.map_movil.view.login.LoginActivity;
 import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
 import com.map_movil.map_movil.view.programados.ProgramadosFragment;
 import com.map_movil.map_movil.view.reportes.ReportsFragment;
+import com.map_movil.map_movil.view.sincronizar.SincronizarFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     private Intent intent;
     private TextView textViewNombreUsuario;
     private SharedPreferences sharedPreferences;
     private LinearLayout linearLayoutContentMainHome;
     private Toolbar toolbar;
-
+    private NavigationView navigationView;
     private int intCodItemSelect;
 
     @Override
@@ -57,13 +58,17 @@ public class HomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+
         textViewNombreUsuario = navigationView.getHeaderView(0).findViewById(R.id.nav_nom_usu);
         textViewNombreUsuario.setText(sharedPreferences.getString("nombre", "").toString());
+
+        if(sharedPreferences.getInt("Sincronizar",0)==1){
+            navigationView.getMenu().getItem(0).getSubMenu().getItem(2).setActionView(R.layout.sincro_notificacion);
+        }
 
         showToolbar("Inicio");
     }
@@ -96,7 +101,6 @@ public class HomeActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -125,7 +129,7 @@ public class HomeActivity extends AppCompatActivity
             } else if (id == R.id.nav_logout) {
                 RealmConfig realmConfig = new RealmConfig(getApplicationContext());
                 realmConfig.deleteDataBase();
-                sharedPreferences.edit().clear().commit();
+                sharedPreferences.edit().clear().apply();
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
             } else if (id == R.id.nav_download) {
@@ -155,6 +159,7 @@ public class HomeActivity extends AppCompatActivity
                 if (intCodItemSelect != id) {
                     ViewCompat.setElevation(findViewById(R.id.appBar), 0);
                     QuejasHomeFragment fragmentHomQuejas = new QuejasHomeFragment();
+
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, fragmentHomQuejas).commit();
                 }
             } else if (id == R.id.nav_inf_homes) {
@@ -170,6 +175,13 @@ public class HomeActivity extends AppCompatActivity
                 if (intCodItemSelect != id) {
                     DescargaNucleoFragment descargaNucleoFragment = new DescargaNucleoFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, descargaNucleoFragment).commit();
+                }
+            }else if(id == R.id.nav_config_synchronize_data){
+                showContentScreenHome(false);
+                showToolbar("Sincronizar datos locales");
+                if (intCodItemSelect != id) {
+                    SincronizarFragment sincronizarFragment = new SincronizarFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, sincronizarFragment).commit();
                 }
             } else if (id == R.id.nav_notification) {
             } else if (id == R.id.nav_programmed) {
@@ -212,7 +224,6 @@ public class HomeActivity extends AppCompatActivity
 
     private void cleanFragmmentViewGroup(){
         List<android.support.v4.app.Fragment> fragmentsList = getSupportFragmentManager().getFragments();
-
         for(android.support.v4.app.Fragment fragment: fragmentsList){
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }

@@ -12,6 +12,10 @@
                 android:id="@+id/nav_complaint_denunciation"
                 android:icon="@drawable/ic_view_list_dp"
                 android:title="Quejas y Denuncias"/>
+            <item
+                android:id="@+id/nav_config_synchronize_data"
+                android:icon="@drawable/ic_cloud_upload"
+                android:title="Sincronizar Datos"/>
         </menu>
     </item>
     <item android:title="Validación y Corresponsabilidad">

@@ -31,6 +31,7 @@ public class BroadCastInternet extends BroadcastReceiver {
 
     private static void showMessageConectionInternet(Context context){
         isConnected = false;
+
         connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         networkInfo = connectivityManager.getActiveNetworkInfo();
 

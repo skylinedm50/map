@@ -30,13 +30,4 @@ public class SolicitudesFragmentInteractorImpl implements SolicitudesFragmentInt
         }
     }
 
-    @Override
-    public void synchronizeWithServer(int intCodUser) {
-        if(BroadCastInternet.isConnected) {
-            solicitudesFragmentRepository.synchronizeWithServer(intCodUser);
-        }else{
-            solicitudesFragmentPresenter.finishSynchronize();
-            solicitudesFragmentPresenter.showError("Es nececario tener conexión a Internet para realizar la acción.");
-        }
-    }
 }

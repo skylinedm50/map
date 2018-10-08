@@ -30,14 +30,14 @@ public class RealmConfig {
         intCodUser = sharedPreferences.getInt("codigo",0);
         strDate = sharedPreferences.getString("fechaLogin", "");
 
-        //createPassword();
+        createPassword();
 
         config = new RealmConfiguration.Builder()
                 .encryptionKey(byteKey)
                 .build();
 
-        //this.realm = Realm.getInstance(config);
-       realm = Realm.getDefaultInstance();
+        this.realm = Realm.getInstance(config);
+       //realm = Realm.getDefaultInstance();
     }
 
     private void createPassword(){
@@ -80,6 +80,11 @@ public class RealmConfig {
     }
 
     private void deleteFiles(File[] files , int tipo , boolean main_contain_realm){
+
+        this.realm.beginTransaction();
+        this.realm.deleteAll();
+        this.realm.commitTransaction();
+        this.realm.close();
 
         for(int i = 0; i < files.length; i++){
             /**

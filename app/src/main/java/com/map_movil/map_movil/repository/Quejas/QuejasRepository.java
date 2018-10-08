@@ -10,5 +10,4 @@ public interface QuejasRepository {
     void RegistrarQuejaOffline(JsonArray jsonQuejasDenuncia);
     void DescargarQuejas(int usuario , String aldea);
     void ListarQuejasOffline();
-    void SincronizarQuejas(int usuario);
 }

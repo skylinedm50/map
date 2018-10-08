@@ -1,20 +1,15 @@
 package com.map_movil.map_movil.repository.solicitudes;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
 import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
-import com.map_movil.map_movil.model.ResponseApi;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.model.SolicitudesUsuario;
 import com.map_movil.map_movil.presenter.solicitud.SolicitudesFragmentPresenter;
-
 import java.util.ArrayList;
-
 import io.realm.Realm;
 import io.realm.RealmResults;
 import retrofit2.Call;
@@ -28,7 +23,8 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
     private Context context;
     private RealmConfig realmConfig;
     private String strMessageNoData = "No se encontraron datos en el servidor";
-    private JsonObject jsonObject;
+
+
 
     public SolicitudesFragmentRepositoryImpl(SolicitudesFragmentPresenter solicitudesFragmentPresenter, Context context){
         this.solicitudesFragmentPresenter = solicitudesFragmentPresenter;
@@ -178,69 +174,5 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
         }
         realmConfig.getRealm().close();
         solicitudesFragmentPresenter.showSolicitudesGestionadas(solicitudesUsuarioArrayList);
-    }
-
-    @Override
-    public void synchronizeWithServer(int intCodUser) {
-        JsonArray jsonArray = new JsonArray();
-        realmConfig = new RealmConfig(context);
-        realmConfig.getRealm().beginTransaction();
-        RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
-        RealmResults<Hogar_Validar> nucleoHogar;
-        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("isLocal", true).findAll();
-        realmConfig.getRealm().commitTransaction();
-
-        if(solicitudesDownloadRealmResults.size() == 0){
-            solicitudesFragmentPresenter.finishSynchronize();
-            solicitudesFragmentPresenter.showError("No se detectaron registros localmente.");
-        }else{
-            for(SolicitudesDownload item: solicitudesDownloadRealmResults){
-                jsonObject = new JsonObject();
-                nucleoHogar = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("per_persona", item.getPer_persona_solicitante()).findAll();
-                jsonObject.addProperty("identidad", nucleoHogar.get(0).getPer_identidad());
-                jsonObject.addProperty("cod_user", intCodUser);
-                jsonObject.addProperty("observacion", item.getObservacion());
-                jsonObject.addProperty("actualizacion_datos",(item.isActualizacion_datos())? 1 : 0);
-                jsonObject.addProperty("cambio_titular",(item.isCambio_titular())? 1 : 0);
-                jsonObject.addProperty("nuevo_miembro",(item.isNuevo_integrante())? 1 : 0);
-                jsonObject.addProperty("baja_miembro",(item.isBaja_integrante())? 1 : 0);
-                jsonObject.addProperty("cambio_domicilio",(item.isCambio_domicilio())? 1 : 0);
-                jsonObject.addProperty("baja_programa",(item.isBaja_programa())? 1 : 0);
-                jsonObject.addProperty("reactiva_programa",(item.isReactiva_programa())? 1 : 0);
-                jsonObject.addProperty("correccion_sancion",(item.isCorreccion_sancion())? 1 : 0);
-                jsonArray.add(jsonObject);
-            }
-
-            Call<ResponseApi> call = apiServiceSolicitudes.createSolicitud(jsonArray);
-            call.enqueue(new Callback<ResponseApi>() {
-                @Override
-                public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
-                    if (response.body() != null && response.body().getIntState() == 1) {
-                        realmConfig = new RealmConfig(context);
-                        realmConfig.getRealm().beginTransaction();
-                        final RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
-                        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("isLocal", true).findAll();
-                        realmConfig.getRealm().commitTransaction();
-                        realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
-                            @Override
-                            public void execute(Realm realm) {
-                                solicitudesDownloadRealmResults.deleteAllFromRealm();
-                                solicitudesFragmentPresenter.finishSynchronize();
-                                solicitudesFragmentPresenter.showError("Sincronización exitosa.");
-                            }
-                        });
-                        realmConfig.getRealm().close();
-                    }else{
-                        solicitudesFragmentPresenter.showError("Error en el servidor, imposible almacenar información");
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseApi> call, Throwable t) {
-                    solicitudesFragmentPresenter.showError(t.getMessage());
-                }
-            });
-        }
-        realmConfig.getRealm().close();
     }
 }

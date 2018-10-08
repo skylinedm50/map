@@ -49,6 +49,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
     private Intent intent;
     private ShowAddSolicitudAcitivityPresenter showAddSolicitudAcitivityPresenter;
     private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPreferencesEditor;
     private int intCodSolicitud;
     private int intTipoOperacion;
     private ApiAdapterSolicitudes objApiAdapterSolicitudes;
@@ -107,6 +108,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
         ViewCompat.setElevation(findViewById(R.id.appBarVerSolicitud), 8);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
         showAddSolicitudAcitivityPresenter = new ShowAddSolicitudAcitivityPresenterImpl(this, getApplicationContext());
         intent = getIntent();
         intCodSolicitud = intent.getIntExtra("intCodSolicitud", 0);
@@ -163,16 +165,12 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
     public boolean onCreateOptionsMenu(Menu menu) {
         if(intTipoOperacion == 1){
             getMenuInflater().inflate(R.menu.menu_multiple_option, menu);
-            MenuItem downloadItem = menu.findItem(R.id.download);
             MenuItem searchItem = menu.findItem(R.id.searchViewFind);
-            MenuItem saveServerItem = menu.findItem(R.id.saveServer);
             SearchView searchView = (SearchView) searchItem.getActionView();
             searchView.setOnQueryTextListener(this);
             searchView.setInputType(InputType.TYPE_CLASS_NUMBER);
             searchView.setQueryHint("Buscar...");
 
-            downloadItem.setVisible(false);
-            saveServerItem.setVisible(false);
             return  super.onCreateOptionsMenu(menu);
         }else{
             return false;
@@ -406,6 +404,8 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements Searc
 
     @Override
     public void finishCreationSolicitud() {
+        sharedPreferencesEditor.putInt("Sincronizar",1);
+        sharedPreferencesEditor.commit();
         finish();
     }
 

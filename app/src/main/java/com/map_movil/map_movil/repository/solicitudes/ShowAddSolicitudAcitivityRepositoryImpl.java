@@ -16,11 +16,8 @@ import com.map_movil.map_movil.model.Realm.Hogar_Validar;
 import com.map_movil.map_movil.model.ResponseApi;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.presenter.solicitud.ShowAddSolicitudAcitivityPresenter;
-
 import java.util.ArrayList;
 import java.util.Date;
-
-import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import retrofit2.Call;

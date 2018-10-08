@@ -137,114 +137,11 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_multiple_option, menu);
         MenuItem searchItem = menu.findItem(R.id.searchViewFind);
-        MenuItem downloadItem = menu.findItem(R.id.download);
-        MenuItem saveOnServer = menu.findItem(R.id.saveServer);
         SearchView searchView = (SearchView) searchItem.getActionView();
-
         searchView.setOnQueryTextListener(this);
         searchView.setQueryHint("Buscar...");
-        downloadItem.setVisible(true);
-        downloadItem.setEnabled(true);
-        saveOnServer.setVisible(true);
-        saveOnServer.setEnabled(true);
 
         super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        TextView textViewCancel;
-        TextView textViewDownload;
-
-        switch (item.getItemId()) {
-            case R.id.download:
-                builder = new AlertDialog.Builder(getActivity());
-                layoutInflater = getLayoutInflater();
-                viewInflater = layoutInflater.inflate(R.layout.dialog_download_solicitudes, null);
-                spinnerDepartamento = viewInflater.findViewById(R.id.spinnerDepartamento);
-                spinnerMunicipio = viewInflater.findViewById(R.id.spinnerMunicipio);
-                spinnerAldea = viewInflater.findViewById(R.id.spinnerAldea);
-                textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
-                textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
-                linearLayoutPorcentage = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
-                textViewPorcentageProcess = viewInflater.findViewById(R.id.textViewPorcentage);
-
-                spinnerDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        getMunicipios(parent.getItemAtPosition(position).toString());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-                spinnerMunicipio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        getAldeas(parent.getItemAtPosition(position).toString());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-
-                builder.setTitle("Descargar-Solicitudes");
-                builder.setView(viewInflater);
-                builder.setCancelable(false);
-                dialog = builder.create();
-
-                textViewCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.cancel();
-                    }
-                });
-                textViewDownload.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int intCodUser = sharedPreferences.getInt("codigo",0);
-                        downloadSolicitudes(spinnerAldea.getSelectedItem().toString(), intCodUser);
-                    }
-                });
-
-                dialog.show();
-                getDepartamentos();
-
-                return true;
-            case R.id.saveServer:
-                builder = new AlertDialog.Builder(getActivity());
-                layoutInflater = getLayoutInflater();
-                viewInflater = layoutInflater.inflate(R.layout.dialog_synchronize_data, null);
-                textViewCancel = viewInflater.findViewById(R.id.ngButtonCancel);
-                textViewDownload = viewInflater.findViewById(R.id.ngButtonDownload);
-                linearLayoutPorcentage = viewInflater.findViewById(R.id.LinearLayoutPorcentage);
-                textViewPorcentageProcess = viewInflater.findViewById(R.id.textViewPorcentage);
-
-                builder.setTitle("Sincronizar-Solicitudes");
-                builder.setView(viewInflater);
-                builder.setCancelable(false);
-                dialog = builder.create();
-                textViewCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.cancel();
-                    }
-                });
-                textViewDownload.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int intCodUser = sharedPreferences.getInt("codigo",0);
-                        synchronizeWithServer(intCodUser);
-                    }
-                });
-
-                dialog.show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     @Override
@@ -359,14 +256,4 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
     }
 
-    @Override
-    public void synchronizeWithServer(int intCodUser) {
-        linearLayoutPorcentage.setVisibility(View.VISIBLE);
-        solicitudesFragmentPresenter.synchronizeWithServer(intCodUser);
-    }
-
-    @Override
-    public void finishSynchronize() {
-        dialog.cancel();
-    }
 }
