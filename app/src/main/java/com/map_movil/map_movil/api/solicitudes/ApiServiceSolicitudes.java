@@ -16,6 +16,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiServiceSolicitudes {
     @GET("solicitudes/gestionadas/usuario/{usuario}/{simbolo}")
@@ -24,10 +25,9 @@ public interface ApiServiceSolicitudes {
     @GET("solicitudes/solicitud/{codigo}")
     Call<ArrayList<InfoSolicitud>> getSolicitudInfo(@Path("codigo") Integer intCodSolicitud);
 
-
     @POST("solicitudes/solicitud/nueva")
     Call<ResponseApi> createSolicitud(@Body JsonArray jsonArray);
 
-    @GET("solicitudes/gestionadas/download/{usuario}/{aldea}")
-    Call<ArrayList<SolicitudesDownload>> getSolicitudesDownload(@Path("usuario") int intCodUser, @Path("aldea") String strCodAldea);
+    @GET("solicitudes/gestionadas/download")
+    Call<ArrayList<SolicitudesDownload>> getSolicitudesDownload(@Query("json") String json);
 }

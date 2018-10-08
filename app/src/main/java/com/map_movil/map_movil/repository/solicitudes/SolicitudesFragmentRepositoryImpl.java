@@ -1,16 +1,17 @@
 package com.map_movil.map_movil.repository.solicitudes;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
+import com.google.gson.JsonObject;
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
 import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.model.SolicitudesUsuario;
 import com.map_movil.map_movil.presenter.solicitud.SolicitudesFragmentPresenter;
+
 import java.util.ArrayList;
-import io.realm.Realm;
+
 import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,36 +24,13 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
     private Context context;
     private RealmConfig realmConfig;
     private String strMessageNoData = "No se encontraron datos en el servidor";
-
-
+    private JsonObject jsonObject;
 
     public SolicitudesFragmentRepositoryImpl(SolicitudesFragmentPresenter solicitudesFragmentPresenter, Context context){
         this.solicitudesFragmentPresenter = solicitudesFragmentPresenter;
         this.context = context;
         apiAdapterSolicitudes = new ApiAdapterSolicitudes();
         apiServiceSolicitudes = apiAdapterSolicitudes.getClientService();
-    }
-
-    @Override
-    public void downloadSolicitudes(String strCodAldea, int intCodUser) {
-        solicitudesFragmentPresenter.changePorcentage(30);
-        Call<ArrayList<SolicitudesDownload>> call = apiServiceSolicitudes.getSolicitudesDownload(intCodUser, strCodAldea);
-        call.enqueue(new Callback<ArrayList<SolicitudesDownload>>() {
-            @Override
-            public void onResponse(Call<ArrayList<SolicitudesDownload>> call, Response<ArrayList<SolicitudesDownload>> response) {
-                solicitudesFragmentPresenter.changePorcentage(65);
-                if(response.isSuccessful() && response.body().size() > 0){
-                    ArrayList<SolicitudesDownload> arrayList = response.body();
-                    saveLocalSolicitud(arrayList);
-                }else {
-                    solicitudesFragmentPresenter.showError(strMessageNoData);
-                }
-            }
-            @Override
-            public void onFailure(Call<ArrayList<SolicitudesDownload>> call, Throwable t) {
-                solicitudesFragmentPresenter.showError(t.getMessage());
-            }
-        });
     }
 
     @Override
@@ -110,33 +88,6 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
     }
 
     @Override
-    public void saveLocalSolicitud(ArrayList<SolicitudesDownload> arrayListSolicitudesDownload){
-        try{
-            realmConfig = new RealmConfig(context);
-            final ArrayList<SolicitudesDownload> arrayListSolicitudesDownloadFinal = arrayListSolicitudesDownload;
-            realmConfig.getRealm().beginTransaction();
-            final RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
-            solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).notEqualTo("isLocal", true).findAll();
-            realmConfig.getRealm().commitTransaction();
-            realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
-                @Override
-                public void execute(Realm realm) {
-                    if(solicitudesDownloadRealmResults.size() > 0) {
-                        solicitudesDownloadRealmResults.deleteAllFromRealm();
-                    }
-                    realm.insert(arrayListSolicitudesDownloadFinal);
-                    solicitudesFragmentPresenter.changePorcentage(100);
-                    solicitudesFragmentPresenter.finishDownloadSolicitudes();
-                    solicitudesFragmentPresenter.showError("Las solicitudes fueron descargadas");/////////////////////////////
-                }
-            });
-            realmConfig.getRealm().close();
-        }catch (Exception e){
-            solicitudesFragmentPresenter.showError(e.getMessage());
-        }
-    }
-
-    @Override
     public void getSolicitudesGestionadasLocalDB(int intCodUser, String strSimbolo) {
         realmConfig = new RealmConfig(context);
         ArrayList<SolicitudesUsuario> solicitudesUsuarioArrayList = new ArrayList<>();
@@ -175,4 +126,4 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
         realmConfig.getRealm().close();
         solicitudesFragmentPresenter.showSolicitudesGestionadas(solicitudesUsuarioArrayList);
     }
-}
+ }

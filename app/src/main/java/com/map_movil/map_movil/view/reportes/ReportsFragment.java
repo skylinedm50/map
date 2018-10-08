@@ -40,11 +40,11 @@ public class ReportsFragment extends Fragment {
         this.intCodUser = this.sharedPreferences.getInt("codigo", 0);
         this.strNombreUser = this.sharedPreferences.getString("nombre", "");
 
-        arrayListReport.add(new Report("Estado de solicitudes", "Por realizacion"));
-        arrayListReport.add(new Report("Estado de solicitudes", "Por estado"));
+        //arrayListReport.add(new Report("Estado de solicitudes", "Por realizacion"));
+        //arrayListReport.add(new Report("Estado de solicitudes", "Por estado"));
         arrayListReport.add(new Report("Mis estados de solicitud", "Por realizacion"));
         arrayListReport.add(new Report("Mis estados de solicitud", "Por estado"));
-        arrayListReport.add(new Report("Tiempo de respuesta", "De solicitudes"));
+        //arrayListReport.add(new Report("Tiempo de respuesta", "De solicitudes"));
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewReport);
         AdapterRecyclerReport adapterRecyclerReport = new AdapterRecyclerReport(arrayListReport);

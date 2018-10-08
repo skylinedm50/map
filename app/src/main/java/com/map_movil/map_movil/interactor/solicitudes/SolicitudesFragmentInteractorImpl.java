@@ -17,11 +17,6 @@ public class SolicitudesFragmentInteractorImpl implements SolicitudesFragmentInt
     }
 
     @Override
-    public void downloadSolicitudes(String Aldea, int intCodUser) {
-        this.solicitudesFragmentRepository.downloadSolicitudes(Aldea, intCodUser);
-    }
-
-    @Override
     public void getSolicitudesGestionadas(int intCodUser, String strSimbolo) {
         if(BroadCastInternet.isConnected){
             this.solicitudesFragmentRepository.getSolicitudesGestionadas(intCodUser, strSimbolo);
@@ -29,5 +24,4 @@ public class SolicitudesFragmentInteractorImpl implements SolicitudesFragmentInt
             this.solicitudesFragmentRepository.getSolicitudesGestionadasLocalDB(intCodUser, strSimbolo);
         }
     }
-
 }

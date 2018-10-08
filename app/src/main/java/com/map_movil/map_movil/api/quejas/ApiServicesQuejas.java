@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiServicesQuejas {
 
@@ -21,7 +22,7 @@ public interface ApiServicesQuejas {
     @POST("quejas_denuncias/nueva")
     Call<ResponseApi> IngregarQueja(@Body JsonArray json);
 
-    @GET("quejas_denuncias/download/{usuario}/{aldea}")
-    Call<ArrayList<QuejasDenuncias>> getDownloadQuejas(@Path("usuario") int usuario , @Path("aldea") String aldea);
+    @GET("quejas_denuncias/download")
+    Call<ArrayList<QuejasDenuncias>> getDownloadQuejas(@Query("json") String json);
 
 }

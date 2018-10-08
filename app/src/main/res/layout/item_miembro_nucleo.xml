@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearLayoutMainData"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:background="#FFF"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_weight="1">
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Jose Fonseca Funez Funez"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_weight="0.5"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewSexo"
+        android:text="M"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_weight="0.1"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="39"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:id="@+id/textViewEdad"
+        android:layout_weight="0.1"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0108197908013"
+        android:id="@+id/textViewIdentidad"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_weight="0.3"/>
+</LinearLayout>

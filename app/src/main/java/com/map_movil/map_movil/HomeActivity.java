@@ -20,7 +20,7 @@ import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
 import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragment;
-import com.map_movil.map_movil.view.descargaNucleo.DescargaNucleoFragment;
+import com.map_movil.map_movil.view.downloadData.DownloadDataFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
@@ -173,8 +173,8 @@ public class HomeActivity extends AppCompatActivity
                 showContentScreenHome(false);
                 showToolbar("Descarga datos nucleo");
                 if (intCodItemSelect != id) {
-                    DescargaNucleoFragment descargaNucleoFragment = new DescargaNucleoFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, descargaNucleoFragment).commit();
+                    DownloadDataFragment downloadDataFragment = new DownloadDataFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, downloadDataFragment).commit();
                 }
             }else if(id == R.id.nav_config_synchronize_data){
                 showContentScreenHome(false);

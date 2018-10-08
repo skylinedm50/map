@@ -21,12 +21,6 @@ public class SolicitudesFragmentPresentImpl implements SolicitudesFragmentPresen
     }
 
     @Override
-    public void downloadSolicitudes(String Aldea, int intCodUser) {
-        String[] arrayItem = Aldea.toString().split("-");
-        this.solicitudesFragmentInteractor.downloadSolicitudes(arrayItem[0], intCodUser);
-    }
-
-    @Override
     public void getSolicitudesGestionadas(int intCodUser, String strSimbolo) {
         this.solicitudesFragmentInteractor.getSolicitudesGestionadas(intCodUser, strSimbolo);
     }
@@ -37,18 +31,7 @@ public class SolicitudesFragmentPresentImpl implements SolicitudesFragmentPresen
     }
 
     @Override
-    public void finishDownloadSolicitudes() {
-        solicitudesFragmentView.finishDownloadSolicitudes();
-    }
-
-    @Override
-    public void changePorcentage(int intPorcentage) {
-        this.solicitudesFragmentView.changePorcentage(String.valueOf(intPorcentage) + "%");
-    }
-
-    @Override
     public void showError(String strError) {
         this.solicitudesFragmentView.showError(strError);
     }
-
 }

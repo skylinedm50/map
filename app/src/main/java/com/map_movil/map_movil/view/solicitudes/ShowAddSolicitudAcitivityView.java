@@ -13,7 +13,6 @@ public interface ShowAddSolicitudAcitivityView {
     void saveSolicitud();
     void showSolicitud(InfoSolicitud infoSolicitud, ArrayList<HogarLigth> hogarLigthArrayList);
     void showOnlyInforHogForCreateSolicitud(HogarByTitular hogarByTitular, ArrayList<HogarLigth> hogarLigthArrayList);
-    void createStructureHogar(ArrayList<HogarLigth> hogarLigthArrayList);
     void showMessage(String strMessage);
     void finishCreationSolicitud();
 }
