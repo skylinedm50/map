@@ -44,7 +44,10 @@ import java.util.ArrayList;
 public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuItem.OnActionExpandListener, ShowAddSolicitudAcitivityView {
     private Intent intent;
     private ShowAddSolicitudAcitivityPresenter showAddSolicitudAcitivityPresenter;
+
     private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPreferencesEditor;
+
     private int intCodSolicitud;
     private int intTipoOperacion;
     private ApiAdapterSolicitudes objApiAdapterSolicitudes;
@@ -103,6 +106,8 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         ViewCompat.setElevation(findViewById(R.id.appBarVerSolicitud), 8);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
+
         showAddSolicitudAcitivityPresenter = new ShowAddSolicitudAcitivityPresenterImpl(this, getApplicationContext());
         intent = getIntent();
         intCodSolicitud = intent.getIntExtra("intCodSolicitud", 0);
@@ -352,7 +357,8 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
 
     @Override
     public void finishCreationSolicitud() {
-
+        sharedPreferencesEditor.putInt("Sincronizar",1);
+        sharedPreferencesEditor.commit();
         finish();
     }
 

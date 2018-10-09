@@ -1,6 +1,7 @@
 package com.map_movil.map_movil.repository.sincronizar;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -89,6 +90,18 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                             public void execute(Realm realm) {
                                 queja.deleteAllFromRealm();
                                 sincronizarPresenter.EventoCompletado(2);
+                                int result = 0;
+                                RealmResults<QuejasDenuncias> queja = realmConfig.getRealm().where(QuejasDenuncias.class)
+                                        .equalTo("Offline" , 1)
+                                        .findAll();
+
+                                RealmResults<SolicitudesDownload> solicitudes  = realmConfig.getRealm()
+                                        .where(SolicitudesDownload.class)
+                                        .equalTo("isLocal", true)
+                                        .findAll();
+                                result = (queja.size() > 0 || solicitudes.size()>0)?10:11;
+
+                                sincronizarPresenter.EventoCompletado(result);
                                 sincronizarPresenter.MensajeSincronizar("\n- Se realizó la sincronización de "+
                                                             String.valueOf(JsonArrayQuejasDenuncias.size())+" quejas y denuncias registradas local.");
                             }
@@ -178,4 +191,7 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
         realmConfig.getRealm().close();
 
     }
+
+
+
 }

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,11 @@ public class SincronizarFragment extends Fragment implements SincronizarView {
     private CheckedTextView checkedTextViewQueja;
     private TextView txtMensajeSincro;
 
+    private NavigationView navigationView;
+
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPreferencesEditor;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,6 +44,9 @@ public class SincronizarFragment extends Fragment implements SincronizarView {
         this.checkedTextViewQueja = (CheckedTextView) view.findViewById(R.id.chk_queja);
         this.checkedTextViewSolicitud = (CheckedTextView) view.findViewById(R.id.chk_solicitud);
         this.txtMensajeSincro = (TextView) view.findViewById(R.id.txtMensajeSincro);
+
+        sharedPreferences = getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
 
         btnSincronizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +81,13 @@ public class SincronizarFragment extends Fragment implements SincronizarView {
             this.checkedTextViewQueja.setCheckMarkDrawable(R.drawable.ic_check);
             this.checkedTextViewQueja.setTextColor(Color.parseColor("#055102"));
             this.progressBar.setVisibility(View.GONE);
+        }
+
+        if(evento == 11){
+            sharedPreferencesEditor.putInt("Sincronizar",0);
+            sharedPreferencesEditor.commit();
+            navigationView = (NavigationView)this.getActivity().findViewById(R.id.nav_view);
+            navigationView.getMenu().getItem(0).getSubMenu().getItem(2).setActionView(null);
         }
     }
 

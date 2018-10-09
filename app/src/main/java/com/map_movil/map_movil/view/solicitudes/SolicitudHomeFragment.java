@@ -67,7 +67,6 @@ public class SolicitudHomeFragment extends Fragment {
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-
                 Intent intent = new Intent(view.getContext(), ShowAddSolicitudActivity.class);
                 intent.putExtra("intTipoOperacion", 1);
                 startActivity(intent);
