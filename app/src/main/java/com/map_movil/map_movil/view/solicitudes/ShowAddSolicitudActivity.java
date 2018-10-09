@@ -352,7 +352,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
 
     @Override
     public void finishCreationSolicitud() {
-        
+
         finish();
     }
 
