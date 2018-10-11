@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="8sp"
+            android:padding="10dp"
             android:visibility="gone">
 
             <LinearLayout
@@ -578,17 +578,15 @@
                     </LinearLayout>
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:id="@+id/linearLayoutObserEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
                     android:visibility="gone">
-
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-
                         <android.support.design.widget.TextInputEditText
                             android:id="@+id/textEditObservacion"
                             android:layout_width="match_parent"
@@ -604,13 +602,12 @@
                     android:id="@+id/linearLayoutObserView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
                     android:orientation="horizontal">
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.7">
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -619,7 +616,6 @@
                             android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

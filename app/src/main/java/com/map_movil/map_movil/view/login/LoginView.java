@@ -12,4 +12,5 @@ public interface LoginView {
     void showDataUser(User user);
     void showError(String strError);
     void saveLocalLogin(int intCodUser, String strNombre, int intCantLogin, int inCodEstado);
+    void showProgressBar(Boolean bolShow);
 }

@@ -104,8 +104,8 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
         showProgressBar(false);
         textViewCantHogares.setText(String.valueOf(arrayIntCant[0]));
         textViewCantHistorialPago.setText(String.valueOf(arrayIntCant[1]));
-        textViewCantQuejas.setText(String.valueOf(arrayIntCant[2]));
-        textViewCantSolicitudes.setText(String.valueOf(arrayIntCant[3]));
+        textViewCantQuejas.setText(String.valueOf(arrayIntCant[3]));
+        textViewCantSolicitudes.setText(String.valueOf(arrayIntCant[2]));
         linearLayoutDetail.setVisibility(View.VISIBLE);
     }
 

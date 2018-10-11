@@ -34,7 +34,7 @@ public class BroadCastDate extends BroadcastReceiver {
             dateDeleteData = simpleDateFormat.parse(sharedPreferences.getString("fechaDeleteData", ""));
             longCountDay = ((datePhone.getTime() - dateDeleteData.getTime()) / (1000*60*60*24));
 
-            if(longCountDay >= 5 || longCountDay < 0){
+            if(longCountDay >= 1 || longCountDay < 0){
                 sharedPreferencesEditor.putString("fechaDeleteData", simpleDateFormat.format(datePhone.getTime()));
                 sharedPreferencesEditor.commit();
                 realmConfig.deleteDataBase();

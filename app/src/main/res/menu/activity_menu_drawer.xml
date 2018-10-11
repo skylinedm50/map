@@ -23,6 +23,7 @@
             <item
                 android:id="@+id/nav_coresponsibility"
                 android:icon="@drawable/ic_view_list_dp"
+                android:enabled="false"
                 android:title="Corresponsabilidades"/>
             <item
                 android:id="@+id/nav_download"
@@ -41,11 +42,11 @@
             <item
                 android:id="@+id/nav_programmed"
                 android:icon="@drawable/ic_assignment_turned_in_black"
-                android:title="Programado"/>
+                android:title="Programado" />
             <item
                 android:id="@+id/nav_excluded"
                 android:icon="@drawable/ic_assignment_late_black"
-                android:title="Excluido"/>
+                android:title="Excluido" />
         </menu>
     </item>
     <item android:title="Más Información">

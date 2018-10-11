@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.map_movil.map_movil.HomeActivity;
@@ -19,7 +21,6 @@ import com.map_movil.map_movil.presenter.login.LoginPresenterImpl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class LoginActivity extends AppCompatActivity  implements LoginView {
     private LoginPresenter loginPresenter;
     private EditText objEditUser;
@@ -28,21 +29,22 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
     private Intent intent;
+    private LinearLayout linearLayoutFieldsLogin;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
-
         setContentView(R.layout.activity_login);
         buttonLogin = findViewById(R.id.btnLogin);
         objEditUser = findViewById(R.id.strUser);
         objEditPassword = findViewById(R.id.strPassword);
+        linearLayoutFieldsLogin = findViewById(R.id.linearLayoutFieldsLogin);
+        progressBar = findViewById(R.id.progressBar);
         loginPresenter = new LoginPresenterImpl(this);
-
         existLogin(sharedPreferences);
-
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,5 +109,14 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
         sharedPreferencesEditor.commit();
     }
 
-
+    @Override
+    public void showProgressBar(Boolean bolShow) {
+        if(bolShow){
+            linearLayoutFieldsLogin.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+        }else{
+            linearLayoutFieldsLogin.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }
+    }
 }

@@ -33,14 +33,14 @@
                 android:id="@+id/linearLayoutDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColor="#000000"
+                    android:textColor="@color/colorPrimaryDark"
                     android:text="Detalle de datos descargados"
                     android:textAlignment="center"/>
                 <LinearLayout
@@ -51,9 +51,49 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:text="Departamento:"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_weight="0.5"/>
+                    <TextView
+                        android:id="@+id/textViewDepartamento"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:textColor="#000000"
+                        android:text="ATLANTIDA"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="Municipios:"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_weight="0.5"/>
+                    <TextView
+                        android:id="@+id/textViewMunicipio"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:textColor="#000000"
+                        android:text="10"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="Hogares:"
                         android:textStyle="bold"
-                        android:textColor="#000000"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_weight="0.5"/>
                     <TextView
                         android:id="@+id/textViewCantHogares"
@@ -73,7 +113,7 @@
                         android:layout_height="match_parent"
                         android:text="Historial de pago:"
                         android:textStyle="bold"
-                        android:textColor="#000000"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_weight="0.5"/>
                     <TextView
                         android:id="@+id/textViewCantHistorialPago"
@@ -93,7 +133,7 @@
                         android:layout_height="match_parent"
                         android:text="Solicitudes:"
                         android:textStyle="bold"
-                        android:textColor="#000000"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_weight="0.5"/>
                     <TextView
                         android:id="@+id/textViewCantSolicitudes"
@@ -113,7 +153,7 @@
                         android:layout_height="match_parent"
                         android:text="Quejas y denuncias:"
                         android:textStyle="bold"
-                        android:textColor="#000000"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_weight="0.5"/>
                     <TextView
                         android:id="@+id/textViewCantQuejas"
@@ -136,12 +176,14 @@
                         android:padding="15dp"
                         android:text="DESCARGAR"
                         android:textColor="@color/colorPrimaryDark"
+                        android:background="#ff4873"
                         android:textSize="12dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
             <ProgressBar
                 android:id="@+id/progressBar"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>

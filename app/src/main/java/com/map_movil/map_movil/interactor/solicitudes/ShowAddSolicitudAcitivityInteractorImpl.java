@@ -32,7 +32,7 @@ public class ShowAddSolicitudAcitivityInteractorImpl implements ShowAddSolicitud
 
     @Override
     public void findSolicitudSaved(int intCodSolicitud) {
-        if (BroadCastInternet.isConnected) {
+        if (BroadCastInternet.isConnected && intCodSolicitud > 0) {
             showAddSolicitudAcitivityRepository.findSolicitudSavedServe(intCodSolicitud);
         } else {
             showAddSolicitudAcitivityRepository.findSolicitudSavedLocal(intCodSolicitud);

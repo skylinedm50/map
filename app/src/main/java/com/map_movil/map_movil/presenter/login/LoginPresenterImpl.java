@@ -18,6 +18,7 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void existLogin(SharedPreferences sharedPreferences) {
+        loginView.showProgressBar(false);
         if(sharedPreferences.getInt("codigo", 0) > 0 && sharedPreferences.getInt("estadoLogin", 0) == 1){
             loginView.goToHome();
         }else if(sharedPreferences.getInt("codigo", 0) > 0 && sharedPreferences.getInt("estadoLogin", 0) == 2){
@@ -27,6 +28,7 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void getDataUser(String strUser, String strPassword){
+        loginView.showProgressBar(true);
         getDetectError(strUser.replaceAll("\\s+",""), strPassword.replaceAll("\\s+",""));
     }
 
@@ -37,6 +39,7 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void showError(String strError) {
+        loginView.showProgressBar(false);
         loginView.showError(strError);
     }
 

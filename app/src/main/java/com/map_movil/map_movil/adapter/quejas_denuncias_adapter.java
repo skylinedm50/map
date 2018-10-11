@@ -68,7 +68,7 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
         }
 
         int UltimaPosicion = (tipo_queja==2)?this.noRealizadosLenght[0]:this.RealizadosLenght[0];
-        if(position == UltimaPosicion){
+        if(position == (UltimaPosicion - 1)){
             LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT ,1);
             layoutParams.setMargins(0,0,0,400);
             holder.ly_Divider.setLayoutParams(layoutParams);

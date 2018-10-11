@@ -253,7 +253,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         solicitudesDownload.setBaja_programa(checkBoxBajaPrograma.isChecked());
         solicitudesDownload.setCorreccion_sancion(checkBoxCorrecionSancion.isChecked());
         solicitudesDownload.setReactiva_programa(checkBoxReactivaPrograma.isChecked());
-        solicitudesDownload.setObservacion((textInputEditTextObservacion.getText().toString()) == null? "SIN OBSERVACION": textInputEditTextObservacion.getText().toString());
+        solicitudesDownload.setObservacion((textInputEditTextObservacion.getText().toString().equals(null) || (textInputEditTextObservacion.getText().toString().equals("")))? "SIN OBSERVACION": textInputEditTextObservacion.getText().toString());
 
         if(!solicitudesDownload.isActualizacion_datos() && !solicitudesDownload.isCambio_titular() &&
                 !solicitudesDownload.isNuevo_integrante() && !solicitudesDownload.isBaja_integrante() &&

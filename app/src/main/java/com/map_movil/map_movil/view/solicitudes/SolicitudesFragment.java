@@ -1,6 +1,5 @@
 package com.map_movil.map_movil.view.solicitudes;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -21,11 +20,10 @@ import com.map_movil.map_movil.interactor.solicitudes.AdapterRecyclerViewSolicit
 import com.map_movil.map_movil.model.SolicitudesUsuario;
 import com.map_movil.map_movil.presenter.solicitud.SolicitudesFragmentPresentImpl;
 import com.map_movil.map_movil.presenter.solicitud.SolicitudesFragmentPresenter;
-import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
 
 import java.util.ArrayList;
 
-public class SolicitudesFragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener, SolicitudesFragmentView{
+public class SolicitudesFragment extends Fragment implements MenuItem.OnActionExpandListener, SolicitudesFragmentView{
 
     public Integer intCodUser;
     public String strSimbolo;
@@ -35,7 +33,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     private View view;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RelativeLayout relativeLayoutTextMessage;
-    private UbicacionesPresenter ubicacionesPresenter;
     private SolicitudesFragmentPresenter solicitudesFragmentPresenter;
 
     public SolicitudesFragment() {
@@ -60,17 +57,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
 
         objRecycleView = view.findViewById(R.id.recyclerSolicitudes);
         objRecycleView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-
-        objAdapterSolicitudesUsuario.setOnClickListener(new AdapterRecyclerViewSolicitudes.OnItemClickListener() {
-            @Override
-            public void onitemClick(int position) {
-                int intCodSolicitud = arrSolicitudesUsuarios.get(position).getIntCodSolicitud();
-                Intent intent = new Intent(getActivity(), ShowAddSolicitudActivity.class);
-                intent.putExtra("intTipoOperacion", 2);
-                intent.putExtra("intCodSolicitud", intCodSolicitud);
-                startActivity(intent);
-            }
-        });
         objRecycleView.setAdapter(objAdapterSolicitudesUsuario);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -112,9 +98,19 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
         inflater.inflate(R.menu.menu_multiple_option, menu);
         MenuItem searchItem = menu.findItem(R.id.searchViewFind);
         SearchView searchView = (SearchView) searchItem.getActionView();
-
-        searchView.setOnQueryTextListener(this);
         searchView.setQueryHint("Buscar...");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                findByTitularOrSolicitud(newText);
+                return false;
+            }
+        });
 
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -122,17 +118,6 @@ public class SolicitudesFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        findByTitularOrSolicitud(newText);
-        return false;
     }
 
     @Override
