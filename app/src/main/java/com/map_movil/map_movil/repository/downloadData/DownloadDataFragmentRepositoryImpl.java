@@ -33,6 +33,7 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
     private RealmConfig realmConfig;
     private int[] arrayIntCant;
     private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedPreferencesEditor;
     private int intCodUser;
     private ArrayList<String> arrayListMunicipiosSelect;
     private ApiAdapterNucleoHogar apiAdapterNucleoHogar;
@@ -46,6 +47,7 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
         this.downloadDataFragmentPresenter = downloadDataFragmentPresenter;
         this.context = context;
         sharedPreferences = context.getSharedPreferences("USER", Context.MODE_PRIVATE);
+        sharedPreferencesEditor = sharedPreferences.edit();
         apiAdapterNucleoHogar = new ApiAdapterNucleoHogar();
         apiServiceNucleoHogar = apiAdapterNucleoHogar.getClientService();
         apiAdapterSolicitudes = new ApiAdapterSolicitudes();
@@ -78,6 +80,7 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
         RealmResults<HistorialPago> historialPagoRealmResults;
         RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
         RealmResults<QuejasDenuncias> quejasDenunciasRealmResults;
+        ArrayList<String> arrayListMunicicpios = new ArrayList<>();
         arrayIntCant = new int[]{0, 0, 0, 0};
         realmConfig = new RealmConfig(context);
         realmConfig.getRealm().beginTransaction();
@@ -93,7 +96,13 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
 
         realmConfig.getRealm().commitTransaction();
         realmConfig.getRealm().close();
-        downloadDataFragmentPresenter.showDetailDataLocal(arrayIntCant);
+
+
+        for(String strElemnt: sharedPreferences.getString("municipiosSelect", "ND").split(",")){
+            arrayListMunicicpios.add(strElemnt);
+        }
+
+        downloadDataFragmentPresenter.showDetailDataLocal(arrayIntCant, arrayListMunicicpios);
     }
 
     @Override
@@ -239,16 +248,22 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
         JsonArray jsonArrayFinal = new JsonArray();
         JsonArray jsonArrayMunicipios = new JsonArray();
         JsonObject jsonObjectData = new JsonObject();
+        String strMuniSelectForSharePreferen = new String();
+        int intCounter = 0;
 
         for(String strElement: arrayList){
             JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("municipio", strElement);
+            jsonObject.addProperty("municipio", strElement.split("-")[0]);
             jsonArrayMunicipios.add(jsonObject);
+            strMuniSelectForSharePreferen += (arrayList.size() == intCounter + 1)? strElement : strElement + ",";
+            intCounter ++;
         }
 
         jsonObjectData.add("municipios", jsonArrayMunicipios);
         jsonObjectData.addProperty("user", intCodUser);
         jsonArrayFinal.add(jsonObjectData);
+        sharedPreferencesEditor.putString("municipiosSelect", strMuniSelectForSharePreferen);
+        sharedPreferencesEditor.commit();
 
         return jsonArrayFinal;
     }

@@ -23,8 +23,8 @@ import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity  implements LoginView {
     private LoginPresenter loginPresenter;
-    private EditText objEditUser;
-    private EditText objEditPassword;
+    private EditText textEditUser;
+    private EditText textEditPassword;
     private Button buttonLogin;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
         sharedPreferencesEditor = sharedPreferences.edit();
         setContentView(R.layout.activity_login);
         buttonLogin = findViewById(R.id.btnLogin);
-        objEditUser = findViewById(R.id.strUser);
-        objEditPassword = findViewById(R.id.strPassword);
+        textEditUser = findViewById(R.id.strUser);
+        textEditPassword = findViewById(R.id.strPassword);
         linearLayoutFieldsLogin = findViewById(R.id.linearLayoutFieldsLogin);
         progressBar = findViewById(R.id.progressBar);
         loginPresenter = new LoginPresenterImpl(this);
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDataUser(objEditUser.getText().toString(), objEditPassword.getText().toString());
+                getDataUser(textEditUser.getText().toString(), textEditPassword.getText().toString());
             }
         });
     }
@@ -56,6 +56,8 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
+        textEditUser.setText("");
+        textEditPassword.setText("");
         existLogin(sharedPreferences);
     }
 

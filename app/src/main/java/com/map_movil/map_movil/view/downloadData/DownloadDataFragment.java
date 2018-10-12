@@ -16,10 +16,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonArray;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.adapter.AdapaterItemMunicipioRecyclerView;
 
+import com.map_movil.map_movil.adapter.AdpaterItemMunicipiosSaveDownload;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
 
@@ -48,6 +48,9 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
    private ProgressBar progressBar;
    private LinearLayout linearLayoutDetail;
    private DownloadDataFragmentPresenter downloadDataFragmentPresenter;
+   private ArrayList<String> stringListMunicipiosSaveDownload = new ArrayList<>();
+   private AdpaterItemMunicipiosSaveDownload adpaterItemMunicipiosSaveDownload;
+   private RecyclerView recyclerViewMunicipiosSave;
 
     public DownloadDataFragment() {
     }
@@ -87,6 +90,11 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
                 downloadData(adapaterItemMunicipioRecyclerView.getArrayListSelected());
             }
         });
+        recyclerViewMunicipiosSave = view.findViewById(R.id.recyclerViewMunicipiosSave);
+        recyclerViewMunicipiosSave.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        adpaterItemMunicipiosSaveDownload = new AdpaterItemMunicipiosSaveDownload(stringListMunicipiosSaveDownload);
+        recyclerViewMunicipiosSave.setAdapter(adpaterItemMunicipiosSaveDownload);
+
         getDepartamentos();
         findDetailDataLocal();
 
@@ -100,12 +108,13 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
     }
 
     @Override
-    public void showDetailDataLocal(int[] arrayIntCant) {
+    public void showDetailDataLocal(int[] arrayIntCant, ArrayList<String> arrayListMunicipio) {
         showProgressBar(false);
         textViewCantHogares.setText(String.valueOf(arrayIntCant[0]));
         textViewCantHistorialPago.setText(String.valueOf(arrayIntCant[1]));
-        textViewCantQuejas.setText(String.valueOf(arrayIntCant[3]));
         textViewCantSolicitudes.setText(String.valueOf(arrayIntCant[2]));
+        textViewCantQuejas.setText(String.valueOf(arrayIntCant[3]));
+        adpaterItemMunicipiosSaveDownload.adapterDataChange(arrayListMunicipio);
         linearLayoutDetail.setVisibility(View.VISIBLE);
     }
 

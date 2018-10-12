@@ -33,7 +33,7 @@
                 android:id="@+id/linearLayoutDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
                 <TextView
@@ -46,6 +46,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     android:layout_weight="1"
                     android:orientation="horizontal">
                     <TextView
@@ -75,13 +76,12 @@
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_weight="0.5"/>
-                    <TextView
-                        android:id="@+id/textViewMunicipio"
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerViewMunicipiosSave"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
                         android:layout_weight="0.5"
-                        android:textColor="#000000"
-                        android:text="10"/>
+                        android:layout_height="wrap_content"
+                        android:minHeight="17dp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -183,7 +183,7 @@
             </LinearLayout>
             <ProgressBar
                 android:id="@+id/progressBar"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"/>

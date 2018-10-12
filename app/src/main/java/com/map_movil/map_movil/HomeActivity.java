@@ -130,8 +130,7 @@ public class HomeActivity extends AppCompatActivity
                 RealmConfig realmConfig = new RealmConfig(getApplicationContext());
                 realmConfig.deleteDataBase();
                 sharedPreferences.edit().clear().apply();
-                intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
+                finish();
             } else if (id == R.id.nav_download) {
                 showContentScreenHome(false);
                 showToolbar("Descargar Validaciones");

@@ -46,7 +46,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     @Override
     public void getDetectError(String strUser, String strPassword) {
         if((strUser.isEmpty()) || (strPassword.isEmpty())){
-            loginView.showError("Favor ingresar los datos solicitados");
+            showError("Favor ingresar los datos solicitados");
         }else{
             objLoginInteractor.getDataUser(strUser, strPassword);
         }

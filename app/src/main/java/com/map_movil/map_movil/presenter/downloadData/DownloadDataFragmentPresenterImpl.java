@@ -7,6 +7,7 @@ import com.map_movil.map_movil.interactor.downloadData.DownloadDataFragmentInter
 import com.map_movil.map_movil.view.downloadData.DownloadDataFragmentView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DownloadDataFragmentPresenterImpl implements DownloadDataFragmentPresenter {
     private DownloadDataFragmentView downloadDataFragmentView;
@@ -44,8 +45,8 @@ public class DownloadDataFragmentPresenterImpl implements DownloadDataFragmentPr
     }
 
     @Override
-    public void showDetailDataLocal(int[] arrayIntCant) {
-        downloadDataFragmentView.showDetailDataLocal(arrayIntCant);
+    public void showDetailDataLocal(int[] arrayIntCant, ArrayList<String> arrayListMunicipio) {
+        downloadDataFragmentView.showDetailDataLocal(arrayIntCant, arrayListMunicipio);
     }
 
     @Override
@@ -53,8 +54,4 @@ public class DownloadDataFragmentPresenterImpl implements DownloadDataFragmentPr
         downloadDataFragmentView.showMessage(strMessage);
     }
 
-    @Override
-    public void showProgressBar(boolean bolShow) {
-        downloadDataFragmentView.showProgressBar(bolShow);
-    }
 }

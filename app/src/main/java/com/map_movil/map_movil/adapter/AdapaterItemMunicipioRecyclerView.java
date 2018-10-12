@@ -44,7 +44,7 @@ public class AdapaterItemMunicipioRecyclerView extends RecyclerView.Adapter<Adap
         holder.checkBoxMunicipio.setText(stringMunicipio);
 
         for(int i = 0; i < arrayListMunicipiosSelect.size(); i++){
-            if(stringMunicipio.split("-")[0].equals(arrayListMunicipiosSelect.get(i))){
+            if(stringMunicipio.equals(arrayListMunicipiosSelect.get(i))){
                 isChecked = true;
                 break;
             }
@@ -54,7 +54,7 @@ public class AdapaterItemMunicipioRecyclerView extends RecyclerView.Adapter<Adap
         holder.checkBoxMunicipio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String strCodMunicipio = buttonView.getText().toString().split("-")[0];
+                String strCodMunicipio = buttonView.getText().toString();//.split("-")[0];
                 if(isChecked){
                     boolean isAdd = true;
                     for (String strElement: arrayListMunicipiosSelect) {
