@@ -44,7 +44,9 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     private AppCompatSpinner           DepartamentoSpiner;
     private AppCompatSpinner           MunicipioSpiner;
     private AppCompatSpinner           AldeaSpiner;
+    private AppCompatSpinner           CaserioSpiner;
     private AppCompatSpinner           TipoSolicitudSpiner;
+
     private CheckBox                   ChkAnonimo;
 
     private TextInputEditText          TxtIdentidad         , TxtNombre1   ,
@@ -88,6 +90,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         this.DepartamentoSpiner  = (AppCompatSpinner)  findViewById(R.id.departamento_spinner);
         this.MunicipioSpiner     = (AppCompatSpinner)  findViewById(R.id.municipio_spinner);
         this.AldeaSpiner         = (AppCompatSpinner)  findViewById(R.id.aldea_spinner);
+        this.CaserioSpiner       = (AppCompatSpinner)  findViewById(R.id.caserios_spinner);
 
         this.TipoSolicitudSpiner = (AppCompatSpinner)  findViewById(R.id.TipoSolicitud);
         this.TxtIdentidad        = (TextInputEditText) findViewById(R.id.Tinput_Identidad);
@@ -132,6 +135,17 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 getAldeas(adapterView.getItemAtPosition(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        this.AldeaSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getCaserios(adapterView.getItemAtPosition(i).toString());
             }
 
             @Override
@@ -265,12 +279,20 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
     @Override
     public void getCaserios(String aldea) {
-
+        this.ubicacionesPresenter.getCaserios(aldea);
     }
 
     @Override
     public void cargarCaserios(List<Caserios> caserios) {
+        List<String> spinner =  new ArrayList<String>();
 
+        for(int x = 0; x < caserios.size(); x++){
+            spinner.add(caserios.get(x).getCod_caserio()+"-"+caserios.get(x).getDesc_caserio());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getApplicationContext(), android.R.layout.simple_dropdown_item_1line, spinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        this.CaserioSpiner.setAdapter(adapter);
     }
 
     @Override
@@ -290,7 +312,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         this.quejasPresenter.RegistrarQueja(sharedPreferences.getInt("codigo",0)      ,
                 this.TxtDetalleSolicitud.getText().toString()                ,
                 (int) this.TipoSolicitudSpiner.getSelectedItemId()           ,
-                AldeaSpiner.getSelectedItem().toString().split("-")[0] ,
+                this.CaserioSpiner.getSelectedItem().toString().split("-")[0] ,
                 this.TxtIdentidad.getText().toString() ,
                 this.TxtNombre1.getText().toString()   ,
                 this.TxtNombre2.getText().toString()   ,
@@ -302,10 +324,11 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     }
 
     @Override
-    public void ActualizarDatos() {
-
-        sharedPreferencesEditor.putInt("Sincronizar",1);
-        sharedPreferencesEditor.commit();
+    public void ActualizarDatos(int offline) {
+        if(offline == 1){
+            sharedPreferencesEditor.putInt("Sincronizar",1);
+            sharedPreferencesEditor.commit();
+        }
         finish();
 
     }

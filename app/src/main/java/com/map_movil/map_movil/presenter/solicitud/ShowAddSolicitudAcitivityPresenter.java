@@ -11,7 +11,7 @@ public interface ShowAddSolicitudAcitivityPresenter {
     void findDataForCreateSolicitud(String strIdentidadTitular);
     void findSolicitudSave(int intCodSolicitud);
     void saveSolicitud(SolicitudesDownload solicitudesDownload, HogarLigth hogarLigth, int intCodUser);
-    void finishCreationSolicitud();
+    void finishCreationSolicitud(int offline);
     void showSolicitud(InfoSolicitud infoSolicitud, ArrayList<HogarLigth> hogarLigthArrayList);
     void showOnlyInforHogForCreateSolicitud(HogarByTitular hogarByTitular, ArrayList<HogarLigth> hogarLigthArrayList);
     void showMessage(String strMessage);

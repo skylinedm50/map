@@ -19,13 +19,13 @@
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
-                android:text="Realizadas"
+                android:text="Resueltas"
                 android:id="@+id/item_realizadas"
                 android:layout_height="wrap_content" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
-                android:text="No Realizadas"
+                android:text="En proceso"
                 android:id="@+id/item_norealizadas"
                 android:layout_height="wrap_content" />
 

@@ -10,7 +10,7 @@ public interface QuejasPresenter {
                              String municipio , String Identidad            , String Nombre1   ,
                              String Nombre2   , String Apellido1            , String Apellido2 ,
                              String Telefono  , int anonimo );
-        void ActualizarDatos();
+        void ActualizarDatos(int offline);
         void DescargarQuejas(int usuario , String aldea);
         void CambiarPorcentaje(int porcentaje);
 }

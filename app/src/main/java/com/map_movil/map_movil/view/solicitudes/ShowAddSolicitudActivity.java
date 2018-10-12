@@ -356,9 +356,11 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
     }
 
     @Override
-    public void finishCreationSolicitud() {
-        sharedPreferencesEditor.putInt("Sincronizar",1);
-        sharedPreferencesEditor.commit();
+    public void finishCreationSolicitud(int offline) {
+        if(offline == 1){
+            sharedPreferencesEditor.putInt("Sincronizar",1);
+            sharedPreferencesEditor.commit();
+        }
         finish();
     }
 

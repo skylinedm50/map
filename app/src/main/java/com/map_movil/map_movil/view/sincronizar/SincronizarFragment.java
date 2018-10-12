@@ -83,7 +83,7 @@ public class SincronizarFragment extends Fragment implements SincronizarView {
             this.progressBar.setVisibility(View.GONE);
         }
 
-        if(evento == 11){
+          if(evento == 11){
             sharedPreferencesEditor.putInt("Sincronizar",0);
             sharedPreferencesEditor.commit();
             navigationView = (NavigationView)this.getActivity().findViewById(R.id.nav_view);

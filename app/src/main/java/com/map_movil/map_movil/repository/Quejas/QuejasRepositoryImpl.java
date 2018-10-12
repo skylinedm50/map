@@ -51,7 +51,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
                             quejasDenunciasVista.setIdentidad(response.body().get(i).getIdentidad());
                             quejasDenunciasVista.setCodigo_solicitante(response.body().get(i).getCodigo_solicitante());
                             quejasDenunciasVista.setNombre_solicitante(response.body().get(i).getNombre_solicitante());
-                            quejasDenunciasVista.setAldea(response.body().get(i).getAldea());
+                            quejasDenunciasVista.setCaserio(response.body().get(i).getCaserio());
 
                             lista.add(quejasDenunciasVista);
                     }
@@ -105,7 +105,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
                     quejasDenuncias_1.setNombre_solicitante(
                             (quejasDenuncias.get(i).getAnonimo() == 1)?"ANONIMO":quejasDenuncias.get(i).getNombre_solicitante()
                     );
-                    quejasDenuncias_1.setAldea(quejasDenuncias.get(i).getAldea());
+                    quejasDenuncias_1.setCaserio(quejasDenuncias.get(i).getCaserio());
                     Lista.add(quejasDenuncias_1);
                 }
                 quejasPresenter.MostarQuejas(Lista, proceso);
@@ -124,7 +124,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
        call.enqueue(new Callback<ResponseApi>() {
            @Override
            public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
-               if(response.isSuccessful()){  quejasPresenter.ActualizarDatos();  }
+               if(response.isSuccessful()){  quejasPresenter.ActualizarDatos(0);  }
            }
 
            @Override
@@ -158,7 +158,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
             quejasDenuncias.setObservacion(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Observacion_solicitud").getAsString());
             quejasDenuncias.setCodigo_gestion(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Tipo_gestion").getAsInt());
             quejasDenuncias.setEstado("Ingresada");
-            quejasDenuncias.setAldea(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Aldea").getAsString());
+            quejasDenuncias.setCaserio(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Caserio").getAsString());
             quejasDenuncias.setIdentidad(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Identidad").getAsString());
             quejasDenuncias.setCodigo_solicitante( Integer.valueOf(0) );
             quejasDenuncias.setNombre_solicitante(
@@ -175,7 +175,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
         this.realmConfig.getRealm().insert(quejasDenuncias);
         this.realmConfig.getRealm().commitTransaction();
         this.realmConfig.getRealm().close();
-        quejasPresenter.ActualizarDatos();
+        quejasPresenter.ActualizarDatos(1);
 
    }
 

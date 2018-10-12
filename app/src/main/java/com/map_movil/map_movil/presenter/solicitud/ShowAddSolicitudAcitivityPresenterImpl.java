@@ -55,7 +55,7 @@ public class ShowAddSolicitudAcitivityPresenterImpl implements ShowAddSolicitudA
     }
 
     @Override
-    public void finishCreationSolicitud() {
-        showAddSolicitudAcitivityView.finishCreationSolicitud();
+    public void finishCreationSolicitud(int offline) {
+        showAddSolicitudAcitivityView.finishCreationSolicitud(offline);
     }
 }

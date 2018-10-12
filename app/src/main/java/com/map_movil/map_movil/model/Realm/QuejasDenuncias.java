@@ -23,8 +23,8 @@ public class QuejasDenuncias extends RealmObject
     private int codigo_solicitante;
     @SerializedName("nombre_solicitante")
     private String nombre_solicitante;
-    @SerializedName("cod_aldea")
-    private String Aldea;
+    @SerializedName("cod_caserio")
+    private String cod_caserio;
     /*----------- REGISTRO DE QUEJAS OFFLINE ----------*/
     private String telefono;
     private int  anonimo;
@@ -56,11 +56,11 @@ public class QuejasDenuncias extends RealmObject
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    public String getAldea() {
-        return Aldea;
+    public String getCaserio() {
+        return cod_caserio;
     }
-    public void setAldea(String aldea) {
-        Aldea = aldea;
+    public void setCaserio(String caserio) {
+        this.cod_caserio = cod_caserio;
     }
     public int getCodigo_solicitud() {
         return codigo_solicitud;

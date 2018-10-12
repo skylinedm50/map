@@ -91,13 +91,14 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
     public void onResume() {
         super.onResume();
         this.denuncias_adapter.SolicitarQuejas();
-        this.rv_quejas.post(new Runnable() {
+       /* this.rv_quejas.post(new Runnable() {
             @Override
             public void run() {
                 rv_quejas.smoothScrollToPosition(denuncias_adapter.getItemCount());
             }
-        });
+        });*/
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
