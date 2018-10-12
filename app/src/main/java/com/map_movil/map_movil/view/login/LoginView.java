@@ -1,7 +1,6 @@
 package com.map_movil.map_movil.view.login;
 
 import android.content.SharedPreferences;
-
 import com.map_movil.map_movil.model.User;
 
 public interface LoginView {

@@ -30,4 +30,5 @@ public class SincronizarPresenterImpl implements SincronizarPresenter {
     public void EventoCompletado(int evento) {
         sincronizarView.EventoCompletado(evento);
     }
+
 }

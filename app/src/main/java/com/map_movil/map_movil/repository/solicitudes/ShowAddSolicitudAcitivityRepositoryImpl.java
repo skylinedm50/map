@@ -1,7 +1,6 @@
 package com.map_movil.map_movil.repository.solicitudes;
 
 import android.content.Context;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.Realm.RealmConfig;
@@ -227,7 +226,7 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
             @Override
             public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
                 if (response.body() != null && response.body().getIntState() == 1) {
-                    showAddSolicitudAcitivityPresenter.finishCreationSolicitud();
+                    showAddSolicitudAcitivityPresenter.finishCreationSolicitud(0);
                 }else{
                     showAddSolicitudAcitivityPresenter.showMessage("Imposible almacenar la solicitud.");
                 }
@@ -280,7 +279,7 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
         realmConfig.getRealm().insert(solicitudesDownload);
         realmConfig.getRealm().commitTransaction();
         realmConfig.getRealm().close();
-        showAddSolicitudAcitivityPresenter.finishCreationSolicitud();
+        showAddSolicitudAcitivityPresenter.finishCreationSolicitud(1);
     }
 
 }

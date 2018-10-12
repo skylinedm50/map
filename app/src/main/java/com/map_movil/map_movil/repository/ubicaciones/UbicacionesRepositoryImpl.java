@@ -10,10 +10,6 @@ import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 
 public class UbicacionesRepositoryImpl implements UbicacionesRepository {
     ApiAdapterUbicacion apiAdapterUbicacion;
@@ -35,6 +31,7 @@ public class UbicacionesRepositoryImpl implements UbicacionesRepository {
         ubicacionesPresenter.cargarDepartamentos(new ArrayList<String>(Arrays.asList(arrayString)));
     }
 
+
     @Override
     public void getMunicipios(String depto) {
         String[] arrayList = context.getResources().getStringArray(R.array.municipios_array);
@@ -51,6 +48,7 @@ public class UbicacionesRepositoryImpl implements UbicacionesRepository {
 
         ubicacionesPresenter.cargarMunicipios(arrayListNew);
     }
+
 
     @Override
     public void getAldeas(String muni) {
@@ -75,23 +73,23 @@ public class UbicacionesRepositoryImpl implements UbicacionesRepository {
 
     @Override
     public void getCaserios(String aldea) {
-        Call<List<Caserios>> Caserios = this.apiServicesUbicacion.getAllCaserios(aldea);
-        Caserios.enqueue(new Callback<List<com.map_movil.map_movil.model.Caserios>>() {
-            @Override
-            public void onResponse(Call<List<Caserios>> call, Response<List<Caserios>> response) {
-                if(response.isSuccessful()){
 
-                    if(response.body().size()>0){
-                        ubicacionesPresenter.cargarCaserios(response.body());
-                    }
-                }
+        String[] arrayList = context.getResources().getStringArray(R.array.caserios_array);
+        List<Caserios> arrayListNew = new ArrayList<>();
+
+        for (String item: arrayList){
+            String[] arrayItem = item.toString().split("-");
+            String string = arrayItem[0].substring(0,6);
+
+            if(aldea.contains(string)){
+                Caserios caserios = new Caserios();
+                caserios.setCod_caserio(arrayItem[0]);
+                caserios.setDesc_caserio(arrayItem[1]);
+                arrayListNew.add(caserios);
             }
+        }
 
-            @Override
-            public void onFailure(Call<List<Caserios>> call, Throwable t) {
-
-            }
-        });
+        ubicacionesPresenter.cargarCaserios(arrayListNew);
     }
 
 }

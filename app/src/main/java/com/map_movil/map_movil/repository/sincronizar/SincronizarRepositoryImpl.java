@@ -1,8 +1,6 @@
 package com.map_movil.map_movil.repository.sincronizar;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.Realm.RealmConfig;
@@ -15,7 +13,6 @@ import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
 import com.map_movil.map_movil.model.ResponseApi;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.presenter.sincronizar.SincronizarPresenter;
-
 import io.realm.Realm;
 import io.realm.RealmResults;
 import retrofit2.Call;
@@ -46,6 +43,7 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
         final JsonArray JsonArrayQuejasDenuncias = new JsonArray();
 
         if(queja.size() == 0){
+            realmConfig.getRealm().close();
             sincronizarPresenter.EventoCompletado(2);
             sincronizarPresenter.MensajeSincronizar("\n- No se detectaron quejas a sincronizar.");
         }else{
@@ -58,7 +56,7 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                 jsonQuejasDenuncias.addProperty("Usuario" , String.valueOf(usuario));
                 jsonQuejasDenuncias.addProperty("Observacion_solicitud" , queja.get(i).getObservacion());
                 jsonQuejasDenuncias.addProperty("Tipo_gestion"          , String.valueOf(queja.get(i).getCodigo_gestion()));
-                jsonQuejasDenuncias.addProperty("Aldea"     , queja.get(i).getAldea());
+                jsonQuejasDenuncias.addProperty("Caserio"     , queja.get(i).getCaserio());
                 jsonQuejasDenuncias.addProperty("Identidad" , queja.get(i).getIdentidad());
                 jsonQuejasDenuncias.addProperty("Nombre1"   ,
                         (queja.get(i).getAnonimo() == 1 || NombreSolicitante.length < 1)?"": NombreSolicitante[0].toUpperCase());
@@ -82,15 +80,12 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                 @Override
                 public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
                     if(response.isSuccessful()){
-
-                        realmConfig.getRealm().beginTransaction();
-                        realmConfig.getRealm().commitTransaction();
                         realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
                                 queja.deleteAllFromRealm();
                                 sincronizarPresenter.EventoCompletado(2);
-                                int result = 0;
+                                int result;
                                 RealmResults<QuejasDenuncias> queja = realmConfig.getRealm().where(QuejasDenuncias.class)
                                         .equalTo("Offline" , 1)
                                         .findAll();
@@ -99,15 +94,18 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                                         .where(SolicitudesDownload.class)
                                         .equalTo("isLocal", true)
                                         .findAll();
+
                                 result = (queja.size() > 0 || solicitudes.size()>0)?10:11;
 
                                 sincronizarPresenter.EventoCompletado(result);
+
                                 sincronizarPresenter.MensajeSincronizar("\n- Se realizó la sincronización de "+
                                                             String.valueOf(JsonArrayQuejasDenuncias.size())+" quejas y denuncias registradas local.");
                             }
                         });
                         realmConfig.getRealm().close();
                     }else{
+                        realmConfig.getRealm().close();
                         sincronizarPresenter.EventoCompletado(2);
                         sincronizarPresenter.MensajeSincronizar("\n- Error en el servidor, no se pudo sincronizar las quejas y denuncias.");
                     }
@@ -115,12 +113,13 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
 
                 @Override
                 public void onFailure(Call<ResponseApi> call, Throwable t) {
+                    realmConfig.getRealm().close();
                     sincronizarPresenter.EventoCompletado(2);
                     sincronizarPresenter.MensajeSincronizar("\n- "+t.getMessage());
                 }
             });
-
         }
+
 
     }
 
@@ -136,6 +135,7 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
         realmConfig.getRealm().commitTransaction();
 
         if(solicitudesDownloadRealmResults.size() == 0){
+            realmConfig.getRealm().close();
             this.sincronizarPresenter.EventoCompletado(1);
             this.sincronizarPresenter.MensajeSincronizar("\n- No se detectaron solicitudes a sincronizar.");
         }else{
@@ -155,6 +155,8 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                 jsonObject.addProperty("correccion_sancion",(item.isCorreccion_sancion())? 1 : 0);
                 jsonArray.add(jsonObject);
             }
+            apiAdapterSolicitudes = new ApiAdapterSolicitudes();
+            apiServiceSolicitudes = apiAdapterSolicitudes.getClientService();
 
             Call<ResponseApi> call = apiServiceSolicitudes.createSolicitud(jsonArray);
             call.enqueue(new Callback<ResponseApi>() {
@@ -171,11 +173,25 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                             public void execute(Realm realm) {
                                 solicitudesDownloadRealmResults.deleteAllFromRealm();
                                 sincronizarPresenter.EventoCompletado(1);
+                                int result;
+                                RealmResults<QuejasDenuncias> queja = realmConfig.getRealm().where(QuejasDenuncias.class)
+                                        .equalTo("Offline" , 1)
+                                        .findAll();
+
+                                RealmResults<SolicitudesDownload> solicitudes  = realmConfig.getRealm()
+                                        .where(SolicitudesDownload.class)
+                                        .equalTo("isLocal", true)
+                                        .findAll();
+
+                                result = (queja.size() > 0 || solicitudes.size()>0)?10:11;
+
+                                sincronizarPresenter.EventoCompletado(result);
                                 sincronizarPresenter.MensajeSincronizar("\n- Se realizó la sincronización de "+String.valueOf(jsonArray.size())+" solicitudes registradas local");
                             }
                         });
                         realmConfig.getRealm().close();
                     }else{
+                        realmConfig.getRealm().close();
                         sincronizarPresenter.EventoCompletado(1);
                         sincronizarPresenter.MensajeSincronizar("\n- Error en el servidor, no se pudo sincronizar las solicitudes");
                     }
@@ -183,12 +199,12 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
 
                 @Override
                 public void onFailure(Call<ResponseApi> call, Throwable t) {
+                    realmConfig.getRealm().close();
                     sincronizarPresenter.EventoCompletado(1);
                     sincronizarPresenter.MensajeSincronizar("\n- "+t.getMessage());
                 }
             });
         }
-        realmConfig.getRealm().close();
 
     }
 

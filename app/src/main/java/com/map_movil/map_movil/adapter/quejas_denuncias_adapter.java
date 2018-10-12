@@ -109,6 +109,7 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
 
     @Override
     public void MostarQuejas(ArrayList<QuejasDenuncias> respuesta, int  RealizadosLenght , int noRealizadosLenght) {
+        this.swipeRefreshLayout.setRefreshing(false);
         this.quejas_denuncias      = respuesta;
         this.RealizadosLenght[0]   = RealizadosLenght;
         this.noRealizadosLenght[0] = noRealizadosLenght;
@@ -137,6 +138,7 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
 
     @Override
     public void SolicitarQuejas() {
+        this.swipeRefreshLayout.setRefreshing(true);
         SharedPreferences sharedPreferences = this.context.getSharedPreferences("USER", Context.MODE_PRIVATE);
         int UsuarioCod = sharedPreferences.getInt("codigo",0);
         this.quejasPresenter.SolicitarQuejas(UsuarioCod);
@@ -146,7 +148,7 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
     public void RegistrarQueja() { }
 
     @Override
-    public void ActualizarDatos() { }
+    public void ActualizarDatos(int offline) { }
 
     public static class quejas_denuncias_holder extends RecyclerView.ViewHolder {
 

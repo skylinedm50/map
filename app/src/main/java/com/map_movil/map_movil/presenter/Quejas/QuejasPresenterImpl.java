@@ -54,7 +54,7 @@ public class QuejasPresenterImpl implements QuejasPresenter {
 
     @Override
     public void RegistrarQueja( int usuario      , String Observacio_solicitud , int tipo_gestion ,
-                                String aldea     , String Identidad            , String Nombre1   ,
+                                String caserio     , String Identidad            , String Nombre1   ,
                                 String Nombre2   , String Apellido1            , String Apellido2 ,
                                 String Telefono  , int anonimo ) {
 
@@ -62,7 +62,7 @@ public class QuejasPresenterImpl implements QuejasPresenter {
         jsonQuejaDenuncia.addProperty("Usuario" , String.valueOf(usuario));
         jsonQuejaDenuncia.addProperty("Observacion_solicitud" , Observacio_solicitud);
         jsonQuejaDenuncia.addProperty("Tipo_gestion"          , String.valueOf(tipo_gestion));
-        jsonQuejaDenuncia.addProperty("Aldea"     , aldea);
+        jsonQuejaDenuncia.addProperty("Caserio"     , caserio);
         jsonQuejaDenuncia.addProperty("Identidad" , Identidad);
         jsonQuejaDenuncia.addProperty("Nombre1"   , Nombre1.toUpperCase());
         jsonQuejaDenuncia.addProperty("Nombre2"   , Nombre2.toUpperCase());
@@ -78,8 +78,8 @@ public class QuejasPresenterImpl implements QuejasPresenter {
     }
 
     @Override
-    public void ActualizarDatos() {
-        this.quejasView.ActualizarDatos();
+    public void ActualizarDatos(int offline) {
+        this.quejasView.ActualizarDatos(offline);
     }
 
     @Override

@@ -5,5 +5,4 @@ public interface SincronizarPresenter {
     void Sincronizar(int usuario);
     void MensajeSincronizar(String Mensaje);
     void EventoCompletado(int evento);
-
 }

@@ -9,5 +9,5 @@ public interface QuejasView {
     void MostarQuejas(ArrayList<QuejasDenuncias> respuesta , int RealizadosLenght , int noRealizadosLenght);
     void SolicitarQuejas();
     void RegistrarQueja();
-    void ActualizarDatos();
+    void ActualizarDatos(int offline);
 }

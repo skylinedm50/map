@@ -11,7 +11,6 @@ public class SincronizarInteractorImpl implements SincronizarInteractor {
     private SincronizarPresenter sincronizarPresenter;
     private SincronizarRepository sincronizarRepository;
 
-
     public SincronizarInteractorImpl(SincronizarPresenter sincronizarPresenter , Context context){
         this.sincronizarPresenter = sincronizarPresenter;
         this.sincronizarRepository = new SincronizarRepositoryImpl(this.sincronizarPresenter , context);
@@ -22,4 +21,5 @@ public class SincronizarInteractorImpl implements SincronizarInteractor {
         this.sincronizarRepository.synchronizeRequestWithServer(usuario);
         this.sincronizarRepository.SincronizarQuejas(usuario);
     }
+
 }
