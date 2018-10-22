@@ -90,16 +90,16 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         this.SpinnerMapAldea = new HashMap<Integer, String>();
         this.SpinnerMapPagos = new HashMap<Integer, String>();
 
-        RadGlobal = (RadioButton) view.findViewById(R.id.radio_global);
-        RadMdesc = (RadioButton) view.findViewById(R.id.radio_m);
-        relativeLayout =(RelativeLayout) view.findViewById(R.id.relativeLayoutProgressBar);
+        RadGlobal = view.findViewById(R.id.radio_global);
+        RadMdesc = view.findViewById(R.id.radio_m);
+        relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
         linearLayout = view.findViewById(R.id.linearLayoutdatos);
-        linearLayoutnodata=view.findViewById(R.id.linearLayoutnodata);
+        linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
 
-        DepartamentoSpiner = (AppCompatSpinner) view.findViewById(R.id.departamento);
-        MunicipioSpiner = (AppCompatSpinner) view.findViewById(R.id.municipio);
-        AldeaSpiner = (AppCompatSpinner) view.findViewById(R.id.aldea);
-        PagosSpiner = (AppCompatSpinner) view.findViewById(R.id.pago);
+        DepartamentoSpiner = view.findViewById(R.id.departamento);
+        MunicipioSpiner = view.findViewById(R.id.municipio);
+        AldeaSpiner = view.findViewById(R.id.aldea);
+        PagosSpiner = view.findViewById(R.id.pago);
 
         this.context = view.getContext();
         listplanillaexcluidos = view.findViewById(R.id.listaexcluidos);
@@ -171,6 +171,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                 this.getContext(), android.R.layout.simple_dropdown_item_1line, departamentos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.DepartamentoSpiner.setAdapter(adapter);
+        adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
     }
 
     @Override
@@ -184,6 +185,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                 this.getContext(), android.R.layout.simple_dropdown_item_1line, municipios);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.MunicipioSpiner.setAdapter(adapter);
+        adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
     }
 
     @Override
@@ -204,6 +206,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                 this.getContext(), android.R.layout.simple_dropdown_item_1line, spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.AldeaSpiner.setAdapter(adapter);
+        adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
     }
 
     @Override
@@ -234,6 +237,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                 this.getContext(), android.R.layout.simple_dropdown_item_1line, spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.PagosSpiner.setAdapter(adapter);
+        adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
     }
 
     @Override
@@ -279,10 +283,10 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
             PagosExcluido Item = (PagosExcluido) getItem(position);
 
             convertView = LayoutInflater.from(context).inflate(R.layout.item_planilla_excluido,null);
-            TextView textViewNombre =(TextView) convertView.findViewById(R.id.Nombre_Persona) ;
-            TextView textViewCodhoga=(TextView) convertView.findViewById(R.id.codhogar) ;
-            TextView textViewcaserio = (TextView) convertView.findViewById(R.id.caserio) ;
-            TextView textViewrazon =(TextView) convertView.findViewById(R.id.razon) ;
+            TextView textViewNombre = convertView.findViewById(R.id.Nombre_Persona) ;
+            TextView textViewCodhoga = convertView.findViewById(R.id.codhogar) ;
+            TextView textViewcaserio = convertView.findViewById(R.id.caserio) ;
+            TextView textViewrazon = convertView.findViewById(R.id.razon) ;
 
             textViewNombre.setText(Item.getStrnombre_titular());
             textViewCodhoga.setText("CÓDIGO HOGAR : " + Item.getStrcodigo_hogar());

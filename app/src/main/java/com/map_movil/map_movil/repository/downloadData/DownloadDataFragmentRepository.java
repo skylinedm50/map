@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface DownloadDataFragmentRepository {
     boolean existLocalData();
-    void downloadData(ArrayList<String> arrayListMunicipiosSelect);
+    void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento);
     void findDetailDataLocal();
     void deleteAllData();
 

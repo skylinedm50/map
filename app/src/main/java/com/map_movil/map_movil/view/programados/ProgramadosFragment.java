@@ -83,15 +83,15 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
         this.SpinnerMapMuni = new HashMap<Integer, String>();
         this.SpinnerMapAldea = new HashMap<Integer, String>();
         this.SpinnerMapPagos = new HashMap<Integer, String>();
-        relativeLayout =(RelativeLayout) view.findViewById(R.id.relativeLayoutProgressBar);
+        relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
         linearLayout = view.findViewById(R.id.linearLayoutdatos);
-        linearLayoutnodata=view.findViewById(R.id.linearLayoutnodata);
-        DepartamentoSpiner = (AppCompatSpinner) view.findViewById(R.id.departamento);
-        MunicipioSpiner = (AppCompatSpinner) view.findViewById(R.id.municipio);
-        AldeaSpiner = (AppCompatSpinner) view.findViewById(R.id.aldea);
-        PagosSpiner = (AppCompatSpinner) view.findViewById(R.id.pago);
+        linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
+        DepartamentoSpiner = view.findViewById(R.id.departamento);
+        MunicipioSpiner = view.findViewById(R.id.municipio);
+        AldeaSpiner = view.findViewById(R.id.aldea);
+        PagosSpiner = view.findViewById(R.id.pago);
 
-        listplanillapagos = (ListView) view.findViewById(R.id.listaexcluidos);
+        listplanillapagos = view.findViewById(R.id.listaexcluidos);
         adaptadorProgramados = new AdaptadorProgramados(context, listPagos);
         listplanillapagos.setAdapter(adaptadorProgramados);
 
@@ -101,13 +101,22 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
             public void onClick(View v) {
                 loading("search");
                 findProgramados(SpinnerMapAldea.get(AldeaSpiner.getSelectedItemPosition()),SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()));
+            }
+        });
 
+        PagosSpiner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listPagos = new ArrayList<>();
+                adaptadorProgramados.changeAdapater(listPagos);
             }
         });
         DepartamentoSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 getMunicipios(adapterView.getItemAtPosition(i).toString());
+                listPagos = new ArrayList<>();
+                adaptadorProgramados.changeAdapater(listPagos);
             }
 
             @Override
@@ -119,11 +128,20 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 getAldeas(adapterView.getItemAtPosition(i).toString());
+                listPagos = new ArrayList<>();
+                adaptadorProgramados.changeAdapater(listPagos);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+        AldeaSpiner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listPagos = new ArrayList<>();
+                adaptadorProgramados.changeAdapater(listPagos);
             }
         });
         this.getDepartamentos();

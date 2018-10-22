@@ -208,7 +208,8 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
     public void saveServerSolicitud(SolicitudesDownload solicitudesDownload, HogarLigth hogarLigth, int intCodUser) {
         JsonObject jsonObject = new JsonObject();
         JsonArray jsonArray = new JsonArray();
-        jsonObject.addProperty("identidad",hogarLigth.getStrIdentidad());
+        jsonObject.addProperty("hog_hogar",hogarLigth.getIntHogHogar());
+        jsonObject.addProperty("per_persona",hogarLigth.getIntPerPersona());
         jsonObject.addProperty("cod_user",intCodUser);
         jsonObject.addProperty("observacion",solicitudesDownload.getObservacion());
         jsonObject.addProperty("actualizacion_datos",(solicitudesDownload.isActualizacion_datos())? 1 : 0);
@@ -274,7 +275,7 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
             solicitudesDownload.setUmbral_hogar(item.getHog_umbral());
             solicitudesDownload.setEstado_hogar(item.getHog_estado_descripcion());
             solicitudesDownload.setCodigo_hogar(item.getHog_hogar());
-            solicitudesDownload.setPer_persona_solicitante(item.getPer_persona());
+            solicitudesDownload.setPer_persona(item.getPer_persona());
         }
         realmConfig.getRealm().insert(solicitudesDownload);
         realmConfig.getRealm().commitTransaction();

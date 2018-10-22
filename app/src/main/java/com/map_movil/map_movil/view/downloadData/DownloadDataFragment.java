@@ -38,6 +38,7 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
    private Spinner spinnerDepartamento;
    private RecyclerView recyclerViewMunicipio;
    private TextView ngButtonDownload;
+   private TextView textViewDepartamento;
    private TextView textViewCantHogares;
    private TextView textViewCantHistorialPago;
    private TextView textViewCantSolicitudes;
@@ -68,6 +69,7 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
         recyclerViewMunicipio = view.findViewById(R.id.recyclerViewMunicipio);
         recyclerViewMunicipio.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         ngButtonDownload = view.findViewById(R.id.ngButtonDownload);
+        textViewDepartamento = view.findViewById(R.id.textViewDepartamento);
         textViewCantHogares = view.findViewById(R.id.textViewCantHogares);
         textViewCantHistorialPago = view.findViewById(R.id.textViewCantHistorialPago);
         textViewCantSolicitudes = view.findViewById(R.id.textViewCantSolicitudes);
@@ -87,7 +89,7 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
         ngButtonDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                downloadData(adapaterItemMunicipioRecyclerView.getArrayListSelected());
+                downloadData(adapaterItemMunicipioRecyclerView.getArrayListSelected(), spinnerDepartamento.getSelectedItem().toString());
             }
         });
         recyclerViewMunicipiosSave = view.findViewById(R.id.recyclerViewMunicipiosSave);
@@ -108,12 +110,13 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
     }
 
     @Override
-    public void showDetailDataLocal(int[] arrayIntCant, ArrayList<String> arrayListMunicipio) {
+    public void showDetailDataLocal(int[] arrayIntCant, ArrayList<String> arrayListMunicipio, String strDepartamentoSelected) {
         showProgressBar(false);
         textViewCantHogares.setText(String.valueOf(arrayIntCant[0]));
         textViewCantHistorialPago.setText(String.valueOf(arrayIntCant[1]));
         textViewCantSolicitudes.setText(String.valueOf(arrayIntCant[2]));
         textViewCantQuejas.setText(String.valueOf(arrayIntCant[3]));
+        textViewDepartamento.setText(strDepartamentoSelected);
         adpaterItemMunicipiosSaveDownload.adapterDataChange(arrayListMunicipio);
         linearLayoutDetail.setVisibility(View.VISIBLE);
     }
@@ -129,10 +132,10 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
     }
 
     @Override
-    public void downloadData(ArrayList<String> arrayListMunicipiosSelect) {
+    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento) {
         linearLayoutDetail.setVisibility(View.GONE);
         showProgressBar(true);
-        downloadDataFragmentPresenter.downloadData(arrayListMunicipiosSelect);
+        downloadDataFragmentPresenter.downloadData(arrayListMunicipiosSelect, strDepartamento);
     }
 
     @Override

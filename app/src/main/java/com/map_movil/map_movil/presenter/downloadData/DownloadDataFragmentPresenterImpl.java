@@ -21,7 +21,7 @@ public class DownloadDataFragmentPresenterImpl implements DownloadDataFragmentPr
     }
 
     @Override
-    public void downloadData(ArrayList<String> arrayListMunicipiosSelect) {
+    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento) {
         switch (arrayListMunicipiosSelect.size()) {
             case 0:
                 downloadDataFragmentView.showMessage("Favor seleccione por lo menos un municipio.");
@@ -30,7 +30,7 @@ public class DownloadDataFragmentPresenterImpl implements DownloadDataFragmentPr
             case 1:
             case 2:
             case 3:
-                downloadDataFragmentInteractor.downloadData(arrayListMunicipiosSelect);
+                downloadDataFragmentInteractor.downloadData(arrayListMunicipiosSelect, strDepartamento);
                 break;
             default:
                 downloadDataFragmentView.showMessage("Soló se pueden seleccionar 3 municipios como maximo.");
@@ -45,8 +45,8 @@ public class DownloadDataFragmentPresenterImpl implements DownloadDataFragmentPr
     }
 
     @Override
-    public void showDetailDataLocal(int[] arrayIntCant, ArrayList<String> arrayListMunicipio) {
-        downloadDataFragmentView.showDetailDataLocal(arrayIntCant, arrayListMunicipio);
+    public void showDetailDataLocal(int[] arrayIntCant, ArrayList<String> arrayListMunicipio, String strDepartamentoSelected) {
+        downloadDataFragmentView.showDetailDataLocal(arrayIntCant, arrayListMunicipio, strDepartamentoSelected);
     }
 
     @Override
