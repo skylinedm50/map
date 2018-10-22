@@ -35,7 +35,6 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Intent intent;
     private TextView textViewNombreUsuario;
     private SharedPreferences sharedPreferences;
     private LinearLayout linearLayoutContentMainHome;
@@ -48,12 +47,12 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         linearLayoutContentMainHome = findViewById(R.id.linearLayoutContentMainHome);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -79,7 +78,7 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -174,7 +173,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             } else if (id == R.id.nav_config_download_data) {
                 showContentScreenHome(false);
-                showToolbar("Descarga datos nucleo");
+                showToolbar("Descargar datos");
                 if (intCodItemSelect != id) {
                     DownloadDataFragment downloadDataFragment = new DownloadDataFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, downloadDataFragment).commit();
@@ -207,7 +206,7 @@ public class HomeActivity extends AppCompatActivity
 
         intCodItemSelect = id;
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

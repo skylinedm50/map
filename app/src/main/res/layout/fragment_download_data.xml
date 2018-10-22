@@ -33,20 +33,20 @@
                 android:id="@+id/linearLayoutDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_margin="10dp"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textSize="17dp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="Detalle de datos descargados"
                     android:textAlignment="center"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="gone"
                     android:layout_weight="1"
                     android:orientation="horizontal">
                     <TextView
@@ -176,7 +176,7 @@
                         android:padding="15dp"
                         android:text="DESCARGAR"
                         android:textColor="@color/colorPrimaryDark"
-                        android:background="#ff4873"
+                        android:background="#adef8e84"
                         android:textSize="12dp"
                         android:textStyle="bold" />
                 </LinearLayout>

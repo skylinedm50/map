@@ -3,9 +3,9 @@ package com.map_movil.map_movil.view.solicitudes;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,21 +14,20 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.itextpdf.text.pdf.parser.Line;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.adapter.AdapaterItemMiembroNucleoRecyclerView;
-import com.map_movil.map_movil.api.hogar.ApiAdapterHogar;
-import com.map_movil.map_movil.api.hogar.ApiServiceHogar;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
 import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
@@ -68,6 +67,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
     private LinearLayout linearLayoutTextoBusqueda;
     private RelativeLayout relativeLayoutProgressBar;
 
+    private TextView textViewAlertChangeTitular;
     private TextView textViewCodHogar;
     private TextView textViewEstadoHogar;
     private TextView textViewUmbral;
@@ -89,6 +89,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
     private RecyclerView recyclerViewMiembros;
     private AdapaterItemMiembroNucleoRecyclerView adapaterItemMiembroNucleoRecyclerView;
 
+   private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,11 +141,9 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         objApiAdapterSolicitudes = new ApiAdapterSolicitudes();
         objApiServiceSolicitudes = objApiAdapterSolicitudes.getClientService();
 
-
-
         if(intTipoOperacion == 2) {//Buscar una solicitud
             findSolicitudSave(intCodSolicitud);
-        }else{//Cuando se va a ingresar un a nueva solicitud.
+        }else{//Cuando se va a ingresar una nueva solicitud.
             linearLayoutMain.setVisibility(View.GONE);
             linearLayoutObserEdit.setVisibility(View.VISIBLE);
             linearLayoutObserView.setVisibility(View.GONE);
@@ -233,6 +232,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
     public void findDataCreateSolicitud(String strIdentidadTitular) {
         showProgressBar(true);
         showAddSolicitudAcitivityPresenter.findDataForCreateSolicitud(strIdentidadTitular);
+
     }
 
     @Override
@@ -287,6 +287,55 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         textViewAldea.setText(String.valueOf(hogarByTitular.getStrAldea()));
         textViewCaserio.setText(String.valueOf(hogarByTitular.getStrCaserio()));
 
+        checkBoxActualizacionDatos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)showPoppup(1);
+            }
+        });
+        checkBoxCambioTitular.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)showPoppup(2);
+            }
+        });
+        checkBoxNuevoIntegrante.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)showPoppup(3);
+            }
+        });
+        checkBoxBajaIntegrante.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)showPoppup(4);
+            }
+        });
+        checkBoxCambioDomicilio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)showPoppup(5);
+            }
+        });
+        checkBoxBajaPrograma.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)showPoppup(6);
+            }
+        });
+        checkBoxCorrecionSancion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)showPoppup(7);
+            }
+        });
+        checkBoxReactivaPrograma.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)showPoppup(8);
+            }
+        });
+
         saveDataItem.setVisible(true);
         hogarLigthsList = hogarLigthArrayList;
         adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthsList);
@@ -307,6 +356,8 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         textViewAldea = findViewById(R.id.textViewAldea);
         textViewCaserio = findViewById(R.id.textViewCaserio);
         textViewObservacion = findViewById(R.id.textViewObservacion);
+        textViewAlertChangeTitular = findViewById(R.id.textViewAlertChangeTitular);
+        textViewAlertChangeTitular.setVisibility(infoSolicitud.isBolTitularCambioHogar()? View.VISIBLE: View.GONE);
 
         checkBoxActualizacionDatos.setChecked(infoSolicitud.isBolActualizacionDatos());
         checkBoxCambioTitular.setChecked(infoSolicitud.isBolCambioTitular());
@@ -364,4 +415,52 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         finish();
     }
 
+    @Override
+    public void showPoppup(int intPopuToShow) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View viewInflate = LayoutInflater.from(this).inflate(R.layout.dialog_document_support_solicitudes, null);
+        builder.setCancelable(false);
+        builder.setView(viewInflate);
+        alertDialog = builder.create();
+        TextView ngButtonContinue = viewInflate.findViewById(R.id.ngButtonContinue);
+        LinearLayout linearLayoutCambioTitular = viewInflate.findViewById(R.id.linearLayoutCambioTitular);
+        LinearLayout linearLayoutActualizacionDatos = viewInflate.findViewById(R.id.linearLayoutActualizacionDatos);
+        LinearLayout linearLayoutBajaIntegrante = viewInflate.findViewById(R.id.linearLayoutBajaIntegrante);
+        LinearLayout linearLayoutNuevoIntegrante = viewInflate.findViewById(R.id.linearLayoutNuevoIntegrante);
+        LinearLayout linearLayoutBajaPrograma = viewInflate.findViewById(R.id.linearLayoutBajaPrograma);
+        LinearLayout linearLayoutReactivaPrograma = viewInflate.findViewById(R.id.linearLayoutReactivaPrograma);
+        LinearLayout linearLayoutCorrecionSancion = viewInflate.findViewById(R.id.linearLayoutCorrecionSancion);
+
+        switch (intPopuToShow){
+            case 1: case 5:
+                linearLayoutActualizacionDatos.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                linearLayoutCambioTitular.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                linearLayoutNuevoIntegrante.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                linearLayoutBajaIntegrante.setVisibility(View.VISIBLE);
+                break;
+            case 6:
+                linearLayoutBajaPrograma.setVisibility(View.VISIBLE);
+                break;
+            case 7:
+                linearLayoutCorrecionSancion.setVisibility(View.VISIBLE);
+                break;
+            case 8:
+                linearLayoutReactivaPrograma.setVisibility(View.VISIBLE);
+                break;
+        }
+
+        ngButtonContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
+    }
 }

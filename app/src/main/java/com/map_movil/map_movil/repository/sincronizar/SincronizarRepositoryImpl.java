@@ -141,7 +141,7 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
         }else{
             for(SolicitudesDownload item: solicitudesDownloadRealmResults){
                 jsonObject = new JsonObject();
-                nucleoHogar = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("per_persona", item.getPer_persona_solicitante()).findAll();
+                nucleoHogar = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("per_persona", item.getPer_persona()).findAll();
                 jsonObject.addProperty("identidad", nucleoHogar.get(0).getPer_identidad());
                 jsonObject.addProperty("cod_user", intCodUser);
                 jsonObject.addProperty("observacion", item.getObservacion());

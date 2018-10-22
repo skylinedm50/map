@@ -23,7 +23,7 @@
                 android:id="@+id/tabItemRealizadas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="REALIZADAS" />
+                android:text="RESUELTAS" />
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItemNoRealizadas"
                 android:layout_width="match_parent"
