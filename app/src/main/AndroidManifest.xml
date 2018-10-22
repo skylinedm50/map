@@ -45,8 +45,8 @@
         <receiver android:name=".broadcasts.BroadCastInternet"
             android:enabled="true">
             <intent-filter>
+                <action android:name="android.intent.action.NETWORK_STATE_CHANGED_ACTION "/>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
@@ -63,6 +63,7 @@
         <activity android:name=".view.Quejas.NuevaQuejaActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme"></activity>
+
     </application>
 
 </manifest>

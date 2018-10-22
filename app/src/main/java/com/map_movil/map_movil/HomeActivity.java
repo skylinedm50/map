@@ -2,6 +2,7 @@ package com.map_movil.map_movil;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -23,7 +24,6 @@ import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragmen
 import com.map_movil.map_movil.view.downloadData.DownloadDataFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
-import com.map_movil.map_movil.view.login.LoginActivity;
 import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
 import com.map_movil.map_movil.view.programados.ProgramadosFragment;
 import com.map_movil.map_movil.view.reportes.ReportsFragment;
@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity
     private Toolbar toolbar;
     private NavigationView navigationView;
     private int intCodItemSelect;
+    private IntentFilter interFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,9 @@ public class HomeActivity extends AppCompatActivity
         if(sharedPreferences.getInt("Sincronizar",0)==1){
             navigationView.getMenu().getItem(0).getSubMenu().getItem(2).setActionView(R.layout.sincro_notificacion);
         }
+
+        interFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(new BroadCastInternet() , interFilter);
 
         showToolbar("Inicio");
     }

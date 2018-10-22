@@ -1,7 +1,10 @@
 package com.map_movil.map_movil.view.Quejas;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -13,12 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
-import com.map_movil.map_movil.HomeActivity;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.Aldeas;
@@ -59,6 +63,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     private TextInputLayout LayoutNombre1    ;
     private TextInputLayout LayoutApellido1  ;
     private TextInputLayout LayoutDescripcion;
+    private IntentFilter interFilter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -166,7 +171,48 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.TipoSolicitudSpiner.setAdapter(Adapter);
 
-        getSupportActionBar().setTitle("Registrar Quejas y Denuncias");
+
+        if( getIntent().getIntExtra("accion",0) == 1){
+
+            String [] NombreSolicitante = getIntent().getStringExtra("Nombre").split(" ");
+            TextView TxtMsjAnonimo = (TextView)findViewById(R.id.TxtMsjAnonimo);
+            TextView txtRequerido = (TextView)findViewById(R.id.txtRequerido);
+
+            this.ChkAnonimo.setEnabled(false);
+            this.TxtIdentidad.setEnabled(false);
+            this.TipoSolicitudSpiner.setEnabled(false);
+            this.TxtNombre1.setEnabled(false);
+            this.TxtNombre2.setEnabled(false);
+            this.TxtApellido1.setEnabled(false);
+            this.TxtApellido2.setEnabled(false);
+            this.TxtTelefono.setEnabled(false);
+            this.TxtDetalleSolicitud.setEnabled(false);
+            txtRequerido.setVisibility(View.GONE);
+            TxtMsjAnonimo.setVisibility(View.GONE);
+
+            this.ChkAnonimo.setChecked((getIntent().getIntExtra("Anonimo",0) == 1)?true:false);
+            this.TipoSolicitudSpiner.setSelection(getIntent().getIntExtra("Gestion",0));
+            this.TxtIdentidad.setText(getIntent().getStringExtra("Identidad"));
+            this.TxtIdentidad.setFocusable(false);
+            this.TxtNombre1.setText( ( getIntent().getIntExtra("Anonimo",0) == 1 || NombreSolicitante.length < 1)?"":NombreSolicitante[0]);
+            this.TxtNombre1.setFocusable(false);
+            this.TxtNombre2.setText( ( getIntent().getIntExtra("Anonimo",0) == 1 || NombreSolicitante.length < 2)?"":NombreSolicitante[1]);
+            this.TxtNombre2.setFocusable(false);
+            this.TxtApellido1.setText( ( getIntent().getIntExtra("Anonimo",0) == 1 || NombreSolicitante.length < 3)?"":NombreSolicitante[2]);
+            this.TxtApellido1.setFocusable(false);
+            this.TxtApellido2.setText( (getIntent().getIntExtra("Anonimo",0) == 1 || NombreSolicitante.length < 4)?"":NombreSolicitante[3]);
+            this.TxtApellido2.setFocusable(false);
+            this.TxtTelefono.setText(getIntent().getStringExtra("Telefono"));
+            this.TxtTelefono.setFocusable(false);
+            this.TxtDetalleSolicitud.setText(getIntent().getStringExtra("Detalle"));
+            this.TxtDetalleSolicitud.setFocusable(false);
+
+        }
+
+
+        getSupportActionBar().setTitle(
+                (getIntent().getIntExtra("accion",0)==0)?"Registrar Quejas y Denuncias":"Quejas y Denuncias"
+        );
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         BroadCastInternet.subscribeForMessageInternet(getApplicationContext(), findViewById(R.id.LyRoot));
         getDepartamentos();
@@ -179,33 +225,58 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         MenuItem continuar = menu.findItem(R.id.saveData);
         searchView.setEnabled(false);
         searchView.setVisible(false);
-        continuar.setEnabled(true);
-        continuar.setVisible(true);
-        continuar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                if(VerificarVacios()){
-                    RegistrarQueja();
+
+        if(getIntent().getIntExtra("accion",0) == 0){
+            continuar.setEnabled(true);
+            continuar.setVisible(true);
+            continuar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    if(VerificarVacios()){
+                        RegistrarQueja();
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+        }
+
         return  super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     public void getDepartamentos() {
         this.ubicacionesPresenter.getDepartamentos();
     }
 
+
     @Override
     public void cargarDepartamentos(ArrayList<String> departamentos) {
+
+        int DepartamentoIndex = 0;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_dropdown_item_1line, departamentos);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        this.DepartamentoSpiner.setAdapter(adapter);
 
+        if(getIntent().getIntExtra("accion",0) == 1 ){
+
+            for(int x = 0; x < adapter.getCount(); x++){
+                if(DepartamentoIndex == 0){
+                    DepartamentoIndex = ( getIntent().getStringExtra("Caserio")
+                            .substring(0,2).equals( adapter.getItem(x).substring(0,2) ) )?x:0;
+                }else{
+                    break;
+                }
+            }
+        }
+
+        this.DepartamentoSpiner.setAdapter(adapter);
+        if(getIntent().getIntExtra("accion",0) == 1) {
+            this.DepartamentoSpiner.setEnabled(false);
+            this.DepartamentoSpiner.setSelection(DepartamentoIndex);
+        }
     }
+
 
     public boolean VerificarVacios(){
 
@@ -252,10 +323,27 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
     @Override
     public void cargarMunicipios(ArrayList<String> municipios) {
+        int MunicipioIndex=0;
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_dropdown_item_1line, municipios);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        if( getIntent().getIntExtra("accion",0) == 1 ){
+            for(int x = 0; x < adapter.getCount(); x++){
+                if(MunicipioIndex == 0){
+                    MunicipioIndex = ( getIntent().getStringExtra("Caserio")
+                            .substring(0,4).equals( adapter.getItem(x).substring(0,4) ))?x:0;
+                }else{
+                    break;
+                }
+            }
+        }
+
         this.MunicipioSpiner.setAdapter(adapter);
+        if(getIntent().getIntExtra("accion",0) == 1) {
+            this.MunicipioSpiner.setEnabled(false);
+            this.MunicipioSpiner.setSelection(MunicipioIndex);
+        }
     }
 
     @Override
@@ -267,14 +355,25 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     public void cargarAldeas(List<Aldeas> aldeas) {
 
         List<String> spinner =  new ArrayList<String>();
+        int AldeaIndex = 0;
 
         for(int x = 0; x < aldeas.size(); x++){
             spinner.add(aldeas.get(x).getCod_aldea()+"-"+aldeas.get(x).getDesc_aldea());
+
+            if(getIntent().getIntExtra("accion",0) == 1 && AldeaIndex==0) {
+                AldeaIndex = (getIntent().getStringExtra("Caserio").substring(0,6).equals(aldeas.get(x).getCod_aldea()))?x:0;
+            }
         }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_dropdown_item_1line, spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.AldeaSpiner.setAdapter(adapter);
+
+        if(getIntent().getIntExtra("accion",0) == 1) {
+            this.AldeaSpiner.setEnabled(false);
+            this.AldeaSpiner.setSelection(AldeaIndex);
+        }
     }
 
     @Override
@@ -285,14 +384,23 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     @Override
     public void cargarCaserios(List<Caserios> caserios) {
         List<String> spinner =  new ArrayList<String>();
-
+        int CaserioIndex = 0;
         for(int x = 0; x < caserios.size(); x++){
             spinner.add(caserios.get(x).getCod_caserio()+"-"+caserios.get(x).getDesc_caserio());
+            if(getIntent().getIntExtra("accion",0) == 1 && CaserioIndex==0) {
+                CaserioIndex = (getIntent().getStringExtra("Caserio").equals(caserios.get(x).getCod_caserio()))?x:0;
+            }
         }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getApplicationContext(), android.R.layout.simple_dropdown_item_1line, spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.CaserioSpiner.setAdapter(adapter);
+
+        if(getIntent().getIntExtra("accion",0) == 1) {
+            this.CaserioSpiner.setEnabled(false);
+            this.CaserioSpiner.setSelection(CaserioIndex);
+        }
     }
 
     @Override
@@ -330,7 +438,6 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             sharedPreferencesEditor.commit();
         }
         finish();
-
     }
 
 }

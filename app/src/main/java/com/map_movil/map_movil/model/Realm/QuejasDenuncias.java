@@ -27,6 +27,7 @@ public class QuejasDenuncias extends RealmObject
     private String cod_caserio;
     /*----------- REGISTRO DE QUEJAS OFFLINE ----------*/
     private String telefono;
+    @SerializedName("ANONIMO")
     private int  anonimo;
     private int  Offline;
     private int  codigo_gestion;
@@ -60,7 +61,7 @@ public class QuejasDenuncias extends RealmObject
         return cod_caserio;
     }
     public void setCaserio(String caserio) {
-        this.cod_caserio = cod_caserio;
+        this.cod_caserio = caserio;
     }
     public int getCodigo_solicitud() {
         return codigo_solicitud;
