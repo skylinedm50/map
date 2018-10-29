@@ -18,6 +18,9 @@ public class User {
     @SerializedName("cantidad_login")
     private Integer intCantidadLogin;
 
+    @SerializedName("Permisos")
+    private String Permisos;
+
 
     public User(Integer intCodigo, String strNombre, String strsApellido, Integer intEstado, Integer intCantidadLogin) {
         this.intCodigo = intCodigo;
@@ -26,44 +29,41 @@ public class User {
         this.intEstado = intEstado;
         this.intCantidadLogin = intCantidadLogin;
     }
-
     public Integer getIntCodigo() {
         return intCodigo;
     }
-
     public void setIntCodigo(Integer intCodigo) {
         this.intCodigo = intCodigo;
     }
-
     public String getStrNombre() {
         return strNombre;
     }
-
     public void setStrNombre(String strNombre) {
         this.strNombre = strNombre;
     }
-
     public String getStrsApellido() {
         return strsApellido;
     }
-
     public void setStrsApellido(String strsApellido) {
         this.strsApellido = strsApellido;
     }
-
     public Integer getIntEstado() {
         return intEstado;
     }
-
     public void setIntEstado(Integer intEstado) {
         this.intEstado = intEstado;
     }
-
     public Integer getIntCantidadLogin() {
         return intCantidadLogin;
     }
-
     public void setIntCantidadLogin(Integer intCantidadLogin) {
         this.intCantidadLogin = intCantidadLogin;
     }
+    public String getPermisos() {
+        return Permisos;
+    }
+    public void setPermisos(String permisos) {
+        Permisos = permisos;
+    }
+
 }

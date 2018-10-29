@@ -2,7 +2,6 @@ package com.map_movil.map_movil.repository.Quejas;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import com.google.gson.JsonArray;
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.api.quejas.ApiAdapterQuejas;
@@ -66,6 +65,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
                             quejasDenunciasVista.setCaserio(response.body().get(i).getCaserio());
                             quejasDenunciasVista.setAnonimo(response.body().get(i).getAnonimo());
                             quejasDenunciasVista.setCodigo_gestion(CodigoGestion);
+                            quejasDenunciasVista.setTelefono(response.body().get(i).getTelefono());
 
                         lista.add(quejasDenunciasVista);
                     }
@@ -130,6 +130,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
                             (quejasDenuncias.get(i).getAnonimo() == 1)?"ANONIMO":quejasDenuncias.get(i).getNombre_solicitante()
                     );
                     quejasDenuncias_1.setCaserio(quejasDenuncias.get(i).getCaserio());
+                    quejasDenuncias_1.setTelefono(quejasDenuncias.get(i).getTelefono());
                     Lista.add(quejasDenuncias_1);
                 }
                 quejasPresenter.MostarQuejas(Lista, proceso);

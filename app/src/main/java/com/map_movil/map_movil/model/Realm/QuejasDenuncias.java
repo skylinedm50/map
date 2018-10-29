@@ -26,6 +26,7 @@ public class QuejasDenuncias extends RealmObject
     @SerializedName("cod_caserio")
     private String cod_caserio;
     /*----------- REGISTRO DE QUEJAS OFFLINE ----------*/
+    @SerializedName("Telefono_np")
     private String telefono;
     @SerializedName("ANONIMO")
     private int  anonimo;
