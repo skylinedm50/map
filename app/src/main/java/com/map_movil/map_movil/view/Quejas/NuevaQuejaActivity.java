@@ -220,9 +220,12 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+        String menuSD ="saveData";
         getMenuInflater().inflate(R.menu.menu_multiple_option, menu);
         MenuItem searchView = menu.findItem(R.id.searchViewFind);
         MenuItem continuar = menu.findItem(R.id.saveData);
+       // MenuItem continuar = menu.findItem( getResources().getIdentifier(menuSD ,"id",getPackageName()) );
         searchView.setEnabled(false);
         searchView.setVisible(false);
 

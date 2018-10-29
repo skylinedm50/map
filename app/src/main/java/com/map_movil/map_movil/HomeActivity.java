@@ -1,6 +1,7 @@
 package com.map_movil.map_movil;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,11 +26,16 @@ import com.map_movil.map_movil.view.downloadData.DownloadDataFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
 import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
+import com.map_movil.map_movil.view.login.LoginActivity;
 import com.map_movil.map_movil.view.programados.ProgramadosFragment;
 import com.map_movil.map_movil.view.reportes.ReportsFragment;
 import com.map_movil.map_movil.view.sincronizar.SincronizarFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
@@ -42,6 +48,7 @@ public class HomeActivity extends AppCompatActivity
     private NavigationView navigationView;
     private int intCodItemSelect;
     private IntentFilter interFilter;
+    private BroadCastInternet broadCastInternet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +78,17 @@ public class HomeActivity extends AppCompatActivity
         }
 
         interFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-        registerReceiver(new BroadCastInternet() , interFilter);
+        this.broadCastInternet = new BroadCastInternet();
+        registerReceiver(this.broadCastInternet  , interFilter);
 
         showToolbar("Inicio");
+        MostarPermisos(null);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(this.broadCastInternet);
     }
 
     @Override
@@ -85,6 +100,23 @@ public class HomeActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void MostarPermisos(Menu menu){
+        try{
+            JSONObject permisos  =  new JSONObject( this.sharedPreferences.getString("permisos","") );
+            JSONArray jsonArray = permisos.getJSONArray("permisos");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                     MenuItem item= navigationView.getMenu().findItem(
+                             getResources().getIdentifier(jsonArray.get(i).toString(),"id",getPackageName())
+                     );
+
+                     item.setVisible(true);
+                     item.setEnabled(true);
+                }
+        }
+        catch(Exception e){ }
     }
 
     @Override
@@ -134,6 +166,7 @@ public class HomeActivity extends AppCompatActivity
                 realmConfig.deleteDataBase();
                 sharedPreferences.edit().clear().apply();
                 finish();
+                startActivity(new Intent(this, LoginActivity.class));
             } else if (id == R.id.nav_download) {
                 showContentScreenHome(false);
                 showToolbar("Descargar Validaciones");

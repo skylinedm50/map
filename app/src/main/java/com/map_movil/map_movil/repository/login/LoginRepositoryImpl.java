@@ -1,11 +1,7 @@
 package com.map_movil.map_movil.repository.login;
 
-import android.support.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.map_movil.map_movil.api.login.ApiAdapterLogin;
 import com.map_movil.map_movil.api.login.ApiServiceLogin;
 import com.map_movil.map_movil.model.ResponseApi;
@@ -36,9 +32,17 @@ public class LoginRepositoryImpl implements LoginRepository{
         call.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-               if(response.body() != null && response.body().size() > 0){
-                   user = response.body().get(0);
-                   setTokenNotification();
+
+                if(response.body() != null && response.body().size() > 0){
+
+                    JsonObject jsonObject = new JsonObject();
+                    JsonArray jsonArray = new JsonArray();
+                    for(int i = 0; i < response.body().size(); i++){
+                       jsonArray.add(response.body().get(i).getPermisos());
+                    }
+                    jsonObject.add ("permisos",jsonArray);
+                    User objUser = response.body().get(0);
+                    objLoginPresenter.showDataUser(objUser, jsonObject);
                 }else{
                    objLoginPresenter.showError("Las credenciales son incorrectas.");
                 }

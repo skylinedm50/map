@@ -2,6 +2,7 @@ package com.map_movil.map_movil.presenter.login;
 
 import android.content.SharedPreferences;
 
+import com.google.gson.JsonObject;
 import com.map_movil.map_movil.interactor.login.LoginInteractor;
 import com.map_movil.map_movil.interactor.login.LoginInteractorImpl;
 import com.map_movil.map_movil.model.User;
@@ -33,8 +34,8 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
-    public void showDataUser(User ObjUser){
-        loginView.showDataUser(ObjUser);
+    public void showDataUser(User ObjUser , JsonObject jsonObject){
+        loginView.showDataUser(ObjUser, jsonObject);
     }
 
     @Override

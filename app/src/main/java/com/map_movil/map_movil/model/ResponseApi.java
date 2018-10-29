@@ -3,6 +3,7 @@ package com.map_movil.map_movil.model;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponseApi {
+
     @SerializedName("state")
     private int intState;
     @SerializedName("description")
