@@ -141,13 +141,19 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
 
             }
         });
-        AldeaSpiner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        AldeaSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 listPagos = new ArrayList<>();
                 adaptadorProgramados.changeAdapater(listPagos);
             }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
+
         this.getDepartamentos();
         this.getPagos();
 

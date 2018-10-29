@@ -20,4 +20,9 @@ public interface ApiServiceLogin { //Aquí solo estaran las URL o mejor dicho su
     @POST("login/change_key")
     Call<ResponseApi> changePassword(@Field("userId") int userId,
                                      @Field("newPassword") String newPassword);
+
+    @FormUrlEncoded
+    @POST("login/set_token")
+    Call<ResponseApi> setTokenNotification(@Field("userId") int userId,
+                                     @Field("token") String strToken);
 }

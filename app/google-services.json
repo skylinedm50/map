@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "565413632571",
+    "firebase_url": "https://mapmovil-fe92b.firebaseio.com",
+    "project_id": "mapmovil-fe92b",
+    "storage_bucket": "mapmovil-fe92b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565413632571:android:4d4827a7b7932d0f",
+        "android_client_info": {
+          "package_name": "com.map_movil.map_movil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565413632571-qvdfadm2k951egvki1qaamkehjmmmkum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.map_movil.map_movil",
+            "certificate_hash": "ce7c459f81a4f7c0fa1cc9472632bdb1bba239f1"
+          }
+        },
+        {
+          "client_id": "565413632571-hck325gr92i3gjb027f85ue4djsmcare.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkKsVdXCuLrY3fyMWFjEal1vXnKMdAMYI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565413632571-hck325gr92i3gjb027f85ue4djsmcare.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

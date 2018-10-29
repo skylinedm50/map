@@ -15,9 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.support.v7.widget.SearchView;
 import android.widget.TextView;
@@ -55,6 +57,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     private AppCompatSpinner PagosSpiner;
     private RadioButton RadGlobal;
     private RadioButton RadMdesc;
+    private RadioGroup radGroup;
     private ListView listplanillaexcluidos;
     private ArrayList<PagosExcluido> listexcluidos = new ArrayList<>();
     private AdaptadorExcluidos adaptadorExcluidos;
@@ -90,6 +93,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         this.SpinnerMapAldea = new HashMap<Integer, String>();
         this.SpinnerMapPagos = new HashMap<Integer, String>();
 
+        radGroup = view.findViewById(R.id.radGroup);
         RadGlobal = view.findViewById(R.id.radio_global);
         RadMdesc = view.findViewById(R.id.radio_m);
         relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
@@ -145,6 +149,23 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
             }
         });
         setHasOptionsMenu(true);
+        AldeaSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        radGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
+            }
+        });
 
         return view;
     }
