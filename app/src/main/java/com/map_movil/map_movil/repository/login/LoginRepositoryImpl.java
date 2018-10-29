@@ -1,5 +1,11 @@
 package com.map_movil.map_movil.repository.login;
 
+import android.support.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.api.login.ApiAdapterLogin;
@@ -16,7 +22,7 @@ import retrofit2.Response;
 
 public class LoginRepositoryImpl implements LoginRepository{
     private LoginPresenter objLoginPresenter;
-    private User user;
+    private List<User> userList;
     private ApiAdapterLogin apiAdapterLogin;
     private ApiServiceLogin apiServiceLogin;
 
@@ -34,15 +40,8 @@ public class LoginRepositoryImpl implements LoginRepository{
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
 
                 if(response.body() != null && response.body().size() > 0){
-
-                    JsonObject jsonObject = new JsonObject();
-                    JsonArray jsonArray = new JsonArray();
-                    for(int i = 0; i < response.body().size(); i++){
-                       jsonArray.add(response.body().get(i).getPermisos());
-                    }
-                    jsonObject.add ("permisos",jsonArray);
-                    User objUser = response.body().get(0);
-                    objLoginPresenter.showDataUser(objUser, jsonObject);
+                    userList = response.body();
+                    setTokenNotification();
                 }else{
                    objLoginPresenter.showError("Las credenciales son incorrectas.");
                 }
@@ -55,7 +54,6 @@ public class LoginRepositoryImpl implements LoginRepository{
         });
     }
 
-
     @Override
     public void setTokenNotification() {
         FirebaseInstanceId.getInstance().getInstanceId()
@@ -66,12 +64,18 @@ public class LoginRepositoryImpl implements LoginRepository{
                             objLoginPresenter.showError(task.getException().getMessage());
                             return;
                         }
-                        Call<ResponseApi> call = apiServiceLogin.setTokenNotification(user.getIntCodigo(), task.getResult().getToken());
+                        Call<ResponseApi> call = apiServiceLogin.setTokenNotification(userList.get(0).getIntCodigo(), task.getResult().getToken());
                         call.enqueue(new Callback<ResponseApi>() {
                             @Override
                             public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
                                 if(response.isSuccessful() && response.body().getIntState() == 1){
-                                    objLoginPresenter.showDataUser(user);
+                                    JsonObject jsonObject = new JsonObject();
+                                    JsonArray jsonArray = new JsonArray();
+                                    for(int i = 0; i < userList.size(); i++){
+                                        jsonArray.add(userList.get(i).getPermisos());
+                                    }
+                                    jsonObject.add ("permisos",jsonArray);
+                                    objLoginPresenter.showDataUser(userList.get(0), jsonObject);
                                 }else{
                                     objLoginPresenter.showError("Error al ingresar token.");
                                 }
