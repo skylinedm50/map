@@ -8,6 +8,9 @@ public class SolicitudesUsuario {
     @SerializedName("codigo_solicitud")
     private Integer intCodSolicitud;
 
+    @SerializedName("titular_cambio_hogar")
+    private Boolean bolTitularCambioHogar;
+
     @SerializedName("nombre_solicitante")
     private String strNombreSolicitante;
 
@@ -31,7 +34,15 @@ public class SolicitudesUsuario {
 
     public SolicitudesUsuario(){}
 
-    public SolicitudesUsuario(Integer intCodSolicitud, String strNombreSolicitante, String strObservacion, Date dateFechaAltaSolicitud, Date dateFechaBajaSolicitud, Integer intCodUsuario, Integer intCodEstado, String strEstado) {
+    public SolicitudesUsuario(Integer intCodSolicitud,
+                              String strNombreSolicitante,
+                              String strObservacion,
+                              Date dateFechaAltaSolicitud,
+                              Date dateFechaBajaSolicitud,
+                              Integer intCodUsuario,
+                              Integer intCodEstado,
+                              String strEstado,
+                              Boolean bolTitularCambioHogar) {
         this.intCodSolicitud = intCodSolicitud;
         this.strNombreSolicitante = strNombreSolicitante;
         this.strObservacion = strObservacion;
@@ -40,6 +51,7 @@ public class SolicitudesUsuario {
         this.intCodUsuario = intCodUsuario;
         this.intCodEstado = intCodEstado;
         this.strEstado = strEstado;
+        this.bolTitularCambioHogar = bolTitularCambioHogar;
     }
 
     public Integer getIntCodSolicitud() {
@@ -105,5 +117,13 @@ public class SolicitudesUsuario {
 
     public void setStrEstado(String strEstado) {
         this.strEstado = strEstado;
+    }
+
+    public Boolean getBolTitularCambioHogar() {
+        return bolTitularCambioHogar;
+    }
+
+    public void setBolTitularCambioHogar(Boolean bolTitularCambioHogar) {
+        this.bolTitularCambioHogar = bolTitularCambioHogar;
     }
 }

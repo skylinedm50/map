@@ -16,7 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.map_movil.map_movil.R;
-import com.map_movil.map_movil.interactor.solicitudes.AdapterRecyclerViewSolicitudes;
+import com.map_movil.map_movil.adapter.AdapterRecyclerViewSolicitudes;
 import com.map_movil.map_movil.model.SolicitudesUsuario;
 import com.map_movil.map_movil.presenter.solicitud.SolicitudesFragmentPresentImpl;
 import com.map_movil.map_movil.presenter.solicitud.SolicitudesFragmentPresenter;
@@ -27,7 +27,7 @@ public class SolicitudesFragment extends Fragment implements MenuItem.OnActionEx
 
     public Integer intCodUser;
     public String strSimbolo;
-    private AdapterRecyclerViewSolicitudes objAdapterSolicitudesUsuario;
+    private AdapterRecyclerViewSolicitudes adapterRecyclerViewSolicitudes;
     private ArrayList<SolicitudesUsuario> arrSolicitudesUsuarios = new ArrayList<SolicitudesUsuario>();
     private RecyclerView objRecycleView;
     private View view;
@@ -53,11 +53,11 @@ public class SolicitudesFragment extends Fragment implements MenuItem.OnActionEx
         swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         relativeLayoutTextMessage = view.findViewById(R.id.relativeLayoutTextMessage);//Pendiente de uso.
 
-        objAdapterSolicitudesUsuario = new AdapterRecyclerViewSolicitudes(arrSolicitudesUsuarios, getActivity());
+        adapterRecyclerViewSolicitudes = new AdapterRecyclerViewSolicitudes(arrSolicitudesUsuarios, getActivity());
 
         objRecycleView = view.findViewById(R.id.recyclerSolicitudes);
         objRecycleView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        objRecycleView.setAdapter(objAdapterSolicitudesUsuario);
+        objRecycleView.setAdapter(adapterRecyclerViewSolicitudes);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -87,9 +87,9 @@ public class SolicitudesFragment extends Fragment implements MenuItem.OnActionEx
         }
 
         if(arrayListFilter1.size() > arrayListFilter2.size()){
-            objAdapterSolicitudesUsuario.dataAdapterChange(arrayListFilter1);
+            adapterRecyclerViewSolicitudes.dataAdapterChange(arrayListFilter1);
         }else{
-            objAdapterSolicitudesUsuario.dataAdapterChange(arrayListFilter2);
+            adapterRecyclerViewSolicitudes.dataAdapterChange(arrayListFilter2);
         }
     }
 
@@ -143,7 +143,7 @@ public class SolicitudesFragment extends Fragment implements MenuItem.OnActionEx
     @Override
     public void showSolicitudesGestionadas(ArrayList<SolicitudesUsuario> arrayListSolicitudes) {
         arrSolicitudesUsuarios = arrayListSolicitudes;
-        objAdapterSolicitudesUsuario.dataAdapterChange(arrSolicitudesUsuarios);
+        adapterRecyclerViewSolicitudes.dataAdapterChange(arrSolicitudesUsuarios);
         swipeRefreshLayout.setRefreshing(false);
         showSwipeRefreshLayout(false);
     }

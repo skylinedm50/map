@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.map_movil.map_movil.HomeActivity;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.model.User;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
         setContentView(R.layout.activity_login);
@@ -84,8 +86,10 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
     }
 
     @Override
-    public void showDataUser(User user){
-        saveLocalLogin(user.getIntCodigo(), user.getStrNombre() + " " + user.getStrsApellido(), user.getIntCantidadLogin(), user.getIntEstado());
+    public void showDataUser(User user, JsonObject jsonObject){
+        saveLocalLogin(user.getIntCodigo(),
+                user.getStrNombre() + " " + user.getStrsApellido(),
+                user.getIntCantidadLogin(), user.getIntEstado() , jsonObject);
         if(user.getIntEstado() == 2){//Cuando un login es por primera vez, por lo que se requiere modificar la contraseña.
             goToChangePassword();
         }else if(user.getIntEstado() == 1){//Cuando un ingreso es por segunda vez o más pero la contraseña ya fue modificada.
@@ -99,7 +103,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
     }
 
     @Override
-    public void saveLocalLogin(int intCodUser, String strNombre, int intCantLogin, int inCodEstado) {
+    public void saveLocalLogin(int intCodUser, String strNombre, int intCantLogin, int inCodEstado, JsonObject jsonObject) {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         sharedPreferencesEditor.putInt("codigo", intCodUser);
@@ -108,6 +112,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
         sharedPreferencesEditor.putInt("estadoLogin", inCodEstado);
         sharedPreferencesEditor.putString("fechaLogin",  simpleDateFormat.format(date.getTime()));
         sharedPreferencesEditor.putString("fechaDeleteData", simpleDateFormat.format(date.getTime()));
+        sharedPreferencesEditor.putString("permisos",jsonObject.toString());
         sharedPreferencesEditor.commit();
     }
 

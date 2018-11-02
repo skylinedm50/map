@@ -42,6 +42,7 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
     private ApiServiceSolicitudes apiServiceSolicitudes;
     private ApiAdapterQuejas apiAdapterQuejas;
     private ApiServicesQuejas apiServicesQuejas;
+    private String strDepartamentoSelected;
 
     public DownloadDataFragmentRepositoryImpl(DownloadDataFragmentPresenter downloadDataFragmentPresenter, Context context){
         this.downloadDataFragmentPresenter = downloadDataFragmentPresenter;
@@ -102,16 +103,17 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
             arrayListMunicicpios.add(strElemnt);
         }
 
-        downloadDataFragmentPresenter.showDetailDataLocal(arrayIntCant, arrayListMunicicpios);
+        downloadDataFragmentPresenter.showDetailDataLocal(arrayIntCant, arrayListMunicicpios, sharedPreferences.getString("departamentoSelect", "ND"));
     }
 
     @Override
-    public void downloadData(ArrayList<String> arrayListMunicipiosSelect) {
+    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento) {
         if(existLocalData()){
             downloadDataFragmentPresenter.showMessage("Imposible realizar acción, existen datos localmente que no se han sincronizado.");
             findDetailDataLocal();
         }else{
             this.arrayListMunicipiosSelect = arrayListMunicipiosSelect;
+            strDepartamentoSelected = strDepartamento;
             intCodUser = sharedPreferences.getInt("codigo",0);
             deleteAllData();
             downloadHoagres();
@@ -262,6 +264,7 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
         jsonObjectData.add("municipios", jsonArrayMunicipios);
         jsonObjectData.addProperty("user", intCodUser);
         jsonArrayFinal.add(jsonObjectData);
+        sharedPreferencesEditor.putString("departamentoSelect", strDepartamentoSelected);
         sharedPreferencesEditor.putString("municipiosSelect", strMuniSelectForSharePreferen);
         sharedPreferencesEditor.commit();
 

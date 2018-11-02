@@ -2,9 +2,7 @@ package com.map_movil.map_movil.repository.Quejas;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.api.quejas.ApiAdapterQuejas;
 import com.map_movil.map_movil.api.quejas.ApiServicesQuejas;
@@ -24,7 +22,7 @@ public class QuejasRepositoryImpl implements QuejasRepository {
    private RealmConfig realmConfig;
    private Context context;
 
-   public QuejasRepositoryImpl(QuejasPresenter quejasPresenter , Context context){
+    public QuejasRepositoryImpl(QuejasPresenter quejasPresenter , Context context){
        this.quejasPresenter = quejasPresenter;
        this.context = context;
    }
@@ -42,6 +40,19 @@ public class QuejasRepositoryImpl implements QuejasRepository {
                 if(response.isSuccessful()){
                     ArrayList<QuejasDenuncias> lista = new ArrayList<>();
                     for(int i=0; i < response.body().size(); i++){
+
+                        int CodigoGestion;
+                        switch(response.body().get(i).getTipo_gestion()){
+                            case "Queja": CodigoGestion = 1;
+                                break;
+                            case "Denuncia": CodigoGestion = 2;
+                                break;
+                            case "Solicitud": CodigoGestion = 3;
+                                break;
+                            default: CodigoGestion = 0;
+                                break;
+                        }
+
                         QuejasDenuncias quejasDenunciasVista = new QuejasDenuncias();
                             quejasDenunciasVista.setCodigo_solicitud(response.body().get(i).getCodigo_solicitud());
                             quejasDenunciasVista.setFecha_alta(response.body().get(i).getFecha_alta());
@@ -52,8 +63,11 @@ public class QuejasRepositoryImpl implements QuejasRepository {
                             quejasDenunciasVista.setCodigo_solicitante(response.body().get(i).getCodigo_solicitante());
                             quejasDenunciasVista.setNombre_solicitante(response.body().get(i).getNombre_solicitante());
                             quejasDenunciasVista.setCaserio(response.body().get(i).getCaserio());
+                            quejasDenunciasVista.setAnonimo(response.body().get(i).getAnonimo());
+                            quejasDenunciasVista.setCodigo_gestion(CodigoGestion);
+                            quejasDenunciasVista.setTelefono(response.body().get(i).getTelefono());
 
-                            lista.add(quejasDenunciasVista);
+                        lista.add(quejasDenunciasVista);
                     }
 
                     IncluirQuejasOffline(lista  , 1 );
@@ -76,7 +90,13 @@ public class QuejasRepositoryImpl implements QuejasRepository {
     public void IncluirQuejasOffline(final ArrayList<QuejasDenuncias> Lista , final int proceso){
         realmConfig = new RealmConfig(context);
         realmConfig.getRealm().beginTransaction();
-        final RealmResults<QuejasDenuncias> quejasDenuncias = realmConfig.getRealm().where(QuejasDenuncias.class).findAll();
+        final RealmResults<QuejasDenuncias> quejasDenuncias;
+        if(proceso == 1){
+            quejasDenuncias = realmConfig.getRealm().where(QuejasDenuncias.class).equalTo("Offline" , 1).findAll();
+        }else{
+            quejasDenuncias = realmConfig.getRealm().where(QuejasDenuncias.class).findAll();
+        }
+
 
         realmConfig.getRealm().commitTransaction();
         realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
@@ -84,28 +104,33 @@ public class QuejasRepositoryImpl implements QuejasRepository {
             public void execute(Realm realm) {
 
                 for(int i = 0; i < quejasDenuncias.size() ; i++){
-
-                    String Gestion="";
-                    switch(  quejasDenuncias.get(i).getCodigo_gestion() ){
-                        case 1: Gestion ="Quejas";
+                    int CodigoGestion;
+                    switch(quejasDenuncias.get(i).getTipo_gestion()){
+                        case "Queja": CodigoGestion = 1;
                             break;
-                        case 2: Gestion = "Denuncias";
+                        case "Denuncia": CodigoGestion = 2;
                             break;
-                        default: Gestion = "Solicitud";
+                        case "Solicitud": CodigoGestion = 3;
+                            break;
+                        default: CodigoGestion = 0;
+                            break;
                     }
 
                     QuejasDenuncias quejasDenuncias_1 = new QuejasDenuncias();
                     quejasDenuncias_1.setCodigo_solicitud(quejasDenuncias.get(i).getCodigo_solicitud());
                     quejasDenuncias_1.setFecha_alta(quejasDenuncias.get(i).getFecha_alta());
                     quejasDenuncias_1.setObservacion(quejasDenuncias.get(i).getObservacion());
-                    quejasDenuncias_1.setTipo_gestion(Gestion);
+                    quejasDenuncias_1.setTipo_gestion(quejasDenuncias.get(i).getTipo_gestion());
                     quejasDenuncias_1.setEstado(quejasDenuncias.get(i).getEstado());
                     quejasDenuncias_1.setIdentidad(quejasDenuncias.get(i).getIdentidad());
                     quejasDenuncias_1.setCodigo_solicitante(quejasDenuncias.get(i).getCodigo_solicitante());
+                    quejasDenuncias_1.setCodigo_gestion(CodigoGestion);
+                    quejasDenuncias_1.setAnonimo(quejasDenuncias.get(i).getAnonimo());
                     quejasDenuncias_1.setNombre_solicitante(
                             (quejasDenuncias.get(i).getAnonimo() == 1)?"ANONIMO":quejasDenuncias.get(i).getNombre_solicitante()
                     );
                     quejasDenuncias_1.setCaserio(quejasDenuncias.get(i).getCaserio());
+                    quejasDenuncias_1.setTelefono(quejasDenuncias.get(i).getTelefono());
                     Lista.add(quejasDenuncias_1);
                 }
                 quejasPresenter.MostarQuejas(Lista, proceso);
@@ -152,11 +177,24 @@ public class QuejasRepositoryImpl implements QuejasRepository {
             UltimaQueja = queja.last().getCodigo_solicitud() - 1;
         }
 
+        String Gestion="";
+        switch( jsonQuejasDenuncia.get(0).getAsJsonObject().get("Tipo_gestion").getAsInt() ){
+            case 1: Gestion ="Queja";
+                break;
+            case 2: Gestion = "Denuncia";
+                break;
+            case 3: Gestion = "Solicitud";
+                break;
+             default: Gestion = "";
+                break;
+        }
+
         QuejasDenuncias quejasDenuncias = new QuejasDenuncias();
             quejasDenuncias.setCodigo_solicitud(UltimaQueja);
             quejasDenuncias.setFecha_alta( null );
             quejasDenuncias.setObservacion(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Observacion_solicitud").getAsString());
             quejasDenuncias.setCodigo_gestion(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Tipo_gestion").getAsInt());
+            quejasDenuncias.setTipo_gestion(Gestion);
             quejasDenuncias.setEstado("Ingresada");
             quejasDenuncias.setCaserio(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Caserio").getAsString());
             quejasDenuncias.setIdentidad(jsonQuejasDenuncia.get(0).getAsJsonObject().get("Identidad").getAsString());

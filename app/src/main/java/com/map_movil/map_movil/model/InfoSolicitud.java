@@ -21,6 +21,8 @@ public class InfoSolicitud {
     private String strAldea;
     @SerializedName("caserio")
     private String strCaserio;
+    @SerializedName("titular_cambio_hogar")
+    private boolean bolTitularCambioHogar;
     @SerializedName("fecha_alta")
     private Date dateFechaAlta;
     @SerializedName("fecha_baja")
@@ -52,7 +54,8 @@ public class InfoSolicitud {
                          String strDepartamento, String strMunicipio, String strAldea, String strCaserio,
                          Date dateFechaAlta, Date dateFechaBaja, boolean bolActualizacionDatos, boolean bolCambioTitular,
                          boolean bolNuevoIntegrante, boolean bolBajaIntegrante, boolean bolCambioDomicilio,
-                         boolean bolBajaPrograma,boolean bolReactivaPrograma, boolean bolCorreccionSancion, String strObservacion, String strEstadoSolicitud) {
+                         boolean bolBajaPrograma,boolean bolReactivaPrograma, boolean bolCorreccionSancion,
+                         String strObservacion, String strEstadoSolicitud, boolean bolTitularCambioHogar) {
         this.intCodSolicitud = intCodSolicitud;
         this.intCodHogar = intCodHogar;
         this.strEstadoHogar = strEstadoHogar;
@@ -73,6 +76,7 @@ public class InfoSolicitud {
         this.bolCorreccionSancion = bolCorreccionSancion;
         this.strObservacion = strObservacion;
         this.strEstadoSolicitud = strEstadoSolicitud;
+        this.bolTitularCambioHogar = bolTitularCambioHogar;
     }
 
     public int getIntCodSolicitud() {
@@ -233,5 +237,13 @@ public class InfoSolicitud {
 
     public void setBolReactivaPrograma(boolean bolReactivaPrograma) {
         this.bolReactivaPrograma = bolReactivaPrograma;
+    }
+
+    public boolean isBolTitularCambioHogar() {
+        return bolTitularCambioHogar;
+    }
+
+    public void setBolTitularCambioHogar(boolean bolTitularCambioHogar) {
+        this.bolTitularCambioHogar = bolTitularCambioHogar;
     }
 }

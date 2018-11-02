@@ -3,7 +3,6 @@ package com.map_movil.map_movil.model;
 import java.util.Date;
 
 import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
 
 public class SolicitudesDownload extends RealmObject {
     private int codigo_hogar;
@@ -14,9 +13,10 @@ public class SolicitudesDownload extends RealmObject {
     private String aldea;
     private String caserio;
 
-    private int codigo_solicitante;
-    private int per_persona_solicitante;
+    private int hog_hogar;
+    private int per_persona;
     private String nombre_solicitante;
+    private boolean titular_cambio_hogar;
 
     private int codigo_solicitud;
     private Date fecha_alta;
@@ -99,20 +99,20 @@ public class SolicitudesDownload extends RealmObject {
         this.caserio = caserio;
     }
 
-    public int getCodigo_solicitante() {
-        return codigo_solicitante;
+    public int getHog_hogar() {
+        return hog_hogar;
     }
 
-    public void setCodigo_solicitante(int codigo_solicitante) {
-        this.codigo_solicitante = codigo_solicitante;
+    public void setHog_hogar(int hog_hogar) {
+        this.hog_hogar = hog_hogar;
     }
 
-    public int getPer_persona_solicitante() {
-        return per_persona_solicitante;
+    public int getPer_persona() {
+        return per_persona;
     }
 
-    public void setPer_persona_solicitante(int per_persona_solicitante) {
-        this.per_persona_solicitante = per_persona_solicitante;
+    public void setPer_persona(int per_persona) {
+        this.per_persona = per_persona;
     }
 
     public String getNombre_solicitante() {
@@ -233,6 +233,14 @@ public class SolicitudesDownload extends RealmObject {
 
     public void setEstado_solicitud(String estado_solicitud) {
         this.estado_solicitud = estado_solicitud;
+    }
+
+    public boolean isTitular_cambio_hogar() {
+        return titular_cambio_hogar;
+    }
+
+    public void setTitular_cambio_hogar(boolean titular_cambio_hogar) {
+        this.titular_cambio_hogar = titular_cambio_hogar;
     }
 }
 

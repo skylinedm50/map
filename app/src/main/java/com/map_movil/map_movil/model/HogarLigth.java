@@ -3,6 +3,12 @@ package com.map_movil.map_movil.model;
 import com.google.gson.annotations.SerializedName;
 
 public class HogarLigth {
+    @SerializedName("hog_hogar")
+    private int intHogHogar;
+
+    @SerializedName("per_persona")
+    private int intPerPersona;
+
     @SerializedName("nombre_beneficiario")
     private String strNombreBeneficiario;
 
@@ -64,5 +70,21 @@ public class HogarLigth {
 
     public void setBolTitular(boolean bolTitular) {
         this.bolTitular = bolTitular;
+    }
+
+    public int getIntHogHogar() {
+        return intHogHogar;
+    }
+
+    public void setIntHogHogar(int intHogHogar) {
+        this.intHogHogar = intHogHogar;
+    }
+
+    public int getIntPerPersona() {
+        return intPerPersona;
+    }
+
+    public void setIntPerPersona(int intPerPersona) {
+        this.intPerPersona = intPerPersona;
     }
 }

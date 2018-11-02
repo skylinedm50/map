@@ -2,6 +2,7 @@ package com.map_movil.map_movil;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
@@ -23,36 +25,41 @@ import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragmen
 import com.map_movil.map_movil.view.downloadData.DownloadDataFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
-import com.map_movil.map_movil.view.login.LoginActivity;
 import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
+import com.map_movil.map_movil.view.login.LoginActivity;
 import com.map_movil.map_movil.view.programados.ProgramadosFragment;
 import com.map_movil.map_movil.view.reportes.ReportsFragment;
 import com.map_movil.map_movil.view.sincronizar.SincronizarFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Intent intent;
     private TextView textViewNombreUsuario;
     private SharedPreferences sharedPreferences;
     private LinearLayout linearLayoutContentMainHome;
     private Toolbar toolbar;
     private NavigationView navigationView;
     private int intCodItemSelect;
+    private IntentFilter interFilter;
+    private BroadCastInternet broadCastInternet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         linearLayoutContentMainHome = findViewById(R.id.linearLayoutContentMainHome);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -70,18 +77,46 @@ public class HomeActivity extends AppCompatActivity
             navigationView.getMenu().getItem(0).getSubMenu().getItem(2).setActionView(R.layout.sincro_notificacion);
         }
 
+        interFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        this.broadCastInternet = new BroadCastInternet();
+        registerReceiver(this.broadCastInternet  , interFilter);
+
         showToolbar("Inicio");
+        MostarPermisos(null);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(this.broadCastInternet);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
+    }
+
+    private void MostarPermisos(Menu menu){
+        try{
+            JSONObject permisos  =  new JSONObject( this.sharedPreferences.getString("permisos","") );
+            JSONArray jsonArray = permisos.getJSONArray("permisos");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                     MenuItem item= navigationView.getMenu().findItem(
+                             getResources().getIdentifier(jsonArray.get(i).toString(),"id",getPackageName())
+                     );
+
+                     item.setVisible(true);
+                     item.setEnabled(true);
+                }
+        }
+        catch(Exception e){ }
     }
 
     @Override
@@ -131,6 +166,7 @@ public class HomeActivity extends AppCompatActivity
                 realmConfig.deleteDataBase();
                 sharedPreferences.edit().clear().apply();
                 finish();
+                startActivity(new Intent(this, LoginActivity.class));
             } else if (id == R.id.nav_download) {
                 showContentScreenHome(false);
                 showToolbar("Descargar Validaciones");
@@ -170,7 +206,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             } else if (id == R.id.nav_config_download_data) {
                 showContentScreenHome(false);
-                showToolbar("Descarga datos nucleo");
+                showToolbar("Descargar datos");
                 if (intCodItemSelect != id) {
                     DownloadDataFragment downloadDataFragment = new DownloadDataFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, downloadDataFragment).commit();
@@ -203,7 +239,7 @@ public class HomeActivity extends AppCompatActivity
 
         intCodItemSelect = id;
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

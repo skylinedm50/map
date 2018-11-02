@@ -1,6 +1,7 @@
 package com.map_movil.map_movil.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,13 +15,13 @@ import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenter;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenterImpl;
+import com.map_movil.map_movil.view.Quejas.NuevaQuejaActivity;
 import com.map_movil.map_movil.view.Quejas.QuejasView;
 import java.util.ArrayList;
 
 public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denuncias_adapter.quejas_denuncias_holder>
                                       implements QuejasView
 {
-
     private QuejasPresenter quejasPresenter;
     private Context context;
     private int RealizadosLenght   [] = {0,0};
@@ -50,7 +51,7 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
     }
 
     @Override
-    public void onBindViewHolder(@NonNull quejas_denuncias_adapter.quejas_denuncias_holder holder, int position) {
+    public void onBindViewHolder(@NonNull quejas_denuncias_adapter.quejas_denuncias_holder holder, final int position) {
 
         if(this.tipo_queja == 1 ){
                 holder.CodigoSolicitud.setText( this.Realizadas.get(position).getTipo_gestion()+" N°: "+
@@ -77,6 +78,31 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
             layoutParams.setMargins(0,0,0,0);
             holder.ly_Divider.setLayoutParams(layoutParams);
         }
+
+        holder.lyItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,NuevaQuejaActivity.class);
+
+                intent.putExtra("accion",1);
+                intent.putExtra("Gestion",(tipo_queja == 1)?Realizadas.get(position).getCodigo_gestion()
+                                                                     :NoRealizadas.get(position).getCodigo_gestion());
+                intent.putExtra("Anonimo",(tipo_queja == 1)?Realizadas.get(position).getAnonimo()
+                                                                     :NoRealizadas.get(position).getAnonimo());
+                intent.putExtra("Identidad",(tipo_queja == 1)?Realizadas.get(position).getIdentidad()
+                                                                     :NoRealizadas.get(position).getIdentidad());
+                intent.putExtra("Nombre",(tipo_queja == 1)?Realizadas.get(position).getNombre_solicitante()
+                                                                     :NoRealizadas.get(position).getNombre_solicitante());
+                intent.putExtra("Telefono",(tipo_queja == 1)?Realizadas.get(position).getTelefono()
+                                                                     :NoRealizadas.get(position).getTelefono());
+                intent.putExtra("Caserio",(tipo_queja == 1)?Realizadas.get(position).getCaserio()
+                                                                     :NoRealizadas.get(position).getCaserio());
+                intent.putExtra("Detalle",(tipo_queja == 1)?Realizadas.get(position).getObservacion()
+                                                                     :NoRealizadas.get(position).getObservacion());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     public ArrayList<QuejasDenuncias> ArrayAdapterQuejas(int accion){
@@ -156,11 +182,13 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
         private TextView NombreSolicitante;
         private TextView Descripcion;
         private TextView EstadoQueja;
+        private LinearLayout lyItem;
         private LinearLayout ly_Divider;
 
         public quejas_denuncias_holder(View itemView) {
             super(itemView);
 
+            this.lyItem = itemView.findViewById(R.id.linearLayoutItem);
             this.CodigoSolicitud = itemView.findViewById(R.id.textViewPrincipal);
             this.NombreSolicitante = itemView.findViewById(R.id.textViewDescripcion);
             this.Descripcion = itemView.findViewById(R.id.textViewReferencia);

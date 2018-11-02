@@ -15,4 +15,5 @@ public interface ShowAddSolicitudAcitivityView {
     void showOnlyInforHogForCreateSolicitud(HogarByTitular hogarByTitular, ArrayList<HogarLigth> hogarLigthArrayList);
     void showMessage(String strMessage);
     void finishCreationSolicitud(int offline);
+    void showPoppup(int intPopuToShow);
 }

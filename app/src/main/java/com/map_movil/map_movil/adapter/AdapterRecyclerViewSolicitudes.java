@@ -1,4 +1,4 @@
-package com.map_movil.map_movil.interactor.solicitudes;
+package com.map_movil.map_movil.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class AdapterRecyclerViewSolicitudes extends RecyclerView.Adapter<Adapter
         private TextView textViewEstado;
         private LinearLayout linearLayoutDivider;
         private LinearLayout linearLayoutItem;
+        private ImageView imageViewRemark;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -36,6 +38,7 @@ public class AdapterRecyclerViewSolicitudes extends RecyclerView.Adapter<Adapter
             textViewEstado = itemView.findViewById(R.id.textViewEstado);
             linearLayoutDivider = itemView.findViewById(R.id.linearLayoutDivider);
             linearLayoutItem = itemView.findViewById(R.id.linearLayoutItem);
+            imageViewRemark = itemView.findViewById(R.id.imageViewRemark);
         }
     }
 
@@ -72,6 +75,7 @@ public class AdapterRecyclerViewSolicitudes extends RecyclerView.Adapter<Adapter
                 context.startActivity(intent);
             }
         });
+        holder.imageViewRemark.setVisibility((objSolicitudes.getBolTitularCambioHogar())?View.VISIBLE: View.GONE);
     }
 
     @Override

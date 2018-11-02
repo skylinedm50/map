@@ -69,7 +69,8 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
                                 solicitudItem.getFecha_baja(),
                                 solicitudesUsuarioArrayList.get(0).getIntCodUsuario(),
                                 solicitudItem.getCodigo_estado(),
-                                solicitudItem.getEstado_solicitud()
+                                solicitudItem.getEstado_solicitud(),
+                                solicitudItem.isTitular_cambio_hogar()
                         );
                         solicitudesUsuarioArrayList.add(solicitudesUsuario);
                     }
@@ -119,7 +120,8 @@ public class SolicitudesFragmentRepositoryImpl implements  SolicitudesFragmentRe
                     solicitudItem.getFecha_baja(),
                     intCodUser,
                     solicitudItem.getCodigo_estado(),
-                    solicitudItem.getEstado_solicitud()
+                    solicitudItem.getEstado_solicitud(),
+                    solicitudItem.isTitular_cambio_hogar()
             );
             solicitudesUsuarioArrayList.add(solicitudesUsuario);
         }
