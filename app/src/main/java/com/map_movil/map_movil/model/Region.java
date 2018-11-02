@@ -1,16 +1,29 @@
 package com.map_movil.map_movil.model;
 
 public class Region {
-    private String codigo_region;
-    private String region;
+    private int intCodRegion;
+    private String strRegion;
 
     public Region(){}
 
-    public String getCodigo_region() {
-        return codigo_region;
+    public Region(int intCodRegion, String strRegion) {
+        this.intCodRegion = intCodRegion;
+        this.strRegion = strRegion;
     }
 
-    public String getRegion() {
-        return region;
+    public int getIntCodRegion() {
+        return intCodRegion;
+    }
+
+    public void setIntCodRegion(int intCodRegion) {
+        this.intCodRegion = intCodRegion;
+    }
+
+    public void setStrRegion(String strRegion) {
+        this.strRegion = strRegion;
+    }
+
+    public String getStrRegion() {
+        return strRegion;
     }
 }

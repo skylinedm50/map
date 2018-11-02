@@ -318,7 +318,7 @@ public class ReportCircularDepartamentoActivity extends AppCompatActivity implem
         ArrayList nom_region = new ArrayList();
 
             for(int i = 0; i< regiones.size(); i++){
-                nom_region.add(regiones.get(i).getRegion());
+                nom_region.add(regiones.get(i).getStrRegion());
             }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
