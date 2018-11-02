@@ -253,7 +253,7 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                     yVals = new ArrayList<>();
 
-                    int CantidadRealizada= Func_Cantidad_Segun_Estado("Realizada",arreglo);
+                    int CantidadRealizada= Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo);
                     int CantidadNoRealizada= Func_Total_Cantidad_No_Realizada(arreglo);
                     if(CantidadNoRealizada != 0){yVals.add(new PieEntry(CantidadNoRealizada, "NO REALIZADAS"));}
                     if(CantidadRealizada != 0){yVals.add(new PieEntry(CantidadRealizada, "REALIZADAS"));}
@@ -354,13 +354,11 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
                     tvTituloGrafico.setText("Estados de Solicitud de "+Nombre_Usuario);
                     ArrayList<EstadosCantidadSolicitudes> arreglo = response.body(); //result
 
-
                     yVals = new ArrayList<>();
 
                     int CantidadRealizada = Func_Cantidad_Segun_Estado("No Aplicable",arreglo);
                     CantidadRealizada += Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo);
                     CantidadRealizada += Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo);
-
 
                     int CantidadNoRealizada= Func_Total_Cantidad_No_Realizada(arreglo);
 

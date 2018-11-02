@@ -4,8 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,10 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.login.LoginActivity"
+        <activity
+            android:name=".view.login.LoginActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,7 +26,7 @@
             android:name=".HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_menu"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".view.login.ChangePasswordActivity" />
         <activity android:name=".view.solicitudes.ShowAddSolicitudActivity" />
         <activity
@@ -41,28 +42,31 @@
             android:launchMode="singleTask"
             android:theme="@style/AppTheme" />
         <activity android:name=".view.informacionHogares.HistorialPagoActivity" />
-        <activity android:name=".view.informacionHogares.ActualizacionesNoAplicadasHogarActivity"></activity>
-        <receiver android:name=".broadcasts.BroadCastInternet"
+        <activity android:name=".view.informacionHogares.ActualizacionesNoAplicadasHogarActivity" />
+
+        <receiver
+            android:name=".broadcasts.BroadCastInternet"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".broadcasts.BroadCastDate"
+        <receiver
+            android:name=".broadcasts.BroadCastDate"
             android:enabled="true">
             <intent-filter>
-                <action android:name="android.intent.action.DATE_CHANGED"/>
-                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
         </receiver>
 
-
-        <activity android:name=".view.Quejas.NuevaQuejaActivity"
+        <activity
+            android:name=".view.Quejas.NuevaQuejaActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".view.reportes.ReportCircularDepartamentoActivity"></activity>
     </application>
 
 </manifest>
