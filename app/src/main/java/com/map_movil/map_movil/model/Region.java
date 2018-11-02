@@ -1,7 +1,12 @@
 package com.map_movil.map_movil.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Region {
+    @SerializedName("codigo_region")
     private int intCodRegion;
+
+    @SerializedName("region")
     private String strRegion;
 
     public Region(){}
