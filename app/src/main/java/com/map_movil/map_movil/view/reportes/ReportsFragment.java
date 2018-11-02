@@ -40,18 +40,24 @@ public class ReportsFragment extends Fragment {
         this.intCodUser = this.sharedPreferences.getInt("codigo", 0);
         this.strNombreUser = this.sharedPreferences.getString("nombre", "");
 
-        //arrayListReport.add(new Report("Estado de solicitudes", "Por realizacion"));
-        //arrayListReport.add(new Report("Estado de solicitudes", "Por estado"));
+     //   arrayListReport.add(new Report("Estado de solicitudes", "Por realizacion"));
+     //   arrayListReport.add(new Report("Estado de solicitudes", "Por estado"));
+
         arrayListReport.add(new Report("Mis estados de solicitud", "Por realizacion"));
         arrayListReport.add(new Report("Mis estados de solicitud", "Por estado"));
-        //arrayListReport.add(new Report("Tiempo de respuesta", "De solicitudes"));
+
+     //   arrayListReport.add(new Report("Tiempo de respuesta", "De solicitudes"));
+
+        arrayListReport.add(new Report("Estados de solicitud segun Departamento-Region", "Por realizacion"));
+        arrayListReport.add(new Report("Estados de solicitud segun Departamento-Region", "Por estado"));
+
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewReport);
         AdapterRecyclerReport adapterRecyclerReport = new AdapterRecyclerReport(arrayListReport);
         adapterRecyclerReport.setOnClickListener(new AdapterRecyclerReport.OnItemClickListener() {
             @Override
             public void onitemClick(int position) {
-                if(position >= 0 && position <= 3){
+                if(position >= 0 && position <= 1){
                     String Nombre_Grafico = arrayListReport.get(position).getStrNombre()+ " " + arrayListReport.get(position).getStrDescripcion();
                     Intent intent = new Intent(view.getContext(), ReportCircularActivity.class);
                     intent.putExtra("Nombre_Grafico",Nombre_Grafico);
@@ -61,6 +67,11 @@ public class ReportsFragment extends Fragment {
                 }else if(position == 4){
                     Intent intent = new Intent(view.getContext(), ReportBarActivity.class);
                     intent.putExtra("Nombre_Usuario",strNombreUser);
+                    startActivity(intent);
+                }else if(position == 2 || position == 3){
+                    String Nombre_Grafico = arrayListReport.get(position).getStrNombre()+ " " + arrayListReport.get(position).getStrDescripcion();
+                    Intent intent = new Intent(view.getContext(), ReportCircularDepartamentoActivity.class);
+                    intent.putExtra("Nombre_Grafico",Nombre_Grafico);
                     startActivity(intent);
                 }
             }
