@@ -42,14 +42,15 @@ public class SolicitudHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_solicitud, container, false);
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        this.sharePrederencesEditor = this.sharedPreferences.edit();
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), sharedPreferences.getInt("codigo", 0));
         mViewPager = view.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = view.findViewById(R.id.tabs);
 
-        this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
-        this.sharePrederencesEditor = this.sharedPreferences.edit();
+
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -73,9 +74,9 @@ public class SolicitudHomeFragment extends Fragment {
         public PlaceholderFragment() {
         }
 
-        public static Fragment newInstance(int sectionNumber) {
+        public static Fragment newInstance(int sectionNumber, int intCodUser) {
             SolicitudesFragment fragment = new SolicitudesFragment();
-            fragment.intCodUser = 1;
+            fragment.intCodUser = intCodUser;
 
             switch (sectionNumber){
                 case 1:
@@ -98,16 +99,18 @@ public class SolicitudHomeFragment extends Fragment {
 
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private int intCodUser;
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(FragmentManager fm, int intCodUser) {
             super(fm);
+            this.intCodUser = intCodUser;
         }
 
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return SolicitudHomeFragment.PlaceholderFragment.newInstance(position + 1);
+            return SolicitudHomeFragment.PlaceholderFragment.newInstance(position + 1, intCodUser);
         }
 
         @Override

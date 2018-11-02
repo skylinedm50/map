@@ -56,7 +56,7 @@ public class LoginRepositoryImpl implements LoginRepository{
 
     @Override
     public void setTokenNotification() {
-        FirebaseInstanceId.getInstance().getInstanceId()
+        /*FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -87,6 +87,13 @@ public class LoginRepositoryImpl implements LoginRepository{
                             }
                         });
                     }
-                });
+                });*/
+        JsonObject jsonObject = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+        for(int i = 0; i < userList.size(); i++){
+            jsonArray.add(userList.get(i).getPermisos());
+        }
+        jsonObject.add ("permisos",jsonArray);
+        objLoginPresenter.showDataUser(userList.get(0), jsonObject);
     }
 }

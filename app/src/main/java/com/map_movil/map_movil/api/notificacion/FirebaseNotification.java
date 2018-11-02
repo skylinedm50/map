@@ -3,6 +3,7 @@ package com.map_movil.map_movil.api.notificacion;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -51,7 +52,9 @@ public class FirebaseNotification extends FirebaseMessagingService {
                 .setAutoCancel(true)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notificationBuilder.build());
+
+        NotificationManagerCompat notificationManagerCompat  = NotificationManagerCompat.from(this);
+       // NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManagerCompat.notify(0, notificationBuilder.build());
     }
 }
