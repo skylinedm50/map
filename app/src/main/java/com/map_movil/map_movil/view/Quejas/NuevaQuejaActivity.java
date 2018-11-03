@@ -134,6 +134,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
                 getMunicipios(adapterView.getItemAtPosition(i).toString());
+
             }
 
             @Override
@@ -144,6 +145,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
                 getAldeas(adapterView.getItemAtPosition(i).toString());
+
             }
 
             @Override
@@ -156,6 +158,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
                 getCaserios(adapterView.getItemAtPosition(i).toString());
+
             }
 
             @Override
@@ -167,6 +170,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
+
             }
 
             @Override
@@ -190,6 +194,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
+
             }
 
             @Override
