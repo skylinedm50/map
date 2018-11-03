@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.map_movil.map_movil.R;
@@ -45,11 +47,11 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
 
-    private AppCompatSpinner           DepartamentoSpiner;
-    private AppCompatSpinner           MunicipioSpiner;
-    private AppCompatSpinner           AldeaSpiner;
-    private AppCompatSpinner           CaserioSpiner;
-    private AppCompatSpinner           TipoSolicitudSpiner;
+    private Spinner           DepartamentoSpiner;
+    private Spinner           MunicipioSpiner;
+    private Spinner           AldeaSpiner;
+    private Spinner           CaserioSpiner;
+    private Spinner           TipoSolicitudSpiner;
 
     private CheckBox                   ChkAnonimo;
 
@@ -92,12 +94,12 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         this.ubicacionesPresenter = new UbicacionPresenterImpl(this, getApplicationContext());
         this.quejasPresenter      = new QuejasPresenterImpl(this , null, getApplicationContext() );
 
-        this.DepartamentoSpiner  = (AppCompatSpinner)  findViewById(R.id.departamento_spinner);
-        this.MunicipioSpiner     = (AppCompatSpinner)  findViewById(R.id.municipio_spinner);
-        this.AldeaSpiner         = (AppCompatSpinner)  findViewById(R.id.aldea_spinner);
-        this.CaserioSpiner       = (AppCompatSpinner)  findViewById(R.id.caserios_spinner);
+        this.DepartamentoSpiner  = (Spinner)  findViewById(R.id.departamento_spinner);
+        this.MunicipioSpiner     = (Spinner)  findViewById(R.id.municipio_spinner);
+        this.AldeaSpiner         = (Spinner)  findViewById(R.id.aldea_spinner);
+        this.CaserioSpiner       = (Spinner)  findViewById(R.id.caserios_spinner);
 
-        this.TipoSolicitudSpiner = (AppCompatSpinner)  findViewById(R.id.TipoSolicitud);
+        this.TipoSolicitudSpiner = (Spinner)  findViewById(R.id.TipoSolicitud);
         this.TxtIdentidad        = (TextInputEditText) findViewById(R.id.Tinput_Identidad);
         this.TxtNombre1          = (TextInputEditText) findViewById(R.id.Tinput_Nombre1);
         this.TxtNombre2          = (TextInputEditText) findViewById(R.id.Tinput_Nombre2);
@@ -130,6 +132,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         this.DepartamentoSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)view).setTextColor(Color.BLACK);
                 getMunicipios(adapterView.getItemAtPosition(i).toString());
             }
 
@@ -139,6 +142,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         this.MunicipioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)view).setTextColor(Color.BLACK);
                 getAldeas(adapterView.getItemAtPosition(i).toString());
             }
 
@@ -150,7 +154,19 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         this.AldeaSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)view).setTextColor(Color.BLACK);
                 getCaserios(adapterView.getItemAtPosition(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        this.CaserioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)view).setTextColor(Color.BLACK);
             }
 
             @Override
@@ -170,6 +186,17 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         );
         Adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.TipoSolicitudSpiner.setAdapter(Adapter);
+        this.TipoSolicitudSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((TextView)view).setTextColor(Color.BLACK);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         if( getIntent().getIntExtra("accion",0) == 1){

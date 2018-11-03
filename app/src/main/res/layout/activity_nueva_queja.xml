@@ -75,12 +75,12 @@
                 android:id="@+id/InputLayoutSolicitudes"
                 android:layout_height="match_parent">
 
-                <android.support.v7.widget.AppCompatSpinner
+                <Spinner
                     android:layout_width="match_parent"
                     android:id="@+id/TipoSolicitud"
-                    android:layout_height="50dp">
+                    android:layout_height="wrap_content">
 
-                </android.support.v7.widget.AppCompatSpinner>
+                </Spinner>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -249,12 +249,12 @@
                 android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.AppCompatSpinner
+            <Spinner
                 android:layout_width="match_parent"
                 android:id="@+id/departamento_spinner"
-                android:layout_height="50dp">
+                android:layout_height="wrap_content">
 
-            </android.support.v7.widget.AppCompatSpinner>
+            </Spinner>
 
             <TextView
                 android:layout_width="match_parent"
@@ -265,12 +265,12 @@
                 android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.AppCompatSpinner
+            <Spinner
                 android:layout_width="match_parent"
                 android:id="@+id/municipio_spinner"
-                android:layout_height="50dp">
+                android:layout_height="wrap_content">
 
-            </android.support.v7.widget.AppCompatSpinner>
+            </Spinner>
 
             <TextView
                 android:layout_width="match_parent"
@@ -281,12 +281,12 @@
                 android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.AppCompatSpinner
+            <Spinner
                 android:layout_width="match_parent"
                 android:id="@+id/aldea_spinner"
-                android:layout_height="50dp">
+                android:layout_height="wrap_content">
 
-            </android.support.v7.widget.AppCompatSpinner>
+            </Spinner>
 
             <TextView
                 android:layout_width="match_parent"
@@ -297,12 +297,12 @@
                 android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.AppCompatSpinner
+            <Spinner
                 android:layout_width="match_parent"
                 android:id="@+id/caserios_spinner"
-                android:layout_height="50dp">
+                android:layout_height="wrap_content">
 
-            </android.support.v7.widget.AppCompatSpinner>
+            </Spinner>
 
 
             <TextView
