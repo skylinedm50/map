@@ -20,7 +20,7 @@ public interface ApiServiceReportes {
     @GET("solicitudes/cifras/cantidad/estados/{usuario}/{fecha_inicio}/{fecha_fin}")
     Call<ArrayList<EstadosCantidadSolicitudes>>getCantidadEstadosPorUsuario(@Path("usuario") int Usuario,@Path("fecha_inicio") String FechaInicio, @Path("fecha_fin") String FechaFinal);
 
-    @GET("solicitudes/estado/5")
+    @GET("solicitudes/gestionadas/estado/resueltas")
     Call<ArrayList<SolicitudesCantidadPorEstado>>getSolicitudesRealizadas();
 
     @GET("solicitudes/cifras/departamento/{cod_departamento}")

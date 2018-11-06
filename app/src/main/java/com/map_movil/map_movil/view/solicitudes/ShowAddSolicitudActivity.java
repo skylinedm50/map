@@ -290,48 +290,56 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         checkBoxActualizacionDatos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)disableEnableCheckBox(false);
                 if(isChecked)showPoppup(1);
             }
         });
         checkBoxCambioTitular.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)disableEnableCheckBox(false);
                 if(isChecked)showPoppup(2);
             }
         });
         checkBoxNuevoIntegrante.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)disableEnableCheckBox(false);
                 if(isChecked)showPoppup(3);
             }
         });
         checkBoxBajaIntegrante.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)disableEnableCheckBox(false);
                 if(isChecked)showPoppup(4);
             }
         });
         checkBoxCambioDomicilio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)disableEnableCheckBox(false);
                 if(isChecked)showPoppup(5);
             }
         });
         checkBoxBajaPrograma.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)disableEnableCheckBox(false);
                 if(isChecked)showPoppup(6);
             }
         });
         checkBoxCorrecionSancion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)disableEnableCheckBox(false);
                 if(isChecked)showPoppup(7);
             }
         });
         checkBoxReactivaPrograma.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)disableEnableCheckBox(false);
                 if(isChecked)showPoppup(8);
             }
         });
@@ -421,6 +429,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         View viewInflate = LayoutInflater.from(this).inflate(R.layout.dialog_document_support_solicitudes, null);
         builder.setCancelable(false);
         builder.setView(viewInflate);
+
         alertDialog = builder.create();
         TextView ngButtonContinue = viewInflate.findViewById(R.id.ngButtonContinue);
         LinearLayout linearLayoutCambioTitular = viewInflate.findViewById(R.id.linearLayoutCambioTitular);
@@ -431,8 +440,9 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         LinearLayout linearLayoutReactivaPrograma = viewInflate.findViewById(R.id.linearLayoutReactivaPrograma);
         LinearLayout linearLayoutCorrecionSancion = viewInflate.findViewById(R.id.linearLayoutCorrecionSancion);
 
-        switch (intPopuToShow){
-            case 1: case 5:
+        switch (intPopuToShow) {
+            case 1:
+            case 5:
                 linearLayoutActualizacionDatos.setVisibility(View.VISIBLE);
                 break;
             case 2:
@@ -458,9 +468,22 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         ngButtonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                disableEnableCheckBox(true);
                 alertDialog.dismiss();
             }
         });
         alertDialog.show();
+    }
+
+    @Override
+    public void disableEnableCheckBox(boolean bolValue) {
+        checkBoxActualizacionDatos.setEnabled(bolValue);
+        checkBoxCambioTitular.setEnabled(bolValue);
+        checkBoxNuevoIntegrante.setEnabled(bolValue);
+        checkBoxBajaIntegrante.setEnabled(bolValue);
+        checkBoxCambioDomicilio.setEnabled(bolValue);
+        checkBoxBajaPrograma.setEnabled(bolValue);
+        checkBoxReactivaPrograma.setEnabled(bolValue);
+        checkBoxCorrecionSancion.setEnabled(bolValue);
     }
 }

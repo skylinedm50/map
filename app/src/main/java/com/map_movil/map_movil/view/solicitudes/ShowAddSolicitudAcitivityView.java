@@ -16,4 +16,5 @@ public interface ShowAddSolicitudAcitivityView {
     void showMessage(String strMessage);
     void finishCreationSolicitud(int offline);
     void showPoppup(int intPopuToShow);
+    void disableEnableCheckBox(boolean bolValue);
 }

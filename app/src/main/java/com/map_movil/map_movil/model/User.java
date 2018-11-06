@@ -18,17 +18,24 @@ public class User {
     @SerializedName("cantidad_login")
     private Integer intCantidadLogin;
 
+    @SerializedName("rol")
+    private Integer intCodRol;
+
     @SerializedName("Permisos")
     private String Permisos;
 
 
-    public User(Integer intCodigo, String strNombre, String strsApellido, Integer intEstado, Integer intCantidadLogin) {
+    public User(Integer intCodigo, String strNombre, String strsApellido, Integer intEstado, Integer intCantidadLogin, Integer intCodRol) {
         this.intCodigo = intCodigo;
         this.strNombre = strNombre;
         this.strsApellido = strsApellido;
         this.intEstado = intEstado;
         this.intCantidadLogin = intCantidadLogin;
+        this.intCodRol = intCodRol;
     }
+
+    public User(){}
+
     public Integer getIntCodigo() {
         return intCodigo;
     }
@@ -64,6 +71,12 @@ public class User {
     }
     public void setPermisos(String permisos) {
         Permisos = permisos;
+    }
+    public Integer getIntCodRol() {
+        return intCodRol;
+    }
+    public void setIntCodRol(Integer intCodRol) {
+        this.intCodRol = intCodRol;
     }
 
 }

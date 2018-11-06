@@ -88,7 +88,7 @@ public class LoginRepositoryImpl implements LoginRepository{
                         });
                     }
                 });*/
-        JsonObject jsonObject = new JsonObject();
+       JsonObject jsonObject = new JsonObject();
         JsonArray jsonArray = new JsonArray();
         for(int i = 0; i < userList.size(); i++){
             jsonArray.add(userList.get(i).getPermisos());

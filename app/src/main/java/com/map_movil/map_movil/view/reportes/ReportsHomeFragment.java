@@ -19,37 +19,57 @@ import com.map_movil.map_movil.R;
 import java.util.ArrayList;
 
 
-public class ReportsFragment extends Fragment {
+public class ReportsHomeFragment extends Fragment {
     private View view;
     private SharedPreferences sharedPreferences;
     private int intCodUser;
     private String strNombreUser;
-    private ArrayList<Report> arrayListReport;
+    private int intCodRolUser;
+    private ArrayList<Report> arrayListReport = new ArrayList<>();
 
-    public ReportsFragment() {
+    public ReportsHomeFragment() {
 
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.fragment_reports, container, false);
-        arrayListReport = new ArrayList<>();
-        this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
-        this.intCodUser = this.sharedPreferences.getInt("codigo", 0);
-        this.strNombreUser = this.sharedPreferences.getString("nombre", "");
-
+        view = inflater.inflate(R.layout.fragment_reports, container, false);
+        sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        intCodUser = sharedPreferences.getInt("codigo", 0);
+        strNombreUser = sharedPreferences.getString("nombre", "");
+        intCodRolUser = sharedPreferences.getInt("rol", 0);
      //   arrayListReport.add(new Report("Estado de solicitudes", "Por realizacion"));
      //   arrayListReport.add(new Report("Estado de solicitudes", "Por estado"));
+        switch (intCodRolUser){
+            case 2://Gerenciales
+            case 4:
+            case 5:
+            case 8:
+                arrayListReport.add(new Report("Gestiones resueltas Departamento/Región", "Realizadas/No realizadas."));
+                arrayListReport.add(new Report("Gestiones por estado Departamento/Region", "Por cada estado."));
+                //arrayListReport.add(new Report("Tiempo de respuesta", "De las solicitudes"));
+                break;
+            case 1: //Admin
+                arrayListReport.add(new Report("Gestiones resueltas Departamento/Región", "Realizadas/No realizadas."));
+                arrayListReport.add(new Report("Gestiones por estado Departamento/Region", "Por cada estado."));
+                arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas."));
+                arrayListReport.add(new Report("Gestiones por estado", "Por cada estado."));
+                break;
+            default:
+                arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas."));
+                arrayListReport.add(new Report("Gestiones por estado", "Por cada estado."));
+                break;
+        }
 
-        arrayListReport.add(new Report("Mis estados de solicitud", "Por realizacion"));
-        arrayListReport.add(new Report("Mis estados de solicitud", "Por estado"));
 
-     //   arrayListReport.add(new Report("Tiempo de respuesta", "De solicitudes"));
+       /* arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas."));
+        arrayListReport.add(new Report("Gestiones por estado", "Por cada estado."));
 
-        arrayListReport.add(new Report("Estados de solicitud segun Departamento-Region", "Por realizacion"));
-        arrayListReport.add(new Report("Estados de solicitud segun Departamento-Region", "Por estado"));
+        arrayListReport.add(new Report("Gestiones resueltas Departamento/Región", "Realizadas/No realizadas."));
+        arrayListReport.add(new Report("Gestiones por estado Departamento/Region", "Por cada estado."));
+
+        arrayListReport.add(new Report("Tiempo de respuesta", "De las solicitudes"));*/
 
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerViewReport);
@@ -57,18 +77,21 @@ public class ReportsFragment extends Fragment {
         adapterRecyclerReport.setOnClickListener(new AdapterRecyclerReport.OnItemClickListener() {
             @Override
             public void onitemClick(int position) {
-                if(position >= 0 && position <= 1){
+                if(intCodRolUser != 2 || intCodRolUser != 4 || intCodRolUser != 5 || intCodRolUser != 8){
+                //if(position == 0 || position == 1){
                     String Nombre_Grafico = arrayListReport.get(position).getStrNombre()+ " " + arrayListReport.get(position).getStrDescripcion();
                     Intent intent = new Intent(view.getContext(), ReportCircularActivity.class);
                     intent.putExtra("Nombre_Grafico",Nombre_Grafico);
                     intent.putExtra("Codigo_Usuario", intCodUser);
                     intent.putExtra("Nombre_Usuario", strNombreUser);
                     startActivity(intent);
-                }else if(position == 4){
+                }else if((intCodRolUser == 2 || intCodRolUser == 4 || intCodRolUser == 5 || intCodRolUser == 8) && position == 3123){
+               //}else if(position == 4){
                     Intent intent = new Intent(view.getContext(), ReportBarActivity.class);
                     intent.putExtra("Nombre_Usuario",strNombreUser);
                     startActivity(intent);
-                }else if(position == 2 || position == 3){
+                }else if(intCodRolUser == 2 || intCodRolUser == 4 || intCodRolUser == 5 || intCodRolUser == 8){
+                //}else if(position == 2 || position == 3){
                     String Nombre_Grafico = arrayListReport.get(position).getStrNombre()+ " " + arrayListReport.get(position).getStrDescripcion();
                     Intent intent = new Intent(view.getContext(), ReportCircularDepartamentoActivity.class);
                     intent.putExtra("Nombre_Grafico",Nombre_Grafico);

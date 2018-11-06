@@ -125,12 +125,10 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
 
     @Override
     public void synchronizeRequestWithServer(int intCodUser) {
-
         final JsonArray jsonArray = new JsonArray();
         realmConfig = new RealmConfig(context);
         realmConfig.getRealm().beginTransaction();
         RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
-        RealmResults<Hogar_Validar> nucleoHogar;
         solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("isLocal", true).findAll();
         realmConfig.getRealm().commitTransaction();
 
@@ -141,8 +139,8 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
         }else{
             for(SolicitudesDownload item: solicitudesDownloadRealmResults){
                 jsonObject = new JsonObject();
-                nucleoHogar = realmConfig.getRealm().where(Hogar_Validar.class).equalTo("per_persona", item.getPer_persona()).findAll();
-                jsonObject.addProperty("identidad", nucleoHogar.get(0).getPer_identidad());
+                jsonObject.addProperty("hog_hogar", item.getHog_hogar());
+                jsonObject.addProperty("per_persona", item.getPer_persona());
                 jsonObject.addProperty("cod_user", intCodUser);
                 jsonObject.addProperty("observacion", item.getObservacion());
                 jsonObject.addProperty("actualizacion_datos",(item.isActualizacion_datos())? 1 : 0);
@@ -205,9 +203,5 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                 }
             });
         }
-
     }
-
-
-
 }

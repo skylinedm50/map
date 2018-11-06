@@ -27,8 +27,9 @@ import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFrag
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
 import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
+import com.map_movil.map_movil.view.notificacion.NotificacionFragment;
 import com.map_movil.map_movil.view.programados.ProgramadosFragment;
-import com.map_movil.map_movil.view.reportes.ReportsFragment;
+import com.map_movil.map_movil.view.reportes.ReportsHomeFragment;
 import com.map_movil.map_movil.view.sincronizar.SincronizarFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
@@ -65,13 +66,13 @@ public class HomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
 
         textViewNombreUsuario = navigationView.getHeaderView(0).findViewById(R.id.nav_nom_usu);
-        textViewNombreUsuario.setText(sharedPreferences.getString("nombre", "").toString());
+        textViewNombreUsuario.setText(sharedPreferences.getString("nombre", ""));
 
         if(sharedPreferences.getInt("Sincronizar",0)==1){
             navigationView.getMenu().getItem(0).getSubMenu().getItem(2).setActionView(R.layout.sincro_notificacion);
@@ -107,14 +108,11 @@ public class HomeActivity extends AppCompatActivity
             JSONObject permisos  =  new JSONObject( this.sharedPreferences.getString("permisos","") );
             JSONArray jsonArray = permisos.getJSONArray("permisos");
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                     MenuItem item= navigationView.getMenu().findItem(
-                             getResources().getIdentifier(jsonArray.get(i).toString(),"id",getPackageName())
-                     );
-
-                     item.setVisible(true);
-                     item.setEnabled(true);
-                }
+            for(int i = 0; i < jsonArray.length(); i++) {
+                 MenuItem item = navigationView.getMenu().findItem(getResources().getIdentifier(jsonArray.get(i).toString(),"id",getPackageName()));
+                 item.setVisible(true);
+                 item.setEnabled(true);
+            }
         }
         catch(Exception e){ }
     }
@@ -158,8 +156,8 @@ public class HomeActivity extends AppCompatActivity
                 showContentScreenHome(false);
                 showToolbar("Reportes");
                 if (intCodItemSelect != id) {
-                    ReportsFragment reportsFragment = new ReportsFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, reportsFragment).commit();
+                    ReportsHomeFragment reportsHomeFragment = new ReportsHomeFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, reportsHomeFragment).commit();
                 }
             } else if (id == R.id.nav_logout) {
                 RealmConfig realmConfig = new RealmConfig(getApplicationContext());
@@ -219,6 +217,12 @@ public class HomeActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, sincronizarFragment).commit();
                 }
             } else if (id == R.id.nav_notification) {
+                showContentScreenHome(false);
+                showToolbar("Notificación");
+                if (intCodItemSelect != id) {
+                    NotificacionFragment notificacionFragment = new NotificacionFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, notificacionFragment).commit();
+                }
             } else if (id == R.id.nav_programmed) {
                 showContentScreenHome(false);
                 showToolbar("Programados");

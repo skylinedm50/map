@@ -12,6 +12,6 @@ public interface LoginView {
     void goToChangePassword();
     void showDataUser(User user, JsonObject jsonObject);
     void showError(String strError);
-    void saveLocalLogin(int intCodUser, String strNombre, int intCantLogin, int inCodEstado, JsonObject jsonObject);
+    void saveLocalLogin(User user, JsonObject jsonObject);
     void showProgressBar(Boolean bolShow);
 }

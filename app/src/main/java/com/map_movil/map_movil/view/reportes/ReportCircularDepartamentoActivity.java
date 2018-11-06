@@ -68,8 +68,8 @@ public class ReportCircularDepartamentoActivity extends AppCompatActivity implem
     private ApiServiceReportes service;
     private PieData data;
     private ApiAdapterReportes da;
-    private static String Grafico1 = "Estados de solicitud segun Departamento-Region Por realizacion";
-    private static String Grafico2 = "Estados de solicitud segun Departamento-Region Por estado";
+    private static String Grafico1 = "Gestiones resueltas Departamento/Región Realizadas/No realizadas.";
+    private static String Grafico2 = "Gestiones por estado Departamento/Region Por cada estado.";
     private static String Nombre_Grafico;
     private ArrayList<String> departamentos;
     private TextView tvTituloGrafico;

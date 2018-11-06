@@ -25,14 +25,14 @@ public class AdapaterItemMunicipioRecyclerView extends RecyclerView.Adapter<Adap
 
         public ViewHolder(View itemView) {
             super(itemView);
-            checkBoxMunicipio = itemView.findViewById(R.id.checkBoxMunicipio);
+            checkBoxMunicipio = itemView.findViewById(R.id.checkBoxItem);
         }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_municipio, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_with_checkbox_only, parent, false);
 
         return new ViewHolder(view);
     }
@@ -54,7 +54,7 @@ public class AdapaterItemMunicipioRecyclerView extends RecyclerView.Adapter<Adap
         holder.checkBoxMunicipio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String strCodMunicipio = buttonView.getText().toString();//.split("-")[0];
+                String strCodMunicipio = buttonView.getText().toString();
                 if(isChecked){
                     boolean isAdd = true;
                     for (String strElement: arrayListMunicipiosSelect) {

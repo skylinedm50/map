@@ -73,7 +73,7 @@
                 android:enabled="false"
                 android:visible="false"
                 android:icon="@drawable/ic_insert_chart"
-                android:title="Reporte de Gestiones"/>
+                android:title="Reportes"/>
             <item
                 android:id="@+id/nav_config_download_data"
                 android:icon="@drawable/ic_cloud_download"

@@ -266,17 +266,17 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
                 .equalTo("per_identidad", hogarLigth.getStrIdentidad())
                 .and().equalTo("per_titular", 1).findAll();
 
-        for(Hogar_Validar item: nucleoHogarReamlResult){
-            solicitudesDownload.setNombre_solicitante(item.getNombre());
-            solicitudesDownload.setCaserio(item.getDesc_caserio());
-            solicitudesDownload.setAldea(item.getDesc_aldea());
-            solicitudesDownload.setMunicipio(item.getDesc_municipio());
-            solicitudesDownload.setDepartamento(item.getDesc_departamento());
-            solicitudesDownload.setUmbral_hogar(item.getHog_umbral());
-            solicitudesDownload.setEstado_hogar(item.getHog_estado_descripcion());
-            solicitudesDownload.setCodigo_hogar(item.getHog_hogar());
-            solicitudesDownload.setPer_persona(item.getPer_persona());
-        }
+        solicitudesDownload.setNombre_solicitante(nucleoHogarReamlResult.get(0).getNombre());
+        solicitudesDownload.setCaserio(nucleoHogarReamlResult.get(0).getDesc_caserio());
+        solicitudesDownload.setAldea(nucleoHogarReamlResult.get(0).getDesc_aldea());
+        solicitudesDownload.setMunicipio(nucleoHogarReamlResult.get(0).getDesc_municipio());
+        solicitudesDownload.setDepartamento(nucleoHogarReamlResult.get(0).getDesc_departamento());
+        solicitudesDownload.setUmbral_hogar(nucleoHogarReamlResult.get(0).getHog_umbral());
+        solicitudesDownload.setEstado_hogar(nucleoHogarReamlResult.get(0).getHog_estado_descripcion());
+        solicitudesDownload.setCodigo_hogar(nucleoHogarReamlResult.get(0).getHog_hogar());
+        solicitudesDownload.setPer_persona(nucleoHogarReamlResult.get(0).getPer_persona());
+        solicitudesDownload.setHog_hogar(nucleoHogarReamlResult.get(0).getHog_hogar());
+
         realmConfig.getRealm().insert(solicitudesDownload);
         realmConfig.getRealm().commitTransaction();
         realmConfig.getRealm().close();

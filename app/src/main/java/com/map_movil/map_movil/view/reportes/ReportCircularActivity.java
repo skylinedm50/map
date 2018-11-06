@@ -81,8 +81,8 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
     private String Nombre_Usuario;
     private static String Grafico1 = "Estado de solicitudes Por realizacion";
     private static String Grafico2 = "Estado de solicitudes Por estado";
-    private static String Grafico3 = "Mis estados de solicitud Por realizacion";
-    private static String Grafico4 = "Mis estados de solicitud Por estado";
+    private static String Grafico3 = "Gestiones resueltas Realizadas/No realizadas.";
+    private static String Grafico4 = "Gestiones por estado Por cada estado.";
     private SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd");
     private ApiServiceReportes service;
     private ApiAdapterReportes da;
