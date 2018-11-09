@@ -12,9 +12,10 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface ApiServiceLogin { //Aquí solo estaran las URL o mejor dicho su definición
-    @GET("login/{user}/{password}")
-    Call<List<User>> getLogin(@Path("user") String strUser, @Path("password") String strPassword);
+public interface ApiServiceLogin { //Aquí solo estaran las URL o mejor dicho su definiciónadmin
+    @FormUrlEncoded
+    @POST("login")
+    Call<List<User>> getLogin(@Field("user") String strUser, @Field("password") String strPassword);
 
     @FormUrlEncoded
     @POST("login/change_key")

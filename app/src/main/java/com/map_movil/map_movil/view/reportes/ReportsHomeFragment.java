@@ -46,19 +46,19 @@ public class ReportsHomeFragment extends Fragment {
             case 4:
             case 5:
             case 8:
-                arrayListReport.add(new Report("Gestiones resueltas Departamento/Región", "Realizadas/No realizadas."));
-                arrayListReport.add(new Report("Gestiones por estado Departamento/Region", "Por cada estado."));
+                arrayListReport.add(new Report("Gestiones resueltas Departamento/Región", "Realizadas/No realizadas.",0));
+                arrayListReport.add(new Report("Gestiones por estado Departamento/Region", "Por cada estado.",0));
                 //arrayListReport.add(new Report("Tiempo de respuesta", "De las solicitudes"));
                 break;
             case 1: //Admin
-                arrayListReport.add(new Report("Gestiones resueltas Departamento/Región", "Realizadas/No realizadas."));
-                arrayListReport.add(new Report("Gestiones por estado Departamento/Region", "Por cada estado."));
-                arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas."));
-                arrayListReport.add(new Report("Gestiones por estado", "Por cada estado."));
+                arrayListReport.add(new Report("Gestiones resueltas Departamento/Región", "Realizadas/No realizadas.",0));
+                arrayListReport.add(new Report("Gestiones por estado Departamento/Region", "Por cada estado.",0));
+                arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas.",1));
+                arrayListReport.add(new Report("Gestiones por estado", "Por cada estado.",1));
                 break;
             default:
-                arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas."));
-                arrayListReport.add(new Report("Gestiones por estado", "Por cada estado."));
+                arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas.",1));
+                arrayListReport.add(new Report("Gestiones por estado", "Por cada estado.",1));
                 break;
         }
 
@@ -77,24 +77,26 @@ public class ReportsHomeFragment extends Fragment {
         adapterRecyclerReport.setOnClickListener(new AdapterRecyclerReport.OnItemClickListener() {
             @Override
             public void onitemClick(int position) {
-                if(intCodRolUser != 2 || intCodRolUser != 4 || intCodRolUser != 5 || intCodRolUser != 8){
-                //if(position == 0 || position == 1){
+           //     if(intCodRolUser == 2 || intCodRolUser == 4 || intCodRolUser == 5 || intCodRolUser == 8){
+                    //}else if(position == 2 || position == 3){
+                if (arrayListReport.get(position).getTipoGrafico() == 0) {
+                    String Nombre_Grafico = arrayListReport.get(position).getStrNombre() + " " + arrayListReport.get(position).getStrDescripcion();
+                    Intent intent = new Intent(view.getContext(), ReportCircularDepartamentoActivity.class);
+                    intent.putExtra("Nombre_Grafico", Nombre_Grafico);
+                    startActivity(intent);
+                    //      }else if(intCodRolUser != 2 || intCodRolUser != 4 || intCodRolUser != 5 || intCodRolUser != 8){
+                    //if(position == 0 || position == 1){
+                }else if(arrayListReport.get(position).getTipoGrafico() == 1) {
                     String Nombre_Grafico = arrayListReport.get(position).getStrNombre()+ " " + arrayListReport.get(position).getStrDescripcion();
                     Intent intent = new Intent(view.getContext(), ReportCircularActivity.class);
                     intent.putExtra("Nombre_Grafico",Nombre_Grafico);
                     intent.putExtra("Codigo_Usuario", intCodUser);
                     intent.putExtra("Nombre_Usuario", strNombreUser);
                     startActivity(intent);
-                }else if((intCodRolUser == 2 || intCodRolUser == 4 || intCodRolUser == 5 || intCodRolUser == 8) && position == 3123){
-               //}else if(position == 4){
+               // }else if((intCodRolUser == 2 || intCodRolUser == 4 || intCodRolUser == 5 || intCodRolUser == 8) && position == 3123){
+               }else if(arrayListReport.get(position).getTipoGrafico() == 2){
                     Intent intent = new Intent(view.getContext(), ReportBarActivity.class);
                     intent.putExtra("Nombre_Usuario",strNombreUser);
-                    startActivity(intent);
-                }else if(intCodRolUser == 2 || intCodRolUser == 4 || intCodRolUser == 5 || intCodRolUser == 8){
-                //}else if(position == 2 || position == 3){
-                    String Nombre_Grafico = arrayListReport.get(position).getStrNombre()+ " " + arrayListReport.get(position).getStrDescripcion();
-                    Intent intent = new Intent(view.getContext(), ReportCircularDepartamentoActivity.class);
-                    intent.putExtra("Nombre_Grafico",Nombre_Grafico);
                     startActivity(intent);
                 }
             }
@@ -109,10 +111,16 @@ public class ReportsHomeFragment extends Fragment {
     class Report {
         private String strNombre;
         private String strDescripcion;
+        private int TipoGrafico;
 
-        public Report(String strNombre, String strDescripcion) {
+        //TipoGrafico = 0 para Circular por Departamento
+        //TipoGrafico = 1 para Circular
+        //TipoGrafico = 2 para Barras
+
+        public Report(String strNombre, String strDescripcion, int TipoGrafico) {
             this.strNombre = strNombre;
             this.strDescripcion = strDescripcion;
+            this.TipoGrafico = TipoGrafico;
         }
 
         public String getStrNombre() {
@@ -129,6 +137,14 @@ public class ReportsHomeFragment extends Fragment {
 
         public void setStrDescripcion(String strDescripcion) {
             this.strDescripcion = strDescripcion;
+        }
+
+        public int getTipoGrafico() {
+            return TipoGrafico;
+        }
+
+        public void setTipoGrafico(int TipoGrafico) {
+            this.TipoGrafico = TipoGrafico;
         }
     }
 
