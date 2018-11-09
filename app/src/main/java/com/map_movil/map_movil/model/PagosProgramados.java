@@ -30,8 +30,14 @@ public class PagosProgramados {
     @SerializedName("Nombre_Titular")
     private String strnombre_titular;
 
+    @SerializedName("tit_identidad")
+    private String stridentidad_titular;
 
-    public PagosProgramados(String strPago_nombre, String strcodigo_hogar, String strcod_departamento, String strdesc_departamento, String strcod_municipio, String strdesc_municipio, String strdesc_caserio, String strdesc_aldea, String strnombre_titular) {
+    @SerializedName("tit_monto_total_red")
+    private String intmonto_pagar;
+
+    public PagosProgramados(String strPago_nombre, String strcodigo_hogar, String strcod_departamento, String strdesc_departamento, String strcod_municipio, String strdesc_municipio,
+                            String strdesc_caserio, String strdesc_aldea, String strnombre_titular , String stridentidad_titular , String intmonto_pagar) {
         this.strPago_nombre = strPago_nombre;
         this.strcodigo_hogar = strcodigo_hogar;
         this.strcod_departamento = strcod_departamento;
@@ -41,6 +47,8 @@ public class PagosProgramados {
         this.strdesc_caserio = strdesc_caserio;
         this.strdesc_aldea = strdesc_aldea;
         this.strnombre_titular = strnombre_titular;
+        this.stridentidad_titular = stridentidad_titular;
+        this.intmonto_pagar = intmonto_pagar;
     }
 
     public String getStrPago_nombre() {
@@ -78,4 +86,21 @@ public class PagosProgramados {
     public String getStrnombre_titular() {
         return strnombre_titular;
     }
+
+    public String getStridentidad_titular() {
+        return stridentidad_titular;
+    }
+
+    public void setStridentidad_titular(String stridentidad_titular) {
+        this.stridentidad_titular = stridentidad_titular;
+    }
+
+    public String getIntmonto_pagar() {
+        return intmonto_pagar;
+    }
+
+    public void setIntmonto_pagar(String intmonto_pagar) {
+        this.intmonto_pagar = intmonto_pagar;
+    }
+
 }

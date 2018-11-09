@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -39,9 +38,6 @@ public class QuejasHomeFragment extends Fragment
         this.pager_adapter = new Pager_Adapter(getFragmentManager());
         this.viewPager = (ViewPager) view.findViewById(R.id.quejas_container);
         this.viewPager.setAdapter(this.pager_adapter);
-
-
-   //     navigationView.setNavigationItemSelectedListener(this);
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabsQuejas);
         this.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
