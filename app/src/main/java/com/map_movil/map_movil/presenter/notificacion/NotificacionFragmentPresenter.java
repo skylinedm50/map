@@ -10,6 +10,7 @@ public interface NotificacionFragmentPresenter {
     void getUsuarios(int intCodOficina);
     void showUsuarios(ArrayList<String> arrayListUsuarios);
 
-    void sendNotificacion(ArrayList<String> arrayListUsuarios, String strNotificacion);
     void showMessage(String strMessage);
+    void validDataSend(ArrayList<String> arrayListUser, String strNotification);
+    void showProgressBar(boolean bolValue);
 }
