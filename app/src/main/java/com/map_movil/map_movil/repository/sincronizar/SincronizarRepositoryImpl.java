@@ -128,7 +128,7 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
         final JsonArray jsonArray = new JsonArray();
         realmConfig = new RealmConfig(context);
         realmConfig.getRealm().beginTransaction();
-        RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
+        final RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
         solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("isLocal", true).findAll();
         realmConfig.getRealm().commitTransaction();
 
@@ -161,11 +161,6 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                 @Override
                 public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
                     if (response.body() != null && response.body().getIntState() == 1) {
-                        realmConfig = new RealmConfig(context);
-                        realmConfig.getRealm().beginTransaction();
-                        final RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
-                        solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).equalTo("isLocal", true).findAll();
-                        realmConfig.getRealm().commitTransaction();
                         realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
@@ -176,12 +171,7 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                                         .equalTo("Offline" , 1)
                                         .findAll();
 
-                                RealmResults<SolicitudesDownload> solicitudes  = realmConfig.getRealm()
-                                        .where(SolicitudesDownload.class)
-                                        .equalTo("isLocal", true)
-                                        .findAll();
-
-                                result = (queja.size() > 0 || solicitudes.size()>0)?10:11;
+                                result = (queja.size() > 0)?10:11;
 
                                 sincronizarPresenter.EventoCompletado(result);
                                 sincronizarPresenter.MensajeSincronizar("\n- Se realizó la sincronización de "+String.valueOf(jsonArray.size())+" solicitudes registradas local");

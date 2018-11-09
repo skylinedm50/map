@@ -29,4 +29,12 @@
         android:icon="@drawable/ic_save_white"
         android:iconTintMode="src_in"
         app:showAsAction="always|collapseActionView"/>
+    <item
+        android:title="Enviar"
+        android:id="@+id/sendData"
+        android:enabled="false"
+        android:visible="false"
+        android:icon="@drawable/ic_send_white"
+        android:iconTintMode="src_in"
+        app:showAsAction="always|collapseActionView"/>
 </menu>

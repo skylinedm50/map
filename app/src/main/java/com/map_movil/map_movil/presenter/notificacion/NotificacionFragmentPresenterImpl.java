@@ -46,13 +46,26 @@ public class NotificacionFragmentPresenterImpl implements NotificacionFragmentPr
         notificacionFragmentView.showUsuarios(arrayListUsuarios);
     }
 
-    @Override
-    public void sendNotificacion(ArrayList<String> arrayListUsuarios, String strNotificacion) {
-        notificacionFragmentInteractor.sendNotificacion(arrayListUsuarios, strNotificacion);
-    }
 
     @Override
     public void showMessage(String strMessage) {
         notificacionFragmentView.showMessage(strMessage);
+    }
+
+    @Override
+    public void validDataSend(ArrayList<String> arrayListUser, String strNotification) {
+        notificacionFragmentView.showProgressBar(true);
+
+        if(arrayListUser.size() > 0 && !strNotification.isEmpty()){
+            notificacionFragmentInteractor.sendNotificacion(arrayListUser, strNotification);
+        }else{
+            notificacionFragmentView.showProgressBar(false);
+            notificacionFragmentView.showMessage("Asegúrese de seleccionar uno o más usuarios y de redactar la notificación.");
+        }
+    }
+
+    @Override
+    public void showProgressBar(boolean bolValue) {
+        notificacionFragmentView.showProgressBar(bolValue);
     }
 }

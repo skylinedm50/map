@@ -2,6 +2,7 @@ package com.map_movil.map_movil.Realm;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
