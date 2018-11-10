@@ -36,9 +36,14 @@ import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
 import com.map_movil.map_movil.view.excluidos.PlanillaView;
 import com.map_movil.map_movil.view.ubicacion.UbicacionView;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -343,13 +348,17 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
             PagosProgramados Item = (PagosProgramados) getItem(position);
 
             convertView = LayoutInflater.from(context).inflate(R.layout.item_planilla_programado,null);
-            TextView textViewNombre =(TextView) convertView.findViewById(R.id.Nombre_Persona) ;
-            TextView textViewCodhoga=(TextView) convertView.findViewById(R.id.codhogar) ;
-            TextView textViewcaserio = (TextView) convertView.findViewById(R.id.caserio) ;
+            TextView textViewNombre     = (TextView) convertView.findViewById(R.id.Nombre_Persona) ;
+            TextView textViewIdentidad  = (TextView) convertView.findViewById(R.id.Identidad_Persona) ;
+            TextView textViewMontoPagar = (TextView) convertView.findViewById(R.id.monto_pagar) ;
+            TextView textViewCodhoga    = (TextView) convertView.findViewById(R.id.codhogar) ;
+            TextView textViewcaserio    = (TextView) convertView.findViewById(R.id.caserio) ;
 
             textViewNombre.setText(Item.getStrnombre_titular());
             textViewCodhoga.setText("CÓDIGO HOGAR : " + Item.getStrcodigo_hogar());
             textViewcaserio.setText("CASERIO : " + Item.getStrdesc_caserio());
+            textViewIdentidad.setText(Item.getStridentidad_titular());
+            textViewMontoPagar.setText("MONTO PROGRAMANDO : "+ NumberFormat.getCurrencyInstance().format(Integer.parseInt( Item.getIntmonto_pagar() )).replace("$","L") );
 
             return convertView;
         }

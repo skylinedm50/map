@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity
         registerReceiver(this.broadCastInternet  , interFilter);
 
         showToolbar("Inicio");
-        MostarPermisos(null);
+        MostarPermisos();
     }
 
     @Override
@@ -103,7 +103,7 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-    private void MostarPermisos(Menu menu){
+    private void MostarPermisos(){
         try{
             JSONObject permisos  =  new JSONObject( this.sharedPreferences.getString("permisos","") );
             JSONArray jsonArray = permisos.getJSONArray("permisos");

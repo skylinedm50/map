@@ -141,10 +141,13 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
         pieChart.setVerticalScrollBarEnabled(true);
         pieChart.setScrollbarFadingEnabled(true);
         pieChart.setCenterText("SOLICITUDES");
-        pieChart.getLegend().setPosition(Legend.LegendPosition.LEFT_OF_CHART);
+        pieChart.getLegend().setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
-
+        pieChart.getLegend().setForm(Legend.LegendForm.CIRCLE);
+        pieChart.setExtraTopOffset(-100);
+        pieChart.getLegend().setYOffset(50);
         pieChart.setDrawSliceText(false);  //Eliminacion labels del piechart
+        pieChart.getDescription().setYOffset(110);
 
         da= new ApiAdapterReportes();
         service = da.getClientService();

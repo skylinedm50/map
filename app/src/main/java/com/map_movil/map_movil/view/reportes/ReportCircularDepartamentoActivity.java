@@ -107,11 +107,13 @@ public class ReportCircularDepartamentoActivity extends AppCompatActivity implem
         pieChart.setVerticalScrollBarEnabled(true);
         pieChart.setScrollbarFadingEnabled(true);
         pieChart.setCenterText("SOLICITUDES");
-        pieChart.getLegend().setPosition(Legend.LegendPosition.LEFT_OF_CHART);
+        pieChart.getLegend().setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
-
+        pieChart.getLegend().setForm(Legend.LegendForm.CIRCLE);
+        pieChart.setExtraTopOffset(-80);
+        pieChart.getLegend().setYOffset(40);
         pieChart.setDrawSliceText(false);  //Eliminacion labels del piechart
-
+        pieChart.getDescription().setYOffset(80);
         da= new ApiAdapterReportes();
         service = da.getClientService();
 
@@ -337,22 +339,7 @@ class IntValueFormatter implements IValueFormatter {
 }
 
     public void Generar_grafico1_por_Departamento(String cod_departamento){
-        pieChart.getDescription().setText("");
-        pieChart.getDescription().setTextSize(14f);
-        pieChart.setHoleRadius(40f);
-        pieChart.setRotationEnabled(true);
         pieChart.animateXY(1500, 1500);
-        pieChart.setTransparentCircleColor(Color.WHITE);
-        pieChart.setTransparentCircleAlpha(100);
-        pieChart.setUsePercentValues(false);
-        pieChart.setTransparentCircleRadius(50f);
-        pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setVerticalScrollBarEnabled(true);
-        pieChart.setScrollbarFadingEnabled(true);
-        pieChart.setCenterText("SOLICITUDES");
-        pieChart.getLegend().setPosition(Legend.LegendPosition.LEFT_OF_CHART);
-        pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
-
         service.getSolicitudesporDepartamento(cod_departamento).enqueue(new Callback <ArrayList <EstadosCantidadSolicitudes>>() {
             @Override
             public void onResponse(Call <ArrayList <EstadosCantidadSolicitudes>> call, Response <ArrayList <EstadosCantidadSolicitudes>> response) {
@@ -394,21 +381,7 @@ class IntValueFormatter implements IValueFormatter {
     }
 
     public void Generar_grafico1_por_region(int cod_region){
-        pieChart.getDescription().setText("");
-        pieChart.getDescription().setTextSize(14f);
-        pieChart.setHoleRadius(40f);
-        pieChart.setRotationEnabled(true);
         pieChart.animateXY(1500, 1500);
-        pieChart.setTransparentCircleColor(Color.WHITE);
-        pieChart.setTransparentCircleAlpha(100);
-        pieChart.setUsePercentValues(false);
-        pieChart.setTransparentCircleRadius(50f);
-        pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setVerticalScrollBarEnabled(true);
-        pieChart.setScrollbarFadingEnabled(true);
-        pieChart.setCenterText("SOLICITUDES");
-        pieChart.getLegend().setPosition(Legend.LegendPosition.LEFT_OF_CHART);
-        pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
 
         service.getSolicitudesporRegion(cod_region).enqueue(new Callback <ArrayList <EstadosCantidadSolicitudes>>() {
             @Override
@@ -453,21 +426,7 @@ class IntValueFormatter implements IValueFormatter {
     }
 
     public void Generar_grafico2_por_departamento(String cod_departamento){
-        pieChart.getDescription().setText("");
-        pieChart.getDescription().setTextSize(14f);
-        pieChart.setHoleRadius(40f);
-        pieChart.setRotationEnabled(true);
         pieChart.animateXY(1500, 1500);
-        pieChart.setTransparentCircleColor(Color.WHITE);
-        pieChart.setTransparentCircleAlpha(100);
-        pieChart.setUsePercentValues(false);
-        pieChart.setTransparentCircleRadius(50f);
-        pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setVerticalScrollBarEnabled(true);
-        pieChart.setScrollbarFadingEnabled(true);
-        pieChart.setCenterText("SOLICITUDES");
-        pieChart.getLegend().setPosition(Legend.LegendPosition.LEFT_OF_CHART);
-        pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
 
         service.getSolicitudesporDepartamento(cod_departamento).enqueue(new Callback<ArrayList<EstadosCantidadSolicitudes>>() {
             @Override
@@ -533,21 +492,7 @@ class IntValueFormatter implements IValueFormatter {
     }
 
     public void Generar_grafico2_por_region(int cod_region){
-        pieChart.getDescription().setText("");
-        pieChart.getDescription().setTextSize(14f);
-        pieChart.setHoleRadius(40f);
-        pieChart.setRotationEnabled(true);
         pieChart.animateXY(1500, 1500);
-        pieChart.setTransparentCircleColor(Color.WHITE);
-        pieChart.setTransparentCircleAlpha(100);
-        pieChart.setUsePercentValues(false);
-        pieChart.setTransparentCircleRadius(50f);
-        pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setVerticalScrollBarEnabled(true);
-        pieChart.setScrollbarFadingEnabled(true);
-        pieChart.setCenterText("SOLICITUDES");
-        pieChart.getLegend().setPosition(Legend.LegendPosition.LEFT_OF_CHART);
-        pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
 
         service.getSolicitudesporRegion(cod_region).enqueue(new Callback<ArrayList<EstadosCantidadSolicitudes>>() {
             @Override
@@ -593,7 +538,7 @@ class IntValueFormatter implements IValueFormatter {
                         ,Color.rgb(255, 255, 153)
                         ,Color.rgb(128, 179, 255)
                         ,Color.rgb(92, 214, 92) //Verde
-                        ,Color.rgb(255, 153, 51)});
+                        ,Color.rgb(255, 153, 51),ColorTemplate.MATERIAL_COLORS[2],ColorTemplate.VORDIPLOM_COLORS[2],ColorTemplate.VORDIPLOM_COLORS[0]});
 
                 dataset.setValueTextSize(15f);
                 dataset.setValueFormatter(new IntValueFormatter());
