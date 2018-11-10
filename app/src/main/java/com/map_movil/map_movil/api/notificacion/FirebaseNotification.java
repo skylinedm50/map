@@ -1,7 +1,7 @@
 package com.map_movil.map_movil.api.notificacion;
 
-import android.app.NotificationManager;
-import android.content.Context;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
@@ -46,15 +46,20 @@ public class FirebaseNotification extends FirebaseMessagingService {
 
 
     private void showNotification(Notification notification){
-        NotificationCompat.Builder  notificationBuilder = new NotificationCompat.Builder(this)
+        Uri uriSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder  notificationBuilder = new NotificationCompat.Builder(this, "0")
                 .setContentTitle(notification.getStrTitle())
                 .setContentText(notification.getStrDescription())
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setAutoCancel(true)
+                .setSound(uriSound)
+                .setVibrate(new long[] { 1000, 1000, 1000, 1000 })
+                /*.setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText(""))*/
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
         NotificationManagerCompat notificationManagerCompat  = NotificationManagerCompat.from(this);
-       // NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManagerCompat.notify(0, notificationBuilder.build());
     }
 }

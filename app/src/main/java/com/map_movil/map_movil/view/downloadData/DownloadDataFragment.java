@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -37,7 +40,6 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
    private View view;
    private Spinner spinnerDepartamento;
    private RecyclerView recyclerViewMunicipio;
-   private TextView ngButtonDownload;
    private TextView textViewDepartamento;
    private TextView textViewCantHogares;
    private TextView textViewCantHistorialPago;
@@ -56,6 +58,11 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
     public DownloadDataFragment() {
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,7 +75,6 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
         spinnerDepartamento = view.findViewById(R.id.spinnerDepartamento);
         recyclerViewMunicipio = view.findViewById(R.id.recyclerViewMunicipio);
         recyclerViewMunicipio.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        ngButtonDownload = view.findViewById(R.id.ngButtonDownload);
         textViewDepartamento = view.findViewById(R.id.textViewDepartamento);
         textViewCantHogares = view.findViewById(R.id.textViewCantHogares);
         textViewCantHistorialPago = view.findViewById(R.id.textViewCantHistorialPago);
@@ -86,12 +92,6 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        ngButtonDownload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                downloadData(adapaterItemMunicipioRecyclerView.getArrayListSelected(), spinnerDepartamento.getSelectedItem().toString());
-            }
-        });
         recyclerViewMunicipiosSave = view.findViewById(R.id.recyclerViewMunicipiosSave);
         recyclerViewMunicipiosSave.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         adpaterItemMunicipiosSaveDownload = new AdpaterItemMunicipiosSaveDownload(stringListMunicipiosSaveDownload);
@@ -101,6 +101,24 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
         findDetailDataLocal();
 
         return  view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_multiple_option, menu);
+        MenuItem searchItem = menu.findItem(R.id.searchViewFind);
+        MenuItem downloadDataItem = menu.findItem(R.id.download);
+        searchItem.setEnabled(false);
+        searchItem.setVisible(false);
+        downloadDataItem.setEnabled(true);
+        downloadDataItem.setVisible(true);
+        downloadDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                downloadData(adapaterItemMunicipioRecyclerView.getArrayListSelected(), spinnerDepartamento.getSelectedItem().toString());
+                return false;
+            }
+        });
     }
 
     @Override

@@ -10,18 +10,33 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:layout_margin="10dp"
+        android:id="@+id/linearLayoutDetail"
+        android:visibility="visible"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Departamento"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/spinnerDepartamento"/>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Municipios"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content"/>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerViewMunicipio"
                 android:scrollbars="vertical"
@@ -29,7 +44,6 @@
                 android:layout_height="200dp"/>
 
             <LinearLayout
-                android:id="@+id/linearLayoutDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
@@ -162,32 +176,14 @@
                         android:textColor="#000000"
                         android:text="10"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-                    <TextView
-                        android:id="@+id/ngButtonDownload"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="15dp"
-                        android:text="DESCARGAR"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:background="#adef8e84"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
             </LinearLayout>
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:visibility="visible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+
         </LinearLayout>
-
-
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 </FrameLayout>
