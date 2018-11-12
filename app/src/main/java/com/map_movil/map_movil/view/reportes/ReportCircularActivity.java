@@ -144,10 +144,10 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
         pieChart.getLegend().setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
         pieChart.getLegend().setForm(Legend.LegendForm.CIRCLE);
-        pieChart.setExtraTopOffset(-100);
-        pieChart.getLegend().setYOffset(50);
+        pieChart.setExtraTopOffset(-50);
+        pieChart.getLegend().setYOffset(40);
         pieChart.setDrawSliceText(false);  //Eliminacion labels del piechart
-        pieChart.getDescription().setYOffset(110);
+     //   pieChart.getDescription().setYOffset(40);
 
         da= new ApiAdapterReportes();
         service = da.getClientService();

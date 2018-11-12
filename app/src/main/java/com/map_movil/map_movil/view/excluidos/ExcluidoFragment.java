@@ -65,6 +65,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     private RelativeLayout relativeLayout;
     private LinearLayout linearLayout;
     private LinearLayout linearLayoutnodata;
+    private TextView tv_Total_Excluidos;
 
     ArrayList<PagosExcluido> planillaExcluidos;
 
@@ -99,6 +100,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
         linearLayout = view.findViewById(R.id.linearLayoutdatos);
         linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
+        tv_Total_Excluidos = view.findViewById(R.id.tv_Total_Excluidos);
 
         DepartamentoSpiner = view.findViewById(R.id.departamento);
         MunicipioSpiner = view.findViewById(R.id.municipio);
@@ -129,6 +131,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         DepartamentoSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                tv_Total_Excluidos.setText("");
                 getMunicipios(adapterView.getItemAtPosition(i).toString());
             }
 
@@ -140,6 +143,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         MunicipioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                tv_Total_Excluidos.setText("");
                 getAldeas(adapterView.getItemAtPosition(i).toString());
             }
 
@@ -152,6 +156,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         AldeaSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tv_Total_Excluidos.setText("");
                 adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
             }
 
@@ -163,6 +168,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         radGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                tv_Total_Excluidos.setText("");
                 adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
             }
         });
@@ -374,6 +380,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                     if(response.body() != null && response.body().size()>0){
                         listexcluidos= response.body();
                         adaptadorExcluidos.changeAdapater(listexcluidos);
+                        tv_Total_Excluidos.setText("Total: "+listexcluidos.size());
                         loading("datos");
                     }
                     else{
@@ -395,6 +402,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                     if(response.body() != null && response.body().size()>0){
                         listexcluidos = response.body();
                         adaptadorExcluidos.changeAdapater(listexcluidos);
+                        tv_Total_Excluidos.setText("Total: "+listexcluidos.size());
                         loading("datos");
                     }
                     else{

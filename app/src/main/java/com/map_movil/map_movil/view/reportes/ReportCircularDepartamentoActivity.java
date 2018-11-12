@@ -110,10 +110,10 @@ public class ReportCircularDepartamentoActivity extends AppCompatActivity implem
         pieChart.getLegend().setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
         pieChart.getLegend().setForm(Legend.LegendForm.CIRCLE);
-        pieChart.setExtraTopOffset(-80);
-        pieChart.getLegend().setYOffset(40);
+        pieChart.setExtraTopOffset(-40);//piechart Y axis
+        pieChart.getLegend().setYOffset(30);
         pieChart.setDrawSliceText(false);  //Eliminacion labels del piechart
-        pieChart.getDescription().setYOffset(80);
+    //    pieChart.getDescription().setYOffset(40);//descripcion Y axis
         da= new ApiAdapterReportes();
         service = da.getClientService();
 
