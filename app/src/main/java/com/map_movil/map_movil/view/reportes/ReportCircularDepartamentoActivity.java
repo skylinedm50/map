@@ -593,11 +593,11 @@ class IntValueFormatter implements IValueFormatter {
        //     Toast.makeText(this, "Abriendo PDF...", Toast.LENGTH_LONG).show();
 
             Document documento = new Document();
+
             Calendar cal = new GregorianCalendar();
-
             Date date = cal.getTime();
-
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
             File archivo = new File(getExternalFilesDir(""), tvTituloGrafico.getText()+".pdf");
             FileOutputStream ficheroPdf = new FileOutputStream(archivo);
             documento.setPageSize(PageSize.LETTER);

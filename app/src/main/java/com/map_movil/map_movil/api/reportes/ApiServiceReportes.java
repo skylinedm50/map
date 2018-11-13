@@ -1,6 +1,7 @@
 package com.map_movil.map_movil.api.reportes;
 
 import com.map_movil.map_movil.model.EstadosCantidadSolicitudes;
+import com.map_movil.map_movil.model.GestionesUsuario;
 import com.map_movil.map_movil.model.Region;
 import com.map_movil.map_movil.model.SolicitudesCantidadPorEstado;
 
@@ -22,6 +23,9 @@ public interface ApiServiceReportes {
 
     @GET("solicitudes/gestionadas/estado/resueltas")
     Call<ArrayList<SolicitudesCantidadPorEstado>>getSolicitudesRealizadas();
+
+    @GET("solicitudes/cifras/cantidad/gestiones/usuario/{cod_usuario}")
+    Call<ArrayList<GestionesUsuario>>getSolicitudesGestionadasPorUsuario(@Path("cod_usuario") int cod_usuario);
 
     @GET("solicitudes/cifras/departamento/{cod_departamento}")
     Call<ArrayList<EstadosCantidadSolicitudes>>getSolicitudesporDepartamento(@Path("cod_departamento") String cod_departamento);
