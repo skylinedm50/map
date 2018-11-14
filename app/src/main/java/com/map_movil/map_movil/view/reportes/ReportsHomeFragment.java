@@ -61,6 +61,7 @@ public class ReportsHomeFragment extends Fragment {
             default:
                 arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas.",1));
                 arrayListReport.add(new Report("Gestiones por estado", "Por cada estado.",1));
+                arrayListReport.add(new Report("Gestiones", "Por tipo de solicitud",2));
                 break;
         }
 

@@ -147,7 +147,7 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
         pieChart.setExtraTopOffset(-50);
         pieChart.getLegend().setYOffset(40);
         pieChart.setDrawSliceText(false);  //Eliminacion labels del piechart
-     //   pieChart.getDescription().setYOffset(40);
+        pieChart.getDescription().setYOffset(40);
 
         da= new ApiAdapterReportes();
         service = da.getClientService();
@@ -256,7 +256,8 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                     yVals = new ArrayList<>();
 
-                    int CantidadRealizada= Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo);
+                    int CantidadRealizada = Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)+
+                                            Func_Cantidad_Segun_Estado("No Aplicable",arreglo) + Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo);
                     int CantidadNoRealizada= Func_Total_Cantidad_No_Realizada(arreglo);
                     if(CantidadNoRealizada != 0){yVals.add(new PieEntry(CantidadNoRealizada, "NO REALIZADAS"));}
                     if(CantidadRealizada != 0){yVals.add(new PieEntry(CantidadRealizada, "REALIZADAS"));}
@@ -300,35 +301,44 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                     yVals = new ArrayList<>();
 
-
-                    if(Func_Cantidad_Segun_Estado("Denegada", arreglo)!=0) {
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Denegada", arreglo), "DENEGADAS"));
-                    }
-                    if(Func_Cantidad_Segun_Estado("En proceso", arreglo)!=0){
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("En proceso", arreglo), "EN PROCESO"));
+                    if(Func_Cantidad_Segun_Estado("Ingresada", arreglo)!=0) {
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Ingresada", arreglo), "INGRESADA"));
                     }
                     if(Func_Cantidad_Segun_Estado("Incompleta", arreglo)!=0){
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Incompleta", arreglo), "INCOMPLETAS"));
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Incompleta", arreglo), "INCOMPLETA"));
                     }
-                    if(Func_Cantidad_Segun_Estado("Ingresada", arreglo)!=0){
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Ingresada", arreglo), "INGRESADAS"));
+                    if(Func_Cantidad_Segun_Estado("No Conforme", arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("No Conforme", arreglo), "NO COMFORME"));
                     }
-                    if(Func_Cantidad_Segun_Estado("Realizada",arreglo)!=0){
-                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Realizada",arreglo), "REALIZADAS"));
+                    if(Func_Cantidad_Segun_Estado("No Aplicable", arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("No Aplicable", arreglo), "NO APLICABLE"));
+                    }
+                    if(Func_Cantidad_Segun_Estado("Procesando",arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Procesando",arreglo), "PROCESANDO"));
+                    }
+                    if(Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo), "RESUELTA CONFORME"));
+                    }
+                    if(Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo), "RESUELTA NO CONFORME"));
+                    }
+                    if(Func_Cantidad_Segun_Estado("Resuelta Parcialmente",arreglo)!=0){
+                        yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta Parcialmente",arreglo), "RESUELTA PARCIALMENTE"));
                     }
 
                     pieChart.getDescription().setText("TOTAL SOLICITUDES: " + Func_Total_Cantidad(arreglo));
-                    colores = new ArrayList<>();
 
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[0]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[1]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[2]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
-                    colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
 
                     dataset = new PieDataSet(yVals, null);
                     dataset.setSliceSpace(3f);
-                    dataset.setColors(colores);
+                    dataset.setColors(new int[] {Color.rgb(102, 255, 204)
+                            ,Color.rgb(255, 255, 153)
+                            ,Color.rgb(128, 179, 255)
+                            ,Color.rgb(92, 214, 92) //Verde
+                            ,Color.rgb(255, 153, 51)
+                            ,Color.rgb(210,105,30)
+                            ,Color.rgb(205,0,205)
+                            ,Color.rgb(188,143,143)});
                     dataset.setValueTextSize(15f);
                     dataset.setValueFormatter(new IntValueFormatter());
 
@@ -443,7 +453,10 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
                             ,Color.rgb(255, 255, 153)
                             ,Color.rgb(128, 179, 255)
                             ,Color.rgb(92, 214, 92) //Verde
-                            ,Color.rgb(255, 153, 51)});
+                            ,Color.rgb(255, 153, 51)
+                            ,Color.rgb(188,143,143)
+                            ,Color.rgb(210,105,30)
+                            ,Color.rgb(205,0,205)});
 
                     dataset.setValueTextSize(15f);
                     dataset.setValueFormatter(new IntValueFormatter());
@@ -521,11 +534,8 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
             final Date dtFinal = Formato.parse(Final);
 
             pieChart.clear();
-            pieChart.setHoleRadius(40f);
-            pieChart.setRotationEnabled(true);
             pieChart.animateY(1400);
-            pieChart.setTransparentCircleAlpha(110);
-            pieChart.setTransparentCircleRadius(50f);
+
 
 
 
@@ -549,7 +559,8 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                         yVals = new ArrayList<>();
 
-                        int CantidadRealizada= Func_Cantidad_Segun_Estado("Realizada",arreglo);
+                        int CantidadRealizada = Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)+
+                                                Func_Cantidad_Segun_Estado("No Aplicable",arreglo) + Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo);
                         int CantidadNoRealizada= Func_Total_Cantidad_No_Realizada(arreglo);
 
 
@@ -558,8 +569,9 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                         pieChart.getDescription().setText("TOTAL SOLICITUDES: "+ Func_Total_Cantidad(arreglo));
                         colores = new ArrayList<>();
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
+
                         colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
+                        colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
 
                         dataset = new PieDataSet(yVals,"");
                         dataset.setSliceSpace(3f);
@@ -602,37 +614,46 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                         yVals = new ArrayList<>();
 
-                        if(Func_Cantidad_Segun_Estado("Denegada", arreglo)!= 0) {
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Denegada", arreglo), "DENEGADAS"));
+                        if(Func_Cantidad_Segun_Estado("Ingresada", arreglo)!=0) {
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Ingresada", arreglo), "INGRESADA"));
                         }
-                        if(Func_Cantidad_Segun_Estado("En proceso", arreglo)!= 0){
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("En proceso", arreglo), "EN PROCESO"));
+                        if(Func_Cantidad_Segun_Estado("Incompleta", arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Incompleta", arreglo), "INCOMPLETA"));
                         }
-                        if(Func_Cantidad_Segun_Estado("Incompleta", arreglo)!= 0){
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Incompleta", arreglo), "INCOMPLETAS"));
+                        if(Func_Cantidad_Segun_Estado("No Conforme", arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("No Conforme", arreglo), "NO COMFORME"));
                         }
-                        if(Func_Cantidad_Segun_Estado("Ingresada", arreglo)!= 0){
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Ingresada", arreglo), "INGRESADAS"));
+                        if(Func_Cantidad_Segun_Estado("No Aplicable", arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("No Aplicable", arreglo), "NO APLICABLE"));
                         }
-                        if(Func_Cantidad_Segun_Estado("Realizada",arreglo)!= 0){
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Realizada",arreglo), "REALIZADAS"));
+                        if(Func_Cantidad_Segun_Estado("Procesando",arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Procesando",arreglo), "PROCESANDO"));
+                        }
+                        if(Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo), "RESUELTA CONFORME"));
+                        }
+                        if(Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo), "RESUELTA NO CONFORME"));
+                        }
+                        if(Func_Cantidad_Segun_Estado("Resuelta Parcialmente",arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta Parcialmente",arreglo), "RESUELTA PARCIALMENTE"));
                         }
 
 
                         pieChart.getDescription().setText("TOTAL SOLICITUDES: "+ Func_Total_Cantidad(arreglo));
 
-                        colores = new ArrayList<>();
-
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[0]);
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[1]);
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[2]);
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
 
 
                         dataset = new PieDataSet(yVals, null);
                         dataset.setSliceSpace(3f);
-                        dataset.setColors(colores);
+                        dataset.setColors(new int[] {Color.rgb(102, 255, 204)
+                                ,Color.rgb(255, 255, 153)
+                                ,Color.rgb(128, 179, 255)
+                                ,Color.rgb(92, 214, 92) //Verde
+                                ,Color.rgb(255, 153, 51)
+                                ,Color.rgb(188,143,143)
+                                ,Color.rgb(210,105,30)
+                                ,Color.rgb(205,0,205)});
                         dataset.setValueTextSize(15f);
                         dataset.setValueFormatter(new IntValueFormatter());
 
@@ -671,16 +692,18 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                         yVals = new ArrayList<>();
 
-                        int CantidadRealizada= Func_Cantidad_Segun_Estado("Realizada",arreglo);
-                        int CantidadNoRealizada= Func_Total_Cantidad_No_Realizada(arreglo);
+                        int CantidadRealizada = Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)+
+                                                Func_Cantidad_Segun_Estado("No Aplicable",arreglo) + Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo);
+                        int CantidadNoRealizada = Func_Total_Cantidad_No_Realizada(arreglo);
 
                         if(CantidadNoRealizada != 0){yVals.add(new PieEntry(CantidadNoRealizada, "NO REALIZADAS"));}
                         if(CantidadRealizada != 0){yVals.add(new PieEntry(CantidadRealizada, "REALIZADAS"));}
 
                         pieChart.getDescription().setText("TOTAL SOLICITUDES: "+ Func_Total_Cantidad(arreglo));
                         colores = new ArrayList<>();
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
+
                         colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
+                        colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
 
                         dataset = new PieDataSet(yVals,"");
                         dataset.setSliceSpace(3f);
@@ -724,37 +747,44 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
 
                         yVals = new ArrayList<>();
 
-                        if(Func_Cantidad_Segun_Estado("Denegada", arreglo)!= 0) {
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Denegada", arreglo), "DENEGADAS"));
+                        if(Func_Cantidad_Segun_Estado("Ingresada", arreglo)!=0) {
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Ingresada", arreglo), "INGRESADA"));
                         }
-                        if(Func_Cantidad_Segun_Estado("En proceso", arreglo)!= 0){
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("En proceso", arreglo), "EN PROCESO"));
+                        if(Func_Cantidad_Segun_Estado("Incompleta", arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Incompleta", arreglo), "INCOMPLETA"));
                         }
-                        if(Func_Cantidad_Segun_Estado("Incompleta", arreglo)!= 0){
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Incompleta", arreglo), "INCOMPLETAS"));
+                        if(Func_Cantidad_Segun_Estado("No Conforme", arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("No Conforme", arreglo), "NO COMFORME"));
                         }
-                        if(Func_Cantidad_Segun_Estado("Ingresada", arreglo)!= 0){
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Ingresada", arreglo), "INGRESADAS"));
+                        if(Func_Cantidad_Segun_Estado("No Aplicable", arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("No Aplicable", arreglo), "NO APLICABLE"));
                         }
-                        if(Func_Cantidad_Segun_Estado("Realizada",arreglo)!= 0){
-                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Realizada",arreglo), "REALIZADAS"));
+                        if(Func_Cantidad_Segun_Estado("Procesando",arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Procesando",arreglo), "PROCESANDO"));
+                        }
+                        if(Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo), "RESUELTA CONFORME"));
+                        }
+                        if(Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo), "RESUELTA NO CONFORME"));
+                        }
+                        if(Func_Cantidad_Segun_Estado("Resuelta Parcialmente",arreglo)!=0){
+                            yVals.add(new PieEntry(Func_Cantidad_Segun_Estado("Resuelta Parcialmente",arreglo), "RESUELTA PARCIALMENTE"));
                         }
 
 
                         pieChart.getDescription().setText("TOTAL SOLICITUDES: "+ Func_Total_Cantidad(arreglo));
 
-                        colores = new ArrayList<>();
-
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[0]);
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[1]);
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[2]);
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[3]);
-                        colores.add(ColorTemplate.VORDIPLOM_COLORS[4]);
-
-
                         dataset = new PieDataSet(yVals, null);
                         dataset.setSliceSpace(3f);
-                        dataset.setColors(colores);
+                        dataset.setColors(new int[] {Color.rgb(102, 255, 204)
+                                ,Color.rgb(255, 255, 153)
+                                ,Color.rgb(128, 179, 255)
+                                ,Color.rgb(92, 214, 92) //Verde
+                                ,Color.rgb(255, 153, 51)
+                                ,Color.rgb(188,143,143)
+                                ,Color.rgb(210,105,30)
+                                ,Color.rgb(205,0,205)});
                         dataset.setValueTextSize(15f);
                         dataset.setValueFormatter(new IntValueFormatter());
 
@@ -786,13 +816,7 @@ public class ReportCircularActivity extends AppCompatActivity implements  DatePi
         tvFecha_Final.setText(Formato_Fecha);
 
         pieChart.clear();
-        pieChart.setHoleRadius(40f);
-        pieChart.setRotationEnabled(true);
         pieChart.animateXY(1500,1500);
-        pieChart.setTransparentCircleAlpha(110);
-        pieChart.setTransparentCircleRadius(50f);
-
-
 
         Func_Generar_Grafico();
 

@@ -348,7 +348,8 @@ class IntValueFormatter implements IValueFormatter {
 
                 yVals = new ArrayList<>();
 
-                int CantidadRealizada= Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo);
+                int CantidadRealizada = Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)+
+                                        Func_Cantidad_Segun_Estado("No Aplicable",arreglo)+Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo);
                 int CantidadNoRealizada= Func_Total_Cantidad_No_Realizada(arreglo);
                 if(CantidadNoRealizada != 0){yVals.add(new PieEntry(CantidadNoRealizada, "NO REALIZADAS"));}
                 if(CantidadRealizada != 0){yVals.add(new PieEntry(CantidadRealizada, "REALIZADAS"));}
@@ -392,7 +393,8 @@ class IntValueFormatter implements IValueFormatter {
 
                 yVals = new ArrayList<>();
 
-                int CantidadRealizada= Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo);
+                int CantidadRealizada = Func_Cantidad_Segun_Estado("Resuelta Conforme",arreglo)+
+                                        Func_Cantidad_Segun_Estado("No Aplicable",arreglo)+Func_Cantidad_Segun_Estado("Resuelta No Conforme",arreglo);
                 int CantidadNoRealizada= Func_Total_Cantidad_No_Realizada(arreglo);
                 if(CantidadNoRealizada != 0){yVals.add(new PieEntry(CantidadNoRealizada, "NO REALIZADAS"));}
                 if(CantidadRealizada != 0){yVals.add(new PieEntry(CantidadRealizada, "REALIZADAS"));}
@@ -472,7 +474,10 @@ class IntValueFormatter implements IValueFormatter {
                         ,Color.rgb(255, 255, 153)
                         ,Color.rgb(128, 179, 255)
                         ,Color.rgb(92, 214, 92) //Verde
-                        ,Color.rgb(255, 153, 51)});
+                        ,Color.rgb(255, 153, 51)
+                        ,Color.rgb(188,143,143)
+                        ,Color.rgb(210,105,30)
+                        ,Color.rgb(205,0,205)});
 
                 dataset.setValueTextSize(15f);
                 dataset.setValueFormatter(new IntValueFormatter());
@@ -538,7 +543,10 @@ class IntValueFormatter implements IValueFormatter {
                         ,Color.rgb(255, 255, 153)
                         ,Color.rgb(128, 179, 255)
                         ,Color.rgb(92, 214, 92) //Verde
-                        ,Color.rgb(255, 153, 51),ColorTemplate.MATERIAL_COLORS[2],ColorTemplate.VORDIPLOM_COLORS[2],ColorTemplate.VORDIPLOM_COLORS[0]});
+                        ,Color.rgb(255, 153, 51)
+                        ,Color.rgb(188,143,143)
+                        ,Color.rgb(210,105,30)
+                        ,Color.rgb(205,0,205)});
 
                 dataset.setValueTextSize(15f);
                 dataset.setValueFormatter(new IntValueFormatter());
