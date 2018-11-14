@@ -33,6 +33,7 @@ import com.map_movil.map_movil.view.reportes.ReportsHomeFragment;
 import com.map_movil.map_movil.view.sincronizar.SincronizarFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
+import com.map_movil.map_movil.view.help.HelpFragment;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -225,6 +226,13 @@ public class HomeActivity extends AppCompatActivity
                 if (intCodItemSelect != id) {
                     ExcluidoFragment excluidoFragment = new ExcluidoFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, excluidoFragment).commit();
+                }
+            }else if (id == R.id.nav_help) {
+                showContentScreenHome(false);
+                showToolbar("Ayuda");
+                if (intCodItemSelect != id) {
+                    HelpFragment helpFragment = new HelpFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, helpFragment).commit();
                 }
             }
             cleanFragmmentViewGroup();

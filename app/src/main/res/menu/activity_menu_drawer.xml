@@ -86,6 +86,10 @@
                 android:enabled="false"
                 android:visible="false"
                 android:title="Notificaciones"/>
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="Ayuda"/>
         </menu>
     </item>
     <group
