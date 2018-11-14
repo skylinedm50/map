@@ -55,6 +55,8 @@ public class ReportsHomeFragment extends Fragment {
                 arrayListReport.add(new Report("Gestiones por estado Departamento/Region", "Por cada estado.",0));
                 arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas.",1));
                 arrayListReport.add(new Report("Gestiones por estado", "Por cada estado.",1));
+             //   arrayListReport.add(new Report("Tiempo de respuesta", "De las solicitudes",2));
+                arrayListReport.add(new Report("Gestiones", "Por tipo de solicitud",2));
                 break;
             default:
                 arrayListReport.add(new Report("Gestiones resueltas", "Realizadas/No realizadas.",1));
@@ -79,15 +81,16 @@ public class ReportsHomeFragment extends Fragment {
             public void onitemClick(int position) {
            //     if(intCodRolUser == 2 || intCodRolUser == 4 || intCodRolUser == 5 || intCodRolUser == 8){
                     //}else if(position == 2 || position == 3){
+                String Nombre_Grafico = arrayListReport.get(position).getStrNombre()+ " " + arrayListReport.get(position).getStrDescripcion();
                 if (arrayListReport.get(position).getTipoGrafico() == 0) {
-                    String Nombre_Grafico = arrayListReport.get(position).getStrNombre() + " " + arrayListReport.get(position).getStrDescripcion();
+
                     Intent intent = new Intent(view.getContext(), ReportCircularDepartamentoActivity.class);
                     intent.putExtra("Nombre_Grafico", Nombre_Grafico);
                     startActivity(intent);
                     //      }else if(intCodRolUser != 2 || intCodRolUser != 4 || intCodRolUser != 5 || intCodRolUser != 8){
                     //if(position == 0 || position == 1){
                 }else if(arrayListReport.get(position).getTipoGrafico() == 1) {
-                    String Nombre_Grafico = arrayListReport.get(position).getStrNombre()+ " " + arrayListReport.get(position).getStrDescripcion();
+
                     Intent intent = new Intent(view.getContext(), ReportCircularActivity.class);
                     intent.putExtra("Nombre_Grafico",Nombre_Grafico);
                     intent.putExtra("Codigo_Usuario", intCodUser);
@@ -95,8 +98,12 @@ public class ReportsHomeFragment extends Fragment {
                     startActivity(intent);
                // }else if((intCodRolUser == 2 || intCodRolUser == 4 || intCodRolUser == 5 || intCodRolUser == 8) && position == 3123){
                }else if(arrayListReport.get(position).getTipoGrafico() == 2){
+
                     Intent intent = new Intent(view.getContext(), ReportBarActivity.class);
+                    intent.putExtra("Nombre_Grafico",Nombre_Grafico);
+                    intent.putExtra("Codigo_Usuario", intCodUser);
                     intent.putExtra("Nombre_Usuario",strNombreUser);
+
                     startActivity(intent);
                 }
             }

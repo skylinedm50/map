@@ -110,10 +110,10 @@ public class ReportCircularDepartamentoActivity extends AppCompatActivity implem
         pieChart.getLegend().setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         pieChart.getLegend().setOrientation(Legend.LegendOrientation.VERTICAL);
         pieChart.getLegend().setForm(Legend.LegendForm.CIRCLE);
-        pieChart.setExtraTopOffset(-80);
-        pieChart.getLegend().setYOffset(40);
+        pieChart.setExtraTopOffset(-40);//piechart Y axis
+        pieChart.getLegend().setYOffset(30);
         pieChart.setDrawSliceText(false);  //Eliminacion labels del piechart
-        pieChart.getDescription().setYOffset(80);
+    //    pieChart.getDescription().setYOffset(40);//descripcion Y axis
         da= new ApiAdapterReportes();
         service = da.getClientService();
 
@@ -593,11 +593,11 @@ class IntValueFormatter implements IValueFormatter {
        //     Toast.makeText(this, "Abriendo PDF...", Toast.LENGTH_LONG).show();
 
             Document documento = new Document();
+
             Calendar cal = new GregorianCalendar();
-
             Date date = cal.getTime();
-
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
             File archivo = new File(getExternalFilesDir(""), tvTituloGrafico.getText()+".pdf");
             FileOutputStream ficheroPdf = new FileOutputStream(archivo);
             documento.setPageSize(PageSize.LETTER);
