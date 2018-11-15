@@ -17,6 +17,7 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.api.ApiConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -68,12 +69,12 @@ public class HelpFragment extends Fragment{
 
                 switch(text) {
                     case "Video 1":
-                        openvid("https://www.youtube.com/watch?v=Fa9lkRJlb_4");
+                        openvid("https://www.youtube.com/watch?v=JkiuROK5oNw");
                         break;
-                    case "Video 2":
+                    case "Video 2 (Sin link)":
                         break;
                     case "Manual MAP":
-                        downloadpdf("http://192.168.41.8:82/areas/siap/MAP/AppRepository/manual_usuario_app_map.pdf");
+                        downloadpdf(ApiConfig.strURLDocument + ":82/areas/siap/MAP/AppRepository/manual_usuario_app_map.pdf");
                         break;
                     default:
                         break;

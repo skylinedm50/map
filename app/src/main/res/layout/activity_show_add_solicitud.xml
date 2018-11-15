@@ -597,18 +597,27 @@
                     android:id="@+id/linearLayoutObserEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="50dp"
+                    android:orientation="vertical"
                     android:visibility="gone">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Observación:"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_height="wrap_content"/>
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
                         <android.support.design.widget.TextInputEditText
                             android:id="@+id/textEditObservacion"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Observación"
                             android:textColorHint="@color/colorPrimary"
                             android:textSize="15sp"
+                            android:minHeight="60dp"
                             android:maxLines="8"
                             android:textStyle="bold"/>
                     </android.support.design.widget.TextInputLayout>
@@ -625,12 +634,12 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.7">
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
                             android:text="Observación:"
-                            android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"

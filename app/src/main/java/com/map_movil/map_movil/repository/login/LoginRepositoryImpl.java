@@ -38,7 +38,6 @@ public class LoginRepositoryImpl implements LoginRepository{
         call.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-
                 if(response.body() != null && response.body().size() > 0){
                     userList = response.body();
                     setTokenNotification();
@@ -88,12 +87,5 @@ public class LoginRepositoryImpl implements LoginRepository{
                         });
                     }
                 });
-        /*JsonObject jsonObject = new JsonObject();
-        JsonArray jsonArray = new JsonArray();
-        for(int i = 0; i < userList.size(); i++){
-            jsonArray.add(userList.get(i).getPermisos());
-        }
-        jsonObject.add ("permisos",jsonArray);
-        objLoginPresenter.showDataUser(userList.get(0), jsonObject);*/
     }
 }

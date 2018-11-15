@@ -1,6 +1,5 @@
 package com.map_movil.map_movil.api.notificacion;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.model.Oficiona;
 import com.map_movil.map_movil.model.Region;
@@ -25,6 +24,6 @@ public interface ApiServiceNotificacion {
     @GET("notificaciones/usuarios/oficina/{oficina}")
     Call<ArrayList<User>> getUsuariosWithTokenForNotification(@Path("oficina") int intCodOficina);
 
-    @POST("notificaciones/send")
+    @POST("notificaciones/device/send")
     Call<ResponseApi> sendNotification(@Body JsonObject jsonObject);
 }

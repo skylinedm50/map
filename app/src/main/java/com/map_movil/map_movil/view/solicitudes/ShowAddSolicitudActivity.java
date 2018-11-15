@@ -253,16 +253,19 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         solicitudesDownload.setBaja_programa(checkBoxBajaPrograma.isChecked());
         solicitudesDownload.setCorreccion_sancion(checkBoxCorrecionSancion.isChecked());
         solicitudesDownload.setReactiva_programa(checkBoxReactivaPrograma.isChecked());
-        solicitudesDownload.setObservacion((textInputEditTextObservacion.getText().toString().equals(null) || (textInputEditTextObservacion.getText().toString().equals("")))? "SIN OBSERVACION": textInputEditTextObservacion.getText().toString());
+        solicitudesDownload.setObservacion(textInputEditTextObservacion.getText().toString());
 
         if(!solicitudesDownload.isActualizacion_datos() && !solicitudesDownload.isCambio_titular() &&
                 !solicitudesDownload.isNuevo_integrante() && !solicitudesDownload.isBaja_integrante() &&
                 !solicitudesDownload.isCambio_domicilio() && !solicitudesDownload.isBaja_programa() &&
                 !solicitudesDownload.isReactiva_programa() && !solicitudesDownload.isCorreccion_sancion()) {
             Toast.makeText(getApplicationContext(), "ERROR: Favor seleccionar uno o más tipos de solicitudes.", Toast.LENGTH_SHORT).show();
-        }else{
-            for(HogarLigth item: hogarLigthsList){
-                if(item.isBolTitular() == true){
+        } else if (solicitudesDownload.getObservacion().equals(null) || solicitudesDownload.getObservacion().isEmpty()
+                || solicitudesDownload.getObservacion().length() < 15) {
+            Toast.makeText(getApplicationContext(), "ERROR: Favor ingresar una observación, recuerde al menos debe contener 15 caracteres.", Toast.LENGTH_SHORT).show();
+        } else {
+            for (HogarLigth item : hogarLigthsList) {
+                if (item.isBolTitular() == true) {
                     showAddSolicitudAcitivityPresenter.saveSolicitud(solicitudesDownload, item, intCodUser);
                 }
             }

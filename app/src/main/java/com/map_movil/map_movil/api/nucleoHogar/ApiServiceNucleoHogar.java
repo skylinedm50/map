@@ -15,9 +15,6 @@ public interface ApiServiceNucleoHogar {
     @GET("hogares")
     Call<List<Hogar_Validar>> getDatosNucleo(@Query("json") String json);
 
-    @GET("hogares")
-    Call<String> getDatosNucleo2(@Query("json") String json);
-
     @GET("hogares/hogar/pagos/municipio")
     Call<List<HistorialPago>> getHistorialPago(@Query("json") String json);
 
