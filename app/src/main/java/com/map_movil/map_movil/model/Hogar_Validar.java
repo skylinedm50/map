@@ -1,7 +1,6 @@
-package com.map_movil.map_movil.model.Realm;
+package com.map_movil.map_movil.model;
 
 import com.google.gson.annotations.SerializedName;
-
 import io.realm.RealmObject;
 
 public class Hogar_Validar extends RealmObject{

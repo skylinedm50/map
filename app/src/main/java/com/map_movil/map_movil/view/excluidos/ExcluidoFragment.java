@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -32,10 +31,12 @@ import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
 import com.map_movil.map_movil.model.Pagos;
 import com.map_movil.map_movil.model.PagosExcluido;
+import com.map_movil.map_movil.model.PagosProgramados;
 import com.map_movil.map_movil.presenter.planilla.PlanillaPresenter;
 import com.map_movil.map_movil.presenter.planilla.PlanillaPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
+import com.map_movil.map_movil.view.planilla.PlanillaView;
 import com.map_movil.map_movil.view.ubicacion.UbicacionView;
 
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         view = inflater.inflate(R.layout.fragment_excluido, container, false);
 
         this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
-        this.planillaPresenter = new PlanillaPresenterImpl(this);
+        this.planillaPresenter = new PlanillaPresenterImpl(this , getContext());
         this.SpinnerMapDepto = new HashMap<Integer, String>();
         this.SpinnerMapMuni = new HashMap<Integer, String>();
         this.SpinnerMapAldea = new HashMap<Integer, String>();
@@ -265,6 +266,16 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.PagosSpiner.setAdapter(adapter);
         adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
+    }
+
+    @Override
+    public void SolicitarDatosProgramados(String strCodAldea, String strCodpago) {
+
+    }
+
+    @Override
+    public void MostarDatosProgramados(ArrayList<PagosProgramados> pagosProgramados) {
+
     }
 
     @Override

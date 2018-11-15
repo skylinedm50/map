@@ -13,8 +13,8 @@ import com.map_movil.map_movil.api.quejas.ApiServicesQuejas;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
 import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
 import com.map_movil.map_movil.model.HistorialPago;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
-import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
+import com.map_movil.map_movil.model.Hogar_Validar;
+import com.map_movil.map_movil.model.QuejasDenuncias;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.presenter.downloadData.DownloadDataFragmentPresenter;
 

@@ -32,11 +32,10 @@ import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.HogarActualizaciones;
 import com.map_movil.map_movil.model.HogarInformacion;
 import com.map_movil.map_movil.model.NucleoHogar;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validar;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
 import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;

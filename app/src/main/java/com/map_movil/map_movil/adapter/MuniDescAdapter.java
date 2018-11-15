@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.map_movil.map_movil.R;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validar;
 
 import java.util.List;
 

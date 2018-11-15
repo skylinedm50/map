@@ -6,7 +6,7 @@ import com.google.gson.JsonArray;
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.api.quejas.ApiAdapterQuejas;
 import com.map_movil.map_movil.api.quejas.ApiServicesQuejas;
-import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
+import com.map_movil.map_movil.model.QuejasDenuncias;
 import com.map_movil.map_movil.model.ResponseApi;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenter;
 import java.util.ArrayList;
@@ -82,9 +82,9 @@ public class QuejasRepositoryImpl implements QuejasRepository {
 
     @Override
     public void ListarQuejasOffline() {
-
         ArrayList<QuejasDenuncias> lista = new ArrayList<>();
         IncluirQuejasOffline(lista , 0);
+
     }
 
     public void IncluirQuejasOffline(final ArrayList<QuejasDenuncias> Lista , final int proceso){

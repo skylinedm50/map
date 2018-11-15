@@ -3,8 +3,8 @@ package com.map_movil.map_movil.repository.local.validar_hogares;
 import android.content.Context;
 
 import com.map_movil.map_movil.Realm.RealmConfig;
-import com.map_movil.map_movil.model.Realm.Hogar_Validaciones_Realizadas;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validaciones_Realizadas;
+import com.map_movil.map_movil.model.Hogar_Validar;
 import com.map_movil.map_movil.presenter.validar_hogares.ValidarNucleoPresenter;
 import io.realm.RealmResults;
 import io.realm.Sort;

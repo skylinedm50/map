@@ -2,7 +2,7 @@ package com.map_movil.map_movil.api.nucleoHogar;
 
 import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.Municipios;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validar;
 
 import java.util.List;
 

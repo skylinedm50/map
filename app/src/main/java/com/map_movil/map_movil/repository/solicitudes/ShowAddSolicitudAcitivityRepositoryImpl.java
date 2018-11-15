@@ -11,7 +11,7 @@ import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
 import com.map_movil.map_movil.model.HogarByTitular;
 import com.map_movil.map_movil.model.HogarLigth;
 import com.map_movil.map_movil.model.InfoSolicitud;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validar;
 import com.map_movil.map_movil.model.ResponseApi;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.presenter.solicitud.ShowAddSolicitudAcitivityPresenter;

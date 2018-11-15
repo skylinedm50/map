@@ -2,8 +2,10 @@ package com.map_movil.map_movil.view.programados;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatSpinner;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,18 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.support.v7.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.map_movil.map_movil.R;
-import com.map_movil.map_movil.api.planilla.ApiAdapterPlanilla;
-import com.map_movil.map_movil.api.planilla.ApiServicePlanilla;
+import com.map_movil.map_movil.adapter.AdaptadorProgramados;
+import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
 import com.map_movil.map_movil.model.Pagos;
@@ -33,23 +32,14 @@ import com.map_movil.map_movil.presenter.planilla.PlanillaPresenter;
 import com.map_movil.map_movil.presenter.planilla.PlanillaPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
-import com.map_movil.map_movil.view.excluidos.PlanillaView;
+import com.map_movil.map_movil.view.planilla.PlanillaView;
 import com.map_movil.map_movil.view.ubicacion.UbicacionView;
-
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class ProgramadosFragment extends Fragment implements PlanillaView, UbicacionView, SearchView.OnQueryTextListener {
 
-public class ProgramadosFragment extends Fragment implements PlanillaView, UbicacionView, SearchView.OnQueryTextListener{
     private View view;
     private UbicacionesPresenter ubicacionesPresenter;
     private PlanillaPresenter pagosPresenter;
@@ -65,29 +55,28 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     private LinearLayout linearLayout;
     private LinearLayout linearLayoutnodata;
 
-    private ApiAdapterPlanilla adapterProgramados;
-    private ApiServicePlanilla serviceProgramados;
-
     private HashMap<Integer, String> SpinnerMapDepto;
     private HashMap<Integer, String> SpinnerMapMuni;
     private HashMap<Integer, String> SpinnerMapAldea;
     private HashMap<Integer, String> SpinnerMapPagos;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
-    public ProgramadosFragment() {
-    }
-
+    public ProgramadosFragment(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_programados, container, false);
-        this.context = view.getContext();
+
+        this.view                 = inflater.inflate(R.layout.fragment_programados, container, false);
+        this.context              = this.view.getContext();
         this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
-        this.pagosPresenter = new PlanillaPresenterImpl(this);
-        this.SpinnerMapDepto = new HashMap<Integer, String>();
-        this.SpinnerMapMuni = new HashMap<Integer, String>();
-        this.SpinnerMapAldea = new HashMap<Integer, String>();
-        this.SpinnerMapPagos = new HashMap<Integer, String>();
+        this.pagosPresenter       = new PlanillaPresenterImpl(this , getContext());
+        this.swipeRefreshLayout   = (SwipeRefreshLayout) view.findViewById(R.id.swiperefreshprogramados);
+        this.SpinnerMapDepto      = new HashMap<Integer, String>();
+        this.SpinnerMapMuni       = new HashMap<Integer, String>();
+        this.SpinnerMapAldea      = new HashMap<Integer, String>();
+        this.SpinnerMapPagos      = new HashMap<Integer, String>();
+
         relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
         linearLayout = view.findViewById(R.id.linearLayoutdatos);
         linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
@@ -105,9 +94,20 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
             @Override
             public void onClick(View v) {
                 loading("search");
-                findProgramados(SpinnerMapAldea.get(AldeaSpiner.getSelectedItemPosition()),SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()));
+                SolicitarDatosProgramados( AldeaSpiner.getSelectedItem().toString().split("-")[0] ,
+                                           SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()) );
             }
         });
+
+        this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loading("search");
+                SolicitarDatosProgramados(  AldeaSpiner.getSelectedItem().toString().split("-")[0],
+                        SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()) );
+            }
+        });
+
         PagosSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -162,6 +162,7 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
         this.getDepartamentos();
         this.getPagos();
 
+        BroadCastInternet.subscribeForMessageInternet(view.getContext(), view);
         setHasOptionsMenu(true);
         return view;
     }
@@ -175,31 +176,6 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
         searchView.setQueryHint("Buscar por titular...");
 
         super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    private void findProgramados(String strCodAldea, String strCodpago){
-        adapterProgramados=new ApiAdapterPlanilla();
-        serviceProgramados=adapterProgramados.getClientService();
-
-
-        Call<ArrayList<PagosProgramados>> call = serviceProgramados.getPagosProgramados(strCodpago,strCodAldea);
-        call.enqueue(new Callback<ArrayList<PagosProgramados>>() {
-            public void onResponse(Call<ArrayList<PagosProgramados>> call, Response<ArrayList<PagosProgramados>> response) {
-                if(response.body() != null && response.body().size()>0){
-                    listPagos = response.body();
-                    adaptadorProgramados.changeAdapater(listPagos);
-                    loading("datos");
-                }else{
-                    loading("no_data");
-                }
-            }
-            @Override
-            public void onFailure(Call<ArrayList<PagosProgramados>> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
     }
 
     private void loading(String estado){
@@ -228,7 +204,6 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void getPagos() {
@@ -284,31 +259,25 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     @Override
     public void cargarAldeas(List<Aldeas> aldeas) {
         List<String> spinner =  new ArrayList<String>();
-        this.SpinnerMapAldea.clear();
 
         for(int x = 0; x < aldeas.size(); x++){
-            spinner.add(aldeas.get(x).getDesc_aldea());
-            this.SpinnerMapAldea.put(x ,aldeas.get(x).getCod_aldea());
+            spinner.add(aldeas.get(x).getCod_aldea()+"-"+aldeas.get(x).getDesc_aldea());
         }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this.getContext(), android.R.layout.simple_dropdown_item_1line, spinner);
+                getContext(), android.R.layout.simple_dropdown_item_1line, spinner);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.AldeaSpiner.setAdapter(adapter);
     }
 
     @Override
-    public void getCaserios(String aldea) {
-
-    }
+    public void getCaserios(String aldea) { }
 
     @Override
-    public void cargarCaserios(List<Caserios> caserios) {
-
-    }
+    public void cargarCaserios(List<Caserios> caserios) { }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-
         return false;
     }
 
@@ -318,54 +287,20 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
         return false;
     }
 
+    @Override
+    public void SolicitarDatosProgramados(String strCodAldea, String strCodpago) {
+        this.pagosPresenter.getProgramados(strCodAldea , strCodpago);
+    }
 
-    public class AdaptadorProgramados extends BaseAdapter {
-        private Context context;
-        private ArrayList<PagosProgramados> listPagos;
-
-        public AdaptadorProgramados(Context context, ArrayList<PagosProgramados> listPagos) {
-            this.context = context;
-            this.listPagos = listPagos;
-        }
-
-        @Override
-        public int getCount() {
-            return listPagos.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return listPagos.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            PagosProgramados Item = (PagosProgramados) getItem(position);
-
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_planilla_programado,null);
-            TextView textViewNombre     = (TextView) convertView.findViewById(R.id.Nombre_Persona) ;
-            TextView textViewIdentidad  = (TextView) convertView.findViewById(R.id.Identidad_Persona) ;
-            TextView textViewMontoPagar = (TextView) convertView.findViewById(R.id.monto_pagar) ;
-            TextView textViewCodhoga    = (TextView) convertView.findViewById(R.id.codhogar) ;
-            TextView textViewcaserio    = (TextView) convertView.findViewById(R.id.caserio) ;
-
-            textViewNombre.setText(Item.getStrnombre_titular());
-            textViewCodhoga.setText("CÓDIGO HOGAR : " + Item.getStrcodigo_hogar());
-            textViewcaserio.setText("CASERIO : " + Item.getStrdesc_caserio());
-            textViewIdentidad.setText(Item.getStridentidad_titular());
-            textViewMontoPagar.setText("MONTO PROGRAMANDO : "+ NumberFormat.getCurrencyInstance().format(Integer.parseInt( Item.getIntmonto_pagar() )).replace("$","L") );
-
-            return convertView;
-        }
-
-        public void changeAdapater(ArrayList<PagosProgramados> listExcluidos){
-            this.listPagos = listExcluidos;
-            notifyDataSetChanged();
+    @Override
+    public void MostarDatosProgramados(ArrayList<PagosProgramados> pagosProgramados) {
+        listPagos = pagosProgramados;
+        adaptadorProgramados.changeAdapater(listPagos);
+        this.swipeRefreshLayout.setRefreshing(false);
+        if(pagosProgramados.size()>0){
+            loading("datos");
+        }else{
+            loading("no_data");
         }
     }
 

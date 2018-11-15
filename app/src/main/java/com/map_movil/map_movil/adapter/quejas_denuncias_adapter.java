@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.map_movil.map_movil.R;
-import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
+import com.map_movil.map_movil.model.QuejasDenuncias;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenter;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenterImpl;
 import com.map_movil.map_movil.view.Quejas.NuevaQuejaActivity;

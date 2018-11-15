@@ -3,7 +3,7 @@ package com.map_movil.map_movil.api.hogar;
 import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.HogarByTitular;
 import com.map_movil.map_movil.model.HogarLigth;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validar;
 
 import java.util.ArrayList;
 

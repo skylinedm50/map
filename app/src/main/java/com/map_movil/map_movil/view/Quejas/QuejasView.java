@@ -1,8 +1,7 @@
 package com.map_movil.map_movil.view.Quejas;
 
 
-import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
-
+import com.map_movil.map_movil.model.QuejasDenuncias;
 import java.util.ArrayList;
 
 public interface QuejasView {

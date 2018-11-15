@@ -27,7 +27,7 @@ public class RealmConfig {
         strDate = sharedPreferences.getString("fechaLogin", "");
 
         createPassword();
-        config = new RealmConfiguration.Builder().encryptionKey(byteKey).build();
+        config = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().encryptionKey(byteKey).build();
 
         this.realm = Realm.getInstance(config);
         //realm = Realm.getDefaultInstance();

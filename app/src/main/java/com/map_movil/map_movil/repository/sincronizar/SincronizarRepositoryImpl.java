@@ -8,8 +8,7 @@ import com.map_movil.map_movil.api.quejas.ApiAdapterQuejas;
 import com.map_movil.map_movil.api.quejas.ApiServicesQuejas;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
 import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
-import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
+import com.map_movil.map_movil.model.QuejasDenuncias;
 import com.map_movil.map_movil.model.ResponseApi;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.presenter.sincronizar.SincronizarPresenter;
@@ -56,7 +55,7 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                 jsonQuejasDenuncias.addProperty("Usuario" , String.valueOf(usuario));
                 jsonQuejasDenuncias.addProperty("Observacion_solicitud" , queja.get(i).getObservacion());
                 jsonQuejasDenuncias.addProperty("Tipo_gestion"          , String.valueOf(queja.get(i).getCodigo_gestion()));
-                jsonQuejasDenuncias.addProperty("Caserio"     , queja.get(i).getCaserio());
+                jsonQuejasDenuncias.addProperty("Caserio"   , queja.get(i).getCaserio());
                 jsonQuejasDenuncias.addProperty("Identidad" , queja.get(i).getIdentidad());
                 jsonQuejasDenuncias.addProperty("Nombre1"   ,
                         (queja.get(i).getAnonimo() == 1 || NombreSolicitante.length < 1)?"": NombreSolicitante[0].toUpperCase());
@@ -86,16 +85,13 @@ public class SincronizarRepositoryImpl implements SincronizarRepository {
                                 queja.deleteAllFromRealm();
                                 sincronizarPresenter.EventoCompletado(2);
                                 int result;
-                                RealmResults<QuejasDenuncias> queja = realmConfig.getRealm().where(QuejasDenuncias.class)
-                                        .equalTo("Offline" , 1)
-                                        .findAll();
 
                                 RealmResults<SolicitudesDownload> solicitudes  = realmConfig.getRealm()
                                         .where(SolicitudesDownload.class)
                                         .equalTo("isLocal", true)
                                         .findAll();
 
-                                result = (queja.size() > 0 || solicitudes.size()>0)?10:11;
+                                result = (solicitudes.size()>0)?10:11;
 
                                 sincronizarPresenter.EventoCompletado(result);
 

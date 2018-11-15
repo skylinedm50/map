@@ -6,7 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.interactor.Quejas.QuejasInteractoImpl;
 import com.map_movil.map_movil.interactor.Quejas.QuejasInteractor;
-import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
+import com.map_movil.map_movil.model.QuejasDenuncias;
 import com.map_movil.map_movil.view.Quejas.QuejasOfflineView;
 import com.map_movil.map_movil.view.Quejas.QuejasView;
 

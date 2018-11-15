@@ -1,4 +1,4 @@
-package com.map_movil.map_movil.model.Realm;
+package com.map_movil.map_movil.model;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Date;

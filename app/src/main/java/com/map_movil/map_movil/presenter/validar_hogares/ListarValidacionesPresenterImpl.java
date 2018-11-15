@@ -4,8 +4,7 @@ import android.content.Context;
 
 import com.map_movil.map_movil.interactor.validar_hogares.ListarValidacionesInteractor;
 import com.map_movil.map_movil.interactor.validar_hogares.ListarValidacionesInteractorImpl;
-import com.map_movil.map_movil.model.Realm.Hogar_Validaciones_Realizadas;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validar;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesView;
 
 import java.util.ArrayList;

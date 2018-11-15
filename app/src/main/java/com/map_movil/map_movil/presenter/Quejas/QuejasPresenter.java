@@ -1,6 +1,6 @@
 package com.map_movil.map_movil.presenter.Quejas;
 
-import com.map_movil.map_movil.model.Realm.QuejasDenuncias;
+import com.map_movil.map_movil.model.QuejasDenuncias;
 import java.util.ArrayList;
 
 public interface QuejasPresenter {

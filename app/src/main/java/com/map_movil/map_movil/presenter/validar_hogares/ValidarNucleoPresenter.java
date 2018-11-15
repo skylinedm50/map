@@ -1,7 +1,7 @@
 package com.map_movil.map_movil.presenter.validar_hogares;
 
-import com.map_movil.map_movil.model.Realm.Hogar_Validaciones_Realizadas;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validaciones_Realizadas;
+import com.map_movil.map_movil.model.Hogar_Validar;
 
 import io.realm.RealmResults;
 

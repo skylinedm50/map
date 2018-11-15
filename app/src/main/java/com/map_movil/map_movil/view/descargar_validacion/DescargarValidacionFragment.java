@@ -18,7 +18,7 @@ import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
 import com.map_movil.map_movil.model.HistorialPago;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validar;
 import com.map_movil.map_movil.presenter.descargarvalidacion.DescargarValidacionPresenter;
 import com.map_movil.map_movil.presenter.descargarvalidacion.DescargarValidacionPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionPresenterImpl;

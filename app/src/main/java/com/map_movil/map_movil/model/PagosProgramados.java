@@ -7,7 +7,7 @@ public class PagosProgramados {
     private String strPago_nombre;
 
     @SerializedName("tit_hogar")
-    private String strcodigo_hogar;
+    private int strcodigo_hogar;
 
     @SerializedName("cod_departamento")
     private String strcod_departamento;
@@ -36,7 +36,7 @@ public class PagosProgramados {
     @SerializedName("tit_monto_total_red")
     private String intmonto_pagar;
 
-    public PagosProgramados(String strPago_nombre, String strcodigo_hogar, String strcod_departamento, String strdesc_departamento, String strcod_municipio, String strdesc_municipio,
+    public PagosProgramados(String strPago_nombre, int strcodigo_hogar, String strcod_departamento, String strdesc_departamento, String strcod_municipio, String strdesc_municipio,
                             String strdesc_caserio, String strdesc_aldea, String strnombre_titular , String stridentidad_titular , String intmonto_pagar) {
         this.strPago_nombre = strPago_nombre;
         this.strcodigo_hogar = strcodigo_hogar;
@@ -55,7 +55,7 @@ public class PagosProgramados {
         return strPago_nombre;
     }
 
-    public String getStrcodigo_hogar() {
+    public int getStrcodigo_hogar() {
         return strcodigo_hogar;
     }
 

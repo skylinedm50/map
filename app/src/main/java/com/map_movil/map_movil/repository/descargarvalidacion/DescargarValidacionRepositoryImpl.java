@@ -4,7 +4,7 @@ package com.map_movil.map_movil.repository.descargarvalidacion;
 import com.map_movil.map_movil.api.hogar.ApiAdapterHogar;
 import com.map_movil.map_movil.api.hogar.ApiServiceHogar;
 import com.map_movil.map_movil.model.HistorialPago;
-import com.map_movil.map_movil.model.Realm.Hogar_Validar;
+import com.map_movil.map_movil.model.Hogar_Validar;
 import com.map_movil.map_movil.presenter.descargarvalidacion.DescargarValidacionPresenter;
 import java.util.ArrayList;
 import retrofit2.Call;
