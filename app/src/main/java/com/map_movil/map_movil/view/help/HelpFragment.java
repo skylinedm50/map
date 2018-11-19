@@ -68,8 +68,8 @@ public class HelpFragment extends Fragment{
                 String text= (String) listView.getExpandableListAdapter().getChild(groupPosition,childPosition).toString();
 
                 switch(text) {
-                    case "Video 1":
-                        openvid("https://www.youtube.com/watch?v=JkiuROK5oNw");
+                    case "Crear Solicitud y Carga de Imagen(web).":
+                        openvid("https://youtu.be/w5fAyF1paVE");
                         break;
                     case "Video 2 (Sin link)":
                         break;
@@ -154,8 +154,7 @@ public class HelpFragment extends Fragment{
 
 
         List<String> videos=new ArrayList<>();
-        videos.add("Video 1");
-        videos.add("Video 2");
+        videos.add("Crear Solicitud y Carga de Imagen(web).");
 
         List<String> manuales=new ArrayList<>();
         manuales.add("Manual MAP");
