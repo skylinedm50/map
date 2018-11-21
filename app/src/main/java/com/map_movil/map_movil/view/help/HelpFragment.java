@@ -68,10 +68,14 @@ public class HelpFragment extends Fragment{
                 String text= (String) listView.getExpandableListAdapter().getChild(groupPosition,childPosition).toString();
 
                 switch(text) {
-                    case "Crear Solicitud y Carga de Imagen(web).":
+                    case "Crear Solicitud y Carga de Imagen.":
                         openvid("https://youtu.be/w5fAyF1paVE");
                         break;
-                    case "Video 2 (Sin link)":
+                    case "Crear Queja y Carga de Imagen.":
+                        openvid("https://youtu.be/COx_u8X9h5U");
+                        break;
+                    case "Crear Solicitud.":
+                        openvid("https://youtu.be/qUdda1e873M");
                         break;
                     case "Manual MAP":
                         downloadpdf(ApiConfig.strURLDocument + ":82/areas/siap/MAP/AppRepository/manual_usuario_app_map.pdf");
@@ -149,19 +153,25 @@ public class HelpFragment extends Fragment{
         listDataHeader = new ArrayList<>();
         listHash=new HashMap<>();
 
-        listDataHeader.add("Video Tutoriales");
+        listDataHeader.add("Video Tutoriales (web)");
+        listDataHeader.add("Video Tutoriales (app)");
         listDataHeader.add("Manuales");
 
 
         List<String> videos=new ArrayList<>();
-        videos.add("Crear Solicitud y Carga de Imagen(web).");
+        videos.add("Crear Solicitud y Carga de Imagen.");
+        videos.add("Crear Queja y Carga de Imagen.");
+
+        List<String> videosapp=new ArrayList<>();
+        videosapp.add("Crear Solicitud.");
 
         List<String> manuales=new ArrayList<>();
         manuales.add("Manual MAP");
 
 
         listHash.put(listDataHeader.get(0),videos);
-        listHash.put(listDataHeader.get(1),manuales);
+        listHash.put(listDataHeader.get(1),videosapp);
+        listHash.put(listDataHeader.get(2),manuales);
 
     }
 }
