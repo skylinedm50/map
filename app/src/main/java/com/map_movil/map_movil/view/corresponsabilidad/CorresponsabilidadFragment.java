@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,8 @@ import com.map_movil.map_movil.api.corresponsabilidad.ApiAdapterCorresponsabilid
 import com.map_movil.map_movil.api.corresponsabilidad.ApiServiceCorresponsabilidad;
 import com.map_movil.map_movil.model.Corresponsabilidades;
 import com.map_movil.map_movil.model.CorresponsabilidadesClearByMenor;
+import com.map_movil.map_movil.presenter.corresponsabilidad.corresponsabilidadpresenter;
+import com.map_movil.map_movil.presenter.corresponsabilidad.corresponsabilidadpresenterimpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,13 +39,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CorresponsabilidadFragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
-    private View view;
-    private ApiAdapterCorresponsabilidad adapterCorresponsabilidad;
-    private ApiServiceCorresponsabilidad serviceCorresponsabilidad;
+public class CorresponsabilidadFragment extends Fragment implements SearchView.OnQueryTextListener,
+        MenuItem.OnActionExpandListener, corresponsabilidadview {
 
-    private ArrayList<Corresponsabilidades> listCorresponsabilidad = new ArrayList<>();
-    private AdaptadorCorresponsabilidad adaptadorcorresponsabilidad;
+    private View view;
     private LinearLayout linearLayoutInicial;
     private LinearLayout linearLayouttitular;
     private TextView textViewFindinfo;
@@ -49,9 +50,12 @@ public class CorresponsabilidadFragment extends Fragment implements SearchView.O
     private TextView textViewHogar;
     private String NombreTitular;
     private String CodHogar;
-    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-    ArrayList <CorresponsabilidadesClearByMenor> listShowCorresponsabilidad;
-    RecyclerView recyclerCorresponsabilidad;
+    private corresponsabilidadpresenter corresponsabilidadpresenter;
+    private LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+    private RecyclerView recyclerCorresponsabilidad;
+    private AdaptadorCorresponsabilidad adaptadorcorresponsabilidad;
+    private ProgressBar progressBar;
+    private RelativeLayout lyCorr;
 
     public CorresponsabilidadFragment() {
     }
@@ -60,12 +64,17 @@ public class CorresponsabilidadFragment extends Fragment implements SearchView.O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_corresponsabilidad, container, false);
-        linearLayoutInicial=view.findViewById(R.id.linearLayoutinfosearch);
-        linearLayouttitular=view.findViewById(R.id.llinfhogar);
-        textViewFindinfo=view.findViewById(R.id.textViewMessageFind);
-        textViewTitular = view.findViewById(R.id.textViewtitular);
-        textViewHogar=view.findViewById(R.id.textViewhogar);
+
+        this.corresponsabilidadpresenter = new corresponsabilidadpresenterimpl(getContext() , this);
+        this.view = inflater.inflate(R.layout.fragment_corresponsabilidad, container, false);
+        this.linearLayoutInicial= (LinearLayout) view.findViewById(R.id.linearLayoutinfosearch);
+        this.linearLayouttitular= (LinearLayout)view.findViewById(R.id.llinfhogar);
+        this.textViewFindinfo= (TextView) view.findViewById(R.id.textViewMessageFind);
+        this.textViewTitular = (TextView) view.findViewById(R.id.textViewtitular);
+        this.textViewHogar= (TextView) view.findViewById(R.id.textViewhogar);
+        this.recyclerCorresponsabilidad = (RecyclerView)view.findViewById(R.id.rv_personas_validar);
+        this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        this.lyCorr = (RelativeLayout) view.findViewById(R.id.ly_corr);
 
         setHasOptionsMenu(true);
         return view;
@@ -103,213 +112,46 @@ public class CorresponsabilidadFragment extends Fragment implements SearchView.O
         return false;
     }
 
-    private void findDataShowMessage(Boolean find){
-        String strTextMessage = "Ingrese el numero de identidad para buscar las corresponsabilidades asociadas.";
+
+    @Override
+    public void findCorrByTitular(String strCodIdentidad) {
+        this.lyCorr.setVisibility(View.GONE);
+        this.progressBar.setVisibility(View.VISIBLE);
+        this.corresponsabilidadpresenter.findCorrByTitular(strCodIdentidad);
+    }
+
+    @Override
+    public void showdata( ArrayList <CorresponsabilidadesClearByMenor>  corresponsabilidades , String NombreTitular , String CodHogar) {
+           this.NombreTitular = NombreTitular;
+           this.CodHogar = CodHogar;
+
+        recyclerCorresponsabilidad.setLayoutManager(linearLayoutManager);
+        adaptadorcorresponsabilidad = new AdaptadorCorresponsabilidad(corresponsabilidades);
+        recyclerCorresponsabilidad.setAdapter(adaptadorcorresponsabilidad);
+        recyclerCorresponsabilidad.setHasFixedSize(true);
+        findDataShowMessage("",true);
+    }
+
+    @Override
+    public void findDataShowMessage(String error , Boolean find) {
+      //  String strTextMessage = "Ingrese el numero de identidad para buscar las corresponsabilidades asociadas.";
+
+        this.lyCorr.setVisibility(View.VISIBLE);
+        this.progressBar.setVisibility(View.GONE);
 
         if(find == true){
             textViewTitular.setText("TITULAR: "+ NombreTitular);
-            textViewHogar.setText("HOGAR: "+CodHogar);
+            textViewHogar.setText("HOGAR: "+ CodHogar);
             linearLayoutInicial.setVisibility(View.GONE);
             recyclerCorresponsabilidad.setVisibility(View.VISIBLE);
             linearLayouttitular.setVisibility(View.VISIBLE);
         }else{
-            strTextMessage = "No se encontraron datos";
             recyclerCorresponsabilidad.setVisibility(View.GONE);
             linearLayouttitular.setVisibility(View.GONE);
             linearLayoutInicial.setVisibility(View.VISIBLE);
-            textViewFindinfo.setText(strTextMessage);
+            textViewFindinfo.setText(error);
             textViewFindinfo.setGravity(Gravity.CENTER);
         }
-
-    }
-
-    private void findCorrByTitular(String strCodIdentidad){
-
-        adapterCorresponsabilidad = new ApiAdapterCorresponsabilidad();
-        serviceCorresponsabilidad = adapterCorresponsabilidad.getClientService();
-        listShowCorresponsabilidad = new ArrayList<>();
-        recyclerCorresponsabilidad = view.findViewById(R.id.rv_personas_validar);
-        recyclerCorresponsabilidad.setLayoutManager(new LinearLayoutManager(getContext()));
-        adaptadorcorresponsabilidad = new AdaptadorCorresponsabilidad(listShowCorresponsabilidad);
-
-
-        final List<Map<String, String>> data = new ArrayList<>();
-        Call<ArrayList<Corresponsabilidades>> call = serviceCorresponsabilidad.getCorresponsabilidadInfo(strCodIdentidad);
-
-        call.enqueue(new Callback<ArrayList<Corresponsabilidades>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Corresponsabilidades>> call, Response<ArrayList<Corresponsabilidades>> response) {
-                if(response.body() != null && response.body().size()>0){
-                    listCorresponsabilidad = response.body();
-                    List<String> persona = new ArrayList<>();
-
-
-                    //eliminar per persona repetido
-                    for(Corresponsabilidades item: listCorresponsabilidad){
-                        if (persona.isEmpty()){
-                            persona.add(item.getPer_persona());
-                            NombreTitular=item.getStrTitular();
-                            CodHogar=item.getSrtHogar();
-
-                        }else{
-                            if(!persona.contains(item.getPer_persona())){
-                                persona.add(item.getPer_persona());
-                            }
-                        }
-                    }
-
-                    //crear nuevo array sin data repetida
-                    int  contador;
-                    for(int x=0;x<persona.size();x++) {
-                        contador=0;
-                        Map<String, String> map = new HashMap<String, String>();
-                        for(Corresponsabilidades item: listCorresponsabilidad){
-                            String perPersona = persona.get(x);
-                            if(perPersona.equals(item.getPer_persona())){
-                                String parcial = new String(item.getStrCorresponsabilidad().toString());
-                                if (parcial.equals("ASISTENCIA I (PARCIAL I y PARCIAL II)")){
-                                    if (!map.containsKey("ASISTENCIA I (PARCIAL I y PARCIAL II)")){
-                                        if (!map.containsKey("YearRegistro")){
-                                            map.put(item.getStrCorresponsabilidad(), item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialI",item.getStrEstadoCorr());
-                                            map.put("YearRegistro", item.getStrYear());
-                                        }
-                                        else if (map.get("YearRegistro").equals(item.getStrYear()) ){
-                                            map.put(item.getStrCorresponsabilidad(), item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialIB",item.getStrEstadoCorr());
-                                        }
-                                        else{
-                                            map.put("ASISTENCIA IB (PARCIAL I y PARCIAL II)", item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialIIB",item.getStrEstadoCorr());
-                                            map.put("YearRegistroB", item.getStrYear());
-                                        }
-                                    }
-                                    if (!map.containsKey("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)")){
-                                        if (map.get("YearRegistro").equals(item.getStrYear()) ){
-                                            map.put(item.getStrCorresponsabilidad(), item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialI",item.getStrEstadoCorr());
-                                        }
-                                        else{
-                                            map.put("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)", item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialIIB",item.getStrEstadoCorr());
-                                            map.put("YearRegistroB", item.getStrYear());
-                                        }
-                                        /*
-                                        map.put("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)", item.getStrDiasfaltantes());
-                                        map.put("EstadoParcialIIB",item.getStrEstadoCorr());
-                                        map.put("YearRegistroB", item.getStrYear());*/
-                                    }
-                                }
-
-                                if (parcial.equals("ASISTENCIA II (PARCIAL III y PARCIAL IV)")){
-                                    if (!map.containsKey("ASISTENCIA II (PARCIAL III y PARCIAL IV)")){
-                                        if (!map.containsKey("YearRegistro")){
-                                            map.put(item.getStrCorresponsabilidad(), item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialII",item.getStrEstadoCorr());
-                                            map.put("YearRegistro", item.getStrYear());
-                                        }
-                                        else if (map.get("YearRegistro").equals(item.getStrYear()) ){
-                                            map.put(item.getStrCorresponsabilidad(), item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialII",item.getStrEstadoCorr());
-                                        }
-                                        else{
-                                            map.put("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)", item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialIIB",item.getStrEstadoCorr());
-                                        }
-                                    }
-                                    if (!map.containsKey("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)")){
-                                        if (map.get("YearRegistro").equals(item.getStrYear()) ){
-                                            map.put(item.getStrCorresponsabilidad(), item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialII",item.getStrEstadoCorr());
-                                        }
-                                        else{
-                                            map.put("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)", item.getStrDiasfaltantes());
-                                            map.put("EstadoParcialIIB",item.getStrEstadoCorr());
-                                            map.put("YearRegistroB", item.getStrYear());
-                                        }
-                                    }
-                                }
-
-                                String Visitamedica = item.getStrVisita();
-                                if(!Visitamedica.equals("NO APLICA")){
-                                    map.put("VisitaIngreso",item.getStrIngresoVIsita());
-                                    map.put("Visitafecha"+contador,item.getStrVisita());
-                                    map.put("VisitaCod"+contador,item.getStrCodVisita());
-                                    contador++;
-                                }
-                                if(!item.getStrMatricula().equals("NO APLICA")){
-                                    map.put("matricula", item.getStrMatricula());
-                                }
-                                map.put("PerPersona", item.getPer_persona().toString());
-                                map.put("nombre", item.getStrNombre());
-                                map.put("titular", item.getStrTitular());
-                                map.put("identidad", item.getStrIdentidad());
-                                map.put("edad", item.getStrEdad().toString());
-                                map.put("sexo", item.getStrSexo());
-
-
-                            }}
-                        if (!map.containsKey("matricula")){
-                            map.put("matricula", "NO APLICA");
-                        }
-                        if (!map.containsKey("VisitaIngreso")){
-                            map.put("VisitaIngreso", "N/D");
-                        }
-                        if (!map.containsKey("ASISTENCIA I (PARCIAL I y PARCIAL II)")){
-                            map.put("ASISTENCIA I (PARCIAL I y PARCIAL II)", "ND");
-                            map.put("EstadoParcialI","N/D");
-                        }
-                        if (!map.containsKey("ASISTENCIA II (PARCIAL III y PARCIAL IV)")){
-                            map.put("ASISTENCIA II (PARCIAL III y PARCIAL IV)", "ND");
-                            map.put("EstadoParcialII","N/D");
-                        }
-
-                        if (!map.containsKey("ASISTENCIA IB (PARCIAL I y PARCIAL II)")){
-                            map.put("ASISTENCIA IB (PARCIAL I y PARCIAL II)", "ND");
-                            map.put("EstadoParcialIB","N/D");
-                        }
-                        if (!map.containsKey("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)")){
-                            map.put("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)", "ND");
-                            map.put("EstadoParcialIIB","N/D");
-                        }
-                        if (!map.containsKey("YearRegistro")){
-                            map.put("YearRegistro","N/D");
-                        }
-                        if (!map.containsKey("YearRegistroB")){
-                            map.put("YearRegistroB","N/D");
-                        }
-                        for(int i=0;i<6;i++){
-                            if (!map.containsKey("VisitaCod"+i)){
-                                map.put("Visitafecha"+i,"N/D");
-                                map.put("VisitaCod"+i,"N/D");
-                            }
-                        }
-                        data.add(x, map);
-                    }
-                    recyclerCorresponsabilidad = view.findViewById(R.id.rv_personas_validar);
-                    recyclerCorresponsabilidad.setLayoutManager(linearLayoutManager);
-                    adaptadorcorresponsabilidad = new AdaptadorCorresponsabilidad(listShowCorresponsabilidad);
-                    recyclerCorresponsabilidad.setAdapter(adaptadorcorresponsabilidad);
-                    recyclerCorresponsabilidad.setHasFixedSize(true);
-                    findDataShowMessage(true);
-                }
-                else{
-                    findDataShowMessage(false);
-                }
-
-                for (Map<String, String> entry : data) {
-                    listShowCorresponsabilidad.add(new CorresponsabilidadesClearByMenor(entry.get("PerPersona"),entry.get("nombre"),entry.get("identidad"),entry.get("edad"),entry.get("sexo"),entry.get("matricula"),entry.get("YearRegistro"),entry.get("VisitaIngreso"),entry.get("ASISTENCIA I (PARCIAL I y PARCIAL II)"),entry.get("ASISTENCIA II (PARCIAL III y PARCIAL IV)"), entry.get("EstadoParcialI"), entry.get("EstadoParcialII"), entry.get("Visitafecha0"), entry.get("VisitaCod0"), entry.get("Visitafecha1"), entry.get("VisitaCod1"), entry.get("Visitafecha2"), entry.get("VisitaCod2"), entry.get("Visitafecha3"), entry.get("VisitaCod3"), entry.get("Visitafecha4"), entry.get("VisitaCod4"), entry.get("Visitafecha5"), entry.get("VisitaCod5"), entry.get("ASISTENCIA IB (PARCIAL I y PARCIAL II)"), entry.get("ASISTENCIA IIB (PARCIAL III y PARCIAL IV)"), entry.get("EstadoParcialIB"), entry.get("EstadoParcialIIB"), entry.get("YearRegistroB")));
-                }
-
-            }
-            @Override
-            public void onFailure(Call<ArrayList<Corresponsabilidades>> call, Throwable t) {
-                /* showProgressBar(false);*/
-                findDataShowMessage(false);
-
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 

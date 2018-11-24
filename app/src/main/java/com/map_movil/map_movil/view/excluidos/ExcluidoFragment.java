@@ -66,7 +66,6 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     private RelativeLayout relativeLayout;
     private LinearLayout linearLayout;
     private LinearLayout linearLayoutnodata;
-    private TextView tv_Total_Excluidos;
 
     ArrayList<PagosExcluido> planillaExcluidos;
 
@@ -101,7 +100,6 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
         linearLayout = view.findViewById(R.id.linearLayoutdatos);
         linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
-        tv_Total_Excluidos = view.findViewById(R.id.tv_Total_Excluidos);
 
         DepartamentoSpiner = view.findViewById(R.id.departamento);
         MunicipioSpiner = view.findViewById(R.id.municipio);
@@ -132,7 +130,6 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         DepartamentoSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                tv_Total_Excluidos.setText("");
                 getMunicipios(adapterView.getItemAtPosition(i).toString());
             }
 
@@ -144,7 +141,6 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         MunicipioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                tv_Total_Excluidos.setText("");
                 getAldeas(adapterView.getItemAtPosition(i).toString());
             }
 
@@ -157,7 +153,6 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         AldeaSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tv_Total_Excluidos.setText("");
                 adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
             }
 
@@ -169,7 +164,6 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         radGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                tv_Total_Excluidos.setText("");
                 adaptadorExcluidos.changeAdapater(new ArrayList<PagosExcluido>());
             }
         });
@@ -321,16 +315,35 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
             PagosExcluido Item = (PagosExcluido) getItem(position);
 
             convertView = LayoutInflater.from(context).inflate(R.layout.item_planilla_excluido,null);
+            RelativeLayout ryExcuidos = (RelativeLayout) convertView.findViewById(R.id.ry_cantidad);
+            TextView CantidadExcuidos = (TextView) convertView.findViewById(R.id.cantidad_hogares);
             TextView textViewNombre = convertView.findViewById(R.id.Nombre_Persona) ;
             TextView textViewCodhoga = convertView.findViewById(R.id.codhogar) ;
             TextView textViewcaserio = convertView.findViewById(R.id.caserio) ;
             TextView textViewrazon = convertView.findViewById(R.id.razon) ;
+            LinearLayout divider         = (LinearLayout) convertView.findViewById(R.id.divider_excluidos);
 
             textViewNombre.setText(Item.getStrnombre_titular());
             textViewCodhoga.setText("CÓDIGO HOGAR : " + Item.getStrcodigo_hogar());
             textViewcaserio.setText("CASERIO : " + Item.getStrdesc_caserio());
             textViewrazon.setText("RAZÓN DE LA EXCLUSIÓN : " + Item.getStrrazon_exclusion());
 
+            if(position == 0){
+                ryExcuidos.setVisibility(View.VISIBLE);
+                CantidadExcuidos.setText(String.valueOf(listExcluidos.size())+" Hogares");
+            }else{
+                ryExcuidos.setVisibility(View.GONE);
+            }
+
+            if(position == listExcluidos.size() -1 ){
+                LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT ,1);
+                layoutParams.setMargins(0,0,0,400);
+                divider.setLayoutParams(layoutParams);
+            }else{
+                LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT , 1);
+                layoutParams.setMargins(0,0,0,0);
+                divider.setLayoutParams(layoutParams);
+            }
             return convertView;
         }
 
@@ -391,7 +404,6 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                     if(response.body() != null && response.body().size()>0){
                         listexcluidos= response.body();
                         adaptadorExcluidos.changeAdapater(listexcluidos);
-                        tv_Total_Excluidos.setText("Total: "+listexcluidos.size());
                         loading("datos");
                     }
                     else{
@@ -413,7 +425,6 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
                     if(response.body() != null && response.body().size()>0){
                         listexcluidos = response.body();
                         adaptadorExcluidos.changeAdapater(listexcluidos);
-                        tv_Total_Excluidos.setText("Total: "+listexcluidos.size());
                         loading("datos");
                     }
                     else{

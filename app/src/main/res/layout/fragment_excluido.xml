@@ -100,13 +100,6 @@
             android:layout_marginTop="5dp"
             android:text="BUSCAR" />
 
-        <TextView
-            android:id="@+id/tv_Total_Excluidos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
-
         <ListView
             android:layout_width="match_parent"
             android:id="@+id/listaexcluidos"
