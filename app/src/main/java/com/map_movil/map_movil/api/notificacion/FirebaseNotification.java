@@ -1,7 +1,9 @@
 package com.map_movil.map_movil.api.notificacion;
 
+
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
@@ -31,7 +33,6 @@ public class FirebaseNotification extends FirebaseMessagingService {
 
         showNotification(notification);
 
-
 /*
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
@@ -46,14 +47,18 @@ public class FirebaseNotification extends FirebaseMessagingService {
 
 
     private void showNotification(Notification notification){
+        //Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
         Uri uriSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder  notificationBuilder = new NotificationCompat.Builder(this, "0")
                 .setContentTitle(notification.getStrTitle())
                 .setContentText(notification.getStrDescription())
+                //.setLargeIcon(BitmapFactory.decodeResource(this.getResources(), android.R.drawable.ic_dialog_info))
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setAutoCancel(true)
                 .setSound(uriSound)
-                .setVibrate(new long[] { 1000, 1000, 1000, 1000 })
+                .setVibrate(new long[] { 1000, 500, 500})
+
                 /*.setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(""))*/
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -61,5 +66,8 @@ public class FirebaseNotification extends FirebaseMessagingService {
 
         NotificationManagerCompat notificationManagerCompat  = NotificationManagerCompat.from(this);
         notificationManagerCompat.notify(0, notificationBuilder.build());
+
+        //vibrator.vibrate( 1000);
+
     }
 }

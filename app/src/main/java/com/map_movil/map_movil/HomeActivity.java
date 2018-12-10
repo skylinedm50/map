@@ -27,6 +27,7 @@ import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFrag
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
 import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
+import com.map_movil.map_movil.view.notificacion.EmisionHomeFragment;
 import com.map_movil.map_movil.view.notificacion.NotificacionFragment;
 import com.map_movil.map_movil.view.programados.ProgramadosFragment;
 import com.map_movil.map_movil.view.reportes.ReportsHomeFragment;
@@ -208,10 +209,15 @@ public class HomeActivity extends AppCompatActivity
                 }
             } else if (id == R.id.nav_notification) {
                 showContentScreenHome(false);
-                showToolbar("Notificación");
+                showToolbar("Emisiones");
                 if (intCodItemSelect != id) {
-                    NotificacionFragment notificacionFragment = new NotificacionFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, notificacionFragment).commit();
+                    ViewCompat.setElevation(findViewById(R.id.appBar), 0);
+                    EmisionHomeFragment emisionHomeFragment = new EmisionHomeFragment();
+                    emisionHomeFragment.intCodRol = sharedPreferences.getInt("rol", 0);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, emisionHomeFragment).commit();
+
+                    /*NotificacionFragment notificacionFragment = new NotificacionFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, notificacionFragment).commit();*/
                 }
             } else if (id == R.id.nav_programmed) {
                 showContentScreenHome(false);

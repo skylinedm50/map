@@ -50,8 +50,6 @@ public class SolicitudHomeFragment extends Fragment {
 
         TabLayout tabLayout = view.findViewById(R.id.tabs);
 
-
-
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
@@ -80,10 +78,10 @@ public class SolicitudHomeFragment extends Fragment {
 
             switch (sectionNumber){
                 case 1:
-                    fragment.strSimbolo ="resueltas";
+                    fragment.strSimbolo = "resueltas";
                     break;
                 case 2:
-                    fragment.strSimbolo ="noResueltas";
+                    fragment.strSimbolo = "noResueltas";
                     break;
             }
             return fragment;

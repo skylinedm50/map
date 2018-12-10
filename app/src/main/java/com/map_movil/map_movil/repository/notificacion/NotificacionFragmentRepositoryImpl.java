@@ -102,7 +102,7 @@ public class NotificacionFragmentRepositoryImpl implements NotificacionFragmentR
     }
 
     @Override
-    public void sendNotificacion(ArrayList<String> arrayListUsuarios, String strNotificacion) {
+    public void sendNotificacion(ArrayList<String> arrayListUsuarios, String strNotificacion, int intCodUser, int intCodOffice) {
         JsonArray jsonArray = new JsonArray();
         JsonObject jsonObjectDataSend = new JsonObject();
 
@@ -112,16 +112,18 @@ public class NotificacionFragmentRepositoryImpl implements NotificacionFragmentR
             jsonArray.add(jsonObject);
         }
 
-        jsonObjectDataSend.addProperty("notification", strNotificacion);
+        jsonObjectDataSend.addProperty("message", strNotificacion);
+        jsonObjectDataSend.addProperty("type_broadcast", 1);
+        jsonObjectDataSend.addProperty("office", intCodOffice);
+        jsonObjectDataSend.addProperty("emitter", intCodUser);
         jsonObjectDataSend.add("users", jsonArray);
 
         Call<ResponseApi> call = apiServiceNotificacion.sendNotification(jsonObjectDataSend);
         call.enqueue(new Callback<ResponseApi>() {
             @Override
             public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
-                notificacionFragmentPresenter.showProgressBar(false);
                 if (response.isSuccessful() && response.body().getIntState() == 1) {
-                    notificacionFragmentPresenter.showMessage("Notificación enviada.");
+                    notificacionFragmentPresenter.closeActivity();
                 } else {
                     notificacionFragmentPresenter.showMessage("No se logro enviar la notificación.");
                 }
@@ -129,7 +131,6 @@ public class NotificacionFragmentRepositoryImpl implements NotificacionFragmentR
 
             @Override
             public void onFailure(Call<ResponseApi> call, Throwable t) {
-                notificacionFragmentPresenter.showProgressBar(false);
                 notificacionFragmentPresenter.showMessage(t.getMessage());
             }
         });

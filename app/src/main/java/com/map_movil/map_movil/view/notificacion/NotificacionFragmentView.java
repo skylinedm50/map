@@ -12,4 +12,5 @@ public interface NotificacionFragmentView {
 
     void showMessage(String strMessage);
     void showProgressBar(boolean bolValue);
+    void closeActivity();
 }

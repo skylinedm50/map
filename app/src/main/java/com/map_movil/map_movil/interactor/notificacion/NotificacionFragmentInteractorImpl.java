@@ -32,7 +32,7 @@ public class NotificacionFragmentInteractorImpl implements  NotificacionFragment
     }
 
     @Override
-    public void sendNotificacion(ArrayList<String> arrayListUsuarios, String strNotificacion) {
-        notificacionFragmentRepository.sendNotificacion(arrayListUsuarios, strNotificacion);
+    public void sendNotificacion(ArrayList<String> arrayListUsuarios, String strNotificacion, int intCodUser, int intCodOffice) {
+        notificacionFragmentRepository.sendNotificacion(arrayListUsuarios, strNotificacion, intCodUser, intCodOffice);
     }
 }

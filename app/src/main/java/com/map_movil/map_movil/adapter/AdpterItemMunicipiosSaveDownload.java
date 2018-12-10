@@ -6,18 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.map_movil.map_movil.R;
 
 import java.util.List;
 
-public class AdpaterItemMunicipiosSaveDownload extends RecyclerView.Adapter<AdpaterItemMunicipiosSaveDownload.ViewHolder> {
+public class AdpterItemMunicipiosSaveDownload extends RecyclerView.Adapter<AdpterItemMunicipiosSaveDownload.ViewHolder> {
     private List<String> stringList;
     private Context context;
 
-    public AdpaterItemMunicipiosSaveDownload(List<String> stringList){
+    public AdpterItemMunicipiosSaveDownload(List<String> stringList){
         this.stringList = stringList;
         this.context = context;
     }

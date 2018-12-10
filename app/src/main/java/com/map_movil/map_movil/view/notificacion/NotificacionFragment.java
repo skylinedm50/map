@@ -1,5 +1,6 @@
 package com.map_movil.map_movil.view.notificacion;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
@@ -38,6 +39,8 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
     private AdapterItemUsuarioRecyclerView adapterItemUsuarioRecyclerView;
     private LinearLayout linearLayoutData;
     private ProgressBar progressBar;
+    private SharedPreferences sharedPreferences;
+    private MenuItem sendDataItem;
 
     public NotificacionFragment() {
     }
@@ -63,6 +66,7 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
         textInputEditTextNotificacion = view.findViewById(R.id.textInputEditTextNotificacion);
         linearLayoutData = view.findViewById(R.id.linearLayoutData);
         progressBar =  view.findViewById(R.id.progressBar);
+        sharedPreferences = view.getContext().getSharedPreferences("USER", view.getContext().MODE_PRIVATE);
 
         spinnerRegiones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -101,7 +105,7 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
        inflater.inflate(R.menu.menu_multiple_option, menu);
        MenuItem searchItem = menu.findItem(R.id.searchViewFind);
-       MenuItem sendDataItem = menu.findItem(R.id.sendData);
+       sendDataItem = menu.findItem(R.id.sendData);
        searchItem.setEnabled(false);
        searchItem.setVisible(false);
        sendDataItem.setEnabled(true);
@@ -109,8 +113,11 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
        sendDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
            @Override
            public boolean onMenuItemClick(MenuItem item) {
+               showProgressBar(true);
                notificacionFragmentPresenter.validDataSend(adapterItemUsuarioRecyclerView.getArrayListSelected(),
-                       textInputEditTextNotificacion.getText().toString());
+                       textInputEditTextNotificacion.getText().toString(),
+                       sharedPreferences.getInt("codigo", 0),
+                       Integer.parseInt(spinnerOficinas.getSelectedItem().toString().split("-")[0]));
                return false;
            }
        });
@@ -153,16 +160,19 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
     @Override
     public void showMessage(String strMessage) {
         Toast.makeText(view.getContext(), strMessage, Toast.LENGTH_SHORT).show();
+        showProgressBar(false);
     }
 
     @Override
     public void showProgressBar(boolean bolValue) {
-        if(bolValue){
-            linearLayoutData.setVisibility(View.GONE);
-            progressBar.setVisibility(View.VISIBLE);
-        }else{
-            linearLayoutData.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
-        }
+        sendDataItem.setEnabled((bolValue)? false: true);
+        linearLayoutData.setVisibility((bolValue)? View.GONE : View.VISIBLE);
+        progressBar.setVisibility((bolValue)? View.VISIBLE : View.GONE);
+
+    }
+
+    @Override
+    public void closeActivity() {
+        getActivity().finish();
     }
 }
