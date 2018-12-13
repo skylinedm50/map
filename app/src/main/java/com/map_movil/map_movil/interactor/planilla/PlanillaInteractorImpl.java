@@ -8,6 +8,7 @@ import com.map_movil.map_movil.repository.planilla.PlanillaRepository;
 import com.map_movil.map_movil.repository.planilla.PlanillaRepositoryImpl;
 
 public class PlanillaInteractorImpl implements PlanillaInteractor {
+
     private PlanillaPresenter planillaPresenter;
     private PlanillaRepository planillaRepository;
 
@@ -32,6 +33,15 @@ public class PlanillaInteractorImpl implements PlanillaInteractor {
             this.planillaRepository.getProgramados(strCodAldea , strCodpago);
         }else{
             this.planillaRepository. getProgramadosOffline(strCodAldea , strCodpago);
+        }
+    }
+
+    @Override
+    public void getExcluidos(String strCodAldea, String strCodpago, String tipoGM) {
+        if(tipoGM =="Global"){
+            this.planillaRepository.getExcluidosGlobal(strCodAldea , strCodpago);
+        }else{
+            this.planillaRepository.getExcluidosMancomunidad(strCodAldea , strCodpago);
         }
     }
 

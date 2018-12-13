@@ -2,7 +2,6 @@ package com.map_movil.map_movil.repository.planilla;
 
 import android.content.Context;
 import android.widget.Toast;
-
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.api.planilla.ApiAdapterPlanilla;
 import com.map_movil.map_movil.api.planilla.ApiServicePlanilla;
@@ -10,14 +9,11 @@ import com.map_movil.map_movil.interactor.planilla.PlanillaInteractor;
 import com.map_movil.map_movil.model.HistorialPago;
 import com.map_movil.map_movil.model.Hogar_Validar;
 import com.map_movil.map_movil.model.Pagos;
+import com.map_movil.map_movil.model.PagosExcluido;
 import com.map_movil.map_movil.model.PagosProgramados;
 import com.map_movil.map_movil.presenter.planilla.PlanillaPresenter;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import retrofit2.Call;
@@ -81,6 +77,48 @@ public class PlanillaRepositoryImpl implements PlanillaRepository {
             @Override
             public void onFailure(Call<ArrayList<PagosProgramados>> call, Throwable t) {
                 Toast.makeText(context , "Error en el servidor al solicitar la información" ,Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void getExcluidosGlobal(String strCodAldea, String strCodpago) {
+        Call<ArrayList<PagosExcluido>> call = servicePlanilla.getPlanillaExcluidoInfo(strCodAldea,strCodpago);
+        call.enqueue(new Callback<ArrayList<PagosExcluido>>() {
+            public void onResponse(Call<ArrayList<PagosExcluido>> call, Response<ArrayList<PagosExcluido>> response) {
+                if(response.code() == 200){
+                    /**/
+                    planillaPresenter.MostarExcluidos(response.body());
+                }
+                else{
+                    Toast.makeText(context,"Error al solicitar la información al servidor", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<PagosExcluido>> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void getExcluidosMancomunidad(String strCodAldea, String strCodpago) {
+        Call<ArrayList<PagosExcluido>> call = servicePlanilla.getPlanillaExcluidomancInfo(strCodAldea,strCodpago);
+        call.enqueue(new Callback<ArrayList<PagosExcluido>>() {
+            public void onResponse(Call<ArrayList<PagosExcluido>> call, Response<ArrayList<PagosExcluido>> response) {
+                if(response.code() == 200){
+                  /*  listexcluidos = response.body();
+                      adaptadorExcluidos.changeAdapater(listexcluidos);
+                      loading("datos"); */
+                    planillaPresenter.MostarExcluidos(response.body());
+                }
+                else{
+                    Toast.makeText(context,"Error al solicitar la información al servidor", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<PagosExcluido>> call, Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
