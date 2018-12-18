@@ -11,6 +11,6 @@ public interface NotificacionFragmentPresenter {
     void showUsuarios(ArrayList<String> arrayListUsuarios);
 
     void showMessage(String strMessage);
-    void validDataSend(ArrayList<String> arrayListUser, String strNotification, int intCodUser, int intCodOffice);
+    void validDataSend(ArrayList<String> arrayListUser, String strNotification, int intCodUser, int intCodOffice, boolean bolGlobal);
     void closeActivity();
 }

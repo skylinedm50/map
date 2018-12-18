@@ -135,4 +135,30 @@ public class NotificacionFragmentRepositoryImpl implements NotificacionFragmentR
             }
         });
     }
+
+    @Override
+    public void sendNotificacionAll(String strNotificacion, int intCodUser) {
+        JsonObject jsonObjectDataSend = new JsonObject();
+        jsonObjectDataSend.addProperty("message", strNotificacion);
+        jsonObjectDataSend.addProperty("type_broadcast", 1);
+        jsonObjectDataSend.addProperty("emitter", intCodUser);
+
+        Call<ResponseApi> call = apiServiceNotificacion.sendNotificationAll(jsonObjectDataSend);
+        call.enqueue(new Callback<ResponseApi>() {
+            @Override
+            public void onResponse(Call<ResponseApi> call, Response<ResponseApi> response) {
+                if (response.isSuccessful() && response.body().getIntState() == 1) {
+                    notificacionFragmentPresenter.closeActivity();
+                } else {
+                    notificacionFragmentPresenter.showMessage("No se logro enviar la notificación.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseApi> call, Throwable t) {
+                notificacionFragmentPresenter.showMessage(t.getMessage());
+            }
+        });
+
+    }
 }

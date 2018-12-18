@@ -41,6 +41,7 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
     private ProgressBar progressBar;
     private SharedPreferences sharedPreferences;
     private MenuItem sendDataItem;
+    private CheckBox checkboxSendAll;
 
     public NotificacionFragment() {
     }
@@ -58,6 +59,7 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
         notificacionFragmentPresenter = new NotificacionFragmentPresenterImpl(this);
         spinnerRegiones = view.findViewById(R.id.spinnerRegiones);
         spinnerOficinas = view.findViewById(R.id.spinnerOficinas);
+        checkboxSendAll = view.findViewById(R.id.checkboxSendAll);
         checkboxSelectAll = view.findViewById(R.id.checkboxSelectAll);
         recyclerViewUsuarios = view.findViewById(R.id.recyclerViewUsuarios);
         recyclerViewUsuarios.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
@@ -96,6 +98,13 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
                 adapterItemUsuarioRecyclerView.selectAll(isChecked);
             }
         });
+        checkboxSendAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setDisabledAllFilter(isChecked);
+            }
+        });
+
         getRegiones();
 
         return  view;
@@ -117,7 +126,8 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
                notificacionFragmentPresenter.validDataSend(adapterItemUsuarioRecyclerView.getArrayListSelected(),
                        textInputEditTextNotificacion.getText().toString(),
                        sharedPreferences.getInt("codigo", 0),
-                       Integer.parseInt(spinnerOficinas.getSelectedItem().toString().split("-")[0]));
+                      Integer.parseInt(spinnerOficinas.getSelectedItem().toString().split("-")[0]),
+                       checkboxSendAll.isChecked());
                return false;
            }
        });
@@ -168,11 +178,18 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
         sendDataItem.setEnabled((bolValue)? false: true);
         linearLayoutData.setVisibility((bolValue)? View.GONE : View.VISIBLE);
         progressBar.setVisibility((bolValue)? View.VISIBLE : View.GONE);
-
     }
 
     @Override
     public void closeActivity() {
         getActivity().finish();
+    }
+
+    @Override
+    public void setDisabledAllFilter(boolean bolValue) {
+        spinnerRegiones.setEnabled((bolValue)? false: true);
+        spinnerOficinas.setEnabled((bolValue)? false: true);
+        checkboxSelectAll.setEnabled((bolValue)? false: true);
+        recyclerViewUsuarios.setEnabled((bolValue)? false: true);
     }
 }

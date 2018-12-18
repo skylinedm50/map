@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import com.map_movil.map_movil.R;
 
 public class EmisionSettingHomeActivity extends AppCompatActivity {
-    private LinearLayout linearLayoutTab;
     private Toolbar toolbar;
     private TabLayout tabLayoutItems;
     private FloatingActionButton floatingActionAdd;
@@ -32,8 +31,6 @@ public class EmisionSettingHomeActivity extends AppCompatActivity {
         tabLayoutItems = findViewById(R.id.tabLayoutItems);
         viewPagerTab = findViewById(R.id.viewPagerTab);
         floatingActionAdd = findViewById(R.id.floatingActionAdd);
-        linearLayoutTab = findViewById(R.id.linearLayoutTab);
-        linearLayoutTab.setVisibility(View.VISIBLE);
         toolbar = findViewById(R.id.toolbar);
         toolbar.setVisibility(View.VISIBLE);
         floatingActionAdd.setVisibility(View.GONE);

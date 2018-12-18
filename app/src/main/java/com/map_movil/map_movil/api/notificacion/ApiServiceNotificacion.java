@@ -28,6 +28,9 @@ public interface ApiServiceNotificacion {
     @POST("notificaciones/device/send")
     Call<ResponseApi> sendNotification(@Body JsonObject jsonObject);
 
+    @POST("notificaciones/device/all/send")
+    Call<ResponseApi> sendNotificationAll(@Body JsonObject jsonObject);
+
     @GET("notificaciones/usuario/{tipo}/{usuario}")
     Call<ArrayList<Emision>> getEmisionesByUsuario(@Path("tipo") String strTipoEmisiones, @Path("usuario") int intCodUser);
 
