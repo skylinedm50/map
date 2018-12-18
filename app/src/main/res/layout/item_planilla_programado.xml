@@ -3,35 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <RelativeLayout
-        android:id="@+id/ry_cantidad"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:background="#E8E8E8"
-        android:padding="5dp"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Cantidad de hogares: "
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:layout_alignParentLeft="true"
-            android:textSize="12sp"
-            android:layout_marginLeft="10dp"
-            android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/cantidad_hogares"
-            android:layout_width="wrap_content"
-            android:text="100 Hogares "
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp"
-            android:layout_marginRight="10dp"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

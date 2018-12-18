@@ -4,6 +4,7 @@ import android.content.Context;
 import com.map_movil.map_movil.interactor.planilla.PlanillaInteractor;
 import com.map_movil.map_movil.interactor.planilla.PlanillaInteractorImpl;
 import com.map_movil.map_movil.model.Pagos;
+import com.map_movil.map_movil.model.PagosExcluido;
 import com.map_movil.map_movil.model.PagosProgramados;
 import com.map_movil.map_movil.view.planilla.PlanillaView;
 import java.util.ArrayList;
@@ -35,8 +36,18 @@ public class PlanillaPresenterImpl implements PlanillaPresenter {
     }
 
     @Override
+    public void getExcluidos(String strCodAldea, String strCodpago, String tipoGM) {
+        this.planillaInteractor.getExcluidos(strCodAldea , strCodpago , tipoGM);
+    }
+
+    @Override
     public void MostarDatosProgramados(ArrayList<PagosProgramados> pagosProgramados) {
         this.planillaView.MostarDatosProgramados(pagosProgramados);
+    }
+
+    @Override
+    public void MostarExcluidos(ArrayList<PagosExcluido> listexcluidos) {
+        this.planillaView.MostarExcluidos(listexcluidos);
     }
 
 }

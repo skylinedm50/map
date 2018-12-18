@@ -37,4 +37,12 @@
         android:icon="@drawable/ic_send_white"
         android:iconTintMode="src_in"
         app:showAsAction="always|collapseActionView"/>
+    <item
+        android:title="filtros"
+        android:id="@+id/filter"
+        android:enabled="false"
+        android:visible="false"
+        android:icon="@drawable/ic_filter"
+        android:iconTintMode="src_in"
+        app:showAsAction="always|collapseActionView"/>
 </menu>

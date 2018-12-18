@@ -45,21 +45,12 @@ public class AdaptadorProgramados extends BaseAdapter {
         PagosProgramados Item = (PagosProgramados) getItem(position);
 
         convertView = LayoutInflater.from(context).inflate(R.layout.item_planilla_programado,null);
-        RelativeLayout ryProgramados = (RelativeLayout) convertView.findViewById(R.id.ry_cantidad);
-        TextView CantidadProgramados = (TextView) convertView.findViewById(R.id.cantidad_hogares);
         TextView textViewNombre      = (TextView) convertView.findViewById(R.id.Nombre_Persona) ;
         TextView textViewIdentidad   = (TextView) convertView.findViewById(R.id.Identidad_Persona) ;
         TextView textViewMontoPagar  = (TextView) convertView.findViewById(R.id.monto_pagar) ;
         TextView textViewCodhoga     = (TextView) convertView.findViewById(R.id.codhogar) ;
         TextView textViewcaserio     = (TextView) convertView.findViewById(R.id.caserio) ;
         LinearLayout divider         = (LinearLayout) convertView.findViewById(R.id.divider_programado);
-
-        if(position == 0){
-            ryProgramados.setVisibility(View.VISIBLE);
-            CantidadProgramados.setText(String.valueOf(listPagos.size())+" Hogares");
-        }else{
-            ryProgramados.setVisibility(View.GONE);
-        }
 
         if(position == listPagos.size() -1 ){
             LinearLayout.LayoutParams  layoutParams = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT ,1);

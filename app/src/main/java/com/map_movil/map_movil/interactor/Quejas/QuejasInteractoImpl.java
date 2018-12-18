@@ -1,7 +1,6 @@
 package com.map_movil.map_movil.interactor.Quejas;
 
 import android.content.Context;
-
 import com.google.gson.JsonArray;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.presenter.Quejas.QuejasPresenter;
