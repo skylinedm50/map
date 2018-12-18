@@ -14,10 +14,10 @@ import com.map_movil.map_movil.model.HogarLigth;
 
 import java.util.ArrayList;
 
-public class AdapaterItemMiembroNucleoRecyclerView extends RecyclerView.Adapter<AdapaterItemMiembroNucleoRecyclerView.ViewHolder> {
+public class AdapterItemMiembroNucleoRecyclerView extends RecyclerView.Adapter<AdapterItemMiembroNucleoRecyclerView.ViewHolder> {
     private ArrayList<HogarLigth> hogarLigthArrayList;
 
-    public AdapaterItemMiembroNucleoRecyclerView(ArrayList<HogarLigth> hogarLigthArrayList){
+    public AdapterItemMiembroNucleoRecyclerView(ArrayList<HogarLigth> hogarLigthArrayList){
         this.hogarLigthArrayList = hogarLigthArrayList;
     }
 

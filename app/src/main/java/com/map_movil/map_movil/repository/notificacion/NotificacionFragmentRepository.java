@@ -7,5 +7,6 @@ public interface NotificacionFragmentRepository {
     void getOficionas(int intCodRegion);
     void getUsuarios(int intCodOficina);
 
-    void sendNotificacion(ArrayList<String> arrayListUsuarios, String strNotificacion);
+    void sendNotificacion(ArrayList<String> arrayListUsuarios, String strNotificacion, int intCodUser, int intCodOffice);
+    void sendNotificacionAll(String strNotificacion, int intCodUser);
 }

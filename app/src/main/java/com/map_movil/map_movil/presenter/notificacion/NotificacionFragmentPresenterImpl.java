@@ -53,19 +53,24 @@ public class NotificacionFragmentPresenterImpl implements NotificacionFragmentPr
     }
 
     @Override
-    public void validDataSend(ArrayList<String> arrayListUser, String strNotification) {
-        notificacionFragmentView.showProgressBar(true);
-
-        if(arrayListUser.size() > 0 && !strNotification.isEmpty()){
-            notificacionFragmentInteractor.sendNotificacion(arrayListUser, strNotification);
+    public void validDataSend(ArrayList<String> arrayListUser, String strNotification, int intCodUser, int intCodOffice, boolean bolGlobal) {
+        if(!bolGlobal){
+            if(arrayListUser.size() > 0 && !strNotification.isEmpty() && intCodUser > 0 && intCodOffice > 0){
+                notificacionFragmentInteractor.sendNotificacion(arrayListUser, strNotification, intCodUser, intCodOffice);
+            }else{
+                notificacionFragmentView.showMessage("Asegúrese de seleccionar uno o más usuarios y de redactar la notificación.");
+            }
         }else{
-            notificacionFragmentView.showProgressBar(false);
-            notificacionFragmentView.showMessage("Asegúrese de seleccionar uno o más usuarios y de redactar la notificación.");
+            if(!strNotification.isEmpty() && intCodUser > 0){
+                notificacionFragmentInteractor.sendNotificacionAll(strNotification, intCodUser);
+            }else{
+                notificacionFragmentView.showMessage("Favor escribir la notificación a enviar.");
+            }
         }
     }
 
     @Override
-    public void showProgressBar(boolean bolValue) {
-        notificacionFragmentView.showProgressBar(bolValue);
+    public void closeActivity() {
+        notificacionFragmentView.closeActivity();
     }
 }

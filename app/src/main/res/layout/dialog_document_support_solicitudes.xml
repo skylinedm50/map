@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="11dp"
                 android:textStyle="bold"
-                android:text="Ficha de atención de hogares llenado por el titular anterior."
+                android:text="Formato de atención de hogares (cintillo) llenado por el titular anterior."
                 android:textColor="@color/colorAccent"/>
         </LinearLayout>
         <TextView
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="11dp"
                 android:textStyle="bold"
-                android:text="Ficha de atención de hogares llenado por el nuevo titular."
+                android:text="Formato de atención de hogares (cintillo) llenado por el nuevo titular."
                 android:textColor="@color/colorAccent"/>
         </LinearLayout>
         <TextView
@@ -138,7 +138,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Ficha de atención de hogares."
+            android:text="Formato de atención de hogares (cintillo)."
             android:textColor="@color/colorAccent"/>
     </LinearLayout>
 
@@ -163,7 +163,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Ficha de atención de hogares."
+            android:text="Formato de atención de hogares (cintillo)."
             android:textColor="@color/colorAccent"/>
     </LinearLayout>
 
@@ -188,7 +188,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Ficha de atención de hogares."
+            android:text="Formato de atención de hogares (cintillo)."
             android:textColor="@color/colorAccent"/>
         <TextView
             android:layout_width="match_parent"
@@ -222,7 +222,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Ficha de atención de hogares y/o nota de solicitud del titular."
+            android:text="Formato de atención de hogares (cintillo) y/o nota de solicitud del titular."
             android:textColor="@color/colorAccent"/>
     </LinearLayout>
 
@@ -247,7 +247,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Ficha de atención de hogares y/o nota de solicitud del titular."
+            android:text="Formato de atención de hogares (cintillo) y/o nota de solicitud del titular."
             android:textColor="@color/colorAccent"/>
     </LinearLayout>
 
@@ -272,7 +272,7 @@
             android:textStyle="bold"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Ficha de atención de hogares."
+            android:text="Formato de atención de hogares (cintillo)."
             android:textColor="@color/colorAccent"/>
         <TextView
             android:layout_width="match_parent"

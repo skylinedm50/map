@@ -25,9 +25,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.itextpdf.text.pdf.parser.Line;
 import com.map_movil.map_movil.R;
-import com.map_movil.map_movil.adapter.AdapaterItemMiembroNucleoRecyclerView;
+import com.map_movil.map_movil.adapter.AdapterItemMiembroNucleoRecyclerView;
 import com.map_movil.map_movil.api.solicitudes.ApiAdapterSolicitudes;
 import com.map_movil.map_movil.api.solicitudes.ApiServiceSolicitudes;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
@@ -87,7 +86,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
 
     private MenuItem saveDataItem;
     private RecyclerView recyclerViewMiembros;
-    private AdapaterItemMiembroNucleoRecyclerView adapaterItemMiembroNucleoRecyclerView;
+    private AdapterItemMiembroNucleoRecyclerView adapterItemMiembroNucleoRecyclerView;
 
    private AlertDialog alertDialog;
 
@@ -135,8 +134,8 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
 
         recyclerViewMiembros = findViewById(R.id.recyclerViewMiembros);
         recyclerViewMiembros.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        adapaterItemMiembroNucleoRecyclerView = new AdapaterItemMiembroNucleoRecyclerView(hogarLigthsList);
-        recyclerViewMiembros.setAdapter(adapaterItemMiembroNucleoRecyclerView);
+        adapterItemMiembroNucleoRecyclerView = new AdapterItemMiembroNucleoRecyclerView(hogarLigthsList);
+        recyclerViewMiembros.setAdapter(adapterItemMiembroNucleoRecyclerView);
 
         objApiAdapterSolicitudes = new ApiAdapterSolicitudes();
         objApiServiceSolicitudes = objApiAdapterSolicitudes.getClientService();
@@ -349,7 +348,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
 
         saveDataItem.setVisible(true);
         hogarLigthsList = hogarLigthArrayList;
-        adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthsList);
+        adapterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthsList);
         showProgressBar(false);
         findDataShowMessage(true);
     }
@@ -400,7 +399,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         textViewCaserio.setText(String.valueOf(infoSolicitud.getStrCaserio()));
         textViewObservacion.setText(String.valueOf(infoSolicitud.getStrObservacion()));
         hogarLigthsList = hogarLigthArrayList;
-        adapaterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthsList);
+        adapterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthsList);
         showProgressBar(false);
         findDataShowMessage(true);
     }

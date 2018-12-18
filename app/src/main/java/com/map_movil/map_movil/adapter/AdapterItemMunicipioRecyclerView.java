@@ -8,15 +8,17 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.map_movil.map_movil.R;
 
 import java.util.ArrayList;
 
-public class AdapaterItemMunicipioRecyclerView extends RecyclerView.Adapter<AdapaterItemMunicipioRecyclerView.ViewHolder> {
+public class AdapterItemMunicipioRecyclerView extends RecyclerView.Adapter<AdapterItemMunicipioRecyclerView.ViewHolder> {
     private ArrayList<String> arrayListMunicipio;
     private ArrayList<String> arrayListMunicipiosSelect = new ArrayList<>();
 
-    public AdapaterItemMunicipioRecyclerView(ArrayList<String> arrayListMunicipio){
+    public AdapterItemMunicipioRecyclerView(ArrayList<String> arrayListMunicipio){
         this.arrayListMunicipio = arrayListMunicipio;
     }
 
@@ -91,5 +93,26 @@ public class AdapaterItemMunicipioRecyclerView extends RecyclerView.Adapter<Adap
 
     public ArrayList<String> getArrayListSelected(){
         return arrayListMunicipiosSelect;
+    }
+
+    public JsonArray getJsonArraySelected(){
+        //JsonArray jsonArrayFinal = new JsonArray();
+        JsonArray jsonArrayMunicipios = new JsonArray();
+        //JsonObject jsonObjectData = new JsonObject();
+        //String strMuniSelectForSharePreferen = new String();
+        int intCounter = 0;
+
+        for(String strElement: arrayListMunicipiosSelect){
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("municipio", strElement.split("-")[0]);
+            jsonArrayMunicipios.add(jsonObject);
+            //strMuniSelectForSharePreferen += (arrayListMunicipiosSelect.size() == intCounter + 1)? strElement : strElement + ",";
+            intCounter ++;
+        }
+
+        //jsonObjectData.add("municipios", jsonArrayMunicipios);
+        //jsonArrayFinal.add(jsonObjectData);
+
+        return jsonArrayMunicipios;
     }
 }
