@@ -67,13 +67,12 @@ public class PlanillaRepositoryImpl implements PlanillaRepository {
                 if(response.isSuccessful()){
                     if(response.body() != null && response.body().size()>0){
                         listPagos = response.body();
-                        planillaPresenter.MostarDatosProgramados(listPagos);
                     }
+                        planillaPresenter.MostarDatosProgramados(listPagos);
                 }else{
                     Toast.makeText(context , "Error en el servidor al solicitar la información" ,Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<ArrayList<PagosProgramados>> call, Throwable t) {
                 Toast.makeText(context , "Error en el servidor al solicitar la información" ,Toast.LENGTH_LONG).show();
@@ -157,6 +156,66 @@ public class PlanillaRepositoryImpl implements PlanillaRepository {
     }
 
     @Override
+    public void getProgramado_By_ID(String strIdentidad, String strCodpago) {
+        int intCodpago = Integer.parseInt(strCodpago);
+
+        listPagos = new ArrayList<PagosProgramados>();
+        Call<ArrayList<PagosProgramados>> programados = this.servicePlanilla.getPagosProgamadosbyIdTitular(intCodpago, strIdentidad);
+
+        programados.enqueue(new Callback<ArrayList<PagosProgramados>>() {
+            @Override
+            public void onResponse(Call<ArrayList<PagosProgramados>> call, Response<ArrayList<PagosProgramados>> response) {
+                if(response.isSuccessful()){
+                    if(response.body() != null && response.body().size()>0){
+                        listPagos = response.body();
+                    }
+                }else{
+                       // Toast.makeText(context , "Error en el servidor al solicitar la información" ,Toast.LENGTH_LONG).show();
+                }
+                planillaPresenter.MostarDatosProgramados(listPagos);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<PagosProgramados>> call, Throwable t) {
+                Toast.makeText(context , "Error en el servidor al solicitar la información" ,Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void getProgramado_By_ID_Offline(String strIdentidad, String strCodpago) {
+        listPagos = new ArrayList<PagosProgramados>();
+        this.realmConfig = new RealmConfig(this.context);
+        this.realmConfig.getRealm().beginTransaction();
+
+        /*-------------------------------------------------------------------------------------------------------*/
+        RealmResults<Hogar_Validar> hogares = this.realmConfig.getRealm().where(Hogar_Validar.class)
+                .equalTo("per_titular", 1).equalTo("per_identidad" , strIdentidad).findAll();
+
+        for(int i = 0; i < hogares.size() ; i++){
+
+            RealmResults<HistorialPago> historialPagos = this.realmConfig.getRealm().where(HistorialPago.class)
+                    .equalTo("tit_planilla",true)
+                    .equalTo("pag_codigo", Integer.valueOf( strCodpago ))
+                    .equalTo("tit_hogar",hogares.get(i).getHog_hogar()).findAll();
+
+            if(historialPagos.size()>0){
+                listPagos.add(new PagosProgramados( historialPagos.get(0).getPag_nombre()               ,
+                        hogares.get(i).getHog_hogar()         , hogares.get(i).getCod_departamento()    ,
+                        hogares.get(i).getDesc_departamento() , hogares.get(i).getCod_municipio()       ,
+                        hogares.get(i).getDesc_municipio()    , hogares.get(i).getDesc_caserio()        ,
+                        hogares.get(i).getDesc_aldea()        , hogares.get(i).getNombre()              ,
+                        hogares.get(i).getPer_identidad()     , String.valueOf( historialPagos.get(0).getMonto() )
+                ));
+            }
+        }
+        planillaPresenter.MostarDatosProgramados(listPagos);
+        this.realmConfig.getRealm().commitTransaction();
+        this.realmConfig.getRealm().close();
+        /*--------------------------------------------------------------------------------------------------------*/
+    }
+
+    @Override
     public void getPagosOffline() {
 
         List<Pagos> pagos = new ArrayList<>();
@@ -170,7 +229,6 @@ public class PlanillaRepositoryImpl implements PlanillaRepository {
             pagos.add(new Pagos(String.valueOf( RealmPagos.get(i).getPag_codigo() ) ,
                                 String.valueOf( RealmPagos.get(i).getPag_nombre() ) ));
         }
-
         planillaPresenter.cargarPagos(pagos);
         this.realmConfig.getRealm().commitTransaction();
         this.realmConfig.getRealm().close();

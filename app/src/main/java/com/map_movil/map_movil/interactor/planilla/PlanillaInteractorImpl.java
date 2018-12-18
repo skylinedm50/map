@@ -45,4 +45,12 @@ public class PlanillaInteractorImpl implements PlanillaInteractor {
         }
     }
 
+    @Override
+    public void getProgramado_By_ID(String strIdentidad, String strCodpago) {
+        if(BroadCastInternet.isConnected){
+            this.planillaRepository.getProgramado_By_ID(strIdentidad,strCodpago);
+        }else{
+            this.planillaRepository.getProgramado_By_ID_Offline(strIdentidad,strCodpago);
+        }
+    }
 }

@@ -36,6 +36,11 @@ public class PlanillaPresenterImpl implements PlanillaPresenter {
     }
 
     @Override
+    public void getProgramado_By_ID(String strIdentidad, String strCodPago) {
+        this.planillaInteractor.getProgramado_By_ID(strIdentidad , strCodPago);
+    }
+
+    @Override
     public void getExcluidos(String strCodAldea, String strCodpago, String tipoGM) {
         this.planillaInteractor.getExcluidos(strCodAldea , strCodpago , tipoGM);
     }

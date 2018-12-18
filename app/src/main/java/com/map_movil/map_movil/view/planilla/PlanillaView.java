@@ -13,4 +13,5 @@ public interface PlanillaView {
     void SolicitarDatosProgramados(String strCodAldea, String strCodpago);
     void MostarDatosProgramados(ArrayList<PagosProgramados> pagosProgramados);
     void MostarExcluidos(ArrayList<PagosExcluido> listexcluidos);
+    void SolicitarDatosProgramadosPorID(String strIdentidad, String strCodpago);
 }

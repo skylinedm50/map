@@ -17,8 +17,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.support.v7.widget.SearchView;
 import android.widget.TextView;
@@ -52,6 +55,9 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     private AppCompatSpinner MunicipioSpiner;
     private AppCompatSpinner AldeaSpiner;
     private AppCompatSpinner PagosSpiner;
+    private RadioButton rb_busc_id;
+    private RadioButton rb_geo;
+    private EditText tv_identidad;
 
     private ListView listplanillapagos;
     private ArrayList<PagosProgramados> listPagos = new ArrayList<PagosProgramados>();
@@ -60,9 +66,13 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     private RelativeLayout relativeLayout;
     private LinearLayout linearLayout;
     private LinearLayout linearLayoutnodata;
+    private LinearLayout lytBuscar;
     private RelativeLayout ryProgramados;
+    private TextView tvBuscar;
     private TextView CantidadProgramados;
-
+    private TextView tv_departamentos;
+    private TextView tv_municipios;
+    private TextView tv_aldeas;
     private HashMap<Integer, String> SpinnerMapPagos;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -70,6 +80,9 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     private String CodigoMunicipio="";
     private String CodigoAldea="";
     private String CodigoPago="";
+    private String Identidad_titular;
+    private boolean a = true;
+    private WindowManager.LayoutParams LP = new WindowManager.LayoutParams();
 
     public ProgramadosFragment(){}
 
@@ -98,9 +111,11 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
             @Override
             public void onRefresh() {
                 loading("search",null);
+                if(a){
                 SolicitarDatosProgramados( (AldeaSpiner != null)?AldeaSpiner.getSelectedItem().toString().split("-")[0]:"",
                         (PagosSpiner != null)?SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()):"0"
-                );
+                );}else{SolicitarDatosProgramadosPorID(Identidad_titular,
+                        (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0");}
             }
         });
 
@@ -299,12 +314,19 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
             this.ryProgramados.setVisibility(View.VISIBLE);
             this.CantidadProgramados.setText(String.valueOf( pagosProgramados.size() ));
         }else{
+            this.searchItem.setEnabled(false);
+            this.searchItem.setVisible(false);
             loading("no_data" , "NO SE ENCONTRARON DATOS");
         }
     }
 
     @Override
     public void MostarExcluidos(ArrayList<PagosExcluido> listexcluidos) { }
+
+    @Override
+    public void SolicitarDatosProgramadosPorID(String strIdentidad, String strCodpago) {
+        this.pagosPresenter.getProgramado_By_ID(strIdentidad , strCodpago);
+    }
 
     private void findByTitular(String strNombre){
         ArrayList<PagosProgramados> arrayListPagosProgramados = new ArrayList<>();
@@ -319,42 +341,91 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
 
     private void MostarFiltros(){
 
-        Display display = this.getActivity().getWindowManager().getDefaultDisplay();
-        int mwidth = display.getWidth();
-        int mheight = display.getHeight();
+        final Display display = getActivity().getWindowManager().getDefaultDisplay();
+        final int mwidth = display.getWidth();
+        final int mheight = display.getHeight();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         v = LayoutInflater.from(this.context).inflate(R.layout.dialog_filters ,null);
         builder.setView(v);
         final AlertDialog dialog = builder.create();
 
         dialog.show();
-        WindowManager.LayoutParams LP = new WindowManager.LayoutParams();
+      //  final WindowManager.LayoutParams LP = new WindowManager.LayoutParams();
         LP.copyFrom(dialog.getWindow().getAttributes());
         LP.width  = (int)(( mwidth/2) * 1.8);
-        LP.height = (int)(( mheight/2) * 1.22);
+        LP.height = (int)(( mheight/2) * 1.4);//1.22
 
         this.DepartamentoSpiner = v.findViewById(R.id.departamento);
         this.MunicipioSpiner    = v.findViewById(R.id.municipio);
         this.AldeaSpiner        = v.findViewById(R.id.aldea);
         this.PagosSpiner        = v.findViewById(R.id.pago);
+        this.tv_identidad       = v.findViewById(R.id.tv_prog_identidad);
+        this.rb_busc_id         = v.findViewById(R.id.rb_busc_id);
+        this.rb_geo             = v.findViewById(R.id.rb_geo);
+        this.lytBuscar          = v.findViewById(R.id.lytfiltroBuscar);
+        this.tvBuscar           = v.findViewById(R.id.tvBuscar);
+
+        this.tv_identidad.setVisibility(View.GONE);
+        this.rb_geo.setVisibility(View.VISIBLE);
+        this.rb_busc_id.setVisibility(View.VISIBLE);
+        this.lytBuscar.setVisibility(View.VISIBLE);
+        this.tvBuscar.setVisibility(View.VISIBLE);
+    //    this.rb_geo.setChecked(true);
+    //    this.rb_busc_id.setChecked(false);
+
 
         TextView button = v.findViewById(R.id.buttonsearchex);
         TextView Cancel = v.findViewById(R.id.ButtonCancel);
-
+        tv_departamentos = v.findViewById(R.id.tv_df_deptos);
+        tv_municipios    = v.findViewById(R.id.tv_df_municipios);
+        tv_aldeas        = v.findViewById(R.id.tv_df_aldeas);
+        tv_identidad.setText(Identidad_titular);
+        ShowLytAldeas(a);
+        rb_busc_id.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    LP.copyFrom(dialog.getWindow().getAttributes());
+                    LP.height = (int)(( mheight/2) * 0.8);
+                    ShowLytAldeas(!b);
+                }
+            }
+        });
+        rb_geo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    LP.height = (int)(( mheight/2) * 1.4);
+                    ShowLytAldeas(b);
+                }
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 dialog.hide();
-                CodigoDepartamento  = DepartamentoSpiner.getSelectedItem().toString().split("-")[0];
-                CodigoMunicipio     = MunicipioSpiner.getSelectedItem().toString().split("-")[0];
-                CodigoAldea         = AldeaSpiner.getSelectedItem().toString().split("-")[0];
-                CodigoPago          = (PagosSpiner.getCount() != 0)?SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString():"0";
+                if(rb_geo.isChecked()) {
+                    Identidad_titular = "";
+                    CodigoDepartamento = DepartamentoSpiner.getSelectedItem().toString().split("-")[0];
+                    CodigoMunicipio = MunicipioSpiner.getSelectedItem().toString().split("-")[0];
+                    CodigoAldea = AldeaSpiner.getSelectedItem().toString().split("-")[0];
+                    CodigoPago = (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0";
 
-                loading("search",null);
-                SolicitarDatosProgramados( AldeaSpiner.getSelectedItem().toString().split("-")[0] ,
-                        (PagosSpiner.getCount() != 0)?SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString():"0" );
+                    loading("search", null);
+                    SolicitarDatosProgramados(AldeaSpiner.getSelectedItem().toString().split("-")[0],
+                            (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0");
+                    a = true;
+                }else if(rb_busc_id.isChecked()){
+                    CodigoPago = (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0";
+                    Identidad_titular = tv_identidad.getText().toString();
+
+                    loading("search", null);
+                    SolicitarDatosProgramadosPorID(Identidad_titular,
+                            (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0");
+                    a = false;
+                }
             }
         });
 
@@ -388,10 +459,31 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
 
             }
         });
-
         this.getDepartamentos();
         this.getPagos();
 
-        dialog.getWindow().setAttributes(LP);
+       // dialog.getWindow().setAttributes(LP);
+    }
+    public void ShowLytAldeas(boolean c){
+        rb_busc_id.setChecked(!c);
+        rb_geo.setChecked(c);
+        //a=c;
+        if(c) {
+            tv_identidad.setVisibility(View.GONE);
+            MunicipioSpiner.setVisibility(View.VISIBLE);
+            AldeaSpiner.setVisibility(View.VISIBLE);
+            DepartamentoSpiner.setVisibility(View.VISIBLE);
+            tv_departamentos.setVisibility(View.VISIBLE);
+            tv_municipios.setVisibility(View.VISIBLE);
+            tv_aldeas.setVisibility(View.VISIBLE);
+        }else{
+            tv_identidad.setVisibility(View.VISIBLE);
+            MunicipioSpiner.setVisibility(View.GONE);
+            AldeaSpiner.setVisibility(View.GONE);
+            DepartamentoSpiner.setVisibility(View.GONE);
+            tv_departamentos.setVisibility(View.GONE);
+            tv_municipios.setVisibility(View.GONE);
+            tv_aldeas.setVisibility(View.GONE);
+        }
     }
 }

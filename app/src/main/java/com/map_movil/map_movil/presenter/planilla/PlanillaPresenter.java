@@ -11,6 +11,7 @@ public interface PlanillaPresenter  {
     void getPagos();
     void cargarPagos(List<Pagos> pagos);
     void getProgramados(String strCodAldea, String strCodpago);
+    void getProgramado_By_ID(String strIdentidad, String strCodPago);
     void getExcluidos(String strCodAldea, String strCodpago, String tipoGM);
     void MostarDatosProgramados(ArrayList<PagosProgramados> pagosProgramados);
     void MostarExcluidos(ArrayList<PagosExcluido> listexcluidos);

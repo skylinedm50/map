@@ -23,4 +23,7 @@ public interface ApiServicePlanilla {
 
     @GET("hogares/programados/{pago}/{aldea}")
     Call<ArrayList<PagosProgramados>> getPagosProgramados(@Path("pago") String stringCodPago, @Path("aldea") String stringCodaldeaSolicitud);
+
+    @GET("hogares/programados/titular/{pago}/{identidad}")
+    Call<ArrayList<PagosProgramados>> getPagosProgamadosbyIdTitular(@Path("pago") int stringCodPago, @Path("identidad") String strIdentidad);
 }

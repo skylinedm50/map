@@ -51,6 +51,14 @@ public class PagosProgramados {
         this.intmonto_pagar = intmonto_pagar;
     }
 
+    public PagosProgramados(String strPago_nombre, int strcodigo_hogar, String strnombre_titular , String stridentidad_titular , String intmonto_pagar){
+        this.strPago_nombre = strPago_nombre;
+        this.strcodigo_hogar = strcodigo_hogar;
+        this.strnombre_titular = strnombre_titular;
+        this.stridentidad_titular = stridentidad_titular;
+        this.intmonto_pagar = intmonto_pagar;
+    }
+
     public String getStrPago_nombre() {
         return strPago_nombre;
     }

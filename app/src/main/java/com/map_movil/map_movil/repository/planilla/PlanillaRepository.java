@@ -6,5 +6,7 @@ public interface PlanillaRepository {
     void getExcluidosGlobal(String strCodAldea, String strCodpago);
     void getExcluidosMancomunidad(String strCodAldea, String strCodpago);
     void getProgramadosOffline(String strCodAldea , String pago);
+    void getProgramado_By_ID(String strIdentidad, String strCodpago);
+    void getProgramado_By_ID_Offline(String strIdentidad, String strCodpago);
     void getPagosOffline();
 }
