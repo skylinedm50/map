@@ -268,6 +268,11 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     }
 
     @Override
+    public void SolicitarDatosProgramadosPorID(String strIdentidad, String strCodpago) {
+
+    }
+
+    @Override
     public boolean onQueryTextSubmit(String query) { return false; }
 
     @Override

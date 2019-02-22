@@ -18,6 +18,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -40,28 +43,31 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
     private UbicacionesPresenter       ubicacionesPresenter;
     private QuejasPresenter            quejasPresenter;
 
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences        sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
 
-    private Spinner           DepartamentoSpiner;
-    private Spinner           MunicipioSpiner;
-    private Spinner           AldeaSpiner;
-    private Spinner           CaserioSpiner;
-    private Spinner           TipoSolicitudSpiner;
+    private Spinner   DepartamentoSpiner;
+    private Spinner   MunicipioSpiner;
+    private Spinner   AldeaSpiner;
+    private Spinner   CaserioSpiner;
+    private Spinner   TipoSolicitudSpiner;
 
-    private CheckBox                   ChkAnonimo;
+    private MenuItem           continuar;
+    private CheckBox           ChkAnonimo;
+    private RelativeLayout     ProgressQuejasRL;
+    private ScrollView         scrollViewQueja;
 
-    private TextInputEditText          TxtIdentidad         , TxtNombre1   ,
-                                       TxtNombre2           , TxtApellido1 ,
-                                       TxtApellido2         , TxtTelefono  ,
-                                       TxtDetalleSolicitud  ;
+    private TextInputEditText  TxtIdentidad         , TxtNombre1   ,
+                               TxtNombre2           , TxtApellido1 ,
+                               TxtApellido2         , TxtTelefono  ,
+                               TxtDetalleSolicitud  ;
 
     private TextInputLayout LayoutSolicitud  ;
     private TextInputLayout LayoutIdentidad  ;
     private TextInputLayout LayoutNombre1    ;
     private TextInputLayout LayoutApellido1  ;
     private TextInputLayout LayoutDescripcion;
-    private IntentFilter interFilter;
+    private IntentFilter interFilter         ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -103,6 +109,8 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         this.TxtApellido2        = (TextInputEditText) findViewById(R.id.Tinput_Apellido2);
         this.TxtTelefono         = (TextInputEditText) findViewById(R.id.Tinput_Telefono);
         this.TxtDetalleSolicitud = (TextInputEditText) findViewById(R.id.Tinput_solicitud);
+        this.ProgressQuejasRL      = (RelativeLayout)    findViewById(R.id.progressbar_queja);
+        this.scrollViewQueja     = (ScrollView)        findViewById(R.id.scrollViewQueja);
         this.ChkAnonimo          = (CheckBox)          findViewById(R.id.chk_anonimo);
 
         this.ChkAnonimo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -130,7 +138,6 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
                 getMunicipios(adapterView.getItemAtPosition(i).toString());
-
             }
 
             @Override
@@ -141,38 +148,29 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
                 getAldeas(adapterView.getItemAtPosition(i).toString());
-
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) { }
         });
         this.AldeaSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
                 getCaserios(adapterView.getItemAtPosition(i).toString());
-
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) { }
         });
         this.CaserioSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
-
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
         List<String> TipoSolicitud = new ArrayList<>();
@@ -190,13 +188,9 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ((TextView)view).setTextColor(Color.BLACK);
-
             }
-
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) { }
         });
 
 
@@ -204,7 +198,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
             String [] NombreSolicitante = getIntent().getStringExtra("Nombre").split(" ");
             TextView TxtMsjAnonimo = (TextView)findViewById(R.id.TxtMsjAnonimo);
-            TextView txtRequerido = (TextView)findViewById(R.id.txtRequerido);
+            TextView txtRequerido  = (TextView)findViewById(R.id.txtRequerido) ;
 
             this.ChkAnonimo.setEnabled(false);
             this.TxtIdentidad.setEnabled(false);
@@ -252,7 +246,7 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         String menuSD ="saveData";
         getMenuInflater().inflate(R.menu.menu_multiple_option, menu);
         MenuItem searchView = menu.findItem(R.id.searchViewFind);
-        MenuItem continuar = menu.findItem(R.id.saveData);
+        continuar = menu.findItem(R.id.saveData);
        // MenuItem continuar = menu.findItem( getResources().getIdentifier(menuSD ,"id",getPackageName()) );
         searchView.setEnabled(false);
         searchView.setVisible(false);
@@ -264,6 +258,9 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     if(VerificarVacios()){
+                        continuar.setEnabled(false);
+                        ProgressQuejasRL.setVisibility(View.VISIBLE);
+                        scrollViewQueja.setVisibility(View.GONE);
                         RegistrarQueja();
                     }
                     return false;
@@ -274,12 +271,10 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
         return  super.onCreateOptionsMenu(menu);
     }
 
-
     @Override
     public void getDepartamentos() {
         this.ubicacionesPresenter.getDepartamentos();
     }
-
 
     @Override
     public void cargarDepartamentos(ArrayList<String> departamentos) {
@@ -307,7 +302,6 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
             this.DepartamentoSpiner.setSelection(DepartamentoIndex);
         }
     }
-
 
     public boolean VerificarVacios(){
 
@@ -464,6 +458,9 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
     @Override
     public void ActualizarDatos(int offline) {
+        continuar.setEnabled(true);
+        ProgressQuejasRL.setVisibility(View.GONE);
+        scrollViewQueja.setVisibility(View.VISIBLE);
         if(offline == 1){
             sharedPreferencesEditor.putInt("Sincronizar",1);
             sharedPreferencesEditor.commit();

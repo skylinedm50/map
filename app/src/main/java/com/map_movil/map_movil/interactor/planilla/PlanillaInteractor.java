@@ -4,4 +4,5 @@ public interface PlanillaInteractor {
     void getPagos();
     void getProgramados(String strCodAldea, String strCodpago);
     void getExcluidos(String strCodAldea, String strCodpago,String tipoGM);
+    void getProgramado_By_ID(String strIdentidad, String strCodpago);
 }
