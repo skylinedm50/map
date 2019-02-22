@@ -1,5 +1,7 @@
 package com.map_movil.map_movil.interactor.login;
 
+import android.content.Context;
+
 import com.map_movil.map_movil.presenter.login.LoginPresenter;
 import com.map_movil.map_movil.repository.login.LoginRepository;
 import com.map_movil.map_movil.repository.login.LoginRepositoryImpl;

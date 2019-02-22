@@ -100,6 +100,7 @@
                             android:layout_height="wrap_content" />
                     </android.support.design.widget.TextInputLayout>
                     <TextView
+                        android:id="@+id/textViewCountLetters"
                         android:layout_width="match_parent"
                         android:text="0/150"
                         android:textSize="10sp"

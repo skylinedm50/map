@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.HomeActivity;
 import com.map_movil.map_movil.R;
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //FirebaseApp.initializeApp(getApplicationContext());
 
         sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
@@ -93,6 +95,8 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
             goToChangePassword();
         }else if(user.getIntEstado() == 1){//Cuando un ingreso es por segunda vez o más pero la contraseña ya fue modificada.
             goToHome();
+        }else{
+            showError("Imposible ingresar al sistema.");
         }
     }
 

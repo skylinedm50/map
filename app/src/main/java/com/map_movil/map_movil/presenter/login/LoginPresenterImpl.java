@@ -1,5 +1,6 @@
 package com.map_movil.map_movil.presenter.login;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.JsonObject;
@@ -13,7 +14,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     private LoginInteractor objLoginInteractor;
 
     public LoginPresenterImpl(LoginView loginView){
-       this.loginView = loginView;
+        this.loginView = loginView;
         objLoginInteractor = new LoginInteractorImpl(this);
     }
 

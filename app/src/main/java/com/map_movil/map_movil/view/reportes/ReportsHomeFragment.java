@@ -41,6 +41,7 @@ public class ReportsHomeFragment extends Fragment {
         intCodRolUser = sharedPreferences.getInt("rol", 0);
      //   arrayListReport.add(new Report("Estado de solicitudes", "Por realizacion"));
      //   arrayListReport.add(new Report("Estado de solicitudes", "Por estado"));
+        arrayListReport.add(new Report("Gestiones de Solicitud", "En mapa", -1));
         switch (intCodRolUser){
             case 2://Gerenciales
             case 4:
@@ -105,6 +106,9 @@ public class ReportsHomeFragment extends Fragment {
                     intent.putExtra("Codigo_Usuario", intCodUser);
                     intent.putExtra("Nombre_Usuario",strNombreUser);
 
+                    startActivity(intent);
+                }else if(position == 0){
+                    Intent intent = new Intent(view.getContext(), ReportMapActivity.class);
                     startActivity(intent);
                 }
             }

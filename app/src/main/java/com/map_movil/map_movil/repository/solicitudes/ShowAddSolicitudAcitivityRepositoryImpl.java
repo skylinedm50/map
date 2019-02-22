@@ -188,7 +188,7 @@ public class ShowAddSolicitudAcitivityRepositoryImpl implements ShowAddSolicitud
         call.enqueue(new Callback<ArrayList<InfoSolicitud>>() {
             @Override
             public void onResponse(Call<ArrayList<InfoSolicitud>> call, Response<ArrayList<InfoSolicitud>> response) {
-                if (response.body().size() > 0) {
+                if (response.isSuccessful() && response.body().size() > 0) {
                     isForCreateSolicitud = false;
                     infoSolicitud = response.body().get(0);
                     findNucleoHogar(infoSolicitud.getIntCodHogar());

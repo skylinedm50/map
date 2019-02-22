@@ -13,7 +13,8 @@
 
         <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
-            app:tabMode="fixed"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
             android:id="@+id/tabsQuejas"
             android:layout_height="wrap_content">
 

@@ -78,7 +78,7 @@ public class HelpFragment extends Fragment{
                         openvid("https://youtu.be/qUdda1e873M");
                         break;
                     case "Manual MAP":
-                        downloadpdf(ApiConfig.strURLDocument + ":82/areas/siap/MAP/AppRepository/manual_usuario_app_map.pdf");
+                        downloadpdf(ApiConfig.strURLDocument + "/areas/siap/MAP/AppRepository/manual_usuario_app_map.pdf");
                         break;
                     default:
                         break;

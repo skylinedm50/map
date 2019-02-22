@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.map_movil.map_movil.R;
@@ -42,6 +44,7 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
     private SharedPreferences sharedPreferences;
     private MenuItem sendDataItem;
     private CheckBox checkboxSendAll;
+    private TextView textViewCountLetters;
 
     public NotificacionFragment() {
     }
@@ -105,6 +108,14 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
             }
         });
 
+        textInputEditTextNotificacion.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                //textViewCountLetters.setText("/150");
+                return false;
+            }
+        });
         getRegiones();
 
         return  view;
@@ -126,7 +137,7 @@ public class NotificacionFragment extends Fragment implements NotificacionFragme
                notificacionFragmentPresenter.validDataSend(adapterItemUsuarioRecyclerView.getArrayListSelected(),
                        textInputEditTextNotificacion.getText().toString(),
                        sharedPreferences.getInt("codigo", 0),
-                      Integer.parseInt(spinnerOficinas.getSelectedItem().toString().split("-")[0]),
+                       ((spinnerOficinas.getSelectedItem().toString().isEmpty())? 0: Integer.parseInt(spinnerOficinas.getSelectedItem().toString().split("-")[0])),
                        checkboxSendAll.isChecked());
                return false;
            }

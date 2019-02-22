@@ -1,54 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutMother"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/linearLayoutMother">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/appBarVerSolicitud"
-                android:theme="@style/AppTheme.AppBarOverlay">
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                app:title="Solicitud"
-                android:layout_height="?android:attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
-            </android.support.design.widget.AppBarLayout>
-        </LinearLayout>
+    tools:background="#d5d5d5">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarVerSolicitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:title="Solicitud" />
+        </android.support.design.widget.AppBarLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTextoBusqueda"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        android:id="@+id/linearLayoutTextoBusqueda">
+        android:visibility="visible">
         <TextView
             android:id="@+id/textViewMessageFind"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textAlignment="center"
             android:layout_margin="15dp"
+            android:text="@string/textMainToFindSolicitud"
+            android:textAlignment="center"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="Para agregar una solicitud favor buscar el hogar por la identidad del titular."/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayoutProgressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/relativeLayoutProgressBar"
         android:visibility="gone">
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
     <ScrollView
@@ -62,528 +68,451 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp"
-            android:visibility="gone">
-
+            android:visibility="visible">
             <TextView
-                android:visibility="gone"
                 android:id="@+id/textViewAlertChangeTitular"
                 android:layout_width="match_parent"
-                android:padding="10dp"
-                android:textSize="13sp"
-                android:textColor="#c9a74e27"
-                android:textStyle="bold"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/dwr_notificacion"
                 android:justificationMode="inter_word"
+                android:padding="10dp"
                 android:text="El hogar cambio de titular."
-                android:layout_height="wrap_content" />
+                android:textColor="#c9a74e27"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/linearLayoutSolicitud"
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardWiewSolicitud"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:visibility="gone">
-
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.5">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Código Solicitud:"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.5">
-
-                            <TextView
-                                android:id="@+id/textViewCodigoSolicitud"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="9992324"
-                                android:textColor="#000"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.5">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Estado Solicitud:"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.5">
-
-                            <TextView
-                                android:id="@+id/textViewEstadoSolicitud"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="En proceso"
-                                android:textColor="#000"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:background="#565454"
-                        android:padding="1dp"></LinearLayout>
-                </LinearLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Código Solicitud:"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5">
+
+                                <TextView
+                                    android:id="@+id/textViewCodigoSolicitud"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="9992324"
+                                    android:textColor="#000"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Estado Solicitud:"
+                                    android:textColor="@color/colorPrimary"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.5">
+
+                                <TextView
+                                    android:id="@+id/textViewEstadoSolicitud"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="En proceso"
+                                    android:textColor="#000"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
+                    android:orientation="vertical"
+                    android:padding="5dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Código Hogar:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Código Hogar:"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:id="@+id/textViewCodigohogar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="2324252"
+                                android:textColor="#000"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:id="@+id/textViewCodigohogar"
+                        android:orientation="horizontal">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="2324252"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Estado Hogar:"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Estado Hogar:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:id="@+id/textViewEstadoHogar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Activo"
+                                android:textColor="#000"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:id="@+id/textViewEstadoHogar"
+                        android:orientation="horizontal">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Activo"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Umbral del Hogar:"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Umbral del Hogar:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:id="@+id/textViewUmbral"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Pobreza Extrema"
+                                android:textColor="#000"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:id="@+id/textViewUmbral"
+                        android:orientation="horizontal">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Pobreza Extrema"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Departamento:"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:id="@+id/textViewDepartamento"
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Departamento:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="COMAYAGUA"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Municipio:"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:id="@+id/textViewDepartamento"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="COMAYAGUA"
+                                android:textColor="#000"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:id="@+id/textViewMunicipio"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="EL ROSARIO"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Municipio:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Aldea:"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:id="@+id/textViewAldea"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="LA LAGUNA"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Caserio:"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:id="@+id/textViewMunicipio"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="EL ROSARIO"
+                                android:textColor="#000"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.5">
-
-                        <TextView
-                            android:id="@+id/textViewCaserio"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="LA LAGUNA"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Aldea:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5">
+
+                            <TextView
+                                android:id="@+id/textViewAldea"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="LA LAGUNA"
+                                android:textColor="#000"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="#565454"
-                    android:padding="1dp"></LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Caserio:"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5">
+                            <TextView
+                                android:id="@+id/textViewCaserio"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="LA LAGUNA"
+                                android:textColor="#000"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
                             android:text="Nombre"
                             android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:layout_weight="0.5"/>
+                            android:textStyle="bold" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
                             android:text="Sexo"
                             android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:layout_weight="0.1"/>
+                            android:textStyle="bold" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.1"
                             android:text="Edad"
                             android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:layout_weight="0.1"/>
+                            android:textStyle="bold" />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
                             android:text="Identidad"
                             android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:layout_weight="0.3"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/conteinerLinearLayoutNucleo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"></LinearLayout>
-
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerViewMiembros"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:scrollbars="vertical" />
-
+                        android:scrollbars="vertical"
+                        android:padding="5dp"/>
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:background="#565454"
-                    android:padding="1dp"></LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
+                    android:orientation="vertical"
+                    android:padding="5dp">
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="Tipo de Solicitudes Requeridas"
                         android:textColor="@color/colorPrimary"
+                        android:gravity="center"
                         android:textSize="15sp"
                         android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayoutCheckBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
                     <LinearLayout
+                        android:id="@+id/linearLayoutCheckBox"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                         <CheckBox
                             android:id="@+id/checkboxActualizacionDatos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Actualización/corrección de datos."
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
                         <CheckBox
                             android:id="@+id/checkBoxCambioTitular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cambio de titular."
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
                         <CheckBox
                             android:id="@+id/checkBoxNuevoIntegrante"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Alta de nuevo integrante."
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
                         <CheckBox
                             android:id="@+id/checkBoxBajaIntegrante"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Baja de integrantes."
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:visibility="gone">
-
                         <CheckBox
                             android:id="@+id/checkboxCambioDomicilio"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cambio de domicilio."
+                            android:visibility="gone"
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
                         <CheckBox
                             android:id="@+id/checkboxBajaPrograma"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Solicitud de baja del programa."
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
                         <CheckBox
                             android:id="@+id/checkboxReactivaPrograma"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Solicitud de reactivación en el programa."
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
                         <CheckBox
                             android:id="@+id/checkboxCorreccionSancion"
                             android:layout_width="wrap_content"
@@ -592,71 +521,59 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
                 <LinearLayout
-                    android:id="@+id/linearLayoutObserEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="50dp"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
-                        android:text="Observación:"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:text="Información Complementaria Solicitud"
                         android:textColor="@color/colorPrimary"
-                        android:layout_height="wrap_content"/>
+                        android:gravity="center"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <android.support.design.widget.TextInputEditText
-                            android:id="@+id/textEditObservacion"
+                            android:id="@+id/textInputObservacion"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:hint="Observación"
+                            android:maxLines="8"
+                            android:minHeight="60dp"
                             android:textColorHint="@color/colorPrimary"
                             android:textSize="15sp"
-                            android:minHeight="60dp"
+                            android:textStyle="bold" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/textInputPhoneNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Número Teléfonico"
                             android:maxLines="8"
-                            android:textStyle="bold"/>
+                            android:minHeight="60dp"
+                            android:textColorHint="@color/colorPrimary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayoutObserView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="50dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.7">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:text="Observación:"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/colorPrimary"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.3">
-
-                        <TextView
-                            android:id="@+id/textViewObservacion"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Esta es una obsrvacion para poder visualizar el tamaño de un text grande"
-                            android:textColor="#ea0909" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
+
     <include layout="@layout/fragment_layout_message_internet"></include>
 </android.support.design.widget.CoordinatorLayout>

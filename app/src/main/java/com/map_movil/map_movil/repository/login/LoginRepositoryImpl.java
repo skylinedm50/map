@@ -1,9 +1,12 @@
 package com.map_movil.map_movil.repository.login;
 
+import android.app.Application;
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.JsonArray;
@@ -20,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginRepositoryImpl implements LoginRepository{
+public class LoginRepositoryImpl extends Application implements LoginRepository{
     private LoginPresenter objLoginPresenter;
     private List<User> userList;
     private ApiAdapterLogin apiAdapterLogin;
@@ -30,6 +33,7 @@ public class LoginRepositoryImpl implements LoginRepository{
         this.objLoginPresenter = objLoginPresenter;
         apiAdapterLogin = new ApiAdapterLogin();
         apiServiceLogin = apiAdapterLogin.getClientService();
+
     }
 
     @Override

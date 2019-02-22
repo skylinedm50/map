@@ -8,6 +8,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -53,14 +54,12 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
 
     private ArrayList<HogarLigth> hogarLigthsList = new ArrayList<>();
 
-    private TextInputEditText textInputEditTextObservacion;
+    private TextInputEditText textInputObservacion;
+    private TextInputEditText textInputPhoneNumber;
     private TextView textViewCodSolitud;
     private TextView textViewEstadoSolicitud;
     private TextView textViewMessageFind;
-    private LinearLayout linearLayoutSolicitud;
-    private LinearLayout linearLayoutObserEdit;
-    private LinearLayout linearLayoutObserView;
-    private LinearLayout linearLayoutNucleo;
+    private CardView cardWiewSolicitud;
     private LinearLayout linearLayoutMain;
 
     private LinearLayout linearLayoutTextoBusqueda;
@@ -74,7 +73,6 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
     private TextView textViewMunicipio;
     private TextView textViewAldea;
     private TextView textViewCaserio;
-    private TextView textViewObservacion;
     private CheckBox checkBoxActualizacionDatos;
     private CheckBox checkBoxCambioTitular;
     private CheckBox checkBoxNuevoIntegrante;
@@ -88,7 +86,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
     private RecyclerView recyclerViewMiembros;
     private AdapterItemMiembroNucleoRecyclerView adapterItemMiembroNucleoRecyclerView;
 
-   private AlertDialog alertDialog;
+    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,11 +115,8 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         linearLayoutTextoBusqueda = findViewById(R.id.linearLayoutTextoBusqueda);
         relativeLayoutProgressBar = findViewById(R.id.relativeLayoutProgressBar);
         textViewMessageFind = findViewById(R.id.textViewMessageFind);
-
-        linearLayoutNucleo = findViewById(R.id.conteinerLinearLayoutNucleo);
-        linearLayoutObserEdit = findViewById(R.id.linearLayoutObserEdit);
-        linearLayoutObserView = findViewById(R.id.linearLayoutObserView);
-        textInputEditTextObservacion = findViewById(R.id.textEditObservacion);
+        textInputObservacion = findViewById(R.id.textInputObservacion);
+        textInputPhoneNumber = findViewById(R.id.textInputPhoneNumber);
 
         checkBoxActualizacionDatos = findViewById(R.id.checkboxActualizacionDatos);
         checkBoxCambioTitular = findViewById(R.id.checkBoxCambioTitular);
@@ -140,12 +135,14 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         objApiAdapterSolicitudes = new ApiAdapterSolicitudes();
         objApiServiceSolicitudes = objApiAdapterSolicitudes.getClientService();
 
+        textInputObservacion.setEnabled(false);
+        textInputPhoneNumber.setVisibility(View.GONE);
+
         if(intTipoOperacion == 2) {//Buscar una solicitud
             findSolicitudSave(intCodSolicitud);
         }else{//Cuando se va a ingresar una nueva solicitud.
             linearLayoutMain.setVisibility(View.GONE);
-            linearLayoutObserEdit.setVisibility(View.VISIBLE);
-            linearLayoutObserView.setVisibility(View.GONE);
+            textInputObservacion.setEnabled(true);
         }
         BroadCastInternet.subscribeForMessageInternet(getApplicationContext(), findViewById(R.id.linearLayoutMother));
     }
@@ -179,9 +176,12 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
             });
             searchView.setInputType(InputType.TYPE_CLASS_NUMBER);
             searchView.setQueryHint("Buscar...");
+            searchView.setMaxWidth(Integer.MAX_VALUE);
             saveDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
+
+
                     saveSolicitud();
                     return true;
                 }
@@ -231,7 +231,6 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
     public void findDataCreateSolicitud(String strIdentidadTitular) {
         showProgressBar(true);
         showAddSolicitudAcitivityPresenter.findDataForCreateSolicitud(strIdentidadTitular);
-
     }
 
     @Override
@@ -252,7 +251,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         solicitudesDownload.setBaja_programa(checkBoxBajaPrograma.isChecked());
         solicitudesDownload.setCorreccion_sancion(checkBoxCorrecionSancion.isChecked());
         solicitudesDownload.setReactiva_programa(checkBoxReactivaPrograma.isChecked());
-        solicitudesDownload.setObservacion(textInputEditTextObservacion.getText().toString());
+        solicitudesDownload.setObservacion(textInputObservacion.getText().toString());
 
         if(!solicitudesDownload.isActualizacion_datos() && !solicitudesDownload.isCambio_titular() &&
                 !solicitudesDownload.isNuevo_integrante() && !solicitudesDownload.isBaja_integrante() &&
@@ -355,7 +354,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
 
     @Override
     public void showSolicitud(InfoSolicitud infoSolicitud, ArrayList<HogarLigth> hogarLigthArrayList) {
-        linearLayoutSolicitud = findViewById(R.id.linearLayoutSolicitud);
+        cardWiewSolicitud = findViewById(R.id.cardWiewSolicitud);
         textViewCodSolitud = findViewById(R.id.textViewCodigoSolicitud);
         textViewEstadoSolicitud = findViewById(R.id.textViewEstadoSolicitud);
         textViewCodHogar = findViewById(R.id.textViewCodigohogar);
@@ -365,7 +364,6 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         textViewMunicipio = findViewById(R.id.textViewMunicipio);
         textViewAldea = findViewById(R.id.textViewAldea);
         textViewCaserio = findViewById(R.id.textViewCaserio);
-        textViewObservacion = findViewById(R.id.textViewObservacion);
         textViewAlertChangeTitular = findViewById(R.id.textViewAlertChangeTitular);
         textViewAlertChangeTitular.setVisibility(infoSolicitud.isBolTitularCambioHogar()? View.VISIBLE: View.GONE);
 
@@ -387,7 +385,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         checkBoxReactivaPrograma.setEnabled(false);
         checkBoxCorrecionSancion.setEnabled(false);
 
-        linearLayoutSolicitud.setVisibility(View.VISIBLE);
+        cardWiewSolicitud.setVisibility(View.VISIBLE);
         textViewCodSolitud.setText(String.valueOf(infoSolicitud.getIntCodSolicitud()));
         textViewEstadoSolicitud.setText(infoSolicitud.getStrEstadoSolicitud());
         textViewCodHogar.setText(String.valueOf(infoSolicitud.getIntCodHogar()));
@@ -397,7 +395,7 @@ public class ShowAddSolicitudActivity extends AppCompatActivity implements MenuI
         textViewMunicipio.setText(String.valueOf(infoSolicitud.getStrMunicipio()));
         textViewAldea.setText(String.valueOf(infoSolicitud.getStrAldea()));
         textViewCaserio.setText(String.valueOf(infoSolicitud.getStrCaserio()));
-        textViewObservacion.setText(String.valueOf(infoSolicitud.getStrObservacion()));
+        textInputObservacion.setText(String.valueOf(infoSolicitud.getStrObservacion()));
         hogarLigthsList = hogarLigthArrayList;
         adapterItemMiembroNucleoRecyclerView.adapterDataChange(hogarLigthsList);
         showProgressBar(false);
