@@ -24,12 +24,12 @@ import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
 import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragment;
 import com.map_movil.map_movil.view.downloadData.DownloadDataFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
+import com.map_movil.map_movil.view.desempeno.DesempenoFragment;
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
 import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
 import com.map_movil.map_movil.view.notificacion.EmisionHomeFragment;
 import com.map_movil.map_movil.view.notificacion.EmisionesFragment;
-import com.map_movil.map_movil.view.notificacion.NotificacionFragment;
 import com.map_movil.map_movil.view.programados.ProgramadosFragment;
 import com.map_movil.map_movil.view.reportes.ReportsHomeFragment;
 import com.map_movil.map_movil.view.sincronizar.SincronizarFragment;
@@ -87,6 +87,9 @@ public class HomeActivity extends AppCompatActivity
 
         showToolbar("Inicio");
         MostarPermisos();
+
+        showContentScreenHome(false);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, new DesempenoFragment()).commit();
     }
 
     @Override
