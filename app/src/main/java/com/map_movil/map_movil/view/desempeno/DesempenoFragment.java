@@ -66,11 +66,12 @@ public class DesempenoFragment extends Fragment {
 
 
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(ColorTemplate.MATERIAL_COLORS[0]);
         colors.add(ColorTemplate.MATERIAL_COLORS[3]);
+        colors.add(ColorTemplate.MATERIAL_COLORS[0]);
 
 
-        String[] StackLabels = {"Ingresadas","Resueltas"};
+
+        String[] StackLabels = {"Resueltas","Ingresadas"};
 
         dataSet.setStackLabels(StackLabels);
         dataSet.setDrawValues(true);
