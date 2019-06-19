@@ -24,7 +24,7 @@ import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
 import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragment;
 import com.map_movil.map_movil.view.downloadData.DownloadDataFragment;
 import com.map_movil.map_movil.view.descargar_validacion.DescargarValidacionFragment;
-import com.map_movil.map_movil.view.desempeno.DesempenoFragment;
+import com.map_movil.map_movil.view.reportes.ReportRendimientoFragment;
 import com.map_movil.map_movil.view.informacionHogares.InformacionHogaresFragment;
 import com.map_movil.map_movil.view.excluidos.ExcluidoFragment;
 import com.map_movil.map_movil.view.login.LoginActivity;
@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity
         MostarPermisos();
 
         showContentScreenHome(false);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, new DesempenoFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main_home, new ReportRendimientoFragment()).commit();
     }
 
     @Override

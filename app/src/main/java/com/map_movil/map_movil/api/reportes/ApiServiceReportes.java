@@ -3,6 +3,7 @@ package com.map_movil.map_movil.api.reportes;
 import com.map_movil.map_movil.model.EstadosCantidadSolicitudes;
 import com.map_movil.map_movil.model.GestionesUsuario;
 import com.map_movil.map_movil.model.Region;
+import com.map_movil.map_movil.model.Rendimiento;
 import com.map_movil.map_movil.model.SolicitudesCantidadPorEstado;
 
 import java.util.ArrayList;
@@ -35,4 +36,7 @@ public interface ApiServiceReportes {
 
     @GET("global/regiones")
     Call<ArrayList<Region>>getRegiones();
+
+    @GET("solicitudes/cifras/rendimiento")
+    Call<ArrayList<Rendimiento>>getRendimiento();
 }
