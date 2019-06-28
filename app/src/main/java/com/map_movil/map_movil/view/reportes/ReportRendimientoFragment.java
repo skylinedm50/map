@@ -3,6 +3,7 @@ package com.map_movil.map_movil.view.reportes;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,12 +65,19 @@ public class ReportRendimientoFragment extends Fragment implements ReportesView 
         ArrayList<String> stringArrayList = new ArrayList<>();
         int count = 0;
         for(Rendimiento rendimiento: arrayList){
-            yVals.add(new BarEntry(count, new float[]{rendimiento.getResueltas(), rendimiento.getIngresadas()}));
+         /*   if(rendimiento.getResueltas()==0){
+                yVals.add(new BarEntry(count, new float[]{rendimiento.getIngresadas() - rendimiento.getResueltas()}));
+            }else if(rendimiento.getIngresadas()==0){
+                yVals.add(new BarEntry(count, new float[]{rendimiento.getResueltas()}));
+            }else {*/
+                yVals.add(new BarEntry(count, new float[]{rendimiento.getResueltas(), rendimiento.getIngresadas() - rendimiento.getResueltas()}));
+           // }
             stringArrayList.add(rendimiento.getDepartamento());
             count ++;
         }
         BarDataSet dataSet = new BarDataSet(yVals, "");
         BarData data = new BarData(dataSet);
+
         ArrayList<Integer> colors = new ArrayList<>();
         colors.add(ColorTemplate.MATERIAL_COLORS[3]);
         colors.add(ColorTemplate.MATERIAL_COLORS[0]);
@@ -77,24 +85,32 @@ public class ReportRendimientoFragment extends Fragment implements ReportesView 
         String[] StackLabels = {"Resueltas","Ingresadas"};
 
         dataSet.setStackLabels(StackLabels);
-        dataSet.setDrawValues(true);
-        dataSet.setHighlightEnabled(true);
+     //   dataSet.setDrawValues(true);
+     //   dataSet.setHighlightEnabled(false);
         dataSet.setValueFormatter(new MyBarValueFormatter(getContext()));
+
+       // dataSet.setVisible(false);
 
         dataSet.setColors(colors);
         horizontalBarChart.setData(data);
         horizontalBarChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(stringArrayList));
         horizontalBarChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         horizontalBarChart.getXAxis().setEnabled(true);
+        horizontalBarChart.getXAxis().setDrawGridLines(false);
+        horizontalBarChart.getXAxis().setDrawAxisLine(false);
+        horizontalBarChart.getAxisLeft().mAxisMinimum=0f;
+        horizontalBarChart.getAxisRight().mAxisMinimum=0f;
+      //  horizontalBarChart.getAxisLeft().setEnabled(false);
+      //  horizontalBarChart.getAxisRight().setEnabled(false);
         horizontalBarChart.setDrawValueAboveBar(false); //mostrar sobre stackedbar
         horizontalBarChart.getXAxis().setLabelCount(17);
-        horizontalBarChart.getXAxis().setTextSize(15f);
+        horizontalBarChart.getXAxis().setTextSize(14f);
+        horizontalBarChart.setExtraOffsets(11f,0,0,0);
         horizontalBarChart.setTouchEnabled(false);
         horizontalBarChart.getDescription().setEnabled(false);
         horizontalBarChart.getLegend().setEnabled(true);
         horizontalBarChart.getLegend().setTextSize(15f);
         horizontalBarChart.getLegend().setFormSize(15f);
-
         horizontalBarChart.invalidate();
 
         data.setValueTextSize(13f);
@@ -129,11 +145,24 @@ class MyBarValueFormatter implements IValueFormatter {
         if(toggle % 2 == 0){
             toggle++;
             totalVal =  value;
-            return " "+mFormat.format(totalVal);
+            
+            if(totalVal==0){
+                return "";
+            }else {
+                return " " + mFormat.format(totalVal);
+            }
         }else{
             toggle++;
-            totalVal = totalVal + value;
-            return " "+mFormat.format(totalVal);
+            if(value != 0) {
+                totalVal = totalVal + value;
+                if(totalVal==0){
+                    return "";
+                }else {
+                    return " " + mFormat.format(totalVal);
+                }
+            }else{
+                return "";
+            }
         }
     }
 }
