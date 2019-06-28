@@ -2,6 +2,7 @@ package com.map_movil.map_movil.view.programados;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -48,7 +49,6 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     private View view;
     private View v;
     private MenuItem searchItem;
-
     private UbicacionesPresenter ubicacionesPresenter;
     private PlanillaPresenter pagosPresenter;
     private AppCompatSpinner DepartamentoSpiner;
@@ -58,7 +58,6 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     private RadioButton rb_busc_id;
     private RadioButton rb_geo;
     private EditText tv_identidad;
-
     private ListView listplanillapagos;
     private ArrayList<PagosProgramados> listPagos = new ArrayList<PagosProgramados>();
     private AdaptadorProgramados adaptadorProgramados;
@@ -75,7 +74,6 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     private TextView tv_aldeas;
     private HashMap<Integer, String> SpinnerMapPagos;
     private SwipeRefreshLayout swipeRefreshLayout;
-
     private String CodigoDepartamento="";
     private String CodigoMunicipio="";
     private String CodigoAldea="";
@@ -83,6 +81,7 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     private String Identidad_titular;
     private boolean a = true;
     private WindowManager.LayoutParams LP = new WindowManager.LayoutParams();
+    private SharedPreferences sharedPreferencesUsuario;
 
     public ProgramadosFragment(){}
 
@@ -90,32 +89,37 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        this.view                 = inflater.inflate(R.layout.fragment_programados, container, false);
-        this.context              = this.view.getContext();
-        this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
-        this.pagosPresenter       = new PlanillaPresenterImpl(this , getContext());
-        this.swipeRefreshLayout   = (SwipeRefreshLayout) view.findViewById(R.id.swiperefreshprogramados);
-        this.SpinnerMapPagos      = new HashMap<Integer, String>();
-        this.ryProgramados        = (RelativeLayout) view.findViewById(R.id.ry_cantidad);
-        this.CantidadProgramados  = (TextView) view.findViewById(R.id.cantidad_hogares);
+        this.view                        = inflater.inflate(R.layout.fragment_programados, container, false);
+        this.context                     = this.view.getContext();
+        this.ubicacionesPresenter        = new UbicacionPresenterImpl(this, view.getContext());
+        this.pagosPresenter              = new PlanillaPresenterImpl(this , getContext());
+        this.swipeRefreshLayout          = (SwipeRefreshLayout) view.findViewById(R.id.swiperefreshprogramados);
+        this.SpinnerMapPagos             = new HashMap<Integer, String>();
+        this.ryProgramados               = (RelativeLayout) view.findViewById(R.id.ry_cantidad);
+        this.CantidadProgramados         = (TextView) view.findViewById(R.id.cantidad_hogares);
+        this.sharedPreferencesUsuario    = getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
 
-        relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
-        linearLayout = view.findViewById(R.id.linearLayoutdatos);
-        linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
+        this.relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
+        this.linearLayout = view.findViewById(R.id.linearLayoutdatos);
+        this.linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
 
-        listplanillapagos = view.findViewById(R.id.listaexcluidos);
-        adaptadorProgramados = new AdaptadorProgramados(context, listPagos);
-        listplanillapagos.setAdapter(adaptadorProgramados);
+        this.listplanillapagos = view.findViewById(R.id.listaexcluidos);
+        this.adaptadorProgramados = new AdaptadorProgramados(context, listPagos);
+        this.listplanillapagos.setAdapter(adaptadorProgramados);
 
         this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loading("search",null);
                 if(a){
-                SolicitarDatosProgramados( (AldeaSpiner != null)?AldeaSpiner.getSelectedItem().toString().split("-")[0]:"",
-                        (PagosSpiner != null)?SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()):"0"
-                );}else{SolicitarDatosProgramadosPorID(Identidad_titular,
-                        (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0");}
+                    SolicitarDatosProgramados( (AldeaSpiner != null)?AldeaSpiner.getSelectedItem().toString().split("-")[0]:"",
+                            (PagosSpiner != null)?SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()):"0" , sharedPreferencesUsuario.getInt("codigo",0)
+                    );
+                }else{
+                    SolicitarDatosProgramadosPorID(Identidad_titular,
+                        (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0" ,
+                            sharedPreferencesUsuario.getInt("codigo",0));
+                }
             }
         });
 
@@ -298,8 +302,8 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     }
 
     @Override
-    public void SolicitarDatosProgramados(String strCodAldea, String strCodpago) {
-        this.pagosPresenter.getProgramados(strCodAldea , strCodpago);
+    public void SolicitarDatosProgramados(String strCodAldea, String strCodpago,  int Usuario) {
+        this.pagosPresenter.getProgramados(strCodAldea , strCodpago , Usuario);
     }
 
     @Override
@@ -324,8 +328,8 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
     public void MostarExcluidos(ArrayList<PagosExcluido> listexcluidos) { }
 
     @Override
-    public void SolicitarDatosProgramadosPorID(String strIdentidad, String strCodpago) {
-        this.pagosPresenter.getProgramado_By_ID(strIdentidad , strCodpago);
+    public void SolicitarDatosProgramadosPorID(String strIdentidad, String strCodpago,  int Usuario) {
+        this.pagosPresenter.getProgramado_By_ID(strIdentidad , strCodpago , Usuario);
     }
 
     private void findByTitular(String strNombre){
@@ -415,7 +419,9 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
 
                     loading("search", null);
                     SolicitarDatosProgramados(AldeaSpiner.getSelectedItem().toString().split("-")[0],
-                            (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0");
+                            (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0" ,
+                             sharedPreferencesUsuario.getInt("codigo",0)
+                            );
                     a = true;
                 }else if(rb_busc_id.isChecked()){
                     CodigoPago = (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0";
@@ -423,7 +429,9 @@ public class ProgramadosFragment extends Fragment implements PlanillaView, Ubica
 
                     loading("search", null);
                     SolicitarDatosProgramadosPorID(Identidad_titular,
-                            (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0");
+                            (PagosSpiner.getCount() != 0) ? SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()).toString() : "0" ,
+                             sharedPreferencesUsuario.getInt("codigo",0)
+                            );
                     a = false;
                 }
             }

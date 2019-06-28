@@ -63,16 +63,10 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
         this.quejasPresenter = new QuejasPresenterImpl(null , this , getContext());
         this.swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.quejas_swipe);
         this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
-
         linearLayoutManager = new LinearLayoutManager(getContext());
-       // linearLayoutManager.setReverseLayout(true);
-       // linearLayoutManager.setStackFromEnd(true);
-
         denuncias_adapter = new quejas_denuncias_adapter(getContext() , codigo_accion , this.swipeRefreshLayout );
         rv_quejas.setAdapter(denuncias_adapter);
         rv_quejas.setLayoutManager(linearLayoutManager);
-
-   //     denuncias_adapter.SolicitarQuejas();
         setHasOptionsMenu(true);
 
         this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -89,12 +83,6 @@ public class QuejasFragment extends Fragment implements SearchView.OnQueryTextLi
     public void onResume() {
         super.onResume();
         this.denuncias_adapter.SolicitarQuejas();
-       /* this.rv_quejas.post(new Runnable() {
-            @Override
-            public void run() {
-                rv_quejas.smoothScrollToPosition(denuncias_adapter.getItemCount());
-            }
-        });*/
     }
 
 

@@ -2,6 +2,7 @@ package com.map_movil.map_movil.view.excluidos;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -47,32 +48,29 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     private Context context;
     private UbicacionesPresenter ubicacionesPresenter;
     private PlanillaPresenter planillaPresenter;
-
     private AppCompatSpinner DepartamentoSpiner;
     private AppCompatSpinner MunicipioSpiner;
     private AppCompatSpinner AldeaSpiner;
     private AppCompatSpinner PagosSpiner;
-
     private CheckBox chk_button;
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextView CantidadProgramados;
     private MenuItem searchItem;
-
     private RelativeLayout relativeLayout;
     private LinearLayout linearLayout;
     private LinearLayout linearLayoutnodata;
     private RelativeLayout ryProgramados;
-
     private ListView listplanillaexcluidos;
     private ArrayList<PagosExcluido> listexcluidos = new ArrayList<>();
     private AdaptadorExcluidos adaptadorExcluidos;
     private HashMap<Integer , String > SpinnerMapPagos;
-
     private String CodigoDepartamento="";
     private String CodigoMunicipio="";
     private String CodigoAldea="";
     private String CodigoPago="";
     private Boolean Mancomunidades = false;
+    private SharedPreferences sharedPreferencesUsuario;
+
 
     public ExcluidoFragment() { }
 
@@ -88,26 +86,28 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         this.ryProgramados        = (RelativeLayout) view.findViewById(R.id.ry_cantidadE);
         this.CantidadProgramados  = (TextView) view.findViewById(R.id.cantidad_hogaresE);
 
-        relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
-        linearLayout = view.findViewById(R.id.linearLayoutdatos);
-        linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
+        this.relativeLayout = view.findViewById(R.id.relativeLayoutProgressBar);
+        this.linearLayout = view.findViewById(R.id.linearLayoutdatos);
+        this.linearLayoutnodata = view.findViewById(R.id.linearLayoutnodata);
+        this.sharedPreferencesUsuario    = getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
 
-        DepartamentoSpiner = view.findViewById(R.id.departamento);
-        MunicipioSpiner = view.findViewById(R.id.municipio);
-        AldeaSpiner = view.findViewById(R.id.aldea);
-        PagosSpiner = view.findViewById(R.id.pago);
+        this.DepartamentoSpiner = view.findViewById(R.id.departamento);
+        this.MunicipioSpiner = view.findViewById(R.id.municipio);
+        this.AldeaSpiner = view.findViewById(R.id.aldea);
+        this.PagosSpiner = view.findViewById(R.id.pago);
 
         this.context = view.getContext();
-        listplanillaexcluidos = view.findViewById(R.id.listaexcluidos);
-        adaptadorExcluidos = new AdaptadorExcluidos(context, listexcluidos);
-        listplanillaexcluidos.setAdapter(adaptadorExcluidos);
+        this.listplanillaexcluidos = view.findViewById(R.id.listaexcluidos);
+        this.adaptadorExcluidos = new AdaptadorExcluidos(context, listexcluidos);
+        this.listplanillaexcluidos.setAdapter(adaptadorExcluidos);
 
         this.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 loading("search",null);
                 planillaPresenter.getExcluidos(AldeaSpiner.getSelectedItem().toString().split("-")[0],
-                        SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()),(chk_button.isChecked())?"":"Global");
+                        SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()),(chk_button.isChecked())?"":"Global" ,
+                        sharedPreferencesUsuario.getInt("codigo",0));
             }
         });
         loading("no_data","REALICE UNA BÚSQUEDA PARA VISUALIZAR INFORMACIÓN");
@@ -246,7 +246,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     }
 
     @Override
-    public void SolicitarDatosProgramados(String strCodAldea, String strCodpago) { }
+    public void SolicitarDatosProgramados(String strCodAldea, String strCodpago,  int Usuario) { }
 
     @Override
     public void MostarDatosProgramados(ArrayList<PagosProgramados> pagosProgramados) { }
@@ -268,7 +268,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
     }
 
     @Override
-    public void SolicitarDatosProgramadosPorID(String strIdentidad, String strCodpago) {
+    public void SolicitarDatosProgramadosPorID(String strIdentidad, String strCodpago,  int Usuario) {
 
     }
 
@@ -322,7 +322,8 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
 
                 loading("search",null);
                 planillaPresenter.getExcluidos(AldeaSpiner.getSelectedItem().toString().split("-")[0],
-                              SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()),(chk_button.isChecked())?"":"Global");
+                              SpinnerMapPagos.get(PagosSpiner.getSelectedItemPosition()),(chk_button.isChecked())?"":"Global" ,
+                              sharedPreferencesUsuario.getInt("codigo",0));
             }
         });
 

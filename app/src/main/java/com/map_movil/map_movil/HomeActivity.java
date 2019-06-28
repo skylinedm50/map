@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.map_movil.map_movil.Realm.RealmConfig;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 import com.map_movil.map_movil.view.Quejas.QuejasHomeFragment;
@@ -36,7 +35,6 @@ import com.map_movil.map_movil.view.sincronizar.SincronizarFragment;
 import com.map_movil.map_movil.view.solicitudes.SolicitudHomeFragment;
 import com.map_movil.map_movil.view.validar_hogares.ListarValidacionesFragment;
 import com.map_movil.map_movil.view.help.HelpFragment;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 

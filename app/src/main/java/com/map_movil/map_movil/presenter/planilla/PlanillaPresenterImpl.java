@@ -22,27 +22,27 @@ public class PlanillaPresenterImpl implements PlanillaPresenter {
 
     @Override
     public void getPagos() {
-        planillaInteractor.getPagos();
+        this.planillaInteractor.getPagos();
     }
 
     @Override
     public void cargarPagos(List<Pagos> pagos) {
-        planillaView.cargarPagos(pagos);
+        this.planillaView.cargarPagos(pagos);
     }
 
     @Override
-    public void getProgramados(String strCodAldea, String strCodpago) {
-        this.planillaInteractor.getProgramados(strCodAldea , strCodpago);
+    public void getProgramados(String strCodAldea, String strCodpago, int Usuario) {
+        this.planillaInteractor.getProgramados(strCodAldea , strCodpago, Usuario);
     }
 
     @Override
-    public void getProgramado_By_ID(String strIdentidad, String strCodPago) {
-        this.planillaInteractor.getProgramado_By_ID(strIdentidad , strCodPago);
+    public void getProgramado_By_ID(String strIdentidad, String strCodPago, int Usuario) {
+        this.planillaInteractor.getProgramado_By_ID(strIdentidad , strCodPago, Usuario);
     }
 
     @Override
-    public void getExcluidos(String strCodAldea, String strCodpago, String tipoGM) {
-        this.planillaInteractor.getExcluidos(strCodAldea , strCodpago , tipoGM);
+    public void getExcluidos(String strCodAldea, String strCodpago, String tipoGM, int Usuario) {
+        this.planillaInteractor.getExcluidos(strCodAldea , strCodpago , tipoGM, Usuario);
     }
 
     @Override

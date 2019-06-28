@@ -29,8 +29,8 @@ public class RealmConfig {
         createPassword();
         config = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded().encryptionKey(byteKey).build();
 
-        this.realm = Realm.getInstance(config);
-        //realm = Realm.getDefaultInstance();
+        //this.realm = Realm.getInstance(config);
+        realm = Realm.getDefaultInstance();
     }
 
     private void createPassword(){

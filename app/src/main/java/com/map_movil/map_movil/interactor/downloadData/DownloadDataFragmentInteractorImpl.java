@@ -19,8 +19,8 @@ public class DownloadDataFragmentInteractorImpl implements  DownloadDataFragment
     }
 
     @Override
-    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento) {
-        downloadDataFragmentRepository.downloadData(arrayListMunicipiosSelect, strDepartamento);
+    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento, int Usuario) {
+        downloadDataFragmentRepository.downloadData(arrayListMunicipiosSelect, strDepartamento , Usuario);
     }
 
     @Override

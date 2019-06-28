@@ -15,14 +15,16 @@ public class Hogar_Validaciones_Realizadas extends RealmObject {
     private int debe_documentos;
     private int incorporacion;
     private int cambio_titular;
-
+    private String observacion;
+    private double longitud;
+    private double latitud;
 
     public Hogar_Validaciones_Realizadas(){}
 
     public Hogar_Validaciones_Realizadas( int hog_hogar , int per_persona , int tarjeta_identidad ,
                                           int acta_compromiso , int actualizar_datos , int partidad_nacimiento ,
                                           int constancia_educacion , int desagregar , int debe_documentos ,
-                                          int incorporacion , int cambio_titular){
+                                          int incorporacion , int cambio_titular  , String observacion , double latitud , double longitud){
         this.hog_hogar = hog_hogar;
         this.per_persona = per_persona;
         this.tarjeta_identidad = tarjeta_identidad;
@@ -34,6 +36,9 @@ public class Hogar_Validaciones_Realizadas extends RealmObject {
         this.debe_documentos = debe_documentos;
         this.incorporacion = incorporacion;
         this.cambio_titular = cambio_titular;
+        this.observacion  = observacion;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public int getHog_hogar() {
@@ -102,4 +107,23 @@ public class Hogar_Validaciones_Realizadas extends RealmObject {
     public void setCambio_titular(int cambio_titular) {
         this.cambio_titular = cambio_titular;
     }
+    public String getObservacion() {
+        return observacion;
+    }
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+    public double getLongitud() {
+        return longitud;
+    }
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+    public double getLatitud() {
+        return latitud;
+    }
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
 }

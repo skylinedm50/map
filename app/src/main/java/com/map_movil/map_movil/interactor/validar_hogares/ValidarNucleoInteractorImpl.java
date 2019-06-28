@@ -1,5 +1,6 @@
 package com.map_movil.map_movil.interactor.validar_hogares;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.map_movil.map_movil.presenter.validar_hogares.ValidarNucleoPresenter;
@@ -11,9 +12,9 @@ public class ValidarNucleoInteractorImpl implements ValidarNucleoInteractor {
     private ValidarNucleoPresenter validarNucleoPresenter;
     private ValidarNucleoRepository validarNucleoRepository;
 
-    public ValidarNucleoInteractorImpl(ValidarNucleoPresenter validarNucleoPresenter, Context context){
+    public ValidarNucleoInteractorImpl(ValidarNucleoPresenter validarNucleoPresenter, Context context, Activity activity){
         this.validarNucleoPresenter = validarNucleoPresenter;
-        this.validarNucleoRepository = new ValidarNucleoRepositoryImpl(this.validarNucleoPresenter, context );
+        this.validarNucleoRepository = new ValidarNucleoRepositoryImpl(this.validarNucleoPresenter, context , activity);
     }
 
     @Override
@@ -23,11 +24,11 @@ public class ValidarNucleoInteractorImpl implements ValidarNucleoInteractor {
 
     @Override
     public void GuardarValidacion(int per_persona, int hog_hogar, int identidad, int act_compromiso, int actualizar, int part_nacimiento,
-                                  int cons_educacion, int desagregar, int debe_documento, int incorporacion , int cambio_titular) {
+                                  int cons_educacion, int desagregar, int debe_documento, int incorporacion , int cambio_titular,  String observacion) {
         this.validarNucleoRepository.GuardarValidacion(  per_persona, hog_hogar, identidad,
                                                          act_compromiso, actualizar, part_nacimiento,
                                                          cons_educacion, desagregar, debe_documento ,
-                                                         incorporacion , cambio_titular
+                                                         incorporacion , cambio_titular , observacion
                 );
     }
 

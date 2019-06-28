@@ -13,28 +13,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import com.map_movil.map_movil.R;
+import com.map_movil.map_movil.elemnts.Permissions;
 import com.map_movil.map_movil.model.Hogar_Validaciones_Realizadas;
 import com.map_movil.map_movil.presenter.validar_hogares.ValidarNucleoPresenter;
 import com.map_movil.map_movil.presenter.validar_hogares.ValidarNucleoPresenterImpl;
 import com.map_movil.map_movil.view.validar_hogares.ValidarNucleoView;
-
 import java.util.ArrayList;
-
-import io.realm.RealmResults;
 
 public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nucleo_hogar_validar_Nucleo_adapter.nucleo_adapter> implements ValidarNucleoView {
 
     private ValidarNucleoPresenter validarNucleoPresenter;
     private ArrayList<String[]> Hogar_Validar = new ArrayList<String[]>();
-    private ArrayList<int[]> personas_validada = new ArrayList<>();
-    private RealmResults<Hogar_Validaciones_Realizadas> hogar_validaciones_realizadas;
+    private ArrayList<Hogar_Validaciones_Realizadas> hogar_validaciones_realizadas;
 
     private Activity activity;
     private Context context;
     private int per_persona;
     private int hog_hogar;
+    private String[] macros = {};
 
     private CheckBox doc_cambio_titular;
     private CheckBox doc_incorporacion;
@@ -46,15 +45,13 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
     private CheckBox doc_desagregar;
     private CheckBox doc_debe_doc;
 
-
     public nucleo_hogar_validar_Nucleo_adapter(Context context , Activity activity ,
                                                int hog_hogar    ){
         this.activity = activity;
         this.context = context;
-        this.validarNucleoPresenter = new ValidarNucleoPresenterImpl(this , context);
+        this.validarNucleoPresenter = new ValidarNucleoPresenterImpl(this , context , activity);
         this.hog_hogar = hog_hogar;
     }
-
 
     @NonNull
     @Override
@@ -79,7 +76,7 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
             holder.Encabezado.setVisibility(View.GONE);
         }
 
-        if(this.Hogar_Validar.get(position)[6]=="1"){
+        if(this.Hogar_Validar.get(position)[6].equals( "1" )){
             holder.cardView.setCardBackgroundColor(Color.parseColor("#dff0f8"));
         }else{
             holder.cardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
@@ -88,11 +85,16 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Permissions permissions = new Permissions(context, activity);
+                boolean granted = permissions.LocationPermissionsGranted();
+
                 per_persona = Integer.parseInt(Hogar_Validar.get(position)[7]);
-                MostarPopUp( Integer.valueOf( Hogar_Validar.get(position)[5] ) ,
-                             Hogar_Validar.get(position)[0]                    ,
-                             position
-                        );
+                macros = new String[] { Hogar_Validar.get(position)[5] ,  Hogar_Validar.get(position)[0] ,
+                                        String.valueOf( position )     ,  Hogar_Validar.get(position)[1] };
+
+                if(granted == true){
+                    MostarPopUp();
+                }
             }
         });
 
@@ -109,15 +111,22 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
     }
 
     @Override
-    public void MostarDatos(ArrayList<String[]> persona , RealmResults<Hogar_Validaciones_Realizadas> hogar_validaciones_realizadas) {
+    public void MostarDatos(ArrayList<String[]> persona , ArrayList<Hogar_Validaciones_Realizadas> hogar_validaciones_realizadas) {
 
         this.Hogar_Validar = persona;
         this.hogar_validaciones_realizadas = hogar_validaciones_realizadas;
         notifyDataSetChanged();
     }
 
+    public  void MostarPopUp(){
+
+        PopUp( Integer.valueOf( macros[0] ) ,
+                macros[1] ,Integer.valueOf(  macros[2] ) , macros[3]
+        );
+    }
+
     @Override
-    public void MostarPopUp(int titular , String Persona , final int index) {
+    public void PopUp(int titular , String Persona , final int index , String identidad) {
         Display display = this.activity.getWindowManager().getDefaultDisplay();
         int mwidth = display.getWidth();
         int mheight = display.getHeight();
@@ -131,24 +140,33 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
         WindowManager.LayoutParams LP = new WindowManager.LayoutParams();
         LP.copyFrom(dialog.getWindow().getAttributes());
         LP.width  = (int)(( mwidth/2) * 1.8);
-        LP.height = (int)(( mheight/2) * 1.1);
+        LP.height = (int)(( mheight/2) * ((titular == 1)?1.5:1.1));
 
         TextView ng_CancelPop         = (TextView) v.findViewById(R.id.ng_cancelpop);
         TextView ng_Selected          = (TextView) v.findViewById(R.id.ng_schedule_selected);
         final TextView error_mjs      = (TextView) v.findViewById(R.id.validacion_msj);
         TextView txt_nombre           = (TextView) v.findViewById(R.id.doc_persona);
+        TextView txt_identidad        = (TextView) v.findViewById(R.id.ident_persona);
+        final EditText edit_obs       = (EditText) v.findViewById(R.id.editObs);
+
+        if(titular == 1){
+            edit_obs.setVisibility(View.VISIBLE);
+            edit_obs.setText( (hogar_validaciones_realizadas.size() > 0)?hogar_validaciones_realizadas.get(index).getObservacion():"" );
+        }else{
+            edit_obs.setVisibility(View.GONE);
+            edit_obs.setText(null);
+        }
+
         txt_nombre.setText(Persona);
+        txt_identidad.setText(identidad);
         error_mjs.setVisibility(View.GONE);
-
         Iniciar_Controles(v , titular);
-
         ng_CancelPop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.cancel();
             }
         });
-
         ng_Selected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,7 +176,7 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
                         doc_educacion.isChecked()     || doc_desagregar.isChecked()    ||
                         doc_debe_doc.isChecked()      || doc_cambio_titular.isChecked()||
                         doc_incorporacion.isChecked()
-                        )
+                   )
                 {
                     validarNucleoPresenter.GuardarValidacion(per_persona                                   ,
                             hog_hogar                                      ,
@@ -170,7 +188,8 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
                             return_integer(doc_desagregar.isChecked()    ) ,
                             return_integer(doc_debe_doc.isChecked()      ) ,
                             return_integer(doc_incorporacion.isChecked() ) ,
-                            return_integer(doc_cambio_titular.isChecked())
+                            return_integer(doc_cambio_titular.isChecked()) ,
+                            edit_obs.getText().toString()
                     );
                     dialog.cancel();
                     Hogar_Validar.get(index)[6]="1";
@@ -183,7 +202,6 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
 
         dialog.getWindow().setAttributes(LP);
     }
-
 
     private int return_integer(boolean valor){
         return  valor?1:0;
@@ -242,7 +260,6 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
         public TextView Estado;
         public CardView cardView;
 
-
         public nucleo_adapter(View itemView) {
             super(itemView);
 
@@ -253,7 +270,6 @@ public class nucleo_hogar_validar_Nucleo_adapter extends RecyclerView.Adapter<nu
             this.Encabezado = itemView.findViewById(R.id.encabezado_nucleo);
             this.Estado = itemView.findViewById(R.id.estado_persona);
             this.cardView = itemView.findViewById(R.id.card_view);
-
         }
     }
 }

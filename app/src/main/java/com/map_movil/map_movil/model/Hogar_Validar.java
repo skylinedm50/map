@@ -68,25 +68,30 @@ public class Hogar_Validar extends RealmObject{
     @SerializedName("hog_telefono")
     private String hog_telefono;
 
+    @SerializedName("validar")
+    private int hog_validar;
+
+    private int header;
 
     public Hogar_Validar(){}
 
-    public Hogar_Validar(int per_persona        , String nombre            , String per_estado_descripcion ,
-                         String hog_umbral      , String sexo              , String edad                   ,
-                         int per_ciclo          , int per_titular          , int hog_hogar                 ,
-                         String cod_departamento, String desc_departamento , String cod_municipio          ,
-                         String desc_municipio  , String cod_aldea         , String desc_aldea             ,
-                         String cod_caserio     , String desc_caserio      , String hogar_direccion        ,
-                         String hog_telefono    , String per_identidad     , String hog_estado_descripcion )
+    public Hogar_Validar(int per_persona         , String nombre            , String per_estado_descripcion  ,
+                         String hog_umbral       , String sexo              , String edad                    ,
+                         int per_ciclo           , int per_titular          , int hog_hogar                  ,
+                         String cod_departamento , String desc_departamento , String cod_municipio           ,
+                         String desc_municipio   , String cod_aldea         , String desc_aldea              ,
+                         String cod_caserio      , String desc_caserio      , String hogar_direccion         ,
+                         String hog_telefono     , String per_identidad     , String hog_estado_descripcion  ,
+                         int hog_validar  )
     {
-        this.per_persona = per_persona;
-        this.nombre = nombre;
-        this.per_estado_descripcion = per_estado_descripcion;
-        this.hog_umbral = hog_umbral;
-        this.sexo = sexo;
-        this.edad = edad;
+        this.setPer_persona(per_persona);
+        this.setNombre(nombre);
+        this.setPer_estado_descripcion(per_estado_descripcion);
+        this.setHog_umbral(hog_umbral);
+        this.setSexo(sexo);
+        this.setEdad(edad);
         this.per_ciclo = per_ciclo;
-        this.per_titular = per_titular;
+        this.setPer_titular(per_titular);
         this.hog_hogar = hog_hogar;
         this.cod_departamento = cod_departamento;
         this.desc_departamento = desc_departamento;
@@ -100,6 +105,7 @@ public class Hogar_Validar extends RealmObject{
         this.hog_telefono = hog_telefono;
         this.per_identidad = per_identidad;
         this.hog_estado_descripcion = hog_estado_descripcion;
+        this.hog_validar = hog_validar;
     }
 
     public int getPer_persona() {
@@ -204,4 +210,38 @@ public class Hogar_Validar extends RealmObject{
     public void setHog_estado_descripcion(String hog_estado_descripcion) {
         this.hog_estado_descripcion = hog_estado_descripcion;
     }
+    public int getHog_validar() {
+        return hog_validar;
+    }
+    public void setHog_validar(int hog_validar) {
+        this.hog_validar = hog_validar;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public void setHog_umbral(String hog_umbral) {
+        this.hog_umbral = hog_umbral;
+    }
+    public void setPer_titular(int per_titular) {
+        this.per_titular = per_titular;
+    }
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
+    public void setPer_estado_descripcion(String per_estado_descripcion) {
+        this.per_estado_descripcion = per_estado_descripcion;
+    }
+    public void setPer_persona(int per_persona) {
+        this.per_persona = per_persona;
+    }
+    public int getHeader() {
+        return header;
+    }
+    public void setHeader(int header) {
+        this.header = header;
+    }
+
 }

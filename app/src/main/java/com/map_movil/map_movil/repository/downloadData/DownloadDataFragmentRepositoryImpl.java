@@ -107,7 +107,7 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
     }
 
     @Override
-    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento) {
+    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento, int Usuario) {
         if(existLocalData()){
             downloadDataFragmentPresenter.showMessage("Imposible realizar acción, existen datos localmente que no se han sincronizado.");
             findDetailDataLocal();
@@ -116,12 +116,12 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
             strDepartamentoSelected = strDepartamento;
             intCodUser = sharedPreferences.getInt("codigo",0);
             deleteAllData();
-            downloadHoagres();
+            downloadHogares(Usuario);
         }
     }
 
     @Override
-    public void downloadHoagres() {
+    public void downloadHogares(final int Usuario) {
         Call<List<Hogar_Validar>> call = apiServiceNucleoHogar.getDatosNucleo(convertArrayListToJsonArray(arrayListMunicipiosSelect).toString());
         call.enqueue(new Callback<List<Hogar_Validar>>() {
             @Override
@@ -132,7 +132,7 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
                     realmConfig.getRealm().insert(response.body());
                     realmConfig.getRealm().commitTransaction();
                     realmConfig.getRealm().close();
-                    downloadHistorialPago();
+                    downloadHistorialPago(Usuario);
                 }else{
                     downloadDataFragmentPresenter.showMessage("No se detectaron datos.");
                     findDetailDataLocal();
@@ -148,8 +148,9 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
     }
 
     @Override
-    public void downloadHistorialPago() {
-        Call<List<HistorialPago>> call = apiServiceNucleoHogar.getHistorialPago(convertArrayListToJsonArray(arrayListMunicipiosSelect).toString());
+    public void downloadHistorialPago(int Usuario) {
+
+        Call<List<HistorialPago>> call = apiServiceNucleoHogar.getHistorialPago(Usuario, convertArrayListToJsonArray(arrayListMunicipiosSelect).toString());
         call.enqueue(new Callback<List<HistorialPago>>() {
             @Override
             public void onResponse(Call<List<HistorialPago>> call, Response<List<HistorialPago>> response) {
@@ -220,18 +221,18 @@ public class DownloadDataFragmentRepositoryImpl implements DownloadDataFragmentR
 
     @Override
     public void deleteAllData() {
-        realmConfig = new RealmConfig(context);
-        realmConfig.getRealm().beginTransaction();
+        this.realmConfig = new RealmConfig(context);
+        this.realmConfig.getRealm().beginTransaction();
 
         final RealmResults<SolicitudesDownload> solicitudesDownloadRealmResults;
         final RealmResults<QuejasDenuncias> quejasDenunciasRealmResults;
         solicitudesDownloadRealmResults = realmConfig.getRealm().where(SolicitudesDownload.class).notEqualTo("isLocal", true).findAll();
         quejasDenunciasRealmResults = realmConfig.getRealm().where(QuejasDenuncias.class).notEqualTo("Offline" , 1).findAll();
 
-        realmConfig.getRealm().delete(Hogar_Validar.class);
-        realmConfig.getRealm().delete(HistorialPago.class);
-        realmConfig.getRealm().commitTransaction();
-        realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
+        this.realmConfig.getRealm().delete(Hogar_Validar.class);
+        this.realmConfig.getRealm().delete(HistorialPago.class);
+        this.realmConfig.getRealm().commitTransaction();
+        this.realmConfig.getRealm().executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 if(solicitudesDownloadRealmResults.size() > 0) {

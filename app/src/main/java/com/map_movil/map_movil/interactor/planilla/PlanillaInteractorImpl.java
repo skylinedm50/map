@@ -28,27 +28,27 @@ public class PlanillaInteractorImpl implements PlanillaInteractor {
     }
 
     @Override
-    public void getProgramados(String strCodAldea, String strCodpago) {
+    public void getProgramados(String strCodAldea, String strCodpago, int Usuario) {
         if(BroadCastInternet.isConnected){
-            this.planillaRepository.getProgramados(strCodAldea , strCodpago);
+            this.planillaRepository.getProgramados(strCodAldea , strCodpago , Usuario);
         }else{
             this.planillaRepository. getProgramadosOffline(strCodAldea , strCodpago);
         }
     }
 
     @Override
-    public void getExcluidos(String strCodAldea, String strCodpago, String tipoGM) {
+    public void getExcluidos(String strCodAldea, String strCodpago, String tipoGM, int Usuario) {
         if(tipoGM =="Global"){
-            this.planillaRepository.getExcluidosGlobal(strCodAldea , strCodpago);
+            this.planillaRepository.getExcluidosGlobal(strCodAldea , strCodpago , Usuario);
         }else{
-            this.planillaRepository.getExcluidosMancomunidad(strCodAldea , strCodpago);
+            this.planillaRepository.getExcluidosMancomunidad(strCodAldea , strCodpago , Usuario);
         }
     }
 
     @Override
-    public void getProgramado_By_ID(String strIdentidad, String strCodpago) {
+    public void getProgramado_By_ID(String strIdentidad, String strCodpago, int Usuario) {
         if(BroadCastInternet.isConnected){
-            this.planillaRepository.getProgramado_By_ID(strIdentidad,strCodpago);
+            this.planillaRepository.getProgramado_By_ID(strIdentidad,strCodpago, Usuario);
         }else{
             this.planillaRepository.getProgramado_By_ID_Offline(strIdentidad,strCodpago);
         }

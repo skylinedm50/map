@@ -58,9 +58,9 @@ public class PlanillaRepositoryImpl implements PlanillaRepository {
     }
 
     @Override
-    public void getProgramados(String strCodAldea, String strCodpago) {
+    public void getProgramados(String strCodAldea, String strCodpago, int Usuario) {
         listPagos = new ArrayList<PagosProgramados>();
-        Call<ArrayList<PagosProgramados>> programados = this.servicePlanilla.getPagosProgramados(strCodpago,strCodAldea);
+        Call<ArrayList<PagosProgramados>> programados = this.servicePlanilla.getPagosProgramados(strCodpago,strCodAldea,Usuario);
         programados.enqueue(new Callback<ArrayList<PagosProgramados>>() {
             @Override
             public void onResponse(Call<ArrayList<PagosProgramados>> call, Response<ArrayList<PagosProgramados>> response) {
@@ -81,8 +81,8 @@ public class PlanillaRepositoryImpl implements PlanillaRepository {
     }
 
     @Override
-    public void getExcluidosGlobal(String strCodAldea, String strCodpago) {
-        Call<ArrayList<PagosExcluido>> call = servicePlanilla.getPlanillaExcluidoInfo(strCodAldea,strCodpago);
+    public void getExcluidosGlobal(String strCodAldea, String strCodpago, int Usuario) {
+        Call<ArrayList<PagosExcluido>> call = servicePlanilla.getPlanillaExcluidoInfo(strCodAldea,strCodpago, Usuario);
         call.enqueue(new Callback<ArrayList<PagosExcluido>>() {
             public void onResponse(Call<ArrayList<PagosExcluido>> call, Response<ArrayList<PagosExcluido>> response) {
                 if(response.code() == 200){
@@ -101,8 +101,8 @@ public class PlanillaRepositoryImpl implements PlanillaRepository {
     }
 
     @Override
-    public void getExcluidosMancomunidad(String strCodAldea, String strCodpago) {
-        Call<ArrayList<PagosExcluido>> call = servicePlanilla.getPlanillaExcluidomancInfo(strCodAldea,strCodpago);
+    public void getExcluidosMancomunidad(String strCodAldea, String strCodpago, int Usuario) {
+        Call<ArrayList<PagosExcluido>> call = servicePlanilla.getPlanillaExcluidomancInfo(strCodAldea,strCodpago, Usuario);
         call.enqueue(new Callback<ArrayList<PagosExcluido>>() {
             public void onResponse(Call<ArrayList<PagosExcluido>> call, Response<ArrayList<PagosExcluido>> response) {
                 if(response.code() == 200){
@@ -156,11 +156,11 @@ public class PlanillaRepositoryImpl implements PlanillaRepository {
     }
 
     @Override
-    public void getProgramado_By_ID(String strIdentidad, String strCodpago) {
+    public void getProgramado_By_ID(String strIdentidad, String strCodpago, int Usuario) {
         int intCodpago = Integer.parseInt(strCodpago);
 
         listPagos = new ArrayList<PagosProgramados>();
-        Call<ArrayList<PagosProgramados>> programados = this.servicePlanilla.getPagosProgamadosbyIdTitular(intCodpago, strIdentidad);
+        Call<ArrayList<PagosProgramados>> programados = this.servicePlanilla.getPagosProgamadosbyIdTitular(intCodpago, strIdentidad, Usuario);
 
         programados.enqueue(new Callback<ArrayList<PagosProgramados>>() {
             @Override

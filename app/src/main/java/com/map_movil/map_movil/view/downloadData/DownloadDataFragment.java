@@ -1,6 +1,7 @@
 package com.map_movil.map_movil.view.downloadData;
 
-
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,25 +19,21 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.adapter.AdapterItemMunicipioRecyclerView;
-
 import com.map_movil.map_movil.adapter.AdpterItemMunicipiosSaveDownload;
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
-
 import com.map_movil.map_movil.presenter.downloadData.DownloadDataFragmentPresenter;
 import com.map_movil.map_movil.presenter.downloadData.DownloadDataFragmentPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionPresenterImpl;
 import com.map_movil.map_movil.presenter.ubicaciones.UbicacionesPresenter;
 import com.map_movil.map_movil.view.ubicacion.UbicacionView;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DownloadDataFragment extends Fragment implements DownloadDataFragmentView, UbicacionView {
+
    private View view;
    private Spinner spinnerDepartamento;
    private RecyclerView recyclerViewMunicipio;
@@ -54,9 +51,9 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
    private ArrayList<String> stringListMunicipiosSaveDownload = new ArrayList<>();
    private AdpterItemMunicipiosSaveDownload adpterItemMunicipiosSaveDownload;
    private RecyclerView recyclerViewMunicipiosSave;
+   private SharedPreferences sharedPreferencesUsuario;
 
-    public DownloadDataFragment() {
-    }
+    public DownloadDataFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,22 +64,24 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_download_data, container, false);
-        downloadDataFragmentPresenter = new DownloadDataFragmentPresenterImpl(this, view.getContext());
+        this.view = inflater.inflate(R.layout.fragment_download_data, container, false);
+        this.downloadDataFragmentPresenter = new DownloadDataFragmentPresenterImpl(this, view.getContext());
         this.ubicacionesPresenter = new UbicacionPresenterImpl(this, view.getContext());
-        linearLayoutDetail = view.findViewById(R.id.linearLayoutDetail);
-        progressBar = view.findViewById(R.id.progressBar);
-        spinnerDepartamento = view.findViewById(R.id.spinnerDepartamento);
-        recyclerViewMunicipio = view.findViewById(R.id.recyclerViewMunicipio);
-        recyclerViewMunicipio.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        textViewDepartamento = view.findViewById(R.id.textViewDepartamento);
-        textViewCantHogares = view.findViewById(R.id.textViewCantHogares);
-        textViewCantHistorialPago = view.findViewById(R.id.textViewCantHistorialPago);
-        textViewCantSolicitudes = view.findViewById(R.id.textViewCantSolicitudes);
-        textViewCantQuejas = view.findViewById(R.id.textViewCantQuejas);
-        adapterItemMunicipioRecyclerView = new AdapterItemMunicipioRecyclerView(arrayListMunicipio);
-        recyclerViewMunicipio.setAdapter(adapterItemMunicipioRecyclerView);
-        spinnerDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        this.linearLayoutDetail = view.findViewById(R.id.linearLayoutDetail);
+        this.progressBar = view.findViewById(R.id.progressBar);
+        this.spinnerDepartamento = view.findViewById(R.id.spinnerDepartamento);
+        this.recyclerViewMunicipio = view.findViewById(R.id.recyclerViewMunicipio);
+        this.recyclerViewMunicipio.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        this.textViewDepartamento = view.findViewById(R.id.textViewDepartamento);
+        this.textViewCantHogares = view.findViewById(R.id.textViewCantHogares);
+        this.textViewCantHistorialPago = view.findViewById(R.id.textViewCantHistorialPago);
+        this.textViewCantSolicitudes = view.findViewById(R.id.textViewCantSolicitudes);
+        this.textViewCantQuejas = view.findViewById(R.id.textViewCantQuejas);
+        this.adapterItemMunicipioRecyclerView = new AdapterItemMunicipioRecyclerView(arrayListMunicipio);
+        this.recyclerViewMunicipio.setAdapter(adapterItemMunicipioRecyclerView);
+        this.sharedPreferencesUsuario    = getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+
+        this.spinnerDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 getMunicipios(parent.getItemAtPosition(position).toString());
@@ -92,10 +91,10 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        recyclerViewMunicipiosSave = view.findViewById(R.id.recyclerViewMunicipiosSave);
-        recyclerViewMunicipiosSave.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        adpterItemMunicipiosSaveDownload = new AdpterItemMunicipiosSaveDownload(stringListMunicipiosSaveDownload);
-        recyclerViewMunicipiosSave.setAdapter(adpterItemMunicipiosSaveDownload);
+        this.recyclerViewMunicipiosSave = view.findViewById(R.id.recyclerViewMunicipiosSave);
+        this.recyclerViewMunicipiosSave.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        this.adpterItemMunicipiosSaveDownload = new AdpterItemMunicipiosSaveDownload(stringListMunicipiosSaveDownload);
+        this.recyclerViewMunicipiosSave.setAdapter(adpterItemMunicipiosSaveDownload);
 
         getDepartamentos();
         findDetailDataLocal();
@@ -115,7 +114,7 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
         downloadDataItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                downloadData(adapterItemMunicipioRecyclerView.getArrayListSelected(), spinnerDepartamento.getSelectedItem().toString());
+                downloadData(adapterItemMunicipioRecyclerView.getArrayListSelected(), spinnerDepartamento.getSelectedItem().toString(), sharedPreferencesUsuario.getInt("codigo",0));
                 return false;
             }
         });
@@ -150,10 +149,10 @@ public class DownloadDataFragment extends Fragment implements DownloadDataFragme
     }
 
     @Override
-    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento) {
+    public void downloadData(ArrayList<String> arrayListMunicipiosSelect, String strDepartamento, int Usuario) {
         linearLayoutDetail.setVisibility(View.GONE);
         showProgressBar(true);
-        downloadDataFragmentPresenter.downloadData(arrayListMunicipiosSelect, strDepartamento);
+        downloadDataFragmentPresenter.downloadData(arrayListMunicipiosSelect, strDepartamento, Usuario);
     }
 
     @Override

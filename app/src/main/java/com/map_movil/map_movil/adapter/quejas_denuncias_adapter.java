@@ -83,7 +83,6 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,NuevaQuejaActivity.class);
-
                 intent.putExtra("accion",1);
                 intent.putExtra("Gestion",(tipo_queja == 1)?Realizadas.get(position).getCodigo_gestion()
                                                                      :NoRealizadas.get(position).getCodigo_gestion());
@@ -105,12 +104,10 @@ public class quejas_denuncias_adapter extends RecyclerView.Adapter<quejas_denunc
 
     }
 
-    public ArrayList<QuejasDenuncias> ArrayAdapterQuejas(int accion){
-
+    public ArrayList<QuejasDenuncias> ArrayAdapterQuejas(int accion) {
         this.noRealizadosLenght[0] = this.noRealizadosLenght[1];
         this.RealizadosLenght[0] = this.RealizadosLenght[1];
         Crear_Grupo(this.quejas_denuncias);
-
         return (accion == 1)? Realizadas : NoRealizadas ;
     }
 
