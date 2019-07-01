@@ -2,17 +2,14 @@ package com.map_movil.map_movil.repository.corresponsabilidad;
 
 import android.content.Context;
 import android.widget.Toast;
-import com.map_movil.map_movil.R;
+
 import com.map_movil.map_movil.api.corresponsabilidad.ApiAdapterCorresponsabilidad;
 import com.map_movil.map_movil.api.corresponsabilidad.ApiServiceCorresponsabilidad;
 import com.map_movil.map_movil.model.Corresponsabilidades;
-import com.map_movil.map_movil.model.CorresponsabilidadesClearByMenor;
 import com.map_movil.map_movil.presenter.corresponsabilidad.corresponsabilidadpresenter;
 import com.map_movil.map_movil.view.corresponsabilidad.CorresponsabilidadFragment;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

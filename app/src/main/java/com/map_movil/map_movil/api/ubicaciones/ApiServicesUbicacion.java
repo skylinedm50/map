@@ -2,8 +2,6 @@ package com.map_movil.map_movil.api.ubicaciones;
 
 import com.map_movil.map_movil.model.Aldeas;
 import com.map_movil.map_movil.model.Caserios;
-import com.map_movil.map_movil.model.Departamentos;
-import com.map_movil.map_movil.model.Municipios;
 
 import java.util.List;
 

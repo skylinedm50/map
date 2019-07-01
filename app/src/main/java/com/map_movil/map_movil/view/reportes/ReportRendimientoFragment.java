@@ -21,6 +21,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.map_movil.map_movil.R;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.map_movil.map_movil.model.IndicadorBID;
 import com.map_movil.map_movil.model.Rendimiento;
 import com.map_movil.map_movil.presenter.reportes.ReportesPresenter;
 import com.map_movil.map_movil.presenter.reportes.ReportesPresenterImpl;
@@ -65,16 +66,11 @@ public class ReportRendimientoFragment extends Fragment implements ReportesView 
         ArrayList<String> stringArrayList = new ArrayList<>();
         int count = 0;
         for(Rendimiento rendimiento: arrayList){
-         /*   if(rendimiento.getResueltas()==0){
-                yVals.add(new BarEntry(count, new float[]{rendimiento.getIngresadas() - rendimiento.getResueltas()}));
-            }else if(rendimiento.getIngresadas()==0){
-                yVals.add(new BarEntry(count, new float[]{rendimiento.getResueltas()}));
-            }else {*/
-                yVals.add(new BarEntry(count, new float[]{rendimiento.getResueltas(), rendimiento.getIngresadas() - rendimiento.getResueltas()}));
-           // }
+            yVals.add(new BarEntry(count, new float[]{rendimiento.getResueltas(), rendimiento.getIngresadas() - rendimiento.getResueltas()}));
             stringArrayList.add(rendimiento.getDepartamento());
             count ++;
         }
+
         BarDataSet dataSet = new BarDataSet(yVals, "");
         BarData data = new BarData(dataSet);
 
@@ -82,14 +78,10 @@ public class ReportRendimientoFragment extends Fragment implements ReportesView 
         colors.add(ColorTemplate.MATERIAL_COLORS[3]);
         colors.add(ColorTemplate.MATERIAL_COLORS[0]);
 
-        String[] StackLabels = {"Resueltas","Ingresadas"};
+        String[] StackLabels = {"Resueltas", "Ingresadas"};
 
         dataSet.setStackLabels(StackLabels);
-     //   dataSet.setDrawValues(true);
-     //   dataSet.setHighlightEnabled(false);
         dataSet.setValueFormatter(new MyBarValueFormatter(getContext()));
-
-       // dataSet.setVisible(false);
 
         dataSet.setColors(colors);
         horizontalBarChart.setData(data);
@@ -100,8 +92,6 @@ public class ReportRendimientoFragment extends Fragment implements ReportesView 
         horizontalBarChart.getXAxis().setDrawAxisLine(false);
         horizontalBarChart.getAxisLeft().mAxisMinimum=0f;
         horizontalBarChart.getAxisRight().mAxisMinimum=0f;
-      //  horizontalBarChart.getAxisLeft().setEnabled(false);
-      //  horizontalBarChart.getAxisRight().setEnabled(false);
         horizontalBarChart.setDrawValueAboveBar(false); //mostrar sobre stackedbar
         horizontalBarChart.getXAxis().setLabelCount(17);
         horizontalBarChart.getXAxis().setTextSize(14f);
@@ -119,6 +109,16 @@ public class ReportRendimientoFragment extends Fragment implements ReportesView 
 
     @Override
     public void showMessage(String strMessage) {
+
+    }
+
+    @Override
+    public void getIndicadorBID() {
+
+    }
+
+    @Override
+    public void showIndicadorBID(ArrayList<IndicadorBID> arrayList) {
 
     }
 }

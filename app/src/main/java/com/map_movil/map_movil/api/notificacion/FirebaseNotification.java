@@ -4,23 +4,17 @@ package com.map_movil.map_movil.api.notificacion;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.model.Notification;
 
-import static android.support.v4.app.NotificationCompat.GROUP_ALERT_ALL;
 import static android.support.v4.app.NotificationCompat.GROUP_ALERT_SUMMARY;
 
 public class FirebaseNotification extends FirebaseMessagingService {
