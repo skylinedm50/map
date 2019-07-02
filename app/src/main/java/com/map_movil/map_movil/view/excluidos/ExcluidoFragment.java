@@ -295,7 +295,7 @@ public class ExcluidoFragment extends Fragment implements UbicacionView, Planill
         WindowManager.LayoutParams LP = new WindowManager.LayoutParams();
         LP.copyFrom(dialog.getWindow().getAttributes());
         LP.width  = (int)(( mwidth/2) * 1.8);
-        LP.height = (int)(( mheight/2) * 1.34);
+        LP.height = (int)(( mheight/2) * 1.15);
 
         this.DepartamentoSpiner = v.findViewById(R.id.departamento);
         this.MunicipioSpiner    = v.findViewById(R.id.municipio);

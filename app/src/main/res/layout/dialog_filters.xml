@@ -1,168 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="15dp"
-    android:paddingTop="15dp"
-    android:paddingRight="15dp">
 
-    <TextView
-        android:id="@+id/tvBuscar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Buscar por:"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:visibility="gone"/>
-
-    <LinearLayout
-        android:id="@+id/lytfiltroBuscar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:baselineAligned="false"
-        android:visibility="gone">
-
-        <RadioButton
-            android:id="@+id/rb_busc_id"
-            android:layout_width="wrap_content"
+<ScrollView android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Identidad"
-            android:visibility="visible"/>
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <RadioButton
-            android:id="@+id/rb_geo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Aldea"
-            android:visibility="visible" />
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/tv_prog_identidad"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="10"
-        android:inputType="numberSigned"
-        android:maxLength="13"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/tv_df_deptos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Departamentos"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/departamento"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:spinnerMode="dialog"></android.support.v7.widget.AppCompatSpinner>
-
-    <TextView
-        android:id="@+id/tv_df_municipios"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Municipios"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/municipio"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:spinnerMode="dialog"></android.support.v7.widget.AppCompatSpinner>
-
-    <TextView
-        android:id="@+id/tv_df_aldeas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Aldeas"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/aldea"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:spinnerMode="dialog"></android.support.v7.widget.AppCompatSpinner>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Pagos"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/pago"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:spinnerMode="dialog"></android.support.v7.widget.AppCompatSpinner>
-
-    <CheckBox
-        android:id="@+id/chk_mancomunidades"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Mancomunidades"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        android:visibility="gone" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#000">
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp">
 
         <TextView
-            android:id="@+id/ButtonCancel"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvBuscar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:background="#fff"
-            android:padding="15dp"
-            android:text="CANCELAR"
-            android:textColor="@color/colorAccent"
-            android:textSize="12dp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:text="Buscar por:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/lytfiltroBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/rb_busc_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Identidad"
+                android:visibility="visible"/>
+
+            <RadioButton
+                android:id="@+id/rb_geo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Aldea"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/tv_prog_identidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:maxLength="13"
+            android:visibility="gone" />
 
         <TextView
-            android:id="@+id/buttonsearchex"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_df_deptos"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="#fff"
-            android:padding="15dp"
-            android:text="BUSCAR"
-            android:textColor="@color/colorAccent"
-            android:textSize="12dp"
+            android:layout_marginTop="10dp"
+            android:text="Departamentos"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/departamento"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:spinnerMode="dialog"></android.support.v7.widget.AppCompatSpinner>
+
+        <TextView
+            android:id="@+id/tv_df_municipios"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Municipios"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/municipio"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:spinnerMode="dialog"></android.support.v7.widget.AppCompatSpinner>
+
+        <TextView
+            android:id="@+id/tv_df_aldeas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Aldeas"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/aldea"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:spinnerMode="dialog"></android.support.v7.widget.AppCompatSpinner>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Pagos"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/pago"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:spinnerMode="dialog"></android.support.v7.widget.AppCompatSpinner>
+
+        <CheckBox
+            android:id="@+id/chk_mancomunidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Mancomunidades"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#000">
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ButtonCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="#fff"
+                android:padding="15dp"
+                android:text="CANCELAR"
+                android:textColor="@color/colorAccent"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/buttonsearchex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="#fff"
+                android:padding="15dp"
+                android:text="BUSCAR"
+                android:textColor="@color/colorAccent"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
+
+
