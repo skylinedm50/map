@@ -41,16 +41,16 @@ public class SolicitudHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home_solicitud, container, false);
-        this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        this.view                   = inflater.inflate(R.layout.fragment_home_solicitud, container, false);
+        this.sharedPreferences      = this.view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
         this.sharePrederencesEditor = this.sharedPreferences.edit();
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), sharedPreferences.getInt("codigo", 0));
-        mViewPager = view.findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        this.mSectionsPagerAdapter  = new SectionsPagerAdapter(getFragmentManager(), this.sharedPreferences.getInt("codigo", 0));
+        this.mViewPager             = this.view.findViewById(R.id.container);
+        this.mViewPager.setAdapter(this.mSectionsPagerAdapter);
 
         TabLayout tabLayout = view.findViewById(R.id.tabs);
 
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        this.mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
         FloatingActionButton fab = view.findViewById(R.id.fab);
@@ -63,14 +63,13 @@ public class SolicitudHomeFragment extends Fragment {
             }
         });
 
-        BroadCastInternet.subscribeForMessageInternet(view.getContext(), view);
-        return view;
+        BroadCastInternet.subscribeForMessageInternet(this.view.getContext(), this.view);
+        return this.view;
     }
 
-
     public static class PlaceholderFragment extends Fragment {
-        public PlaceholderFragment() {
-        }
+
+        public PlaceholderFragment() {}
 
         public static Fragment newInstance(int sectionNumber, int intCodUser) {
             SolicitudesFragment fragment = new SolicitudesFragment();
@@ -92,9 +91,7 @@ public class SolicitudHomeFragment extends Fragment {
                                  Bundle savedInstanceState) {
             return inflater.inflate(R.layout.fragment_home_solicitud, container, false);
         }
-
     }
-
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private int intCodUser;

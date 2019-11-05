@@ -16,7 +16,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.broadcasts.BroadCastInternet;
 
@@ -36,13 +35,13 @@ public class QuejasHomeFragment extends Fragment
 
         this.view = LayoutInflater.from(container.getContext()).inflate(R.layout.fragment_home_quejas , container , false);
         this.pager_adapter = new Pager_Adapter(getFragmentManager());
-        this.viewPager = (ViewPager) view.findViewById(R.id.quejas_container);
+        this.viewPager = (ViewPager) this.view.findViewById(R.id.quejas_container);
         this.viewPager.setAdapter(this.pager_adapter);
 
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabsQuejas);
+        TabLayout tabLayout = (TabLayout) this.view.findViewById(R.id.tabsQuejas);
         this.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(this.viewPager));
-        this.sharedPreferences = view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        this.sharedPreferences = this.view.getContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
         this.sharePrederencesEditor = this.sharedPreferences.edit();
 
         FloatingActionButton FloatActButt = (FloatingActionButton) view.findViewById(R.id.floating_action);
@@ -50,7 +49,7 @@ public class QuejasHomeFragment extends Fragment
             @Override
             public void onClick(View view) {
                     Intent intent = new Intent(view.getContext() , NuevaQuejaActivity.class);
-                     view.getContext().startActivity(intent);
+                    view.getContext().startActivity(intent);
             }
         });
         BroadCastInternet.subscribeForMessageInternet(view.getContext(), view);

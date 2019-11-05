@@ -10,20 +10,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.firebase.FirebaseApp;
 import com.google.gson.JsonObject;
 import com.map_movil.map_movil.HomeActivity;
 import com.map_movil.map_movil.R;
 import com.map_movil.map_movil.model.User;
 import com.map_movil.map_movil.presenter.login.LoginPresenter;
 import com.map_movil.map_movil.presenter.login.LoginPresenterImpl;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity  implements LoginView {
+
     private LoginPresenter loginPresenter;
     private EditText textEditUser;
     private EditText textEditPassword;
@@ -33,26 +32,35 @@ public class LoginActivity extends AppCompatActivity  implements LoginView {
     private Intent intent;
     private LinearLayout linearLayoutFieldsLogin;
     private ProgressBar progressBar;
+    private TextView TextViewSolicitarCambioPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
         //FirebaseApp.initializeApp(getApplicationContext());
 
-        sharedPreferences = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
-        sharedPreferencesEditor = sharedPreferences.edit();
-        setContentView(R.layout.activity_login);
-        buttonLogin = findViewById(R.id.btnLogin);
-        textEditUser = findViewById(R.id.strUser);
-        textEditPassword = findViewById(R.id.strPassword);
-        linearLayoutFieldsLogin = findViewById(R.id.linearLayoutFieldsLogin);
-        progressBar = findViewById(R.id.progressBar);
-        loginPresenter = new LoginPresenterImpl(this);
+        this.sharedPreferences               = getApplicationContext().getSharedPreferences("USER", Context.MODE_PRIVATE);
+        this.sharedPreferencesEditor         = sharedPreferences.edit();
+        this.buttonLogin                     = findViewById(R.id.btnLogin);
+        this.textEditUser                    = findViewById(R.id.strUser);
+        this.textEditPassword                = findViewById(R.id.strPassword);
+        this.linearLayoutFieldsLogin         = findViewById(R.id.linearLayoutFieldsLogin);
+        this.progressBar                     = findViewById(R.id.progressBar);
+        this.TextViewSolicitarCambioPassword = findViewById(R.id.TextViewSolicitarCambioPassword);
+        this.loginPresenter                  = new LoginPresenterImpl(this);
         existLogin(sharedPreferences);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        this.buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getDataUser(textEditUser.getText().toString(), textEditPassword.getText().toString());
+            }
+        });
+        this.TextViewSolicitarCambioPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext() , SolicitarCambioPasswordActivity.class );
+                v.getContext().startActivity(intent);
             }
         });
     }

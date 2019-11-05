@@ -231,7 +231,6 @@ public class NuevaQuejaActivity extends AppCompatActivity implements UbicacionVi
 
         }
 
-
         getSupportActionBar().setTitle(
                 (getIntent().getIntExtra("accion",0)==0)?"Registrar Quejas y Denuncias":"Quejas y Denuncias"
         );

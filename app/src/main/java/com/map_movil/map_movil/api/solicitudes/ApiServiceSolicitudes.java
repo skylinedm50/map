@@ -5,9 +5,7 @@ import com.map_movil.map_movil.model.InfoSolicitud;
 import com.map_movil.map_movil.model.ResponseApi;
 import com.map_movil.map_movil.model.SolicitudesDownload;
 import com.map_movil.map_movil.model.SolicitudesUsuario;
-
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
